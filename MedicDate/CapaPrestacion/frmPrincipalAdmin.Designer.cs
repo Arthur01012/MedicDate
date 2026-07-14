@@ -92,66 +92,61 @@
             btnCerrar.TabIndex = 5;
             btnCerrar.Text = "Cerrar sesión";
             btnCerrar.UseVisualStyleBackColor = false;
-            //btnCerrar.Click += btnCerrar_Click;
             // 
             // btnEspecialidades
             // 
             btnEspecialidades.BackColor = Color.FromArgb(166, 202, 236);
             btnEspecialidades.FlatStyle = FlatStyle.Popup;
             btnEspecialidades.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEspecialidades.Location = new Point(12, 255);
+            btnEspecialidades.Location = new Point(12, 261);
             btnEspecialidades.Name = "btnEspecialidades";
             btnEspecialidades.Size = new Size(148, 60);
             btnEspecialidades.TabIndex = 4;
             btnEspecialidades.Text = "Especialidades";
             btnEspecialidades.UseVisualStyleBackColor = false;
-            //btnEspecialidades.Click += btnEspecialidades_Click;
             // 
             // btnHorarios
             // 
             btnHorarios.BackColor = Color.FromArgb(166, 202, 236);
             btnHorarios.FlatStyle = FlatStyle.Popup;
             btnHorarios.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHorarios.Location = new Point(12, 189);
+            btnHorarios.Location = new Point(12, 195);
             btnHorarios.Name = "btnHorarios";
             btnHorarios.Size = new Size(148, 60);
             btnHorarios.TabIndex = 3;
             btnHorarios.Text = "Horarios";
             btnHorarios.UseVisualStyleBackColor = false;
-            //btnHorarios.Click += btnHorarios_Click;
             // 
             // btnAsistentes
             // 
             btnAsistentes.BackColor = Color.FromArgb(166, 202, 236);
             btnAsistentes.FlatStyle = FlatStyle.Popup;
             btnAsistentes.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAsistentes.Location = new Point(12, 122);
+            btnAsistentes.Location = new Point(12, 128);
             btnAsistentes.Name = "btnAsistentes";
             btnAsistentes.Size = new Size(148, 61);
             btnAsistentes.TabIndex = 2;
             btnAsistentes.Text = "Asistentes";
             btnAsistentes.UseVisualStyleBackColor = false;
-            //btnAsistentes.Click += btnAsistentes_Click;
             // 
             // btnDoctores
             // 
             btnDoctores.BackColor = Color.FromArgb(166, 202, 236);
             btnDoctores.FlatStyle = FlatStyle.Popup;
             btnDoctores.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDoctores.Location = new Point(12, 55);
+            btnDoctores.Location = new Point(12, 61);
             btnDoctores.Name = "btnDoctores";
             btnDoctores.Size = new Size(148, 61);
             btnDoctores.TabIndex = 0;
             btnDoctores.Text = "Doctores";
             btnDoctores.UseVisualStyleBackColor = false;
-            //btnDoctores.Click += btnDoctores_Click;
             // 
             // lblTituloLateral
             // 
             lblTituloLateral.AutoSize = true;
             lblTituloLateral.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloLateral.ForeColor = Color.White;
-            lblTituloLateral.Location = new Point(42, 6);
+            lblTituloLateral.Location = new Point(42, 12);
             lblTituloLateral.Name = "lblTituloLateral";
             lblTituloLateral.Size = new Size(84, 24);
             lblTituloLateral.TabIndex = 1;
