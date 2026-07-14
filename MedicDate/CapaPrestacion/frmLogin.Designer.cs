@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             lblTitulo = new Label();
             lblPassword = new Label();
             lblUsuario = new Label();
@@ -38,8 +39,10 @@
             lblIniciar = new Label();
             btnCancelar = new Button();
             btnAcceder = new Button();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             pnlHeader1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblTitulo
@@ -57,7 +60,7 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Candara", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPassword.Location = new Point(96, 216);
+            lblPassword.Location = new Point(117, 336);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(125, 28);
             lblPassword.TabIndex = 1;
@@ -68,7 +71,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("Candara", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsuario.Location = new Point(96, 151);
+            lblUsuario.Location = new Point(117, 271);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(88, 28);
             lblUsuario.TabIndex = 2;
@@ -77,7 +80,7 @@
             // txtUsuario
             // 
             txtUsuario.Font = new Font("Candara", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsuario.Location = new Point(96, 182);
+            txtUsuario.Location = new Point(117, 302);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Ingrese su usuario";
             txtUsuario.Size = new Size(322, 31);
@@ -86,7 +89,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Candara", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(96, 246);
+            txtPassword.Location = new Point(117, 366);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Ingrese su contraseña";
             txtPassword.Size = new Size(322, 31);
@@ -101,7 +104,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(532, 72);
+            panel1.Size = new Size(560, 72);
             panel1.TabIndex = 5;
             // 
             // pnlHeader1
@@ -111,7 +114,7 @@
             pnlHeader1.Dock = DockStyle.Top;
             pnlHeader1.Location = new Point(0, 0);
             pnlHeader1.Name = "pnlHeader1";
-            pnlHeader1.Size = new Size(532, 72);
+            pnlHeader1.Size = new Size(560, 72);
             pnlHeader1.TabIndex = 6;
             // 
             // lblIniciar
@@ -132,7 +135,7 @@
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(96, 318);
+            btnCancelar.Location = new Point(117, 438);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(110, 47);
             btnCancelar.TabIndex = 6;
@@ -147,20 +150,30 @@
             btnAcceder.FlatStyle = FlatStyle.Popup;
             btnAcceder.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAcceder.ForeColor = SystemColors.ControlLightLight;
-            btnAcceder.Location = new Point(308, 318);
+            btnAcceder.Location = new Point(329, 438);
             btnAcceder.Name = "btnAcceder";
             btnAcceder.Size = new Size(110, 47);
             btnAcceder.TabIndex = 7;
             btnAcceder.Text = "Acceder";
             btnAcceder.UseVisualStyleBackColor = false;
-            //btnAcceder.Click += btnAcceder_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(195, 89);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(179, 155);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(532, 480);
+            ClientSize = new Size(560, 543);
+            Controls.Add(pictureBox1);
             Controls.Add(txtUsuario);
             Controls.Add(btnAcceder);
             Controls.Add(btnCancelar);
@@ -169,11 +182,12 @@
             Controls.Add(lblUsuario);
             Controls.Add(lblPassword);
             Name = "frmLogin";
-            Text = "Login";
+            Text = "Control de Acceso";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             pnlHeader1.ResumeLayout(false);
             pnlHeader1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -190,5 +204,6 @@
         private Button btnAcceder;
         private Panel pnlHeader1;
         private Label lblIniciar;
+        private PictureBox pictureBox1;
     }
 }
