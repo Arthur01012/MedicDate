@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MedicDate.CapaNegocio
+namespace MedicDate.Datos
 {
     public class clsDoctor : clsEmpleado
     {
