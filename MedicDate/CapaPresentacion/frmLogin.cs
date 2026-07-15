@@ -1,4 +1,6 @@
-namespace MedicDate
+using MedicDate.CapaDatos;
+using MedicDate.CapaNegocio;
+namespace MedicDate.CapaPresentacion
 {
     public partial class frmLogin : Form
     {
@@ -14,6 +16,7 @@ namespace MedicDate
 
         }
 
+      
         private void btnCancelarGeneral_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -41,7 +44,7 @@ namespace MedicDate
             try
             {
                 string usuario = txtUsuario.Text.Trim();
-                string contrasena = txtContrasena.Text.Trim();
+                string contrasena = txtPassword.Text.Trim();
 
                 // PASO 1: Verificar si el usuario existe en la base de datos
                 if (!clsUsuarioDAL.UsuarioExiste(usuario))
