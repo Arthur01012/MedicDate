@@ -1,4 +1,4 @@
-﻿namespace MedicDate.CapaNegocio
+﻿namespace MedicDate.Datos
 {
     public class clsEspecialidad
     {
