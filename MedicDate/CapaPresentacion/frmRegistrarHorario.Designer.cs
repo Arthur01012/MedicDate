@@ -1,4 +1,4 @@
-﻿namespace MedicDate
+﻿namespace MedicDate.CapaPresentacion
 {
     partial class frmRegistrarHorario
     {
