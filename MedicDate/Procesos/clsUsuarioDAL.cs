@@ -1,4 +1,4 @@
-﻿using MedicDate.CapaNegocio;
+﻿using MedicDate.Datos;
 using MedicDate.Helpers;
 using MySqlConnector;
 using System;
@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicDate.CapaDatos
+namespace MedicDate.Prosesos
 {
-    internal class clsUsuariosDAL
+    internal class clsUsuarioDAL
     {
         public static bool UsuarioExiste(string usuario)
         {
