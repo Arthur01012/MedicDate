@@ -85,6 +85,7 @@
             txtUsuario.PlaceholderText = "Ingrese su usuario";
             txtUsuario.Size = new Size(322, 31);
             txtUsuario.TabIndex = 3;
+            txtUsuario.KeyPress += txtUsuario_KeyPress;
             // 
             // txtPassword
             // 
@@ -95,6 +96,7 @@
             txtPassword.Size = new Size(322, 31);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
+            txtPassword.KeyPress += txtPassword_KeyPress;
             // 
             // panel1
             // 
@@ -142,7 +144,7 @@
             btnCancelar.TabStop = false;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelarGeneral_Click;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAcceder
             // 
@@ -156,6 +158,7 @@
             btnAcceder.TabIndex = 7;
             btnAcceder.Text = "Acceder";
             btnAcceder.UseVisualStyleBackColor = false;
+            btnAcceder.Click += btnAcceder_Click;
             // 
             // pictureBox1
             // 
