@@ -1,4 +1,4 @@
-﻿namespace MedicDate
+﻿namespace MedicDate.CapaPresentacion
 {
     partial class frmDoctor
     {
@@ -145,7 +145,7 @@
             btnCancelar1.TabIndex = 26;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelarGeneral_Click;
+            
             // 
             // cmbEstado
             // 
