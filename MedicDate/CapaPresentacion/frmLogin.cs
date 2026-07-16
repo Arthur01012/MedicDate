@@ -15,14 +15,7 @@ namespace MedicDate.CapaPresentacion
 
 
         }
-
-      
-        private void btnCancelarGeneral_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAcceder_Click(object sender, EventArgs e)
         {
             // Validar que los campos no estén vacíos
             if (string.IsNullOrEmpty(txtUsuario.Text))
@@ -116,10 +109,10 @@ namespace MedicDate.CapaPresentacion
                         formPrincipal = new frmPrincipalAdmin();
                         break;
                     case (int)clsUsuario.Roles.Asistente:
-                        formPrincipal = new frmAsistente();
+                        formPrincipal = new frmPrincipalAdmin();
                         break;
                     case (int)clsUsuario.Roles.Doctor:
-                        formPrincipal = new frmDoctor();
+                        formPrincipal = new frmPrincipalAdmin();
                         break;
                     default:
                         MessageBox.Show($"Rol no reconocido: {usuario.nombre_rol}",
@@ -148,11 +141,11 @@ namespace MedicDate.CapaPresentacion
         }
 
         // Evento para presionar Enter y hacer login
-        private void txtContrasena_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                btnAceptar_Click(sender, e);
+                btnAcceder_Click(sender, e);
             }
         }
 
@@ -171,6 +164,4 @@ namespace MedicDate.CapaPresentacion
         public static int IdEmpleadoActual { get; set; }
         public static string NombreEmpleadoActual { get; set; }
     }
-
-
 }
