@@ -1,5 +1,5 @@
-using MedicDate.CapaDatos;
-using MedicDate.CapaNegocio;
+using MedicDate.Datos;
+
 namespace MedicDate.CapaPresentacion
 {
     public partial class frmLogin : Form
