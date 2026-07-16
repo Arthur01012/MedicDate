@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicDate.CapaDatos
+namespace MedicDate.Prosesos
 {
     internal class clsConexion
     {
