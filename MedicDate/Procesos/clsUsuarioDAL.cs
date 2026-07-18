@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicDate.Prosesos
+namespace MedicDate.Procesos
 {
     internal class clsUsuarioDAL
     {
