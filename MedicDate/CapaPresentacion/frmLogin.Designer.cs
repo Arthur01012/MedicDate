@@ -35,14 +35,14 @@
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
             panel1 = new Panel();
-            pnlHeader1 = new Panel();
-            lblIniciar = new Label();
+            pnlHeaderLogin = new Panel();
+            lblIniciarSesion = new Label();
             btnCancelar = new Button();
             btnAcceder = new Button();
-            pictureBox1 = new PictureBox();
+            pcbLogo = new PictureBox();
             panel1.SuspendLayout();
-            pnlHeader1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlHeaderLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pcbLogo).BeginInit();
             SuspendLayout();
             // 
             // lblTitulo
@@ -59,10 +59,11 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Candara", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPassword.Location = new Point(117, 336);
+            lblPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPassword.ForeColor = Color.Black;
+            lblPassword.Location = new Point(117, 345);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(125, 28);
+            lblPassword.Size = new Size(118, 28);
             lblPassword.TabIndex = 1;
             lblPassword.Text = "Contraseña";
             // 
@@ -70,30 +71,32 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
-            lblUsuario.Font = new Font("Candara", 13.7454548F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.Black;
             lblUsuario.Location = new Point(117, 271);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(88, 28);
+            lblUsuario.Size = new Size(84, 28);
             lblUsuario.TabIndex = 2;
             lblUsuario.Text = "Usuario";
             // 
             // txtUsuario
             // 
-            txtUsuario.Font = new Font("Candara", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsuario.BackColor = Color.White;
+            txtUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.Location = new Point(117, 302);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Ingrese su usuario";
-            txtUsuario.Size = new Size(322, 31);
+            txtUsuario.Size = new Size(322, 34);
             txtUsuario.TabIndex = 3;
             txtUsuario.KeyPress += txtUsuario_KeyPress;
             // 
             // txtPassword
             // 
-            txtPassword.Font = new Font("Candara", 11.7818184F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(117, 366);
+            txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.Location = new Point(117, 376);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Ingrese su contraseña";
-            txtPassword.Size = new Size(322, 31);
+            txtPassword.Size = new Size(322, 34);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             txtPassword.KeyPress += txtPassword_KeyPress;
@@ -101,42 +104,42 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(111, 186, 174);
-            panel1.Controls.Add(pnlHeader1);
+            panel1.Controls.Add(pnlHeaderLogin);
             panel1.Controls.Add(lblTitulo);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(560, 72);
+            panel1.Size = new Size(552, 72);
             panel1.TabIndex = 5;
             // 
-            // pnlHeader1
+            // pnlHeaderLogin
             // 
-            pnlHeader1.BackColor = Color.FromArgb(14, 121, 196);
-            pnlHeader1.Controls.Add(lblIniciar);
-            pnlHeader1.Dock = DockStyle.Top;
-            pnlHeader1.Location = new Point(0, 0);
-            pnlHeader1.Name = "pnlHeader1";
-            pnlHeader1.Size = new Size(560, 72);
-            pnlHeader1.TabIndex = 6;
+            pnlHeaderLogin.BackColor = Color.FromArgb(14, 121, 196);
+            pnlHeaderLogin.Controls.Add(lblIniciarSesion);
+            pnlHeaderLogin.Dock = DockStyle.Top;
+            pnlHeaderLogin.Location = new Point(0, 0);
+            pnlHeaderLogin.Name = "pnlHeaderLogin";
+            pnlHeaderLogin.Size = new Size(552, 72);
+            pnlHeaderLogin.TabIndex = 6;
             // 
-            // lblIniciar
+            // lblIniciarSesion
             // 
-            lblIniciar.AutoSize = true;
-            lblIniciar.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblIniciar.ForeColor = Color.White;
-            lblIniciar.Location = new Point(141, 7);
-            lblIniciar.Name = "lblIniciar";
-            lblIniciar.Size = new Size(269, 54);
-            lblIniciar.TabIndex = 0;
-            lblIniciar.Text = "Iniciar sesión";
+            lblIniciarSesion.AutoSize = true;
+            lblIniciarSesion.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblIniciarSesion.ForeColor = Color.White;
+            lblIniciarSesion.Location = new Point(129, 7);
+            lblIniciarSesion.Name = "lblIniciarSesion";
+            lblIniciarSesion.Size = new Size(296, 60);
+            lblIniciarSesion.TabIndex = 0;
+            lblIniciarSesion.Text = "Iniciar sesión";
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.BackColor = Color.FromArgb(165, 165, 173);
             btnCancelar.FlatAppearance.BorderColor = Color.White;
             btnCancelar.FlatStyle = FlatStyle.Popup;
-            btnCancelar.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.Black;
             btnCancelar.Location = new Point(117, 438);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(110, 47);
@@ -150,7 +153,7 @@
             // 
             btnAcceder.BackColor = Color.FromArgb(14, 121, 196);
             btnAcceder.FlatStyle = FlatStyle.Popup;
-            btnAcceder.Font = new Font("Segoe UI", 11.1272726F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAcceder.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAcceder.ForeColor = SystemColors.ControlLightLight;
             btnAcceder.Location = new Point(329, 438);
             btnAcceder.Name = "btnAcceder";
@@ -160,23 +163,24 @@
             btnAcceder.UseVisualStyleBackColor = false;
             btnAcceder.Click += btnAcceder_Click;
             // 
-            // pictureBox1
+            // pcbLogo
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(195, 89);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(179, 155);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 8;
-            pictureBox1.TabStop = false;
+            pcbLogo.BackColor = Color.Gainsboro;
+            pcbLogo.Image = (Image)resources.GetObject("pcbLogo.Image");
+            pcbLogo.Location = new Point(186, 94);
+            pcbLogo.Name = "pcbLogo";
+            pcbLogo.Size = new Size(179, 155);
+            pcbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pcbLogo.TabIndex = 8;
+            pcbLogo.TabStop = false;
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(560, 543);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(552, 543);
+            Controls.Add(pcbLogo);
             Controls.Add(txtUsuario);
             Controls.Add(btnAcceder);
             Controls.Add(btnCancelar);
@@ -188,9 +192,9 @@
             Text = "Control de Acceso";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            pnlHeader1.ResumeLayout(false);
-            pnlHeader1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlHeaderLogin.ResumeLayout(false);
+            pnlHeaderLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pcbLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,8 +209,8 @@
         private Panel panel1;
         private Button btnCancelar;
         private Button btnAcceder;
-        private Panel pnlHeader1;
-        private Label lblIniciar;
-        private PictureBox pictureBox1;
+        private Panel pnlHeaderLogin;
+        private Label lblIniciarSesion;
+        private PictureBox pcbLogo;
     }
 }
