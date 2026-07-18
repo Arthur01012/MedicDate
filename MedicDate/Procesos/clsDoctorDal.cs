@@ -54,16 +54,16 @@ namespace MedicDate.Procesos
             {
                 using (var conexion = clsConexion.ObtenerConexion())
                 {
-                    string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo', " +
-                                 "E.curp AS Curp, " +
-                                 "E.email AS Correo, " +
-                                 "E.telefono_principal AS Telefono, " +
-                                 "E.id_usuario, U.id_usuario, R.id_rol, R.nombre AS Tipo " +
-                                 "FROM empleado E " +
-                                 "INNER JOIN usuario U ON E.id_usuario = U.id_usuario " +
-                                 "INNER JOIN rol R ON U.id_rol = R.id_rol " +
-                                 "WHERE R.nombre = 'Doctor' " +
-                                 "AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre;";
+                    string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo'," +
+                                "E.curp AS Curp," +
+                                "E.email AS Correo," +
+                                "E.telefono_principal AS Telefono," +
+                                "E.id_usuario, U.id_usuario, R.id_rol, R.nombre AS Tipo" +
+                                "FROM empleado E" +
+                                "INNER JOIN usuario U ON E.id_usuario = U.id_usuario" +
+                                "INNER JOIN rol R ON U.id_rol = R.id_rol" +
+                                "WHERE R.nombre = 'Asistente'" +
+                                "AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre;";
 
                     using (var consultar = new MySqlCommand(sql, conexion))
                     {
