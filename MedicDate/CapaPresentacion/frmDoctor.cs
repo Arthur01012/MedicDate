@@ -176,16 +176,16 @@ namespace MedicDate.CapaPresentacion
 
         private void LimpiarFormulario()
         {
-            txtNombre.Clear();
-            txtApellidoPaterno.Clear();
-            txtApellidoMaterno.Clear();
+            txtNombreDoctor.Clear();
+            txtAPaterno.Clear();
+            txtAMaterno.Clear();
             txtEmail.Clear();
             txtTelefono.Clear();
-            txtTelefono2.Clear();
+            txtTelefonoSecundario.Clear();
             txtCedula.Clear();
             txtConsultorio.Clear();
             txtUsuario.Clear();
-            txtContrasena.Clear();
+            txtPassword.Clear();
             txtConfirmarContrasena.Clear();
             chkActivo.Checked = true;
             dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
