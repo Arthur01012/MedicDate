@@ -31,6 +31,11 @@
             pnlHeader4 = new Panel();
             lblTitulo = new Label();
             pnlContenedor2 = new Panel();
+            txtConfirmarContrasena = new TextBox();
+            lblConfirmarContrasena = new Label();
+            dtpFechaContratacion = new DateTimePicker();
+            lblFechaContratacion = new Label();
+            chkActivo = new CheckBox();
             txtCurp = new TextBox();
             lblCurp = new Label();
             txtTelefonoSecundario = new TextBox();
@@ -47,10 +52,10 @@
             lblConsultorio = new Label();
             cmbEspecialidad = new ComboBox();
             lblEspecialidad = new Label();
-            textBox1 = new TextBox();
+            txtCedula = new TextBox();
             lblCedula = new Label();
             lblDatosLaboral = new Label();
-            dtpFecha = new DateTimePicker();
+            dtpFechaNacimiento = new DateTimePicker();
             lblFechaRegistro = new Label();
             txtTelefono = new TextBox();
             lblTelefono = new Label();
@@ -63,11 +68,6 @@
             lblNombreDoctor = new Label();
             txtNombreDoctor = new TextBox();
             lblDatosPersonales = new Label();
-            chkActivo = new CheckBox();
-            dtpFechaContratacion = new DateTimePicker();
-            lblFechaContratacion = new Label();
-            txtConfirmarContrasena = new TextBox();
-            lblConfirmarContrasena = new Label();
             pnlHeader4.SuspendLayout();
             pnlContenedor2.SuspendLayout();
             SuspendLayout();
@@ -118,10 +118,10 @@
             pnlContenedor2.Controls.Add(lblConsultorio);
             pnlContenedor2.Controls.Add(cmbEspecialidad);
             pnlContenedor2.Controls.Add(lblEspecialidad);
-            pnlContenedor2.Controls.Add(textBox1);
+            pnlContenedor2.Controls.Add(txtCedula);
             pnlContenedor2.Controls.Add(lblCedula);
             pnlContenedor2.Controls.Add(lblDatosLaboral);
-            pnlContenedor2.Controls.Add(dtpFecha);
+            pnlContenedor2.Controls.Add(dtpFechaNacimiento);
             pnlContenedor2.Controls.Add(lblFechaRegistro);
             pnlContenedor2.Controls.Add(txtTelefono);
             pnlContenedor2.Controls.Add(lblTelefono);
@@ -140,6 +140,60 @@
             pnlContenedor2.Name = "pnlContenedor2";
             pnlContenedor2.Size = new Size(851, 521);
             pnlContenedor2.TabIndex = 8;
+            // 
+            // txtConfirmarContrasena
+            // 
+            txtConfirmarContrasena.Font = new Font("Segoe UI", 12F);
+            txtConfirmarContrasena.Location = new Point(10, 480);
+            txtConfirmarContrasena.Margin = new Padding(4, 3, 4, 3);
+            txtConfirmarContrasena.Name = "txtConfirmarContrasena";
+            txtConfirmarContrasena.PasswordChar = '*';
+            txtConfirmarContrasena.Size = new Size(291, 29);
+            txtConfirmarContrasena.TabIndex = 35;
+            // 
+            // lblConfirmarContrasena
+            // 
+            lblConfirmarContrasena.AutoSize = true;
+            lblConfirmarContrasena.Font = new Font("Segoe UI", 12F);
+            lblConfirmarContrasena.Location = new Point(10, 451);
+            lblConfirmarContrasena.Margin = new Padding(4, 0, 4, 0);
+            lblConfirmarContrasena.Name = "lblConfirmarContrasena";
+            lblConfirmarContrasena.Size = new Size(164, 21);
+            lblConfirmarContrasena.TabIndex = 34;
+            lblConfirmarContrasena.Text = "Confirmar Contraseña";
+            // 
+            // dtpFechaContratacion
+            // 
+            dtpFechaContratacion.Font = new Font("Segoe UI", 12F);
+            dtpFechaContratacion.Format = DateTimePickerFormat.Short;
+            dtpFechaContratacion.Location = new Point(589, 112);
+            dtpFechaContratacion.Margin = new Padding(4, 3, 4, 3);
+            dtpFechaContratacion.Name = "dtpFechaContratacion";
+            dtpFechaContratacion.Size = new Size(233, 29);
+            dtpFechaContratacion.TabIndex = 33;
+            // 
+            // lblFechaContratacion
+            // 
+            lblFechaContratacion.AutoSize = true;
+            lblFechaContratacion.Font = new Font("Segoe UI", 12F);
+            lblFechaContratacion.Location = new Point(589, 83);
+            lblFechaContratacion.Margin = new Padding(4, 0, 4, 0);
+            lblFechaContratacion.Name = "lblFechaContratacion";
+            lblFechaContratacion.Size = new Size(143, 21);
+            lblFechaContratacion.TabIndex = 32;
+            lblFechaContratacion.Text = "Fecha Contratación";
+            // 
+            // chkActivo
+            // 
+            chkActivo.AutoSize = true;
+            chkActivo.Font = new Font("Segoe UI", 12F);
+            chkActivo.Location = new Point(589, 465);
+            chkActivo.Margin = new Padding(4, 3, 4, 3);
+            chkActivo.Name = "chkActivo";
+            chkActivo.Size = new Size(72, 25);
+            chkActivo.TabIndex = 31;
+            chkActivo.Text = "Activo";
+            chkActivo.UseVisualStyleBackColor = true;
             // 
             // txtCurp
             // 
@@ -305,14 +359,14 @@
             lblEspecialidad.TabIndex = 16;
             lblEspecialidad.Text = "Especialidad";
             // 
-            // textBox1
+            // txtCedula
             // 
-            textBox1.Font = new Font("Segoe UI", 10.8F);
-            textBox1.Location = new Point(10, 315);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(262, 27);
-            textBox1.TabIndex = 18;
+            txtCedula.Font = new Font("Segoe UI", 10.8F);
+            txtCedula.Location = new Point(10, 315);
+            txtCedula.Margin = new Padding(3, 2, 3, 2);
+            txtCedula.Name = "txtCedula";
+            txtCedula.Size = new Size(262, 27);
+            txtCedula.TabIndex = 18;
             // 
             // lblCedula
             // 
@@ -334,14 +388,14 @@
             lblDatosLaboral.TabIndex = 17;
             lblDatosLaboral.Text = "Datos de Trabajo";
             // 
-            // dtpFecha
+            // dtpFechaNacimiento
             // 
-            dtpFecha.Font = new Font("Segoe UI", 10.8F);
-            dtpFecha.Location = new Point(301, 111);
-            dtpFecha.Margin = new Padding(3, 2, 3, 2);
-            dtpFecha.Name = "dtpFecha";
-            dtpFecha.Size = new Size(262, 27);
-            dtpFecha.TabIndex = 8;
+            dtpFechaNacimiento.Font = new Font("Segoe UI", 10.8F);
+            dtpFechaNacimiento.Location = new Point(301, 111);
+            dtpFechaNacimiento.Margin = new Padding(3, 2, 3, 2);
+            dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            dtpFechaNacimiento.Size = new Size(262, 27);
+            dtpFechaNacimiento.TabIndex = 8;
             // 
             // lblFechaRegistro
             // 
@@ -458,60 +512,6 @@
             lblDatosPersonales.TabIndex = 0;
             lblDatosPersonales.Text = "Datos Personales";
             // 
-            // chkActivo
-            // 
-            chkActivo.AutoSize = true;
-            chkActivo.Font = new Font("Segoe UI", 12F);
-            chkActivo.Location = new Point(589, 465);
-            chkActivo.Margin = new Padding(4, 3, 4, 3);
-            chkActivo.Name = "chkActivo";
-            chkActivo.Size = new Size(72, 25);
-            chkActivo.TabIndex = 31;
-            chkActivo.Text = "Activo";
-            chkActivo.UseVisualStyleBackColor = true;
-            // 
-            // dtpFechaContratacion
-            // 
-            dtpFechaContratacion.Font = new Font("Segoe UI", 12F);
-            dtpFechaContratacion.Format = DateTimePickerFormat.Short;
-            dtpFechaContratacion.Location = new Point(589, 112);
-            dtpFechaContratacion.Margin = new Padding(4, 3, 4, 3);
-            dtpFechaContratacion.Name = "dtpFechaContratacion";
-            dtpFechaContratacion.Size = new Size(233, 29);
-            dtpFechaContratacion.TabIndex = 33;
-            // 
-            // lblFechaContratacion
-            // 
-            lblFechaContratacion.AutoSize = true;
-            lblFechaContratacion.Font = new Font("Segoe UI", 12F);
-            lblFechaContratacion.Location = new Point(589, 83);
-            lblFechaContratacion.Margin = new Padding(4, 0, 4, 0);
-            lblFechaContratacion.Name = "lblFechaContratacion";
-            lblFechaContratacion.Size = new Size(143, 21);
-            lblFechaContratacion.TabIndex = 32;
-            lblFechaContratacion.Text = "Fecha Contratación";
-            // 
-            // txtConfirmarContrasena
-            // 
-            txtConfirmarContrasena.Font = new Font("Segoe UI", 12F);
-            txtConfirmarContrasena.Location = new Point(10, 480);
-            txtConfirmarContrasena.Margin = new Padding(4, 3, 4, 3);
-            txtConfirmarContrasena.Name = "txtConfirmarContrasena";
-            txtConfirmarContrasena.PasswordChar = '*';
-            txtConfirmarContrasena.Size = new Size(291, 29);
-            txtConfirmarContrasena.TabIndex = 35;
-            // 
-            // lblConfirmarContrasena
-            // 
-            lblConfirmarContrasena.AutoSize = true;
-            lblConfirmarContrasena.Font = new Font("Segoe UI", 12F);
-            lblConfirmarContrasena.Location = new Point(10, 451);
-            lblConfirmarContrasena.Margin = new Padding(4, 0, 4, 0);
-            lblConfirmarContrasena.Name = "lblConfirmarContrasena";
-            lblConfirmarContrasena.Size = new Size(164, 21);
-            lblConfirmarContrasena.TabIndex = 34;
-            lblConfirmarContrasena.Text = "Confirmar Contraseña";
-            // 
             // frmDoctor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -556,9 +556,9 @@
         private Label lblTelefono;
         private Label lblCedula;
         private Label lblDatosLaboral;
-        private DateTimePicker dtpFecha;
+        private DateTimePicker dtpFechaNacimiento;
         private Label lblEspecialidad;
-        private TextBox textBox1;
+        private TextBox txtCedula;
         private Label lblPaswword;
         private TextBox txtUsuario;
         private Label lblUsuario;
