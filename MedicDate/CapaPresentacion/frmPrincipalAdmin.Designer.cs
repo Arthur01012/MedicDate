@@ -92,6 +92,7 @@
             btnCerrar.TabIndex = 5;
             btnCerrar.Text = "Cerrar sesión";
             btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click_1;
             // 
             // btnEspecialidades
             // 
@@ -104,6 +105,7 @@
             btnEspecialidades.TabIndex = 4;
             btnEspecialidades.Text = "Especialidades";
             btnEspecialidades.UseVisualStyleBackColor = false;
+            btnEspecialidades.Click += btnEspecialidades_Click_1;
             // 
             // btnHorarios
             // 
@@ -116,6 +118,7 @@
             btnHorarios.TabIndex = 3;
             btnHorarios.Text = "Horarios";
             btnHorarios.UseVisualStyleBackColor = false;
+            btnHorarios.Click += btnHorarios_Click_1;
             // 
             // btnAsistentes
             // 
@@ -128,6 +131,7 @@
             btnAsistentes.TabIndex = 2;
             btnAsistentes.Text = "Asistentes";
             btnAsistentes.UseVisualStyleBackColor = false;
+            btnAsistentes.Click += btnAsistentes_Click_1;
             // 
             // btnDoctores
             // 
@@ -140,6 +144,7 @@
             btnDoctores.TabIndex = 0;
             btnDoctores.Text = "Doctores";
             btnDoctores.UseVisualStyleBackColor = false;
+            btnDoctores.Click += btnDoctores_Click;
             // 
             // lblTituloLateral
             // 

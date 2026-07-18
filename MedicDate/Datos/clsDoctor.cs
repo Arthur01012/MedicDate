@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using MedicDate.Procesos;
+using System.Collections.Generic;
+using System.Data;
 
 namespace MedicDate.Datos
 {

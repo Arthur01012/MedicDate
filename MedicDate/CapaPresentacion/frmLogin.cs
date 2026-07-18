@@ -12,8 +12,6 @@ namespace MedicDate.CapaPresentacion
             this.MaximizeBox = false;                            // oculta/deshabilita el botón maximizar
             this.MinimizeBox = false;                              // opcional, normalmente se deja
             this.StartPosition = FormStartPosition.CenterScreen;
-
-
         }
         private void btnAcceder_Click(object sender, EventArgs e)
         {
@@ -25,7 +23,6 @@ namespace MedicDate.CapaPresentacion
                 txtUsuario.Focus();
                 return;
             }
-
             if (string.IsNullOrEmpty(txtPassword.Text))
             {
                 MessageBox.Show("Por favor ingrese su contraseña.", "Validación",
@@ -33,7 +30,6 @@ namespace MedicDate.CapaPresentacion
                 txtPassword.Focus();
                 return;
             }
-
             try
             {
                 string usuario = txtUsuario.Text.Trim();
@@ -52,7 +48,6 @@ namespace MedicDate.CapaPresentacion
                     txtUsuario.Focus();
                     return;
                 }
-
                 // PASO 2: Verificar si el usuario está activo
                 if (!clsUsuarioDAL.UsuarioActivo(usuario))
                 {
@@ -66,7 +61,6 @@ namespace MedicDate.CapaPresentacion
                     txtUsuario.Focus();
                     return;
                 }
-
                 // PASO 3: Intentar autenticar con las credenciales
                 clsUsuario user = clsUsuarioDAL.Autenticar(usuario, contrasena);
 
@@ -96,7 +90,6 @@ namespace MedicDate.CapaPresentacion
                                MessageBoxIcon.Error);
             }
         }
-
         private void AbrirFormularioSegunRol(clsUsuario usuario)
         {
             try
@@ -121,7 +114,6 @@ namespace MedicDate.CapaPresentacion
                                        MessageBoxIcon.Error);
                         return;
                 }
-
                 this.Hide();
                 formPrincipal.ShowDialog();
                 this.Close();
@@ -134,7 +126,6 @@ namespace MedicDate.CapaPresentacion
                                MessageBoxIcon.Error);
             }
         }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -157,7 +148,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
     }
-
     public static class Sesion
     {
         public static clsUsuario UsuarioActual { get; set; }
