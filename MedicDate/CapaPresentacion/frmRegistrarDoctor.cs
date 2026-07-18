@@ -29,7 +29,7 @@ namespace MedicDate.CapaPresentacion
             {
                 dgvDoctores.DataSource = Doctor.CargarDataGrid();
                 dgvDoctores.Columns["id_empleado"].Visible = false;
-                dgvDoctores.Columns["id_usuario"].Visible = false;
+                
             }
             catch (Exception ex)
             {
