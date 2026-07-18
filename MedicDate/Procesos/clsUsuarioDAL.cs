@@ -100,5 +100,27 @@ namespace MedicDate.Procesos
             };
             clsConexion.EjecutarNonQuery(consulta, parametros);
         }
+        public static bool CrearUsuario(clsUsuario usuario, MySqlTransaction? transaccion = null)
+        {
+            string contrasenaEncriptada = clsEncriptacion.EncriptarSHA256(usuario.contrasena);
+            string consulta = @"INSERT INTO usuario (usuario, contrasena, id_rol, activo) 
+                               VALUES (@usuario, @contrasena, @id_rol, @activo);
+                               SELECT LAST_INSERT_ID();";
+
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@usuario", usuario.usuario),
+                new MySqlParameter("@contrasena", contrasenaEncriptada),
+                new MySqlParameter("@id_rol", usuario.id_rol),
+                new MySqlParameter("@activo", usuario.activo)
+            };
+
+            object resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
+            if (resultado != null && resultado != DBNull.Value)
+            {
+                usuario.id_usuario = Convert.ToInt32(resultado);
+                return true;
+            }
+            return false;
+        }
     }
 }
