@@ -13,7 +13,7 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmRegistrarDoctor : Form
     {
-        clsDoctorDal Doctor;
+        clsDoctorDAL Doctor;
         public frmRegistrarDoctor()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace MedicDate.CapaPresentacion
 
         public void cargarGrid()
         {
-            Doctor = new clsDoctorDal();
+            Doctor = new clsDoctorDAL();
             dgvDoctores.DataSource = null;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
@@ -61,7 +61,7 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            Doctor = new clsDoctorDal();
+            Doctor = new clsDoctorDAL();
             dgvDoctores.DataSource = null;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try

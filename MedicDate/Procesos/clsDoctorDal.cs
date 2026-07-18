@@ -15,7 +15,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicDate.Procesos
 {
-    internal class clsDoctorDal
+    internal class clsDoctorDAL
     {
         private MySqlCommand comando;
         private MySqlDataAdapter consulta;
