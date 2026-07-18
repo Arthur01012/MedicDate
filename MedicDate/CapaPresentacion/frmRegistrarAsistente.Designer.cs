@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             pnlHeader5 = new Panel();
             lbAsistente = new Label();
             pnlContenedor2 = new Panel();
@@ -122,11 +127,43 @@
             // 
             // dgvAsistentes
             // 
+            dataGridViewCellStyle1.BackColor = Color.Silver;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvAsistentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Gray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvAsistentes.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvAsistentes.EnableHeadersVisualStyles = false;
             dgvAsistentes.Location = new Point(12, 74);
             dgvAsistentes.Name = "dgvAsistentes";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dgvAsistentes.RowHeadersVisible = false;
             dgvAsistentes.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvAsistentes.Size = new Size(1374, 626);
             dgvAsistentes.TabIndex = 8;
             // 
@@ -148,6 +185,7 @@
             txtBuscarAsistente.PlaceholderText = "Ingrese el nombre del Asistente";
             txtBuscarAsistente.Size = new Size(549, 28);
             txtBuscarAsistente.TabIndex = 6;
+            txtBuscarAsistente.TextChanged += txtBuscarAsistente_TextChanged;
             // 
             // frmRegistrarAsistente
             // 
