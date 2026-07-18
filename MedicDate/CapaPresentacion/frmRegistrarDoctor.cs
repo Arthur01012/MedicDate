@@ -47,7 +47,7 @@ namespace MedicDate.CapaPresentacion
 
         private void btnEditarDoctor_Click(object sender, EventArgs e)
         {
-            frmDoctor frm = new frmDoctor(true);
+            frmDoctor frm = new frmDoctor();
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);

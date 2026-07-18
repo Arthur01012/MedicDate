@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace MedicDate.CapaPresentacion
 {
     public partial class frmDoctor : Form
@@ -44,13 +45,13 @@ namespace MedicDate.CapaPresentacion
             try
             {
                 // Datos personales
-                doctor.nombre = txtNombre.Text.Trim();
-                doctor.apellido_paterno = txtApellidoPaterno.Text.Trim();
-                doctor.apellido_materno = txtApellidoMaterno.Text.Trim();
+                doctor.nombre = txtNombreDoctor.Text.Trim();
+                doctor.apellido_paterno = txtAPaterno.Text.Trim();
+                doctor.apellido_materno = txtAMaterno.Text.Trim();
                 doctor.fecha_nacimiento = dtpFechaNacimiento.Value;
                 doctor.email = txtEmail.Text.Trim();
                 doctor.telefono_principal = txtTelefono.Text.Trim();
-                doctor.telefono_secundario = txtTelefono2.Text.Trim();
+                doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
                 doctor.estado = chkActivo.Checked;
 
@@ -96,19 +97,19 @@ namespace MedicDate.CapaPresentacion
 
         private bool ValidarDatos()
         {
-            if (string.IsNullOrEmpty(txtNombre.Text))
+            if (string.IsNullOrEmpty(txtNombreDoctor.Text))
             {
                 MessageBox.Show("El nombre es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNombre.Focus();
+                txtNombreDoctor.Focus();
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtApellidoPaterno.Text))
+            if (string.IsNullOrEmpty(txtAPaterno.Text))
             {
                 MessageBox.Show("El apellido paterno es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtApellidoPaterno.Focus();
+                txtAPaterno.Focus();
                 return false;
             }
 
@@ -185,17 +186,18 @@ namespace MedicDate.CapaPresentacion
             txtCedula.Clear();
             txtConsultorio.Clear();
             txtUsuario.Clear();
-            txtPassword.Clear();
+            txtContrasena.Clear();
             txtConfirmarContrasena.Clear();
             chkActivo.Checked = true;
             dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
             dtpFechaContratacion.Value = DateTime.Today;
-            txtNombre.Focus();
+            txtNombreDoctor.Focus();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
     }
 }

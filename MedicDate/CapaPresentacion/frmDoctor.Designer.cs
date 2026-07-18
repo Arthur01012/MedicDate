@@ -44,7 +44,7 @@
             btnCancelar1 = new Button();
             cmbEstado = new ComboBox();
             lblEstado = new Label();
-            txtPassword = new TextBox();
+            txtContrasena = new TextBox();
             lblPaswword = new Label();
             txtUsuario = new TextBox();
             lblUsuario = new Label();
@@ -110,7 +110,7 @@
             pnlContenedor2.Controls.Add(btnCancelar1);
             pnlContenedor2.Controls.Add(cmbEstado);
             pnlContenedor2.Controls.Add(lblEstado);
-            pnlContenedor2.Controls.Add(txtPassword);
+            pnlContenedor2.Controls.Add(txtContrasena);
             pnlContenedor2.Controls.Add(lblPaswword);
             pnlContenedor2.Controls.Add(txtUsuario);
             pnlContenedor2.Controls.Add(lblUsuario);
@@ -259,6 +259,7 @@
             btnCancelar1.TabIndex = 30;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
+            btnCancelar1.Click += btnCancelar1_Click;
             // 
             // cmbEstado
             // 
@@ -280,16 +281,16 @@
             lblEstado.TabIndex = 24;
             lblEstado.Text = "Estado";
             // 
-            // txtPassword
+            // txtContrasena
             // 
-            txtPassword.Font = new Font("Segoe UI", 10.8F);
-            txtPassword.Location = new Point(10, 420);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(262, 27);
-            txtPassword.TabIndex = 26;
-            txtPassword.UseSystemPasswordChar = true;
+            txtContrasena.Font = new Font("Segoe UI", 10.8F);
+            txtContrasena.Location = new Point(10, 420);
+            txtContrasena.Margin = new Padding(3, 2, 3, 2);
+            txtContrasena.Name = "txtContrasena";
+            txtContrasena.PasswordChar = '*';
+            txtContrasena.Size = new Size(262, 27);
+            txtContrasena.TabIndex = 26;
+            txtContrasena.UseSystemPasswordChar = true;
             // 
             // lblPaswword
             // 
@@ -565,7 +566,7 @@
         private TextBox txtConsultorio;
         private Label lblConsultorio;
         private ComboBox cmbEspecialidad;
-        private TextBox txtPassword;
+        private TextBox txtContrasena;
         private Button btnGuardar;
         private Button btnCancelar1;
         private Label lblTelefonoSecundario;
