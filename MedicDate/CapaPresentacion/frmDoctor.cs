@@ -1,4 +1,5 @@
 ﻿using MedicDate.Datos;
+using MedicDate.Helpers;
 using MedicDate.Procesos;
 using MySqlConnector;
 using System;
@@ -15,131 +16,186 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmDoctor : Form
     {
-        private bool esEdicion = false;
+        private clsDoctor doctor = new clsDoctor();
 
-        // Constructor para AGREGAR
         public frmDoctor()
         {
             InitializeComponent();
-            this.DialogResult = DialogResult.OK;
+            ConfigurarFormulario();
+            CargarEspecialidades();
         }
-
-        // Constructor para EDITAR
-        public frmDoctor(bool esEdicion)
+        private void ConfigurarFormulario()
         {
-            InitializeComponent();
-            this.DialogResult = DialogResult.OK;
-
-            this.esEdicion = esEdicion;
-
-            if (esEdicion)
-            {
-                cmbEstado.Enabled = false;
-                dtpFecha.Enabled = false;
-            }
+            dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
+            dtpFechaContratacion.Value = DateTime.Today;
         }
-        private void btnCancelarGeneral_Click(object sender, EventArgs e)
+
+        private void CargarEspecialidades()
         {
-            this.Close();
+            DataTable especialidades = clsEspecialidadDAL.ObtenerTodos();
+            cmbEspecialidad.DataSource = especialidades;
+            cmbEspecialidad.DisplayMember = "nombre_especialidad";
+            cmbEspecialidad.ValueMember = "id_especialidad";
         }
-
-        private void lblTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        /*
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtNombreDoctor.Text) ||
-            string.IsNullOrWhiteSpace(txtAPaterno.Text) ||
-            string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-            string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                MessageBox.Show("Completa los campos obligatorios.");
-                return;
-            }
+            if (!ValidarDatos()) return;
 
-            using (var conexion = clsConexion.ObtenerConexion())
+            try
             {
-                MySqlTransaction transaccion = conexion.BeginTransaction();
-                try
+                // Datos personales
+                doctor.nombre = txtNombre.Text.Trim();
+                doctor.apellido_paterno = txtApellidoPaterno.Text.Trim();
+                doctor.apellido_materno = txtApellidoMaterno.Text.Trim();
+                doctor.fecha_nacimiento = dtpFechaNacimiento.Value;
+                doctor.email = txtEmail.Text.Trim();
+                doctor.telefono_principal = txtTelefono.Text.Trim();
+                doctor.telefono_secundario = txtTelefono2.Text.Trim();
+                doctor.fecha_contratacion = dtpFechaContratacion.Value;
+                doctor.estado = chkActivo.Checked;
+
+                // Datos del doctor
+                doctor.cedula_profesional = txtCedula.Text.Trim();
+                doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
+                doctor.consultorio = txtConsultorio.Text.Trim();
+
+                // Datos de usuario
+                doctor.id_usuario = CrearUsuario();
+
+                // Insertar empleado
+                int idEmpleado = clsEmpleadoDAL.Insertar(doctor);
+                if (idEmpleado > 0)
                 {
-                    // 1. Crear usuario (llena usuario.id_usuario automáticamente)
-                    var usuario = new clsUsuario
-                    {
-                        usuario = txtUsuario.Text,
-                        contrasena = txtPassword.Text, // se encripta dentro de CrearUsuario
-                        id_rol = 2, // el id_rol correspondiente a "Doctor"
-                        activo = cmbEstado.SelectedItem.ToString() == "Activo" // ajusta según tu tipo de dato real
-                    };
+                    doctor.id_empleado = idEmpleado;
 
-                    bool usuarioCreado = clsUsuarioDal.CrearUsuario(usuario, transaccion);
-                    if (!usuarioCreado)
+                    // Insertar doctor
+                    if (clsDoctorDAL.Insertar(doctor))
                     {
-                        transaccion.Rollback();
-                        MessageBox.Show("No se pudo crear el usuario.");
-                        return;
-                    }
-
-                    // 2. Insertar empleado usando el id_usuario recién creado
-                    var empleado = new clsEmpleado
-                    {
-                        nombre = txtNombreDoctor.Text,
-                        apellido_paterno = txtAPaterno.Text,
-                        apellido_materno = txtAMaterno.Text,
-                        fecha_nacimiento = dtpFecha.Value, // ajusta al control real
-                        curp = txtCurp.Text,
-                        email = txtEmail.Text,
-                        telefono_principal = txtTelefono.Text,
-                        telefono_secundario = txtTelefonoSecundario?.Text,
-                        tipo_empleado = "Doctor",
-                        fecha_contratacion = DateTime.Now,
-                        estado = true,
-                        id_usuario = usuario.id_usuario // <-- viene del paso 1
-                    };
-
-                    int idEmpleado = clsEmpleadoDal.Insertar(empleado, transaccion);
-                    if (idEmpleado == 0)
-                    {
-                        transaccion.Rollback();
-                        MessageBox.Show("No se pudo crear el empleado.");
-                        return;
-                    }
-
-                    // 3. Insertar doctor usando el id_empleado recién creado
-                    var doctor = new clsDoctor
-                    {
-                        id_empleado = idEmpleado, // <-- viene del paso 2
-                        cedula_profesional = textBox1.Text,
-                        especialidad_principal = cmbEspecialidad.SelectedValue as int?,
-                        consultorio = txtConsultorio.Text
-                    };
-
-                    bool doctorCreado = clsDoctorDal.Insertar(doctor, transaccion);
-
-                    if (doctorCreado)
-                    {
-                        transaccion.Commit();
-                        MessageBox.Show("Doctor guardado correctamente.");
-                        this.Close();
+                        MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarFormulario();
                     }
                     else
                     {
-                        transaccion.Rollback();
-                        MessageBox.Show("No se pudo guardar el doctor.");
+                        MessageBox.Show("Error al registrar los datos del doctor.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    transaccion.Rollback();
-                    MessageBox.Show("Error al guardar: " + ex.Message);
+                    MessageBox.Show("Error al registrar el empleado.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }*/
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidarDatos()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre es obligatorio.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNombre.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtApellidoPaterno.Text))
+            {
+                MessageBox.Show("El apellido paterno es obligatorio.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtApellidoPaterno.Focus();
+                return false;
+            }
+
+            if (!clsValidaciones.EsEmailValido(txtEmail.Text))
+            {
+                MessageBox.Show("El email no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtCedula.Text))
+            {
+                MessageBox.Show("La cédula profesional es obligatoria.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCedula.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                MessageBox.Show("El nombre de usuario es obligatorio.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsuario.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtContrasena.Text))
+            {
+                MessageBox.Show("La contraseña es obligatoria.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtContrasena.Focus();
+                return false;
+            }
+
+            if (txtContrasena.Text != txtConfirmarContrasena.Text)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtContrasena.Clear();
+                txtConfirmarContrasena.Clear();
+                txtContrasena.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private int? CrearUsuario()
+        {
+            clsUsuario usuario = new clsUsuario
+            {
+                usuario = txtUsuario.Text.Trim(),
+                contrasena = txtContrasena.Text.Trim(),
+                id_rol = (int)clsUsuario.Roles.Doctor,
+                activo = true
+            };
+
+            if (clsUsuarioDAL.CrearUsuario(usuario))
+            {
+                return usuario.id_usuario;
+            }
+            return null;
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtNombre.Clear();
+            txtApellidoPaterno.Clear();
+            txtApellidoMaterno.Clear();
+            txtEmail.Clear();
+            txtTelefono.Clear();
+            txtTelefono2.Clear();
+            txtCedula.Clear();
+            txtConsultorio.Clear();
+            txtUsuario.Clear();
+            txtContrasena.Clear();
+            txtConfirmarContrasena.Clear();
+            chkActivo.Checked = true;
+            dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
+            dtpFechaContratacion.Value = DateTime.Today;
+            txtNombre.Focus();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
