@@ -96,6 +96,7 @@
             btnDarBaja2.TabIndex = 11;
             btnDarBaja2.Text = "Dar de Baja";
             btnDarBaja2.UseVisualStyleBackColor = false;
+            btnDarBaja2.Click += btnDarBaja2_Click;
             // 
             // btnEditarAsistente
             // 
