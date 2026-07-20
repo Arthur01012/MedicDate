@@ -84,14 +84,11 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Obtener fila seleccionada (robusto)
+            // Obtener fila seleccionada
             DataGridViewRow? fila = null;
-            if (dgvDoctores.SelectedRows.Count > 0)
-                fila = dgvDoctores.SelectedRows[0];
-            else if (dgvDoctores.CurrentRow != null)
+           if (dgvDoctores.CurrentRow != null)
                 fila = dgvDoctores.CurrentRow;
-            else if (dgvDoctores.SelectedCells.Count > 0)
-                fila = dgvDoctores.Rows[dgvDoctores.SelectedCells[0].RowIndex];
+            
 
             if (fila == null)
             {
@@ -100,13 +97,17 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Obtener valores (usando nombres de columna reales)
+            // Obtener valores
             int idDoctor = Convert.ToInt32(fila.Cells["id_empleado"].Value);
             string nombreDoctor = fila.Cells["Nombre Completo"].Value?.ToString() ?? "Sin nombre";
 
             // Confirmar
             DialogResult confirm = MessageBox.Show(
-                $"¿Dar de baja al doctor {nombreDoctor}?",
+                $"¿Dar de baja al doctor {nombreDoctor}?" + 
+                "Esta acción:\n" +
+                "-Desactivará al doctor.\n"+
+                "-Desactivará su horario.\n"+
+                "-Desactivará su usario",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);

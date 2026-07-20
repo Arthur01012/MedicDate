@@ -76,14 +76,10 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Obtener fila seleccionada (robusto)
+            
             DataGridViewRow? fila = null;
-            if (dgvAsistentes.SelectedRows.Count > 0)
-                fila = dgvAsistentes.SelectedRows[0];
-            else if (dgvAsistentes.CurrentRow != null)
+          if (dgvAsistentes.CurrentRow != null)
                 fila = dgvAsistentes.CurrentRow;
-            else if (dgvAsistentes.SelectedCells.Count > 0)
-                fila = dgvAsistentes.Rows[dgvAsistentes.SelectedCells[0].RowIndex];
 
             if (fila == null)
             {
@@ -91,6 +87,9 @@ namespace MedicDate.CapaPresentacion
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+
+
 
             // Obtener valores
             int idAsistente = Convert.ToInt32(fila.Cells["id_empleado"].Value);
@@ -100,7 +99,7 @@ namespace MedicDate.CapaPresentacion
             DialogResult confirm = MessageBox.Show(
                 $"¿Está seguro de dar de baja al asistente {nombreAsistente}?\n\n" +
                 "Esta acción:\n" +
-                "- Desactivará al asistente.\n",
+                "- Desactivará al asistente y su usario.\n",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
