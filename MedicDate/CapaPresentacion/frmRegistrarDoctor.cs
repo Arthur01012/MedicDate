@@ -86,12 +86,9 @@ namespace MedicDate.CapaPresentacion
 
             // Obtener fila seleccionada (robusto)
             DataGridViewRow? fila = null;
-            if (dgvDoctores.SelectedRows.Count > 0)
-                fila = dgvDoctores.SelectedRows[0];
-            else if (dgvDoctores.CurrentRow != null)
+           if (dgvDoctores.CurrentRow != null)
                 fila = dgvDoctores.CurrentRow;
-            else if (dgvDoctores.SelectedCells.Count > 0)
-                fila = dgvDoctores.Rows[dgvDoctores.SelectedCells[0].RowIndex];
+            
 
             if (fila == null)
             {
