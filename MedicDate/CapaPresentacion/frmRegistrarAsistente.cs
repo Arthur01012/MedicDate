@@ -88,6 +88,9 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
+
+
+
             // Obtener valores
             int idAsistente = Convert.ToInt32(fila.Cells["id_empleado"].Value);
             string nombreAsistente = fila.Cells["nombre completo"].Value?.ToString() ?? "Sin nombre";
@@ -96,7 +99,7 @@ namespace MedicDate.CapaPresentacion
             DialogResult confirm = MessageBox.Show(
                 $"¿Está seguro de dar de baja al asistente {nombreAsistente}?\n\n" +
                 "Esta acción:\n" +
-                "- Desactivará al asistente.\n",
+                "- Desactivará al asistente y su usario.\n",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
