@@ -29,7 +29,7 @@ namespace MedicDate.CapaPresentacion
             {
                 dgvDoctores.DataSource = Doctor.CargarDataGrid();
                 dgvDoctores.Columns["id_empleado"].Visible = false;
-                
+
             }
             catch (Exception ex)
             {
@@ -71,6 +71,67 @@ namespace MedicDate.CapaPresentacion
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDarBaja_Click(object sender, EventArgs e)
+        {
+            // Verificar que haya filas
+            if (dgvDoctores.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay doctores registrados.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Obtener fila seleccionada (robusto)
+            DataGridViewRow? fila = null;
+            if (dgvDoctores.SelectedRows.Count > 0)
+                fila = dgvDoctores.SelectedRows[0];
+            else if (dgvDoctores.CurrentRow != null)
+                fila = dgvDoctores.CurrentRow;
+            else if (dgvDoctores.SelectedCells.Count > 0)
+                fila = dgvDoctores.Rows[dgvDoctores.SelectedCells[0].RowIndex];
+
+            if (fila == null)
+            {
+                MessageBox.Show("Seleccione un doctor.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener valores (usando nombres de columna reales)
+            int idDoctor = Convert.ToInt32(fila.Cells["id_empleado"].Value);
+            string nombreDoctor = fila.Cells["Nombre Completo"].Value?.ToString() ?? "Sin nombre";
+
+            // Confirmar
+            DialogResult confirm = MessageBox.Show(
+                $"¿Dar de baja al doctor {nombreDoctor}?",
+                "Confirmar baja",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.No) return;
+
+            try
+            {
+                bool resultado = clsDoctorDAL.DarBaja(idDoctor);
+                if (resultado)
+                {
+                    MessageBox.Show("Baja exitosa.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cargarGrid(); // Recargar
+                }
+                else
+                {
+                    MessageBox.Show("Error al dar de baja.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

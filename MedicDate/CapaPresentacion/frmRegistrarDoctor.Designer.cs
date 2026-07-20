@@ -96,6 +96,7 @@
             btnDarBaja.TabIndex = 5;
             btnDarBaja.Text = "Dar de Baja";
             btnDarBaja.UseVisualStyleBackColor = false;
+            btnDarBaja.Click += btnDarBaja_Click;
             // 
             // btnEditarDoctor
             // 
