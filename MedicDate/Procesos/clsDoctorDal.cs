@@ -96,7 +96,31 @@ namespace MedicDate.Procesos
 
             return clsConexion.EjecutarNonQuery(consulta, parametros, transaccion) > 0;
         }
+        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
+        {
+        
+            string consultaEmpleado = "UPDATE empleado SET estado = 0 WHERE id_empleado = @id";
+            MySqlParameter[] parametrosEmpleado = { new MySqlParameter("@id", idEmpleado) };
+            int filasEmpleado = clsConexion.EjecutarNonQuery(consultaEmpleado, parametrosEmpleado, transaccion);
 
+            if (filasEmpleado == 0)
+                return false;
+
+            // 2. (Opcional) Desactivar horarios del doctor
+            string consultaHorarios = "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
+            MySqlParameter[] parametrosHorarios = { new MySqlParameter("@id", idEmpleado) };
+            clsConexion.EjecutarNonQuery(consultaHorarios, parametrosHorarios, transaccion);
+
+            // 3. (Opcional) Cancelar citas futuras pendientes o confirmadas
+            string consultaCitas = @"UPDATE cita 
+                             SET estado = 'Cancelada' 
+                             WHERE id_doctor = @id AND fecha >= CURDATE() 
+                             AND estado IN ('Pendiente', 'Confirmada')";
+            MySqlParameter[] parametrosCitas = { new MySqlParameter("@id", idEmpleado) };
+            clsConexion.EjecutarNonQuery(consultaCitas, parametrosCitas, transaccion);
+
+            return true;
+        }
     }
 }
 
