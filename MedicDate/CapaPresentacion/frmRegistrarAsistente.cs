@@ -76,14 +76,10 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Obtener fila seleccionada (robusto)
+            
             DataGridViewRow? fila = null;
-            if (dgvAsistentes.SelectedRows.Count > 0)
-                fila = dgvAsistentes.SelectedRows[0];
-            else if (dgvAsistentes.CurrentRow != null)
+          if (dgvAsistentes.CurrentRow != null)
                 fila = dgvAsistentes.CurrentRow;
-            else if (dgvAsistentes.SelectedCells.Count > 0)
-                fila = dgvAsistentes.Rows[dgvAsistentes.SelectedCells[0].RowIndex];
 
             if (fila == null)
             {
