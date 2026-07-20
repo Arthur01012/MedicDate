@@ -89,7 +89,26 @@ namespace MedicDate.Procesos
                 throw new Exception("Error en la conexion" + ex.Message);
             }
             return tabla;
+        }
 
+        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
+        {
+           
+            string consultaEmpleado = "UPDATE empleado SET estado = 0 WHERE id_empleado = @id";
+            MySqlParameter[] parametrosEmpleado = { new MySqlParameter("@id", idEmpleado) };
+            int filasEmpleado = clsConexion.EjecutarNonQuery(consultaEmpleado, parametrosEmpleado, transaccion);
+
+            if (filasEmpleado == 0)
+                return false;
+
+            string consultaUsuario = @"UPDATE usuario u 
+                               INNER JOIN empleado e ON u.id_usuario = e.id_usuario
+                               SET u.activo = 0
+                               WHERE e.id_empleado = @id";
+            MySqlParameter[] parametrosUsuario = { new MySqlParameter("@id", idEmpleado) };
+            clsConexion.EjecutarNonQuery(consultaUsuario, parametrosUsuario, transaccion);
+
+            return true;
         }
 
     }
