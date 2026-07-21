@@ -31,16 +31,23 @@ namespace MedicDate.Helpers
             return Regex.IsMatch(curp, @"^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$");
         }
 
-        public static bool EsFechaValida(DateTime fecha)
+        public static bool EsFechaNacimientoValida(DateTime fechaNacimiento)
         {
-            return fecha <= DateTime.Today;
+            return fechaNacimiento <= DateTime.Today
+                   && fechaNacimiento.Year >= 1900
+                   && fechaNacimiento > DateTime.Today.AddYears(-120); // No mayor a 120 años
         }
 
-        public static bool EsEdadValida(DateTime fechaNacimiento)
+
+        public static bool EsEdadValida(DateTime fechaNacimiento, int edadMinima = 0, int edadMaxima = 120)
         {
+            if (fechaNacimiento > DateTime.Today)
+                return false; // Fecha futura
+
             int edad = DateTime.Today.Year - fechaNacimiento.Year;
             if (fechaNacimiento.Date > DateTime.Today.AddYears(-edad)) edad--;
-            return edad >= 0 && edad <= 120;
+
+            return edad >= edadMinima && edad <= edadMaxima;
         }
     }
 }

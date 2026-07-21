@@ -14,6 +14,33 @@ namespace MedicDate.Procesos
     {
         public static int Insertar(clsEmpleado empleado, MySqlTransaction? transaccion = null)
         {
+            // Validar email único
+            string consultaEmail = "SELECT COUNT(*) FROM empleado WHERE email = @email";
+            MySqlParameter[] paramEmail = { new MySqlParameter("@email", empleado.email) };
+            object existeEmail = clsConexion.EjecutarScalar(consultaEmail, paramEmail, transaccion);
+            if (existeEmail != null && Convert.ToInt32(existeEmail) > 0)
+                throw new InvalidOperationException($"El email '{empleado.email}' ya está registrado.");
+
+            // Validar CURP único 
+            if (!string.IsNullOrEmpty(empleado.curp))
+            {
+                string consultaCurp = "SELECT COUNT(*) FROM empleado WHERE curp = @curp";
+                MySqlParameter[] paramCurp = { new MySqlParameter("@curp", empleado.curp) };
+                object existeCurp = clsConexion.EjecutarScalar(consultaCurp, paramCurp, transaccion);
+                if (existeCurp != null && Convert.ToInt32(existeCurp) > 0)
+                    throw new InvalidOperationException($"La CURP '{empleado.curp}' ya está registrada.");
+            }
+
+            // Validar que el usuario exista 
+            if (empleado.id_usuario.HasValue)
+            {
+                string consultaUsuario = "SELECT COUNT(*) FROM usuario WHERE id_usuario = @id";
+                MySqlParameter[] paramUsuario = { new MySqlParameter("@id", empleado.id_usuario.Value) };
+                object existeUsuario = clsConexion.EjecutarScalar(consultaUsuario, paramUsuario, transaccion);
+                if (existeUsuario == null || Convert.ToInt32(existeUsuario) == 0)
+                    throw new InvalidOperationException($"El usuario ID {empleado.id_usuario.Value} no existe.");
+            }
+
             string consulta = @"INSERT INTO empleado 
                                (nombre, apellido_paterno, apellido_materno, fecha_nacimiento, 
                                 curp, email, telefono_principal, telefono_secundario, 
@@ -38,9 +65,35 @@ namespace MedicDate.Procesos
                 new MySqlParameter("@estado", empleado.estado ? 1 : 0),
                 new MySqlParameter("@id_usuario", empleado.id_usuario.HasValue ? (object)empleado.id_usuario.Value : DBNull.Value)
             };
-
-            object resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
-            return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
+            try
+            {
+                object? resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
+                return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1062) // Duplicado
+                {
+                    // Identificar cuál campo causó el duplicado
+                    if (ex.Message.Contains("email"))
+                        throw new InvalidOperationException($"El email '{empleado.email}' ya está registrado.", ex);
+                    else if (ex.Message.Contains("curp"))
+                        throw new InvalidOperationException($"La CURP '{empleado.curp}' ya está registrada.", ex);
+                    else if (ex.Message.Contains("id_usuario"))
+                        throw new InvalidOperationException($"El usuario ya tiene un empleado asociado.", ex);
+                    else
+                        throw new InvalidOperationException("El registro ya existe (campo duplicado).", ex);
+                }
+                else if (ex.Number == 1452) // Clave foránea
+                {
+                    if (ex.Message.Contains("id_usuario"))
+                        throw new InvalidOperationException($"El usuario ID {empleado.id_usuario} no existe.", ex);
+                    else
+                        throw new InvalidOperationException("Error de clave foránea al insertar el empleado.", ex);
+                }
+                else
+                    throw new Exception("Error al insertar el empleado: " + ex.Message, ex);
+            }
         }
     }
 }

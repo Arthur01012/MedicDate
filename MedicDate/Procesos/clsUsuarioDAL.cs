@@ -102,25 +102,46 @@ namespace MedicDate.Procesos
         }
         public static bool CrearUsuario(clsUsuario usuario, MySqlTransaction? transaccion = null)
         {
+            // Validar que el nombre de usuario no exista
+            string consultaExistencia = "SELECT COUNT(*) FROM usuario WHERE usuario = @usuario";
+            MySqlParameter[] paramExistencia = { new MySqlParameter("@usuario", usuario.usuario) };
+            object existe = clsConexion.EjecutarScalar(consultaExistencia, paramExistencia, transaccion);
+            if (existe != null && Convert.ToInt32(existe) > 0)
+                throw new InvalidOperationException($"El usuario '{usuario.usuario}' ya existe.");
+
             string contrasenaEncriptada = clsEncriptacion.EncriptarSHA256(usuario.contrasena);
             string consulta = @"INSERT INTO usuario (usuario, contrasena, id_rol, activo) 
-                               VALUES (@usuario, @contrasena, @id_rol, @activo);
-                               SELECT LAST_INSERT_ID();";
+                        VALUES (@usuario, @contrasena, @id_rol, @activo);
+                        SELECT LAST_INSERT_ID();";
 
             MySqlParameter[] parametros = {
-                new MySqlParameter("@usuario", usuario.usuario),
-                new MySqlParameter("@contrasena", contrasenaEncriptada),
-                new MySqlParameter("@id_rol", usuario.id_rol),
-                new MySqlParameter("@activo", usuario.activo)
+             new MySqlParameter("@usuario", usuario.usuario),
+             new MySqlParameter("@contrasena", contrasenaEncriptada),
+             new MySqlParameter("@id_rol", usuario.id_rol),
+             new MySqlParameter("@activo", usuario.activo)
             };
 
-            object resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
-            if (resultado != null && resultado != DBNull.Value)
+            try
             {
-                usuario.id_usuario = Convert.ToInt32(resultado);
-                return true;
+                object? resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
+                if (resultado != null && resultado != DBNull.Value)
+                {
+                    usuario.id_usuario = Convert.ToInt32(resultado);
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (MySqlException ex)
+            {
+                // Personalizar mensaje según el error de MySQL
+                if (ex.Number == 1062) // Duplicado (usuario ya existe)
+                    throw new InvalidOperationException($"El nombre de usuario '{usuario.usuario}' ya está en uso.", ex);
+                else if (ex.Number == 1452) // Clave foránea (rol no existe)
+                    throw new InvalidOperationException($"El rol seleccionado no es válido.", ex);
+                else
+                    throw new Exception("Error al crear el usuario: " + ex.Message, ex);
+            }
         }
     }
 }
+
