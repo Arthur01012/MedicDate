@@ -42,8 +42,6 @@
             lblTelefonoSecundario = new Label();
             btnGuardar = new Button();
             btnCancelar1 = new Button();
-            cmbEstado = new ComboBox();
-            lblEstado = new Label();
             txtContrasena = new TextBox();
             lblPaswword = new Label();
             txtUsuario = new TextBox();
@@ -108,8 +106,6 @@
             pnlContenedor2.Controls.Add(lblTelefonoSecundario);
             pnlContenedor2.Controls.Add(btnGuardar);
             pnlContenedor2.Controls.Add(btnCancelar1);
-            pnlContenedor2.Controls.Add(cmbEstado);
-            pnlContenedor2.Controls.Add(lblEstado);
             pnlContenedor2.Controls.Add(txtContrasena);
             pnlContenedor2.Controls.Add(lblPaswword);
             pnlContenedor2.Controls.Add(txtUsuario);
@@ -187,7 +183,7 @@
             // 
             chkActivo.AutoSize = true;
             chkActivo.Font = new Font("Segoe UI", 12F);
-            chkActivo.Location = new Point(589, 465);
+            chkActivo.Location = new Point(301, 422);
             chkActivo.Margin = new Padding(4, 3, 4, 3);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(72, 25);
@@ -245,6 +241,7 @@
             btnGuardar.TabIndex = 29;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar1
             // 
@@ -260,26 +257,6 @@
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
             btnCancelar1.Click += btnCancelar1_Click;
-            // 
-            // cmbEstado
-            // 
-            cmbEstado.Font = new Font("Segoe UI", 10.8F);
-            cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(301, 420);
-            cmbEstado.Margin = new Padding(3, 2, 3, 2);
-            cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(262, 27);
-            cmbEstado.TabIndex = 28;
-            // 
-            // lblEstado
-            // 
-            lblEstado.AutoSize = true;
-            lblEstado.Font = new Font("Segoe UI", 10.8F);
-            lblEstado.Location = new Point(301, 402);
-            lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(54, 20);
-            lblEstado.TabIndex = 24;
-            lblEstado.Text = "Estado";
             // 
             // txtContrasena
             // 
@@ -572,8 +549,6 @@
         private Label lblTelefonoSecundario;
         private TextBox txtCurp;
         private Label lblCurp;
-        private ComboBox cmbEstado;
-        private Label lblEstado;
         private TextBox txtConfirmarContrasena;
         private Label lblConfirmarContrasena;
         private DateTimePicker dtpFechaContratacion;

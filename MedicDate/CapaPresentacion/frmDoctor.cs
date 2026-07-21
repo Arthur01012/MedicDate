@@ -29,6 +29,12 @@ namespace MedicDate.CapaPresentacion
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
+
+            // Cargar estados en el ComboBox
+            cmbEstado.Items.Clear();
+            cmbEstado.Items.Add("Activo");
+            cmbEstado.Items.Add("Inactivo");
+            cmbEstado.SelectedIndex = 0; // Por defecto Activo
         }
 
         private void CargarEspecialidades()
@@ -42,57 +48,54 @@ namespace MedicDate.CapaPresentacion
         {
             if (!ValidarDatos()) return;
 
+            // Crear conexión y transacción
+            using var conexion = clsConexion.ObtenerConexion();
+            using var transaccion = conexion.BeginTransaction();
+
             try
             {
-                // Datos personales
-                doctor.nombre = txtNombreDoctor.Text.Trim();
-                doctor.apellido_paterno = txtAPaterno.Text.Trim();
-                doctor.apellido_materno = txtAMaterno.Text.Trim();
-                doctor.fecha_nacimiento = dtpFechaNacimiento.Value;
-                doctor.email = txtEmail.Text.Trim();
-                doctor.telefono_principal = txtTelefono.Text.Trim();
-                doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
-                doctor.fecha_contratacion = dtpFechaContratacion.Value;
-                doctor.estado = chkActivo.Checked;
+                // 1. Crear usuario
+                doctor.id_usuario = CrearUsuario(transaccion);
+                if (!doctor.id_usuario.HasValue)
+                    throw new Exception("No se pudo crear el usuario.");
 
-                // Datos del doctor
-                doctor.cedula_profesional = txtCedula.Text.Trim();
-                doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
-                doctor.consultorio = txtConsultorio.Text.Trim();
+                // 2. Insertar empleado
+                doctor.id_empleado = clsEmpleadoDAL.Insertar(doctor, transaccion);
+                if (doctor.id_empleado == 0)
+                    throw new Exception("No se pudo insertar el empleado.");
 
-                // Datos de usuario
-                doctor.id_usuario = CrearUsuario();
+                // 3. Insertar doctor
+                if (!clsDoctorDAL.Insertar(doctor, transaccion))
+                    throw new Exception("No se pudo insertar el doctor.");
 
-                // Insertar empleado
-                int idEmpleado = clsEmpleadoDAL.Insertar(doctor);
-                if (idEmpleado > 0)
-                {
-                    doctor.id_empleado = idEmpleado;
+                // Commit si todo salió bien
+                transaccion.Commit();
 
-                    // Insertar doctor
-                    if (clsDoctorDAL.Insertar(doctor))
-                    {
-                        MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimpiarFormulario();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al registrar los datos del doctor.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Error al registrar el empleado.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error",
+                transaccion.Rollback();
+                MessageBox.Show($"Error al registrar: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private int? CrearUsuario(MySqlTransaction? transaccion = null)
+        {
+            clsUsuario usuario = new clsUsuario
+            {
+                usuario = txtUsuario.Text.Trim(),
+                contrasena = txtContrasena.Text.Trim(),
+                id_rol = (int)clsUsuario.Roles.Doctor,
+                activo = true
+            };
+
+            if (clsUsuarioDAL.CrearUsuario(usuario, transaccion))
+                return usuario.id_usuario;
+
+            return null;
         }
 
         private bool ValidarDatos()
@@ -154,25 +157,54 @@ namespace MedicDate.CapaPresentacion
                 txtContrasena.Focus();
                 return false;
             }
-
-            return true;
-        }
-
-        private int? CrearUsuario()
-        {
-            clsUsuario usuario = new clsUsuario
+            if (string.IsNullOrEmpty(txtCurp.Text))
             {
-                usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContrasena.Text.Trim(),
-                id_rol = (int)clsUsuario.Roles.Doctor,
-                activo = true
-            };
-
-            if (clsUsuarioDAL.CrearUsuario(usuario))
-            {
-                return usuario.id_usuario;
+                MessageBox.Show("El CURP es obligatorio.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCurp.Focus();
+                return false;
             }
-            return null;
+            if (!clsValidaciones.EsCURPValido(txtCurp.Text))
+            {
+                MessageBox.Show("El CURP no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCurp.Focus();
+                return false;
+            }
+            // Validar teléfono principal
+            if (!string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
+            {
+                MessageBox.Show("El teléfono principal no es válido (debe tener 10 dígitos).", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefono.Focus();
+                return false;
+            }
+
+            // Validar que la especialidad esté seleccionada
+            if (cmbEspecialidad.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione una especialidad.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbEspecialidad.Focus();
+                return false;
+            }
+            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
+            {
+                MessageBox.Show("El doctor debe ser mayor de 18 años.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFechaNacimiento.Focus();
+                return false;
+            }
+
+            // Validar fecha de contratación (no futura)
+            if (dtpFechaContratacion.Value > DateTime.Today)
+            {
+                MessageBox.Show("La fecha de contratación no puede ser futura.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFechaContratacion.Focus();
+                return false;
+            }
+            return true;
         }
 
         private void LimpiarFormulario()
