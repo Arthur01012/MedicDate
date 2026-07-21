@@ -296,6 +296,3 @@ namespace MedicDate.Procesos
         }
     }
 }
-
-
-
