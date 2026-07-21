@@ -122,10 +122,16 @@
             // 
             // dgvHorarios
             // 
+            dgvHorarios.AllowUserToAddRows = false;
+            dgvHorarios.AllowUserToDeleteRows = false;
+            dgvHorarios.AllowUserToResizeColumns = false;
+            dgvHorarios.AllowUserToResizeRows = false;
             dgvHorarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvHorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHorarios.Location = new Point(12, 74);
+            dgvHorarios.MultiSelect = false;
             dgvHorarios.Name = "dgvHorarios";
+            dgvHorarios.ReadOnly = true;
             dgvHorarios.RowHeadersWidth = 51;
             dgvHorarios.Size = new Size(1374, 626);
             dgvHorarios.TabIndex = 8;
