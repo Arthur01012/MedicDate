@@ -1,15 +1,20 @@
-﻿using System;
+﻿using MedicDate.Datos;
+using MySqlConnector;
+using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MedicDate.Datos;
-using MySqlConnector;
 namespace MedicDate.Procesos
 {
     internal class clsEspecialidadDAL
     {
+        private MySqlCommand comando;
+        private MySqlDataAdapter consulta;
+        private DataTable tabla;
+
         public static DataTable ObtenerTodos()
         {
             string consulta = "SELECT id_especialidad, nombre_especialidad FROM especialidad ORDER BY nombre_especialidad";
@@ -47,6 +52,56 @@ namespace MedicDate.Procesos
 
             int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
             return filasAfectadas > 0;
+        }
+        public object? CargarDataGrid()
+        {
+            tabla = new DataTable();
+
+            try
+            {
+                using (var conexion = clsConexion.ObtenerConexion())
+                {
+                    string sql = "SELECT nombre_especialidad AS Especialdiades, descripcion AS Descripciones FROM especialidad ORDER BY nombre_especialidad ASC;";
+
+                    using (consulta = new MySqlDataAdapter(sql, conexion))
+                    {
+                        consulta.Fill(tabla);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la tabla " + ex.Message);
+            }
+            return tabla;
+        }
+        public DataTable Consultar(string text)
+        {
+            tabla = new DataTable();
+
+            try
+            {
+                using (var conexion = clsConexion.ObtenerConexion())
+                {
+                    string sql = "SELECT nombre_especialidad AS Especialidades " +
+                                 "FROM especialidad " +
+                                 "WHERE nombre_especialidad LIKE @especialidad;";
+
+                    using (var consultar = new MySqlCommand(sql, conexion))
+                    {
+                        consultar.Parameters.AddWithValue("@especialidad", "%" + text + "%");
+                        using (consulta = new MySqlDataAdapter(consultar))
+                        {
+                            consulta.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la conexion" + ex.Message);
+            }
+            return tabla;
         }
     }
 }
