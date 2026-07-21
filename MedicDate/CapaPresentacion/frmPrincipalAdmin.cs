@@ -1,4 +1,5 @@
 ﻿using MedicDate.Procesos;
+using MedicDate.Datos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +17,11 @@ namespace MedicDate.CapaPresentacion
     {
         clsPrincipal principal;
 
+
         public frmPrincipalAdmin()
         {
             InitializeComponent();
+            principal = new clsPrincipal(); 
         }
 
         private void btnDoctores_Click(object sender, EventArgs e)
@@ -47,6 +50,15 @@ namespace MedicDate.CapaPresentacion
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void frmPrincipalAdmin_Load(object sender, EventArgs e)
+        {
+            if (Sesion.UsuarioActual != null)
+            {
+                lblUsuario.Text = Sesion.UsuarioActual.nombre_rol;
+            }
+            
         }
     }
 }

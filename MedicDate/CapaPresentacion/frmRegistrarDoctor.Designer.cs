@@ -130,7 +130,10 @@
             // dgvDoctores
             // 
             dgvDoctores.AllowDrop = true;
+            dgvDoctores.AllowUserToAddRows = false;
+            dgvDoctores.AllowUserToDeleteRows = false;
             dgvDoctores.AllowUserToResizeColumns = false;
+            dgvDoctores.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.LightGray;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Black;
@@ -147,8 +150,10 @@
             dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoctores.EnableHeadersVisualStyles = false;
-            dgvDoctores.Location = new Point(11, 73);
+            dgvDoctores.Location = new Point(55, 98);
+            dgvDoctores.MultiSelect = false;
             dgvDoctores.Name = "dgvDoctores";
+            dgvDoctores.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -163,7 +168,7 @@
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvDoctores.ScrollBars = ScrollBars.Horizontal;
-            dgvDoctores.Size = new Size(1374, 626);
+            dgvDoctores.Size = new Size(1284, 601);
             dgvDoctores.TabIndex = 2;
             // 
             // lblBuscar

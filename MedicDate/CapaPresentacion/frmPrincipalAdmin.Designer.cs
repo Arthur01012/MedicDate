@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             pnlHeader2 = new Panel();
-            lblTitulo = new Label();
+            lblUsuario = new Label();
             pnlLateral1 = new Panel();
             btnCerrar = new Button();
             btnEspecialidades = new Button();
             btnHorarios = new Button();
             btnAsistentes = new Button();
             btnDoctores = new Button();
-            lblTituloLateral = new Label();
             pnlContenedor = new Panel();
+            label1 = new Label();
             pnlHeader2.SuspendLayout();
             pnlLateral1.SuspendLayout();
             SuspendLayout();
@@ -45,34 +45,34 @@
             // pnlHeader2
             // 
             pnlHeader2.BackColor = Color.FromArgb(14, 121, 196);
-            pnlHeader2.Controls.Add(lblTitulo);
+            pnlHeader2.Controls.Add(label1);
             pnlHeader2.Dock = DockStyle.Top;
             pnlHeader2.Location = new Point(0, 0);
             pnlHeader2.Name = "pnlHeader2";
             pnlHeader2.Size = new Size(1582, 47);
             pnlHeader2.TabIndex = 7;
             // 
-            // lblTitulo
+            // lblUsuario
             // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(25, 9);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(135, 24);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Administrador";
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Location = new Point(16, 14);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(82, 28);
+            lblUsuario.TabIndex = 0;
+            lblUsuario.Text = "usuario";
             // 
             // pnlLateral1
             // 
             pnlLateral1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlLateral1.BackColor = Color.FromArgb(25, 85, 140);
+            pnlLateral1.Controls.Add(lblUsuario);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
             pnlLateral1.Controls.Add(btnHorarios);
             pnlLateral1.Controls.Add(btnAsistentes);
             pnlLateral1.Controls.Add(btnDoctores);
-            pnlLateral1.Controls.Add(lblTituloLateral);
             pnlLateral1.Dock = DockStyle.Left;
             pnlLateral1.Location = new Point(0, 47);
             pnlLateral1.Name = "pnlLateral1";
@@ -99,7 +99,7 @@
             btnEspecialidades.BackColor = Color.FromArgb(166, 202, 236);
             btnEspecialidades.FlatStyle = FlatStyle.Popup;
             btnEspecialidades.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEspecialidades.Location = new Point(12, 261);
+            btnEspecialidades.Location = new Point(10, 255);
             btnEspecialidades.Name = "btnEspecialidades";
             btnEspecialidades.Size = new Size(148, 60);
             btnEspecialidades.TabIndex = 4;
@@ -112,7 +112,7 @@
             btnHorarios.BackColor = Color.FromArgb(166, 202, 236);
             btnHorarios.FlatStyle = FlatStyle.Popup;
             btnHorarios.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHorarios.Location = new Point(12, 195);
+            btnHorarios.Location = new Point(10, 189);
             btnHorarios.Name = "btnHorarios";
             btnHorarios.Size = new Size(148, 60);
             btnHorarios.TabIndex = 3;
@@ -125,7 +125,7 @@
             btnAsistentes.BackColor = Color.FromArgb(166, 202, 236);
             btnAsistentes.FlatStyle = FlatStyle.Popup;
             btnAsistentes.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAsistentes.Location = new Point(12, 128);
+            btnAsistentes.Location = new Point(10, 122);
             btnAsistentes.Name = "btnAsistentes";
             btnAsistentes.Size = new Size(148, 61);
             btnAsistentes.TabIndex = 2;
@@ -138,24 +138,13 @@
             btnDoctores.BackColor = Color.FromArgb(166, 202, 236);
             btnDoctores.FlatStyle = FlatStyle.Popup;
             btnDoctores.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDoctores.Location = new Point(12, 61);
+            btnDoctores.Location = new Point(10, 55);
             btnDoctores.Name = "btnDoctores";
             btnDoctores.Size = new Size(148, 61);
             btnDoctores.TabIndex = 0;
             btnDoctores.Text = "Doctores";
             btnDoctores.UseVisualStyleBackColor = false;
             btnDoctores.Click += btnDoctores_Click;
-            // 
-            // lblTituloLateral
-            // 
-            lblTituloLateral.AutoSize = true;
-            lblTituloLateral.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTituloLateral.ForeColor = Color.White;
-            lblTituloLateral.Location = new Point(42, 12);
-            lblTituloLateral.Name = "lblTituloLateral";
-            lblTituloLateral.Size = new Size(84, 24);
-            lblTituloLateral.TabIndex = 1;
-            lblTituloLateral.Text = "Modulos";
             // 
             // pnlContenedor
             // 
@@ -165,6 +154,17 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1416, 806);
             pnlContenedor.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(136, 31);
+            label1.TabIndex = 6;
+            label1.Text = "Medic Date";
             // 
             // frmPrincipalAdmin
             // 
@@ -178,6 +178,7 @@
             Name = "frmPrincipalAdmin";
             Text = "Seccion";
             WindowState = FormWindowState.Maximized;
+            Load += frmPrincipalAdmin_Load;
             pnlHeader2.ResumeLayout(false);
             pnlHeader2.PerformLayout();
             pnlLateral1.ResumeLayout(false);
@@ -190,12 +191,12 @@
         private Panel pnlHeader2;
         private Panel pnlLateral1;
         private Panel pnlContenedor;
-        private Label lblTitulo;
-        private Label lblTituloLateral;
         private Button btnCerrar;
         private Button btnEspecialidades;
         private Button btnHorarios;
         private Button btnAsistentes;
         private Button btnDoctores;
+        public Label lblUsuario;
+        public Label label1;
     }
 }
