@@ -34,12 +34,12 @@
             btnDarBaja4 = new Button();
             btnEditarEspecialidad = new Button();
             btnNuevoEspecialidad = new Button();
-            dgvAsistentes = new DataGridView();
+            dgvEspecialidad = new DataGridView();
             lblBuscar1 = new Label();
             txtBuscarEspecialidad = new TextBox();
             pnlHeader5.SuspendLayout();
             pnlContenedor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvAsistentes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEspecialidad).BeginInit();
             SuspendLayout();
             // 
             // pnlHeader5
@@ -69,7 +69,7 @@
             pnlContenedor.Controls.Add(btnDarBaja4);
             pnlContenedor.Controls.Add(btnEditarEspecialidad);
             pnlContenedor.Controls.Add(btnNuevoEspecialidad);
-            pnlContenedor.Controls.Add(dgvAsistentes);
+            pnlContenedor.Controls.Add(dgvEspecialidad);
             pnlContenedor.Controls.Add(lblBuscar1);
             pnlContenedor.Controls.Add(txtBuscarEspecialidad);
             pnlContenedor.Dock = DockStyle.Fill;
@@ -120,15 +120,15 @@
             btnNuevoEspecialidad.UseVisualStyleBackColor = false;
             btnNuevoEspecialidad.Click += btnNuevoEspecialidad_Click;
             // 
-            // dgvAsistentes
+            // dgvEspecialidad
             // 
-            dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAsistentes.Location = new Point(12, 74);
-            dgvAsistentes.Name = "dgvAsistentes";
-            dgvAsistentes.RowHeadersWidth = 51;
-            dgvAsistentes.Size = new Size(1374, 626);
-            dgvAsistentes.TabIndex = 14;
+            dgvEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvEspecialidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEspecialidad.Location = new Point(12, 74);
+            dgvEspecialidad.Name = "dgvEspecialidad";
+            dgvEspecialidad.RowHeadersWidth = 51;
+            dgvEspecialidad.Size = new Size(1374, 626);
+            dgvEspecialidad.TabIndex = 14;
             // 
             // lblBuscar1
             // 
@@ -148,6 +148,7 @@
             txtBuscarEspecialidad.PlaceholderText = "Nombre de la Especialidad";
             txtBuscarEspecialidad.Size = new Size(549, 28);
             txtBuscarEspecialidad.TabIndex = 12;
+            txtBuscarEspecialidad.TextChanged += txtBuscarEspecialidad_TextChanged;
             // 
             // frmRegistrarEspecialidad
             // 
@@ -162,7 +163,7 @@
             pnlHeader5.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvAsistentes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEspecialidad).EndInit();
             ResumeLayout(false);
         }
 
@@ -174,7 +175,7 @@
         private Button btnDarBaja4;
         private Button btnEditarEspecialidad;
         private Button btnNuevoEspecialidad;
-        private DataGridView dgvAsistentes;
+        private DataGridView dgvEspecialidad;
         private Label lblBuscar1;
         private TextBox txtBuscarEspecialidad;
     }

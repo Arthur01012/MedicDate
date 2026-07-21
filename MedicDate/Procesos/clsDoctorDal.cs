@@ -9,15 +9,12 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace MedicDate.Procesos
 {
     internal class clsDoctorDAL
     {
-        private MySqlCommand comando;
         private MySqlDataAdapter consulta;
         private DataTable tabla;
 
@@ -31,8 +28,8 @@ namespace MedicDate.Procesos
                 {
                     string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo'," +
                                  "E.fecha_nacimiento AS Fecha_Nacimiento, E.curp AS Curp, E.email AS Correo, E.telefono_principal AS Telefono," +
-                                 "E.id_empleado,D.cedula_profesional AS Cedula, D.especialidad_principal AS Especialidad, D.consultorio AS consultorio " +
-                                 "FROM empleado E INNER JOIN doctor D ON E.id_empleado = D.id_empleado; ";
+                                 "E.id_empleado, E.estado AS Estado,D.cedula_profesional AS Cedula, D.especialidad_principal AS Especialidad, D.consultorio AS consultorio " +
+                                 "FROM empleado E INNER JOIN doctor D ON E.id_empleado = D.id_empleado; "; 
 
                     using (consulta = new MySqlDataAdapter(sql, conexion))
                     {

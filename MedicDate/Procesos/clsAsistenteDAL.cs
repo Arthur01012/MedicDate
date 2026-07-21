@@ -38,8 +38,9 @@ namespace MedicDate.Procesos
                 using (var conexion = clsConexion.ObtenerConexion())
                 {
                     string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',"+
-                                 "E.fecha_nacimiento AS Fecha_Nacimiento, E.curp AS Curp, E.email AS Correo, E.telefono_principal AS Telefono,"+
-                                 "E.id_empleado, A.id_empleado, A.turno "+
+                                 "E.fecha_nacimiento AS Fecha_Nacimiento, E.curp AS Curp, E.email AS Correo, E.telefono_principal AS Telefono," +
+                                 "E.telefono_secundario AS 'Telefono secundario', E.tipo_empleado AS Tipo,"+
+                                 "E.id_empleado, E.estado AS Estado, A.id_empleado, A.turno " +
                                  "FROM empleado E INNER JOIN asistente A ON E.id_empleado = A.id_empleado;";
 
                     using (consulta = new MySqlDataAdapter(sql, conexion))
