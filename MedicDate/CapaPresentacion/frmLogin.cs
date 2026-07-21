@@ -100,12 +100,15 @@ namespace MedicDate.CapaPresentacion
                 {
                     case (int)clsUsuario.Roles.Administrador:
                         formPrincipal = new frmPrincipalAdmin();
+                        
                         break;
                     case (int)clsUsuario.Roles.Asistente:
                         formPrincipal = new frmPrincipalAdmin();
+
                         break;
                     case (int)clsUsuario.Roles.Doctor:
                         formPrincipal = new frmPrincipalAdmin();
+
                         break;
                     default:
                         MessageBox.Show($"Rol no reconocido: {usuario.nombre_rol}",
