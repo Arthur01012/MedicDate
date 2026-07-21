@@ -145,7 +145,7 @@ namespace MedicDate.CapaPresentacion
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                else // MODO REGISTRO (nuevo)
+                else // MODO REGISTRO 
                 {
                     // Crear usuario
                     doctor.id_usuario = CrearUsuario(transaccion);
@@ -194,8 +194,23 @@ namespace MedicDate.CapaPresentacion
                 txtAPaterno.Focus();
                 return false;
             }
-
-            // CURP (Obligatorio)
+            // Email
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                MessageBox.Show("El email es obligatorio" +
+                    ".", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAPaterno.Focus();
+                return false;
+            }
+            if (!clsValidaciones.EsEmailValido(txtEmail.Text))
+            {
+                MessageBox.Show("El email no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+            // CURP 
             if (string.IsNullOrEmpty(txtCurp.Text))
             {
                 MessageBox.Show("El CURP es obligatorio.", "Validación",
@@ -211,16 +226,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Email
-            if (!clsValidaciones.EsEmailValido(txtEmail.Text))
-            {
-                MessageBox.Show("El email no es válido.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtEmail.Focus();
-                return false;
-            }
 
-            // Teléfono principal (opcional)
+            // Teléfono principal 
             if (!string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
             {
                 MessageBox.Show("El teléfono principal no es válido.", "Validación",
@@ -229,7 +236,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Teléfono secundario (opcional)
+            // Teléfono secundario
             if (!string.IsNullOrEmpty(txtTelefonoSecundario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
             {
                 MessageBox.Show("El teléfono secundario no es válido.", "Validación",
@@ -256,6 +263,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+
             // Fecha de nacimiento (mayor de 18 años)
             if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
             {
@@ -274,9 +282,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // ============================================================
-            // VALIDACIONES DE USUARIO Y CONTRASEÑA (SOLO EN REGISTRO NUEVO)
-            // ============================================================
+        
+        
             if (!idDoctorEditar.HasValue) // Solo si es registro nuevo
             {
                 // Usuario
@@ -347,7 +354,7 @@ namespace MedicDate.CapaPresentacion
             cmbEspecialidad.SelectedIndex = -1;
             txtNombreDoctor.Focus();
 
-            // Restaurar estado de controles (por si quedó deshabilitado de una edición)
+            // Restaurar estado de controles
             txtUsuario.Enabled = true;
             txtContrasena.Enabled = true;
             txtConfirmarContrasena.Enabled = true;
