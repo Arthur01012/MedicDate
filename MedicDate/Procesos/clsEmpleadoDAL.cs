@@ -95,5 +95,39 @@ namespace MedicDate.Procesos
                     throw new Exception("Error al insertar el empleado: " + ex.Message, ex);
             }
         }
+
+        public static bool Actualizar(clsEmpleado empleado, MySqlTransaction? transaccion = null)
+        {
+            string sql = @"UPDATE empleado 
+                   SET nombre = @nombre,
+                       apellido_paterno = @apellido_paterno,
+                       apellido_materno = @apellido_materno,
+                       fecha_nacimiento = @fecha_nacimiento,
+                       curp = @curp,
+                       email = @email,
+                       telefono_principal = @telefono_principal,
+                       telefono_secundario = @telefono_secundario,
+                       tipo_empleado = @tipo_empleado,
+                       fecha_contratacion = @fecha_contratacion,
+                       estado = @estado
+                   WHERE id_empleado = @id";
+
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@nombre", empleado.nombre),
+                new MySqlParameter("@apellido_paterno", empleado.apellido_paterno),
+                new MySqlParameter("@apellido_materno", string.IsNullOrEmpty(empleado.apellido_materno) ? DBNull.Value : (object)empleado.apellido_materno),
+                new MySqlParameter("@fecha_nacimiento", empleado.fecha_nacimiento),
+                new MySqlParameter("@curp", string.IsNullOrEmpty(empleado.curp) ? DBNull.Value : (object)empleado.curp),
+                new MySqlParameter("@email", empleado.email),
+                new MySqlParameter("@telefono_principal", string.IsNullOrEmpty(empleado.telefono_principal) ? DBNull.Value : (object)empleado.telefono_principal),
+                new MySqlParameter("@telefono_secundario", string.IsNullOrEmpty(empleado.telefono_secundario) ? DBNull.Value : (object)empleado.telefono_secundario),
+                new MySqlParameter("@tipo_empleado", empleado.tipo_empleado),
+                new MySqlParameter("@fecha_contratacion", empleado.fecha_contratacion),
+                new MySqlParameter("@estado", empleado.estado ? 1 : 0),
+                new MySqlParameter("@id", empleado.id_empleado)
+            };
+
+            return clsConexion.EjecutarNonQuery(sql, parametros, transaccion) > 0;
+        }
     }
 }

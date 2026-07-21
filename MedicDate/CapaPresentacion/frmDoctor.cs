@@ -12,13 +12,20 @@ namespace MedicDate.CapaPresentacion
     {
         private clsDoctor doctor = new clsDoctor();
 
-        public frmDoctor()
+        private int? idDoctorEditar = null; // Variable para saber si es edición
+
+        public frmDoctor(int? idDoctor = null)
         {
             InitializeComponent();
             ConfigurarFormulario();
             CargarEspecialidades();
-        }
 
+            if (idDoctor.HasValue)
+            {
+                idDoctorEditar = idDoctor.Value;
+                CargarDatosDoctor(idDoctor.Value);
+            }
+        }
         private void ConfigurarFormulario()
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
@@ -261,6 +268,62 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void CargarDatosDoctor(int idDoctor)
+        {
+            try
+            {
+                // Obtener el doctor con sus datos (empleado + doctor)
+                clsDoctor doctorEdit = clsDoctorDAL.ObtenerDoctorPorId(idDoctor);
+                if (doctorEdit == null)
+                {
+                    MessageBox.Show("No se encontró el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
+                }
+
+                // Asignar al objeto doctor (para la edición)
+                doctor = doctorEdit;
+
+                // Llenar los controles
+                txtNombreDoctor.Text = doctor.nombre;
+                txtAPaterno.Text = doctor.apellido_paterno;
+                txtAMaterno.Text = doctor.apellido_materno;
+                dtpFechaNacimiento.Value = doctor.fecha_nacimiento;
+                txtCurp.Text = doctor.curp;
+                txtEmail.Text = doctor.email;
+                txtTelefono.Text = doctor.telefono_principal;
+                txtTelefonoSecundario.Text = doctor.telefono_secundario;
+                dtpFechaContratacion.Value = doctor.fecha_contratacion;
+                chkActivo.Checked = doctor.estado;
+                txtCedula.Text = doctor.cedula_profesional;
+                txtConsultorio.Text = doctor.consultorio;
+
+                // Seleccionar la especialidad en el ComboBox
+                if (doctor.especialidad_principal.HasValue)
+                {
+                    cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;
+                }
+
+                // Deshabilitar campos que no se deben editar (ej. usuario, contraseña)
+                txtUsuario.Text = ""; // No se muestra, o se podría mostrar pero no editar
+                txtContrasena.Text = "";
+                txtConfirmarContrasena.Text = "";
+                txtUsuario.Enabled = false;
+                txtContrasena.Enabled = false;
+                txtConfirmarContrasena.Enabled = false;
+                lblPaswword.Enabled = false;
+                lblConfirmarContrasena.Enabled = false;
+
+                // Cambiar el texto del botón
+                btnGuardar.Text = "Actualizar";
+                this.Text = "Editar Doctor";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
     }
 }
