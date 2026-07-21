@@ -3,15 +3,8 @@ using MedicDate.Helpers;
 using MedicDate.Procesos;
 using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace MedicDate.CapaPresentacion
 {
@@ -25,10 +18,14 @@ namespace MedicDate.CapaPresentacion
             ConfigurarFormulario();
             CargarEspecialidades();
         }
+
         private void ConfigurarFormulario()
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
+
+            // ✅ CheckBox ACTIVO por defecto
+            chkActivo.Checked = true;
         }
 
         private void CargarEspecialidades()
@@ -38,9 +35,13 @@ namespace MedicDate.CapaPresentacion
             cmbEspecialidad.DisplayMember = "nombre_especialidad";
             cmbEspecialidad.ValueMember = "id_especialidad";
         }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidarDatos()) return;
+
+            using var conexion = clsConexion.ObtenerConexion();
+            using var transaccion = conexion.BeginTransaction();
 
             try
             {
@@ -49,54 +50,65 @@ namespace MedicDate.CapaPresentacion
                 doctor.apellido_paterno = txtAPaterno.Text.Trim();
                 doctor.apellido_materno = txtAMaterno.Text.Trim();
                 doctor.fecha_nacimiento = dtpFechaNacimiento.Value;
+                doctor.curp = txtCurp.Text.Trim().ToUpper();
                 doctor.email = txtEmail.Text.Trim();
                 doctor.telefono_principal = txtTelefono.Text.Trim();
                 doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
-                doctor.estado = chkActivo.Checked;
+                doctor.estado = chkActivo.Checked; // ✅ Único control de estado
 
                 // Datos del doctor
                 doctor.cedula_profesional = txtCedula.Text.Trim();
                 doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
                 doctor.consultorio = txtConsultorio.Text.Trim();
 
-                // Datos de usuario
-                doctor.id_usuario = CrearUsuario();
+                // Crear usuario
+                doctor.id_usuario = CrearUsuario(transaccion);
+                if (!doctor.id_usuario.HasValue)
+                    throw new Exception("No se pudo crear el usuario.");
 
                 // Insertar empleado
-                int idEmpleado = clsEmpleadoDAL.Insertar(doctor);
-                if (idEmpleado > 0)
-                {
-                    doctor.id_empleado = idEmpleado;
+                doctor.id_empleado = clsEmpleadoDAL.Insertar(doctor, transaccion);
+                if (doctor.id_empleado == 0)
+                    throw new Exception("No se pudo insertar el empleado.");
 
-                    // Insertar doctor
-                    if (clsDoctorDAL.Insertar(doctor))
-                    {
-                        MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimpiarFormulario();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al registrar los datos del doctor.", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Error al registrar el empleado.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                // Insertar doctor
+                if (!clsDoctorDAL.Insertar(doctor, transaccion))
+                    throw new Exception("No se pudo insertar el doctor.");
+
+                transaccion.Commit();
+
+                MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error",
+                transaccion.Rollback();
+                MessageBox.Show($"Error al registrar: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private int? CrearUsuario(MySqlTransaction? transaccion = null)
+        {
+            clsUsuario usuario = new clsUsuario
+            {
+                usuario = txtUsuario.Text.Trim(),
+                contrasena = txtContrasena.Text.Trim(),
+                id_rol = (int)clsUsuario.Roles.Doctor,
+                activo = true
+            };
+
+            if (clsUsuarioDAL.CrearUsuario(usuario, transaccion))
+                return usuario.id_usuario;
+
+            return null;
+        }
+
         private bool ValidarDatos()
         {
+            // Nombre
             if (string.IsNullOrEmpty(txtNombreDoctor.Text))
             {
                 MessageBox.Show("El nombre es obligatorio.", "Validación",
@@ -105,6 +117,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            // Apellido Paterno
             if (string.IsNullOrEmpty(txtAPaterno.Text))
             {
                 MessageBox.Show("El apellido paterno es obligatorio.", "Validación",
@@ -113,6 +126,23 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            // CURP (Obligatorio)
+            if (string.IsNullOrEmpty(txtCurp.Text))
+            {
+                MessageBox.Show("El CURP es obligatorio.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCurp.Focus();
+                return false;
+            }
+            if (!clsValidaciones.EsCURPValido(txtCurp.Text))
+            {
+                MessageBox.Show("El CURP no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCurp.Focus();
+                return false;
+            }
+
+            // Email
             if (!clsValidaciones.EsEmailValido(txtEmail.Text))
             {
                 MessageBox.Show("El email no es válido.", "Validación",
@@ -121,6 +151,25 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            // Teléfono principal (opcional)
+            if (!string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
+            {
+                MessageBox.Show("El teléfono principal no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefono.Focus();
+                return false;
+            }
+
+            // Teléfono secundario (opcional)
+            if (!string.IsNullOrEmpty(txtTelefonoSecundario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
+            {
+                MessageBox.Show("El teléfono secundario no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTelefonoSecundario.Focus();
+                return false;
+            }
+
+            // Cédula profesional
             if (string.IsNullOrEmpty(txtCedula.Text))
             {
                 MessageBox.Show("La cédula profesional es obligatoria.", "Validación",
@@ -129,6 +178,34 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            // Especialidad seleccionada
+            if (cmbEspecialidad.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione una especialidad.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbEspecialidad.Focus();
+                return false;
+            }
+
+            // Fecha de nacimiento (mayor de 18 años)
+            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
+            {
+                MessageBox.Show("El doctor debe ser mayor de 18 años.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFechaNacimiento.Focus();
+                return false;
+            }
+
+            // Fecha de contratación (no futura)
+            if (dtpFechaContratacion.Value > DateTime.Today)
+            {
+                MessageBox.Show("La fecha de contratación no puede ser futura.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFechaContratacion.Focus();
+                return false;
+            }
+
+            // Usuario
             if (string.IsNullOrEmpty(txtUsuario.Text))
             {
                 MessageBox.Show("El nombre de usuario es obligatorio.", "Validación",
@@ -137,6 +214,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            // Contraseña
             if (string.IsNullOrEmpty(txtContrasena.Text))
             {
                 MessageBox.Show("La contraseña es obligatoria.", "Validación",
@@ -144,7 +222,6 @@ namespace MedicDate.CapaPresentacion
                 txtContrasena.Focus();
                 return false;
             }
-
             if (txtContrasena.Text != txtConfirmarContrasena.Text)
             {
                 MessageBox.Show("Las contraseñas no coinciden.", "Validación",
@@ -158,28 +235,12 @@ namespace MedicDate.CapaPresentacion
             return true;
         }
 
-        private int? CrearUsuario()
-        {
-            clsUsuario usuario = new clsUsuario
-            {
-                usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContrasena.Text.Trim(),
-                id_rol = (int)clsUsuario.Roles.Doctor,
-                activo = true
-            };
-
-            if (clsUsuarioDAL.CrearUsuario(usuario))
-            {
-                return usuario.id_usuario;
-            }
-            return null;
-        }
-
         private void LimpiarFormulario()
         {
             txtNombreDoctor.Clear();
             txtAPaterno.Clear();
             txtAMaterno.Clear();
+            txtCurp.Clear();
             txtEmail.Clear();
             txtTelefono.Clear();
             txtTelefonoSecundario.Clear();
@@ -188,16 +249,18 @@ namespace MedicDate.CapaPresentacion
             txtUsuario.Clear();
             txtContrasena.Clear();
             txtConfirmarContrasena.Clear();
-            chkActivo.Checked = true;
+
             dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
             dtpFechaContratacion.Value = DateTime.Today;
+            chkActivo.Checked = true; // ✅ Por defecto ACTIVO
+
+            cmbEspecialidad.SelectedIndex = -1;
             txtNombreDoctor.Focus();
         }
 
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
     }
 }
