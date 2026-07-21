@@ -11,7 +11,7 @@ namespace MedicDate.Datos
         public string nombre_especialidad { get; set; } // Para mostrar en la interfaz
         public string consultorio { get; set; }
         public List<clsHorario> Horarios { get; set; } = new List<clsHorario>();
-
+        public string? NombreUsuario { get; set; }
         public clsDoctor()
         {
             tipo_empleado = "doctor";
