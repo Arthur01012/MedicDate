@@ -11,27 +11,27 @@ namespace MedicDate.CapaPresentacion
     public partial class frmDoctor : Form
     {
         private clsDoctor doctor = new clsDoctor();
+        private int? idDoctorEditar = null; // Indica si estamos en modo edición
 
-        private int? idDoctorEditar = null; // Variable para saber si es edición
-
-        public frmDoctor(int? idDoctor = null)
+        // Constructor para registro nuevo
+        public frmDoctor()
         {
             InitializeComponent();
             ConfigurarFormulario();
             CargarEspecialidades();
-
-            if (idDoctor.HasValue)
-            {
-                idDoctorEditar = idDoctor.Value;
-                CargarDatosDoctor(idDoctor.Value);
-            }
         }
+
+        // Constructor para edición (recibe el ID del doctor)
+        public frmDoctor(int idDoctor) : this()
+        {
+            idDoctorEditar = idDoctor;
+            CargarDatosDoctor(idDoctor);
+        }
+
         private void ConfigurarFormulario()
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
-
-            // ✅ CheckBox ACTIVO por defecto
             chkActivo.Checked = true;
         }
 
@@ -43,6 +43,69 @@ namespace MedicDate.CapaPresentacion
             cmbEspecialidad.ValueMember = "id_especialidad";
         }
 
+        private void CargarDatosDoctor(int idDoctor)
+        {
+            try
+            {
+                clsDoctor? doctorEdit = clsDoctorDAL.ObtenerDoctorPorId(idDoctor);
+                if (doctorEdit == null)
+                {
+                    MessageBox.Show("No se encontró el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
+                }
+
+                doctor = doctorEdit;
+
+                // Llenar controles
+                txtNombreDoctor.Text = doctor.nombre;
+                txtAPaterno.Text = doctor.apellido_paterno;
+                txtAMaterno.Text = doctor.apellido_materno;
+                dtpFechaNacimiento.Value = doctor.fecha_nacimiento;
+                txtCurp.Text = doctor.curp;
+                txtEmail.Text = doctor.email;
+                txtTelefono.Text = doctor.telefono_principal;
+                txtTelefonoSecundario.Text = doctor.telefono_secundario;
+                dtpFechaContratacion.Value = doctor.fecha_contratacion;
+                chkActivo.Checked = doctor.estado;
+                txtCedula.Text = doctor.cedula_profesional;
+                txtConsultorio.Text = doctor.consultorio;
+
+                // Seleccionar especialidad
+                if (doctor.especialidad_principal.HasValue)
+                    cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;
+
+                // Mostrar nombre de usuario (si existe)
+                txtUsuario.Text = doctorEdit.NombreUsuario ?? "";
+                txtUsuario.Enabled = false; // No se puede editar el usuario
+                txtContrasena.Enabled = false;
+                txtConfirmarContrasena.Enabled = false;
+                txtContrasena.Text = "";
+                txtConfirmarContrasena.Text = "";
+                lblPaswword.Text = "Contraseña (no editable)";
+                lblConfirmarContrasena.Text = "Confirmar (no editable)";
+
+                // Cambiar texto del botón
+                btnGuardar.Text = "Actualizar";
+                this.Text = "Editar Doctor";
+
+                // Deshabilitar campos de usuario y contraseña
+                txtUsuario.Enabled = false;
+                txtContrasena.Enabled = false;
+                txtConfirmarContrasena.Enabled = false;
+
+                // Si quieres mostrar los campos de usuario/contraseña deshabilitados
+                txtUsuario.BackColor = System.Drawing.Color.LightGray;
+                txtContrasena.BackColor = System.Drawing.Color.LightGray;
+                txtConfirmarContrasena.BackColor = System.Drawing.Color.LightGray;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidarDatos()) return;
@@ -52,7 +115,7 @@ namespace MedicDate.CapaPresentacion
 
             try
             {
-                // Datos personales
+                // Llenar objeto doctor con los datos del formulario
                 doctor.nombre = txtNombreDoctor.Text.Trim();
                 doctor.apellido_paterno = txtAPaterno.Text.Trim();
                 doctor.apellido_materno = txtAMaterno.Text.Trim();
@@ -62,55 +125,54 @@ namespace MedicDate.CapaPresentacion
                 doctor.telefono_principal = txtTelefono.Text.Trim();
                 doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
-                doctor.estado = chkActivo.Checked; // ✅ Único control de estado
-
-                // Datos del doctor
+                doctor.estado = chkActivo.Checked;
                 doctor.cedula_profesional = txtCedula.Text.Trim();
                 doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
                 doctor.consultorio = txtConsultorio.Text.Trim();
 
-                // Crear usuario
-                doctor.id_usuario = CrearUsuario(transaccion);
-                if (!doctor.id_usuario.HasValue)
-                    throw new Exception("No se pudo crear el usuario.");
+                if (idDoctorEditar.HasValue) // MODO EDICIÓN
+                {
+                    doctor.id_empleado = idDoctorEditar.Value;
+                    if (!clsEmpleadoDAL.Actualizar(doctor, transaccion))
+                        throw new Exception("No se pudo actualizar el empleado.");
 
-                // Insertar empleado
-                doctor.id_empleado = clsEmpleadoDAL.Insertar(doctor, transaccion);
-                if (doctor.id_empleado == 0)
-                    throw new Exception("No se pudo insertar el empleado.");
+                    if (!clsDoctorDAL.Actualizar(doctor, transaccion))
+                        throw new Exception("No se pudo actualizar el doctor.");
 
-                // Insertar doctor
-                if (!clsDoctorDAL.Insertar(doctor, transaccion))
-                    throw new Exception("No se pudo insertar el doctor.");
+                    transaccion.Commit();
+                    MessageBox.Show("Doctor actualizado exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else // MODO REGISTRO (nuevo)
+                {
+                    // Crear usuario
+                    doctor.id_usuario = CrearUsuario(transaccion);
+                    if (!doctor.id_usuario.HasValue)
+                        throw new Exception("No se pudo crear el usuario.");
 
-                transaccion.Commit();
+                    // Insertar empleado
+                    doctor.id_empleado = clsEmpleadoDAL.Insertar(doctor, transaccion);
+                    if (doctor.id_empleado == 0)
+                        throw new Exception("No se pudo insertar el empleado.");
 
-                MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarFormulario();
+                    // Insertar doctor
+                    if (!clsDoctorDAL.Insertar(doctor, transaccion))
+                        throw new Exception("No se pudo insertar el doctor.");
+
+                    transaccion.Commit();
+                    MessageBox.Show("Doctor registrado exitosamente.", "Éxito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarFormulario();
+                }
             }
             catch (Exception ex)
             {
                 transaccion.Rollback();
-                MessageBox.Show($"Error al registrar: {ex.Message}", "Error",
+                MessageBox.Show($"Error: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private int? CrearUsuario(MySqlTransaction? transaccion = null)
-        {
-            clsUsuario usuario = new clsUsuario
-            {
-                usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContrasena.Text.Trim(),
-                id_rol = (int)clsUsuario.Roles.Doctor,
-                activo = true
-            };
-
-            if (clsUsuarioDAL.CrearUsuario(usuario, transaccion))
-                return usuario.id_usuario;
-
-            return null;
         }
 
         private bool ValidarDatos()
@@ -212,34 +274,56 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Usuario
-            if (string.IsNullOrEmpty(txtUsuario.Text))
+            // ============================================================
+            // VALIDACIONES DE USUARIO Y CONTRASEÑA (SOLO EN REGISTRO NUEVO)
+            // ============================================================
+            if (!idDoctorEditar.HasValue) // Solo si es registro nuevo
             {
-                MessageBox.Show("El nombre de usuario es obligatorio.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUsuario.Focus();
-                return false;
-            }
+                // Usuario
+                if (string.IsNullOrEmpty(txtUsuario.Text))
+                {
+                    MessageBox.Show("El nombre de usuario es obligatorio.", "Validación",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtUsuario.Focus();
+                    return false;
+                }
 
-            // Contraseña
-            if (string.IsNullOrEmpty(txtContrasena.Text))
-            {
-                MessageBox.Show("La contraseña es obligatoria.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContrasena.Focus();
-                return false;
-            }
-            if (txtContrasena.Text != txtConfirmarContrasena.Text)
-            {
-                MessageBox.Show("Las contraseñas no coinciden.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContrasena.Clear();
-                txtConfirmarContrasena.Clear();
-                txtContrasena.Focus();
-                return false;
+                // Contraseña
+                if (string.IsNullOrEmpty(txtContrasena.Text))
+                {
+                    MessageBox.Show("La contraseña es obligatoria.", "Validación",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContrasena.Focus();
+                    return false;
+                }
+                if (txtContrasena.Text != txtConfirmarContrasena.Text)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.", "Validación",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtContrasena.Clear();
+                    txtConfirmarContrasena.Clear();
+                    txtContrasena.Focus();
+                    return false;
+                }
             }
 
             return true;
+        }
+
+        private int? CrearUsuario(MySqlTransaction? transaccion = null)
+        {
+            clsUsuario usuario = new clsUsuario
+            {
+                usuario = txtUsuario.Text.Trim(),
+                contrasena = txtContrasena.Text.Trim(),
+                id_rol = (int)clsUsuario.Roles.Doctor,
+                activo = true
+            };
+
+            if (clsUsuarioDAL.CrearUsuario(usuario, transaccion))
+                return usuario.id_usuario;
+
+            return null;
         }
 
         private void LimpiarFormulario()
@@ -259,71 +343,27 @@ namespace MedicDate.CapaPresentacion
 
             dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
             dtpFechaContratacion.Value = DateTime.Today;
-            chkActivo.Checked = true; // ✅ Por defecto ACTIVO
-
+            chkActivo.Checked = true;
             cmbEspecialidad.SelectedIndex = -1;
             txtNombreDoctor.Focus();
+
+            // Restaurar estado de controles (por si quedó deshabilitado de una edición)
+            txtUsuario.Enabled = true;
+            txtContrasena.Enabled = true;
+            txtConfirmarContrasena.Enabled = true;
+            txtUsuario.BackColor = System.Drawing.Color.White;
+            txtContrasena.BackColor = System.Drawing.Color.White;
+            txtConfirmarContrasena.BackColor = System.Drawing.Color.White;
+            lblPaswword.Text = "Contraseña";
+            lblConfirmarContrasena.Text = "Confirmar Contraseña";
+            btnGuardar.Text = "Guardar";
+            this.Text = "Registrar Doctor";
+            idDoctorEditar = null;
         }
 
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-        private void CargarDatosDoctor(int idDoctor)
-        {
-            try
-            {
-                // Obtener el doctor con sus datos (empleado + doctor)
-                clsDoctor doctorEdit = clsDoctorDAL.ObtenerDoctorPorId(idDoctor);
-                if (doctorEdit == null)
-                {
-                    MessageBox.Show("No se encontró el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                    return;
-                }
-
-                // Asignar al objeto doctor (para la edición)
-                doctor = doctorEdit;
-
-                // Llenar los controles
-                txtNombreDoctor.Text = doctor.nombre;
-                txtAPaterno.Text = doctor.apellido_paterno;
-                txtAMaterno.Text = doctor.apellido_materno;
-                dtpFechaNacimiento.Value = doctor.fecha_nacimiento;
-                txtCurp.Text = doctor.curp;
-                txtEmail.Text = doctor.email;
-                txtTelefono.Text = doctor.telefono_principal;
-                txtTelefonoSecundario.Text = doctor.telefono_secundario;
-                dtpFechaContratacion.Value = doctor.fecha_contratacion;
-                chkActivo.Checked = doctor.estado;
-                txtCedula.Text = doctor.cedula_profesional;
-                txtConsultorio.Text = doctor.consultorio;
-
-                // Seleccionar la especialidad en el ComboBox
-                if (doctor.especialidad_principal.HasValue)
-                {
-                    cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;
-                }
-
-                // Deshabilitar campos que no se deben editar (ej. usuario, contraseña)
-                txtUsuario.Text = ""; // No se muestra, o se podría mostrar pero no editar
-                txtContrasena.Text = "";
-                txtConfirmarContrasena.Text = "";
-                txtUsuario.Enabled = false;
-                txtContrasena.Enabled = false;
-                txtConfirmarContrasena.Enabled = false;
-                lblPaswword.Enabled = false;
-                lblConfirmarContrasena.Enabled = false;
-
-                // Cambiar el texto del botón
-                btnGuardar.Text = "Actualizar";
-                this.Text = "Editar Doctor";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-            }
         }
     }
 }
