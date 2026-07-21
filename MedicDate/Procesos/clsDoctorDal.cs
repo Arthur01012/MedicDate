@@ -32,7 +32,7 @@ namespace MedicDate.Procesos
                     string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo'," +
                                  "E.fecha_nacimiento AS Fecha_Nacimiento, E.curp AS Curp, E.email AS Correo, E.telefono_principal AS Telefono," +
                                  "E.id_empleado,D.cedula_profesional AS Cedula, D.especialidad_principal AS Especialidad, D.consultorio AS consultorio " +
-                                 "FROM empleado E INNER JOIN doctor D ON E.id_empleado = D.id_empleado; "; 
+                                 "FROM empleado E INNER JOIN doctor D ON E.id_empleado = D.id_empleado; ";
 
                     using (consulta = new MySqlDataAdapter(sql, conexion))
                     {
@@ -84,8 +84,23 @@ namespace MedicDate.Procesos
 
         public static bool Insertar(clsDoctor doctor, MySqlTransaction? transaccion = null)
         {
-            string consulta = @"INSERT INTO DOCTOR (id_empleado, cedula_profesional, especialidad_principal, consultorio)
-                               VALUES (@id_empleado, @cedula, @especialidad, @consultorio)";
+            // Validar que el empleado no sea ya doctor
+            string consultaExiste = "SELECT COUNT(*) FROM doctor WHERE id_empleado = @id";
+            MySqlParameter[] paramExiste = { new MySqlParameter("@id", doctor.id_empleado) };
+            object existe = clsConexion.EjecutarScalar(consultaExiste, paramExiste, transaccion);
+            if (existe != null && Convert.ToInt32(existe) > 0)
+                throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.");
+
+            // Validar cédula única
+            string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula";
+            MySqlParameter[] paramCedula = { new MySqlParameter("@cedula", doctor.cedula_profesional) };
+            object cedulaExiste = clsConexion.EjecutarScalar(consultaCedula, paramCedula, transaccion);
+            if (cedulaExiste != null && Convert.ToInt32(cedulaExiste) > 0)
+                throw new InvalidOperationException($"La cédula {doctor.cedula_profesional} ya está registrada.");
+
+
+            string consulta = @"INSERT INTO doctor (id_empleado, cedula_profesional, especialidad_principal, consultorio)
+                        VALUES (@id_empleado, @cedula, @especialidad, @consultorio)";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@id_empleado", doctor.id_empleado),
@@ -94,32 +109,190 @@ namespace MedicDate.Procesos
                 new MySqlParameter("@consultorio", string.IsNullOrEmpty(doctor.consultorio) ? DBNull.Value : (object)doctor.consultorio)
             };
 
-            return clsConexion.EjecutarNonQuery(consulta, parametros, transaccion) > 0;
+            try
+            {
+                int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
+                return filasAfectadas > 0;
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1062) // Duplicado
+                {
+                    if (ex.Message.Contains("cedula_profesional"))
+                        throw new InvalidOperationException($"La cédula '{doctor.cedula_profesional}' ya está registrada.", ex);
+                    else if (ex.Message.Contains("id_empleado"))
+                        throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.", ex);
+                    else
+                        throw new InvalidOperationException("El registro ya existe.", ex);
+                }
+                else if (ex.Number == 1452) // Clave foránea
+                {
+                    if (ex.Message.Contains("id_empleado"))
+                        throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} no existe.", ex);
+                    else if (ex.Message.Contains("especialidad_principal"))
+                        throw new InvalidOperationException($"La especialidad seleccionada no es válida.", ex);
+                    else
+                        throw new InvalidOperationException("Error de clave foránea al insertar el doctor.", ex);
+                }
+                else
+                    throw new Exception("Error al insertar el doctor: " + ex.Message, ex);
+            }
         }
         public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
         {
-        
-            string consultaEmpleado = "UPDATE empleado SET estado = 0 WHERE id_empleado = @id";
-            MySqlParameter[] parametrosEmpleado = { new MySqlParameter("@id", idEmpleado) };
-            int filasEmpleado = clsConexion.EjecutarNonQuery(consultaEmpleado, parametrosEmpleado, transaccion);
+            // Validar que el empleado sea doctor
+            string consultaValidar = @"SELECT tipo_empleado, id_usuario FROM empleado WHERE id_empleado = @id";
+            MySqlParameter[] paramValidar = { new MySqlParameter("@id", idEmpleado) };
+            DataTable resultado = clsConexion.EjecutarConsulta(consultaValidar, paramValidar, transaccion);
+            if (resultado.Rows.Count == 0)
+                throw new ArgumentException("El empleado no existe.");
 
-            if (filasEmpleado == 0)
-                return false;
+            string tipo = resultado.Rows[0]["tipo_empleado"].ToString();
+            if (tipo != "doctor")
+                throw new InvalidOperationException("Solo se puede dar de baja a doctores.");
 
-            // 2. (Opcional) Desactivar horarios del doctor
-            string consultaHorarios = "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
-            MySqlParameter[] parametrosHorarios = { new MySqlParameter("@id", idEmpleado) };
-            clsConexion.EjecutarNonQuery(consultaHorarios, parametrosHorarios, transaccion);
+            int? idUsuario = resultado.Rows[0]["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(resultado.Rows[0]["id_usuario"]);
 
-            // 3. (Opcional) Cancelar citas futuras pendientes o confirmadas
-            string consultaCitas = @"UPDATE cita 
-                             SET estado = 'Cancelada' 
-                             WHERE id_doctor = @id AND fecha >= CURDATE() 
-                             AND estado IN ('Pendiente', 'Confirmada')";
-            MySqlParameter[] parametrosCitas = { new MySqlParameter("@id", idEmpleado) };
-            clsConexion.EjecutarNonQuery(consultaCitas, parametrosCitas, transaccion);
+            // Usar transacción (si no se proporcionó una externa)
+            MySqlConnection? conexionLocal = null;
+            MySqlTransaction? transaccionLocal = null;
+            bool usarTransaccionLocal = transaccion == null;
 
-            return true;
+            try
+            {
+                if (usarTransaccionLocal)
+                {
+                    conexionLocal = clsConexion.ObtenerConexion();
+                    transaccionLocal = conexionLocal.BeginTransaction();
+                }
+
+                MySqlTransaction transaccionUsar = transaccion ?? transaccionLocal!;
+
+                // Desactivar empleado
+                string consultaEmpleado = "UPDATE empleado SET estado = 0 WHERE id_empleado = @id";
+                MySqlParameter[] parametrosEmpleado = { new MySqlParameter("@id", idEmpleado) };
+                int filas = clsConexion.EjecutarNonQuery(consultaEmpleado, parametrosEmpleado, transaccionUsar);
+                if (filas == 0)
+                    throw new Exception("No se pudo desactivar el empleado.");
+
+                // Desactivar horarios
+                string consultaHorarios = "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
+                MySqlParameter[] parametrosHorarios = { new MySqlParameter("@id", idEmpleado) };
+                clsConexion.EjecutarNonQuery(consultaHorarios, parametrosHorarios, transaccionUsar);
+
+                // Cancelar citas futuras
+                string consultaCitas = @"UPDATE cita 
+                                 SET estado = 'Cancelada' 
+                                 WHERE id_doctor = @id AND fecha >= CURDATE() 
+                                 AND estado IN ('Pendiente', 'Confirmada')";
+                MySqlParameter[] parametrosCitas = { new MySqlParameter("@id", idEmpleado) };
+                clsConexion.EjecutarNonQuery(consultaCitas, parametrosCitas, transaccionUsar);
+
+                // Desactivar usuario asociado
+                if (idUsuario.HasValue)
+                {
+                    string consultaUsuario = "UPDATE usuario SET activo = 0 WHERE id_usuario = @id";
+                    MySqlParameter[] parametrosUsuario = { new MySqlParameter("@id", idUsuario.Value) };
+                    clsConexion.EjecutarNonQuery(consultaUsuario, parametrosUsuario, transaccionUsar);
+                }
+
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Commit();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Rollback();
+                throw new Exception($"Error al dar de baja al doctor ID {idEmpleado}: {ex.Message}", ex);
+            }
+            finally
+            {
+                if (usarTransaccionLocal && conexionLocal != null)
+                {
+                    conexionLocal.Close();
+                    conexionLocal.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reactiva a un doctor (cambia estado a activo y reactiva su usuario y horarios).
+        /// </summary>
+        public static bool Reactivar(int idEmpleado, MySqlTransaction? transaccion = null)
+        {
+            // Validar que el empleado sea doctor y esté inactivo
+            string consultaValidar = @"SELECT tipo_empleado, id_usuario, estado FROM empleado WHERE id_empleado = @id";
+            MySqlParameter[] paramValidar = { new MySqlParameter("@id", idEmpleado) };
+            DataTable resultado = clsConexion.EjecutarConsulta(consultaValidar, paramValidar, transaccion);
+            if (resultado.Rows.Count == 0)
+                throw new ArgumentException("El empleado no existe.");
+
+            string tipo = resultado.Rows[0]["tipo_empleado"].ToString();
+            if (tipo != "doctor")
+                throw new InvalidOperationException("Solo se puede reactivar a doctores.");
+
+            bool estadoActual = Convert.ToBoolean(resultado.Rows[0]["estado"]);
+            if (estadoActual)
+                throw new InvalidOperationException("El doctor ya está activo.");
+
+            int? idUsuario = resultado.Rows[0]["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(resultado.Rows[0]["id_usuario"]);
+
+            // Transacción
+            MySqlConnection? conexionLocal = null;
+            MySqlTransaction? transaccionLocal = null;
+            bool usarTransaccionLocal = transaccion == null;
+
+            try
+            {
+                if (usarTransaccionLocal)
+                {
+                    conexionLocal = clsConexion.ObtenerConexion();
+                    transaccionLocal = conexionLocal.BeginTransaction();
+                }
+
+                MySqlTransaction transaccionUsar = transaccion ?? transaccionLocal!;
+
+                // Reactivar empleado
+                string consultaEmpleado = "UPDATE empleado SET estado = 1 WHERE id_empleado = @id";
+                MySqlParameter[] parametrosEmpleado = { new MySqlParameter("@id", idEmpleado) };
+                int filas = clsConexion.EjecutarNonQuery(consultaEmpleado, parametrosEmpleado, transaccionUsar);
+                if (filas == 0)
+                    throw new Exception("No se pudo reactivar el empleado.");
+
+                // Reactivar horarios (opcional: si quieres que todos los horarios se activen)
+                string consultaHorarios = "UPDATE horario SET activo = 1 WHERE id_doctor = @id";
+                MySqlParameter[] parametrosHorarios = { new MySqlParameter("@id", idEmpleado) };
+                clsConexion.EjecutarNonQuery(consultaHorarios, parametrosHorarios, transaccionUsar);
+
+                // Reactivar usuario asociado
+                if (idUsuario.HasValue)
+                {
+                    string consultaUsuario = "UPDATE usuario SET activo = 1 WHERE id_usuario = @id";
+                    MySqlParameter[] parametrosUsuario = { new MySqlParameter("@id", idUsuario.Value) };
+                    clsConexion.EjecutarNonQuery(consultaUsuario, parametrosUsuario, transaccionUsar);
+                }
+
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Commit();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Rollback();
+                throw new Exception($"Error al reactivar al doctor ID {idEmpleado}: {ex.Message}", ex);
+            }
+            finally
+            {
+                if (usarTransaccionLocal && conexionLocal != null)
+                {
+                    conexionLocal.Close();
+                    conexionLocal.Dispose();
+                }
+            }
         }
     }
 }
