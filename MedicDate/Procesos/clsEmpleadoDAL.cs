@@ -1,46 +1,15 @@
-﻿using System.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MedicDate.Datos;
 using MedicDate.Procesos;
 using MySqlConnector;
-using MedicDate.Datos;
+using System;
+using System.Data;
 
-namespace MedicDate.Procesos
+namespace MedicDate.Datos
 {
-    internal class clsEmpleadoDAL
+    public class clsEmpleadoDAL
     {
-        public static int Insertar(clsEmpleado empleado, MySqlTransaction? transaccion = null)
+        public static int Insertar(clsEmpleado empleado, MySqlTransaction? transaccion = null) // Método para insertar un nuevo empleado en la base de datos
         {
-            // Validar email único
-            string consultaEmail = "SELECT COUNT(*) FROM empleado WHERE email = @email";
-            MySqlParameter[] paramEmail = { new MySqlParameter("@email", empleado.email) };
-            object existeEmail = clsConexion.EjecutarScalar(consultaEmail, paramEmail, transaccion);
-            if (existeEmail != null && Convert.ToInt32(existeEmail) > 0)
-                throw new InvalidOperationException($"El email '{empleado.email}' ya está registrado.");
-
-            // Validar CURP único 
-            if (!string.IsNullOrEmpty(empleado.curp))
-            {
-                string consultaCurp = "SELECT COUNT(*) FROM empleado WHERE curp = @curp";
-                MySqlParameter[] paramCurp = { new MySqlParameter("@curp", empleado.curp) };
-                object existeCurp = clsConexion.EjecutarScalar(consultaCurp, paramCurp, transaccion);
-                if (existeCurp != null && Convert.ToInt32(existeCurp) > 0)
-                    throw new InvalidOperationException($"La CURP '{empleado.curp}' ya está registrada.");
-            }
-
-            // Validar que el usuario exista 
-            if (empleado.id_usuario.HasValue)
-            {
-                string consultaUsuario = "SELECT COUNT(*) FROM usuario WHERE id_usuario = @id";
-                MySqlParameter[] paramUsuario = { new MySqlParameter("@id", empleado.id_usuario.Value) };
-                object existeUsuario = clsConexion.EjecutarScalar(consultaUsuario, paramUsuario, transaccion);
-                if (existeUsuario == null || Convert.ToInt32(existeUsuario) == 0)
-                    throw new InvalidOperationException($"El usuario ID {empleado.id_usuario.Value} no existe.");
-            }
-
             string consulta = @"INSERT INTO empleado 
                                (nombre, apellido_paterno, apellido_materno, fecha_nacimiento, 
                                 curp, email, telefono_principal, telefono_secundario, 
@@ -50,8 +19,9 @@ namespace MedicDate.Procesos
                                 @curp, @email, @telefono_principal, @telefono_secundario,
                                 @tipo_empleado, @fecha_contratacion, @estado, @id_usuario);
                                SELECT LAST_INSERT_ID();";
+            // Crear un arreglo de parámetros para la consulta
 
-            MySqlParameter[] parametros = {
+            MySqlParameter[] parametros = {                 // Crear un arreglo de parámetros para la consulta
                 new MySqlParameter("@nombre", empleado.nombre),
                 new MySqlParameter("@apellido_paterno", empleado.apellido_paterno),
                 new MySqlParameter("@apellido_materno", string.IsNullOrEmpty(empleado.apellido_materno) ? DBNull.Value : (object)empleado.apellido_materno),
@@ -65,54 +35,29 @@ namespace MedicDate.Procesos
                 new MySqlParameter("@estado", empleado.estado ? 1 : 0),
                 new MySqlParameter("@id_usuario", empleado.id_usuario.HasValue ? (object)empleado.id_usuario.Value : DBNull.Value)
             };
-            try
-            {
-                object? resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
-                return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
-            }
-            catch (MySqlException ex)
-            {
-                if (ex.Number == 1062) // Duplicado
-                {
-                    // Identificar cuál campo causó el duplicado
-                    if (ex.Message.Contains("email"))
-                        throw new InvalidOperationException($"El email '{empleado.email}' ya está registrado.", ex);
-                    else if (ex.Message.Contains("curp"))
-                        throw new InvalidOperationException($"La CURP '{empleado.curp}' ya está registrada.", ex);
-                    else if (ex.Message.Contains("id_usuario"))
-                        throw new InvalidOperationException($"El usuario ya tiene un empleado asociado.", ex);
-                    else
-                        throw new InvalidOperationException("El registro ya existe (campo duplicado).", ex);
-                }
-                else if (ex.Number == 1452) // Clave foránea
-                {
-                    if (ex.Message.Contains("id_usuario"))
-                        throw new InvalidOperationException($"El usuario ID {empleado.id_usuario} no existe.", ex);
-                    else
-                        throw new InvalidOperationException("Error de clave foránea al insertar el empleado.", ex);
-                }
-                else
-                    throw new Exception("Error al insertar el empleado: " + ex.Message, ex);
-            }
+            // Se utiliza DBNull.Value para los campos opcionales que pueden ser nulos
+
+            object? resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);  // Ejecutar la consulta y obtener el ID del nuevo empleado insertado
+            return resultado == null || resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado); // Devolver el ID del nuevo empleado insertado, o 0 si no se pudo obtener el ID
         }
 
-        public static bool Actualizar(clsEmpleado empleado, MySqlTransaction? transaccion = null)
+        public static bool Actualizar(clsEmpleado empleado, MySqlTransaction? transaccion = null) // Método para actualizar un empleado existente en la base de datos
         {
             string sql = @"UPDATE empleado 
-                   SET nombre = @nombre,
-                       apellido_paterno = @apellido_paterno,
-                       apellido_materno = @apellido_materno,
-                       fecha_nacimiento = @fecha_nacimiento,
-                       curp = @curp,
-                       email = @email,
-                       telefono_principal = @telefono_principal,
-                       telefono_secundario = @telefono_secundario,
-                       tipo_empleado = @tipo_empleado,
-                       fecha_contratacion = @fecha_contratacion,
-                       estado = @estado
-                   WHERE id_empleado = @id";
-
-            MySqlParameter[] parametros = {
+                           SET nombre = @nombre,
+                               apellido_paterno = @apellido_paterno,
+                               apellido_materno = @apellido_materno,
+                               fecha_nacimiento = @fecha_nacimiento,
+                               curp = @curp,
+                               email = @email,
+                               telefono_principal = @telefono_principal,
+                               telefono_secundario = @telefono_secundario,
+                               tipo_empleado = @tipo_empleado,
+                               fecha_contratacion = @fecha_contratacion,
+                               estado = @estado
+                           WHERE id_empleado = @id";
+            // Crear un arreglo de parámetros para la consulta
+            MySqlParameter[] parametros = {                 // Crear un arreglo de parámetros para la consulta
                 new MySqlParameter("@nombre", empleado.nombre),
                 new MySqlParameter("@apellido_paterno", empleado.apellido_paterno),
                 new MySqlParameter("@apellido_materno", string.IsNullOrEmpty(empleado.apellido_materno) ? DBNull.Value : (object)empleado.apellido_materno),
@@ -126,8 +71,20 @@ namespace MedicDate.Procesos
                 new MySqlParameter("@estado", empleado.estado ? 1 : 0),
                 new MySqlParameter("@id", empleado.id_empleado)
             };
+            // Se utiliza DBNull.Value para los campos opcionales que pueden ser nulos
 
-            return clsConexion.EjecutarNonQuery(sql, parametros, transaccion) > 0;
+            try
+            {
+                int filas = clsConexion.EjecutarNonQuery(sql, parametros, transaccion); // Ejecutar la consulta y devolver true si se actualizó al menos una fila, o false si no se actualizó ninguna fila
+                return filas > 0; // Devolver true si se actualizó al menos una fila, o false si no se actualizó ninguna fila
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1062) // Código de error para clave duplicada
+                    throw new InvalidOperationException($"El email '{empleado.email}' o CURP ya están registrados.", ex); // Lanzar una excepción específica para clave duplicada
+                else
+                    throw new Exception("Error al actualizar el empleado: " + ex.Message, ex); // Lanzar una excepción genérica para otros errores
+            }
         }
     }
 }
