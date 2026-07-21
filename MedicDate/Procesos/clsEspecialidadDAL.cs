@@ -15,13 +15,13 @@ namespace MedicDate.Procesos
         private MySqlDataAdapter consulta;
         private DataTable tabla;
 
-        public static DataTable ObtenerTodos()
+        public static DataTable ObtenerTodos() // Método para obtener todas las especialidades
         {
             string consulta = "SELECT id_especialidad, nombre_especialidad FROM especialidad ORDER BY nombre_especialidad";
-            return clsConexion.EjecutarConsulta(consulta);
+            return clsConexion.EjecutarConsulta(consulta); // Llamada al método de clsConexion para ejecutar la consulta y obtener los resultados en un DataTable
         }
 
-        public static int Insertar(clsEspecialidad especialidad, MySqlTransaction? transaccion = null)
+        public static int Insertar(clsEspecialidad especialidad, MySqlTransaction? transaccion = null) // Método para insertar una nueva especialidad
         {
             string consulta = @"INSERT INTO especialidad (nombre_especialidad, descripcion)
                                VALUES (@nombre, @descripcion);
