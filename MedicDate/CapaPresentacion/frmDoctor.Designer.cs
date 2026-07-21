@@ -160,7 +160,7 @@
             // 
             dtpFechaContratacion.Font = new Font("Segoe UI", 10.8F);
             dtpFechaContratacion.Format = DateTimePickerFormat.Short;
-            dtpFechaContratacion.Location = new Point(344, 628);
+            dtpFechaContratacion.Location = new Point(344, 560);
             dtpFechaContratacion.Margin = new Padding(5, 4, 5, 4);
             dtpFechaContratacion.Name = "dtpFechaContratacion";
             dtpFechaContratacion.Size = new Size(299, 31);
@@ -170,7 +170,7 @@
             // 
             lblFechaContratacion.AutoSize = true;
             lblFechaContratacion.Font = new Font("Segoe UI", 10.8F);
-            lblFechaContratacion.Location = new Point(344, 601);
+            lblFechaContratacion.Location = new Point(344, 533);
             lblFechaContratacion.Margin = new Padding(5, 0, 5, 0);
             lblFechaContratacion.Name = "lblFechaContratacion";
             lblFechaContratacion.Size = new Size(163, 25);
@@ -181,10 +181,10 @@
             // 
             chkActivo.AutoSize = true;
             chkActivo.Font = new Font("Segoe UI", 12F);
-            chkActivo.Location = new Point(301, 422);
+            chkActivo.Location = new Point(344, 627);
             chkActivo.Margin = new Padding(4, 3, 4, 3);
             chkActivo.Name = "chkActivo";
-            chkActivo.Size = new Size(84, 29);
+            chkActivo.Size = new Size(90, 32);
             chkActivo.TabIndex = 31;
             chkActivo.Text = "Activo";
             chkActivo.UseVisualStyleBackColor = true;
@@ -251,7 +251,6 @@
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
             btnCancelar1.Click += btnCancelar1_Click;
-
             // 
             // txtContrasena
             // 
