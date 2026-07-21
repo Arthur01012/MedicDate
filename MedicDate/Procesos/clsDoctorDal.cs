@@ -294,5 +294,68 @@ namespace MedicDate.Procesos
                 }
             }
         }
+
+        public static clsDoctor? ObtenerDoctorPorId(int idEmpleado)
+        {
+            string sql = @"SELECT E.*, D.cedula_profesional, D.especialidad_principal, D.consultorio
+                   FROM empleado E
+                   INNER JOIN doctor D ON E.id_empleado = D.id_empleado
+                   WHERE E.id_empleado = @id";
+
+            MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) };
+            DataTable resultado = clsConexion.EjecutarConsulta(sql, parametros);
+
+            if (resultado.Rows.Count == 0) return null;
+
+            DataRow row = resultado.Rows[0];
+            return new clsDoctor
+            {
+                id_empleado = Convert.ToInt32(row["id_empleado"]),
+                nombre = row["nombre"].ToString(),
+                apellido_paterno = row["apellido_paterno"].ToString(),
+                apellido_materno = row["apellido_materno"]?.ToString(),
+                fecha_nacimiento = Convert.ToDateTime(row["fecha_nacimiento"]),
+                curp = row["curp"]?.ToString(),
+                email = row["email"].ToString(),
+                telefono_principal = row["telefono_principal"]?.ToString(),
+                telefono_secundario = row["telefono_secundario"]?.ToString(),
+                tipo_empleado = row["tipo_empleado"].ToString(),
+                fecha_contratacion = Convert.ToDateTime(row["fecha_contratacion"]),
+                estado = Convert.ToBoolean(row["estado"]),
+                id_usuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]),
+                cedula_profesional = row["cedula_profesional"].ToString(),
+                especialidad_principal = row["especialidad_principal"] == DBNull.Value ? null : Convert.ToInt32(row["especialidad_principal"]),
+                consultorio = row["consultorio"]?.ToString()
+            };
+        }
+
+        public static bool Actualizar(clsDoctor doctor, MySqlTransaction? transaccion = null)
+        {
+            string sql = @"UPDATE doctor 
+                   SET cedula_profesional = @cedula,
+                       especialidad_principal = @especialidad,
+                       consultorio = @consultorio
+                   WHERE id_empleado = @id";
+
+            MySqlParameter[] parametros = {
+        new MySqlParameter("@cedula", doctor.cedula_profesional),
+        new MySqlParameter("@especialidad", doctor.especialidad_principal.HasValue ? (object)doctor.especialidad_principal.Value : DBNull.Value),
+        new MySqlParameter("@consultorio", string.IsNullOrEmpty(doctor.consultorio) ? DBNull.Value : (object)doctor.consultorio),
+        new MySqlParameter("@id", doctor.id_empleado)
+    };
+
+            try
+            {
+                int filas = clsConexion.EjecutarNonQuery(sql, parametros, transaccion);
+                return filas > 0;
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1062)
+                    throw new InvalidOperationException($"La cédula '{doctor.cedula_profesional}' ya está registrada.", ex);
+                else
+                    throw new Exception("Error al actualizar el doctor: " + ex.Message, ex);
+            }
+        }
     }
 }
