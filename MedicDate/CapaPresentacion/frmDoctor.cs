@@ -12,7 +12,7 @@ namespace MedicDate.CapaPresentacion
     {
         private clsDoctor doctor = new clsDoctor();
         private int? idDoctorEditar = null; // Indica si estamos en modo edición
-
+        private bool estadoOriginal;
         // Constructor para registro nuevo
         public frmDoctor()
         {
@@ -30,7 +30,7 @@ namespace MedicDate.CapaPresentacion
 
         private void ConfigurarFormulario()
         {
-            dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-25);
+            dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
             chkActivo.Checked = true;
         }
@@ -55,7 +55,9 @@ namespace MedicDate.CapaPresentacion
                     return;
                 }
 
+                // Asignar el doctor real y guardar su estado original
                 doctor = doctorEdit;
+                estadoOriginal = doctor.estado; // ✅ AHORA sí es el estado real del doctor cargado
 
                 // Llenar controles
                 txtNombreDoctor.Text = doctor.nombre;
@@ -77,7 +79,7 @@ namespace MedicDate.CapaPresentacion
 
                 // Mostrar nombre de usuario (si existe)
                 txtUsuario.Text = doctorEdit.NombreUsuario ?? "";
-                txtUsuario.Enabled = false; // No se puede editar el usuario
+                txtUsuario.Enabled = false;
                 txtContrasena.Enabled = false;
                 txtConfirmarContrasena.Enabled = false;
                 txtContrasena.Text = "";
@@ -85,16 +87,14 @@ namespace MedicDate.CapaPresentacion
                 lblPaswword.Text = "Contraseña (no editable)";
                 lblConfirmarContrasena.Text = "Confirmar (no editable)";
 
-                // Cambiar texto del botón
+                // Cambiar texto del botón y título
                 btnGuardar.Text = "Actualizar";
                 this.Text = "Editar Doctor";
 
-                // Deshabilitar campos de usuario y contraseña
+                // Deshabilitar campos de usuario y contraseña visualmente
                 txtUsuario.Enabled = false;
                 txtContrasena.Enabled = false;
                 txtConfirmarContrasena.Enabled = false;
-
-                // Si quieres mostrar los campos de usuario/contraseña deshabilitados
                 txtUsuario.BackColor = System.Drawing.Color.LightGray;
                 txtContrasena.BackColor = System.Drawing.Color.LightGray;
                 txtConfirmarContrasena.BackColor = System.Drawing.Color.LightGray;
@@ -133,11 +133,29 @@ namespace MedicDate.CapaPresentacion
                 if (idDoctorEditar.HasValue) // MODO EDICIÓN
                 {
                     doctor.id_empleado = idDoctorEditar.Value;
+
+                    // 1. Siempre actualizar datos personales del empleado
                     if (!clsEmpleadoDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el empleado.");
 
+                    // 2. Siempre actualizar datos del doctor
                     if (!clsDoctorDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el doctor.");
+
+                    // 3. Si cambió el estado, aplicar baja o reactivación
+                    if (doctor.estado != estadoOriginal)
+                    {
+                        if (doctor.estado) // Nuevo estado = activo
+                        {
+                            if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
+                                throw new Exception("No se pudo reactivar el doctor.");
+                        }
+                        else // Nuevo estado = inactivo
+                        {
+                            if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
+                                throw new Exception("No se pudo dar de baja al doctor.");
+                        }
+                    }
 
                     transaccion.Commit();
                     MessageBox.Show("Doctor actualizado exitosamente.", "Éxito",
@@ -200,7 +218,7 @@ namespace MedicDate.CapaPresentacion
                 MessageBox.Show("El email es obligatorio" +
                     ".", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAPaterno.Focus();
+                txtEmail.Focus();
                 return false;
             }
             if (!clsValidaciones.EsEmailValido(txtEmail.Text))
@@ -264,8 +282,8 @@ namespace MedicDate.CapaPresentacion
             }
 
 
-            // Fecha de nacimiento (mayor de 18 años)
-            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 25, 120))
+            // Fecha de nacimiento
+            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
             {
                 MessageBox.Show("El doctor debe ser mayor de 18 años.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
