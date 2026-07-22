@@ -163,8 +163,6 @@ namespace MedicDate.Procesos
                 // Personalizar mensaje según el error de MySQL
                 if (ex.Number == 1062) // Duplicado (usuario ya existe)
                     throw new InvalidOperationException($"El nombre de usuario '{usuario.usuario}' ya está en uso.", ex);
-                else if (ex.Number == 1452) // Clave foránea (rol no existe)
-                    throw new InvalidOperationException($"El rol seleccionado no es válido.", ex);
                 else
                     throw new Exception("Error al crear el usuario: " + ex.Message, ex);
             }

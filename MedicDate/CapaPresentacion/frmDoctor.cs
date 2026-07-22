@@ -30,7 +30,7 @@ namespace MedicDate.CapaPresentacion
 
         private void ConfigurarFormulario()
         {
-            dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
+            dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-25);
             dtpFechaContratacion.Value = DateTime.Today;
             chkActivo.Checked = true;
         }
@@ -265,7 +265,7 @@ namespace MedicDate.CapaPresentacion
 
 
             // Fecha de nacimiento (mayor de 18 años)
-            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
+            if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 25, 120))
             {
                 MessageBox.Show("El doctor debe ser mayor de 18 años.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
