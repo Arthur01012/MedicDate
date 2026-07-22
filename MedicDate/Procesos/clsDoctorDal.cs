@@ -95,11 +95,7 @@ namespace MedicDate.Procesos
 
             DataRow row = resultado.Rows[0]; // Se obtiene la primera fila del resultado
             string tipo = row["tipo_empleado"].ToString()!; // Se obtiene el tipo de empleado y se asegura que no sea nulo
-            if (tipo != "doctor")
-                throw new InvalidOperationException("La operación solo aplica a doctores."); // Si el tipo de empleado no es "doctor", se lanza una excepción indicando que la operación solo aplica a doctores
-                                                                                             // Esta validacion tecnicamente  no es necesaria, pero para evitar errores en caso de un caso excepcional
-                                                                                             // donde un empleado tenga mal referenciado su tipo de empleado, es mejor prevenirlo y lanzar una excepción.
-
+            
             bool estado = Convert.ToBoolean(row["estado"]); // Se obtiene el estado del empleado (activo/inactivo) y se convierte a boolean
             int? idUsuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]); // Se obtiene el ID de usuario asociado, si existe; si no, se asigna null
 
@@ -108,10 +104,6 @@ namespace MedicDate.Procesos
 
      
         /// Cambia el estado de un doctor (activo/inactivo) y actualiza recursos asociados.
-        
-        /// <param name="idEmpleado">ID del doctor.</param>
-        /// <param name="activar">true = reactivar, false = dar de baja.</param>
-        /// <param name="transaccion">Transacción externa .</param>
         private static bool CambiarEstadoDoctor(
             int idEmpleado,
             bool activar,
@@ -126,7 +118,7 @@ namespace MedicDate.Procesos
                     ? "El doctor ya está activo."
                     : "El doctor ya está inactivo.");// Si el estado actual es igual al deseado, se lanza una excepción indicando que no se puede cambiar el estado
 
-            // 3. Transacción local si no se proporciona una externa
+            // 3. Transacción local
             MySqlConnection? conexionLocal = null;
             MySqlTransaction? transaccionLocal = null;
             bool usarTransaccionLocal = transaccion == null;

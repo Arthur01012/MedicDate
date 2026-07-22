@@ -24,8 +24,6 @@ namespace MedicDate.Helpers
 
 
         //El metodo md5 es un metodo de encriptacion que se utiliza para encriptar contraseñas y otros datos sensibles. Este metodo es unidireccional,
-        //lo que significa que no se puede desencriptar el texto original a partir del hash generado.
-        //Esto lo hace ideal para almacenar contraseñas de manera segura en bases de datos.
         public static string EncriptarMD5(string texto) // Método para encriptar un texto utilizando MD5
         {
             if (string.IsNullOrEmpty(texto)) // Verifica si el texto es nulo o vacío
