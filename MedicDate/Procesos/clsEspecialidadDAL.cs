@@ -11,7 +11,6 @@ namespace MedicDate.Procesos
 {
     internal class clsEspecialidadDAL
     {
-        private MySqlCommand comando;
         private MySqlDataAdapter consulta;
         private DataTable tabla;
 

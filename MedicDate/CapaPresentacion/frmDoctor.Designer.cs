@@ -260,7 +260,6 @@
             txtContrasena.PasswordChar = '*';
             txtContrasena.Size = new Size(299, 31);
             txtContrasena.TabIndex = 26;
-            txtContrasena.UseSystemPasswordChar = true;
             // 
             // lblPaswword
             // 
