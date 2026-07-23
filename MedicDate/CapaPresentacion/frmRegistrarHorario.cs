@@ -14,11 +14,6 @@ namespace MedicDate.CapaPresentacion
             InitializeComponent();
             CargarGrid();
             ConfigurarDataGridView();
-            // Eventos
-            btnAsignarHora.Click += btnAsignarHora_Click;
-            btnEditarHorario.Click += btnEditarHorario_Click;
-            btnDarBaja3.Click += btnDarBaja3_Click;
-            txtBuscarDoctor1.TextChanged += txtBuscarDoctor1_TextChanged;
         }
 
         private void ConfigurarDataGridView()
