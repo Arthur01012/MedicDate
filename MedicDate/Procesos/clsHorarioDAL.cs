@@ -7,13 +7,9 @@ namespace MedicDate.Procesos
 {
     public class clsHorarioDAL
     {
-        // ============================================================
-        // MÉTODOS PARA CONSULTAS (DATAGRIDVIEW Y BÚSQUEDA)
-        // ============================================================
+    
+        // Carga todos los horarios con el nombre del doctor para mostrar en un DataGridView.
 
-        /// <summary>
-        /// Carga todos los horarios con el nombre del doctor para mostrar en un DataGridView.
-        /// </summary>
         public DataTable CargarGrid()
         {
             var tabla = new DataTable();
@@ -45,9 +41,9 @@ namespace MedicDate.Procesos
             }
         }
 
-        /// <summary>
-        /// Busca horarios por nombre del doctor (coincidencia parcial).
-        /// </summary>
+        
+        // Busca horarios por nombre del doctor (coincidencia parcial).
+        
         public DataTable Buscar(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
@@ -83,31 +79,8 @@ namespace MedicDate.Procesos
             }
         }
 
-        /// <summary>
-        /// Obtiene todos los horarios de un doctor específico.
-        /// </summary>
-        public DataTable ObtenerPorDoctor(int idDoctor)
-        {
-            var tabla = new DataTable();
-            try
-            {
-                using var conexion = clsConexion.ObtenerConexion();
-                string sql = @"SELECT * FROM horario WHERE id_doctor = @id_doctor ORDER BY dia_semana, hora_inicio";
-                using var cmd = new MySqlCommand(sql, conexion);
-                cmd.Parameters.AddWithValue("@id_doctor", idDoctor);
-                using var adapter = new MySqlDataAdapter(cmd);
-                adapter.Fill(tabla);
-                return tabla;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener horarios del doctor: " + ex.Message);
-            }
-        }
+        // Obtiene un horario específico por su ID (para edición).
 
-        /// <summary>
-        /// Obtiene un horario específico por su ID (para edición).
-        /// </summary>
         public static DataTable ObtenerHorarioPorId(int idHorario)
         {
             var tabla = new DataTable();
@@ -127,13 +100,9 @@ namespace MedicDate.Procesos
             }
         }
 
-        // ============================================================
-        // MÉTODOS PARA VALIDACIÓN
-        // ============================================================
 
-        /// <summary>
-        /// Verifica si existe un horario que se solape con el rango dado para el mismo doctor y día.
-        /// </summary>
+        // Verifica si existe un horario que se solape con el rango dado para el mismo doctor y día.
+
         public static bool ExisteSolapamiento(int idDoctor, string diaSemana, TimeSpan horaInicio, TimeSpan horaFin, int? idExcluir = null)
         {
             string consulta = @"SELECT COUNT(*) FROM horario 
@@ -166,14 +135,7 @@ namespace MedicDate.Procesos
             return Convert.ToInt32(resultado) > 0;
         }
 
-        // ============================================================
-        // MÉTODOS CRUD (INSERTAR, ACTUALIZAR, CAMBIAR ESTADO, ELIMINAR)
-        // ============================================================
-
-        /// <summary>
         /// Inserta un nuevo horario en la base de datos.
-        /// </summary>
-        /// <returns>El ID del horario insertado, o 0 si falla.</returns>
         public static int Insertar(clsHorario horario, MySqlTransaction? transaccion = null)
         {
             string consulta = @"INSERT INTO horario 
@@ -195,10 +157,6 @@ namespace MedicDate.Procesos
             return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
         }
 
-        /// <summary>
-        /// Actualiza un horario existente.
-        /// </summary>
-        /// <returns>True si se actualizó correctamente.</returns>
         public static bool Actualizar(clsHorario horario, MySqlTransaction? transaccion = null)
         {
             string consulta = @"UPDATE horario 
@@ -224,10 +182,7 @@ namespace MedicDate.Procesos
             return filasAfectadas > 0;
         }
 
-        /// <summary>
-        /// Cambia el estado (activo/inactivo) de un horario.
-        /// </summary>
-        /// <returns>True si se cambió correctamente.</returns>
+        // Cambia el estado (activo/inactivo) de un horario.
         public static bool CambiarEstado(int idHorario, bool activo, MySqlTransaction? transaccion = null)
         {
             string consulta = "UPDATE horario SET activo = @activo WHERE id_horario = @id";
@@ -238,18 +193,6 @@ namespace MedicDate.Procesos
 
             int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
             return filasAfectadas > 0;
-        }
-
-        /// <summary>
-        /// Elimina físicamente un horario de la base de datos.
-        /// </summary>
-        /// <returns>True si se eliminó correctamente.</returns>
-        public static bool Eliminar(int idHorario, MySqlTransaction? transaccion = null)
-        {
-            string consulta = "DELETE FROM horario WHERE id_horario = @id";
-            MySqlParameter[] parametros = { new MySqlParameter("@id", idHorario) };
-            int filas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
-            return filas > 0;
         }
     }
 }
