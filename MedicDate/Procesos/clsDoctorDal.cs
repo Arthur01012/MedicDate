@@ -23,6 +23,7 @@ namespace MedicDate.Procesos
                         E.email AS Correo,
                         E.telefono_principal AS Telefono,
                         E.id_empleado,
+                        E.estado AS Estado,
                         D.cedula_profesional AS Cedula,
                         S.nombre_especialidad AS Especialidad,
                         D.consultorio AS Consultorio
