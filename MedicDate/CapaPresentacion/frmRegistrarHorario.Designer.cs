@@ -91,6 +91,7 @@
             btnDarBaja3.TabIndex = 11;
             btnDarBaja3.Text = "Dar de Baja";
             btnDarBaja3.UseVisualStyleBackColor = false;
+            btnDarBaja3.Click += btnDarBaja3_Click;
             // 
             // btnEditarHorario
             // 
@@ -105,6 +106,7 @@
             btnEditarHorario.TabIndex = 10;
             btnEditarHorario.Text = "Editar Horario";
             btnEditarHorario.UseVisualStyleBackColor = false;
+            btnEditarHorario.Click += btnEditarHorario_Click;
             // 
             // btnAsignarHora
             // 
@@ -154,6 +156,7 @@
             txtBuscarDoctor1.PlaceholderText = "Ingrese el nombre del Doctor";
             txtBuscarDoctor1.Size = new Size(549, 28);
             txtBuscarDoctor1.TabIndex = 6;
+            txtBuscarDoctor1.TextChanged += txtBuscarDoctor1_TextChanged;
             // 
             // frmRegistrarHorario
             // 
