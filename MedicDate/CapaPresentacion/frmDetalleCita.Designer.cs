@@ -28,60 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader14 = new Panel();
+            pnlHeaderCita = new Panel();
             lblTituloAgenda = new Label();
-            dataGridView1 = new DataGridView();
+            dgvCitas = new DataGridView();
             lblNotaInterna = new Label();
             txtNotaInterna = new TextBox();
             btnCerrar = new Button();
             btnIniciarConsulta = new Button();
             btnFinalizarConsulta = new Button();
-            pnlHeader14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            pnlHeaderCita.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader14
+            // pnlHeaderCita
             // 
-            pnlHeader14.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader14.Controls.Add(lblTituloAgenda);
-            pnlHeader14.Dock = DockStyle.Top;
-            pnlHeader14.Location = new Point(0, 0);
-            pnlHeader14.Name = "pnlHeader14";
-            pnlHeader14.Size = new Size(882, 47);
-            pnlHeader14.TabIndex = 13;
+            pnlHeaderCita.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderCita.Controls.Add(lblTituloAgenda);
+            pnlHeaderCita.Dock = DockStyle.Top;
+            pnlHeaderCita.Font = new Font("Segoe UI", 9F);
+            pnlHeaderCita.ForeColor = Color.Black;
+            pnlHeaderCita.Location = new Point(0, 0);
+            pnlHeaderCita.Name = "pnlHeaderCita";
+            pnlHeaderCita.Size = new Size(882, 47);
+            pnlHeaderCita.TabIndex = 13;
             // 
             // lblTituloAgenda
             // 
             lblTituloAgenda.AutoSize = true;
-            lblTituloAgenda.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloAgenda.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(25, 9);
+            lblTituloAgenda.Location = new Point(3, 3);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(105, 24);
+            lblTituloAgenda.Size = new Size(180, 41);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Detalle cita";
             // 
-            // dataGridView1
+            // dgvCitas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 53);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(858, 190);
-            dataGridView1.TabIndex = 14;
+            dgvCitas.BackgroundColor = Color.Gray;
+            dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitas.GridColor = Color.Gray;
+            dgvCitas.Location = new Point(12, 53);
+            dgvCitas.Name = "dgvCitas";
+            dgvCitas.RowHeadersWidth = 51;
+            dgvCitas.Size = new Size(858, 190);
+            dgvCitas.TabIndex = 14;
             // 
             // lblNotaInterna
             // 
             lblNotaInterna.AutoSize = true;
-            lblNotaInterna.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNotaInterna.Location = new Point(12, 257);
+            lblNotaInterna.Font = new Font("Candara", 10.2F);
+            lblNotaInterna.ForeColor = Color.Black;
+            lblNotaInterna.Location = new Point(12, 260);
             lblNotaInterna.Name = "lblNotaInterna";
-            lblNotaInterna.Size = new Size(115, 24);
+            lblNotaInterna.Size = new Size(100, 21);
             lblNotaInterna.TabIndex = 117;
             lblNotaInterna.Text = "Nota interna";
             // 
             // txtNotaInterna
             // 
+            txtNotaInterna.BackColor = Color.White;
+            txtNotaInterna.Font = new Font("Candara", 12F);
+            txtNotaInterna.ForeColor = Color.Black;
             txtNotaInterna.Location = new Point(12, 284);
             txtNotaInterna.Multiline = true;
             txtNotaInterna.Name = "txtNotaInterna";
@@ -90,6 +98,7 @@
             // 
             // btnCerrar
             // 
+            btnCerrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCerrar.BackColor = Color.FromArgb(176, 11, 11);
             btnCerrar.FlatStyle = FlatStyle.Popup;
             btnCerrar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -106,7 +115,7 @@
             btnIniciarConsulta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnIniciarConsulta.BackColor = Color.DarkGoldenrod;
             btnIniciarConsulta.FlatStyle = FlatStyle.Popup;
-            btnIniciarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnIniciarConsulta.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnIniciarConsulta.ForeColor = Color.Black;
             btnIniciarConsulta.Location = new Point(552, 397);
             btnIniciarConsulta.Name = "btnIniciarConsulta";
@@ -121,7 +130,8 @@
             btnFinalizarConsulta.BackColor = Color.LimeGreen;
             btnFinalizarConsulta.BackgroundImageLayout = ImageLayout.None;
             btnFinalizarConsulta.FlatStyle = FlatStyle.Popup;
-            btnFinalizarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnFinalizarConsulta.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnFinalizarConsulta.ForeColor = Color.Black;
             btnFinalizarConsulta.Location = new Point(706, 397);
             btnFinalizarConsulta.Name = "btnFinalizarConsulta";
             btnFinalizarConsulta.Size = new Size(164, 45);
@@ -133,28 +143,30 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightGray;
             ClientSize = new Size(882, 453);
             Controls.Add(btnFinalizarConsulta);
             Controls.Add(btnIniciarConsulta);
             Controls.Add(btnCerrar);
             Controls.Add(txtNotaInterna);
             Controls.Add(lblNotaInterna);
-            Controls.Add(dataGridView1);
-            Controls.Add(pnlHeader14);
+            Controls.Add(dgvCitas);
+            Controls.Add(pnlHeaderCita);
             Name = "frmDetalleCita";
             Text = "frmDetalleCita";
-            pnlHeader14.ResumeLayout(false);
-            pnlHeader14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += frmDetalleCita_Load;
+            pnlHeaderCita.ResumeLayout(false);
+            pnlHeaderCita.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Panel pnlHeader14;
+        private Panel pnlHeaderCita;
         private Label lblTituloAgenda;
-        private DataGridView dataGridView1;
+        private DataGridView dgvCitas;
         private Label lblNotaInterna;
         private TextBox txtNotaInterna;
         private Button btnCerrar;

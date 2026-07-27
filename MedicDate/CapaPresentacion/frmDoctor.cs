@@ -52,7 +52,7 @@ namespace MedicDate.CapaPresentacion
                 doctor.fecha_nacimiento = dtpFechaNacimiento.Value;
                 doctor.curp = txtCurp.Text.Trim().ToUpper();
                 doctor.email = txtEmail.Text.Trim();
-                doctor.telefono_principal = txtTelefono.Text.Trim();
+                doctor.telefono_principal = txtTelefonoPrimario.Text.Trim();
                 doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
                 doctor.estado = chkActivo.Checked; // ✅ Único control de estado
@@ -95,7 +95,7 @@ namespace MedicDate.CapaPresentacion
             clsUsuario usuario = new clsUsuario
             {
                 usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContrasena.Text.Trim(),
+                contrasena = txtContraseña.Text.Trim(),
                 id_rol = (int)clsUsuario.Roles.Doctor,
                 activo = true
             };
@@ -152,11 +152,11 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Teléfono principal (opcional)
-            if (!string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
+            if (!string.IsNullOrEmpty(txtTelefonoPrimario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoPrimario.Text))
             {
                 MessageBox.Show("El teléfono principal no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTelefono.Focus();
+                txtTelefonoPrimario.Focus();
                 return false;
             }
 
@@ -215,20 +215,20 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Contraseña
-            if (string.IsNullOrEmpty(txtContrasena.Text))
+            if (string.IsNullOrEmpty(txtContraseña.Text))
             {
                 MessageBox.Show("La contraseña es obligatoria.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContrasena.Focus();
+                txtContraseña.Focus();
                 return false;
             }
-            if (txtContrasena.Text != txtConfirmarContrasena.Text)
+            if (txtContraseña.Text != txtConfirmarContrasena.Text)
             {
                 MessageBox.Show("Las contraseñas no coinciden.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContrasena.Clear();
+                txtContraseña.Clear();
                 txtConfirmarContrasena.Clear();
-                txtContrasena.Focus();
+                txtContraseña.Focus();
                 return false;
             }
 
@@ -242,12 +242,12 @@ namespace MedicDate.CapaPresentacion
             txtAMaterno.Clear();
             txtCurp.Clear();
             txtEmail.Clear();
-            txtTelefono.Clear();
+            txtTelefonoPrimario.Clear();
             txtTelefonoSecundario.Clear();
             txtCedula.Clear();
             txtConsultorio.Clear();
             txtUsuario.Clear();
-            txtContrasena.Clear();
+            txtContraseña.Clear();
             txtConfirmarContrasena.Clear();
 
             dtpFechaNacimiento.Value = DateTime.Today.AddYears(-25);
@@ -261,6 +261,11 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pnlContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

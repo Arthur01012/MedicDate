@@ -31,5 +31,10 @@ namespace MedicDate.CapaPresentacion
         {
 
         }
+
+        private void lblTituloAgenda_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
