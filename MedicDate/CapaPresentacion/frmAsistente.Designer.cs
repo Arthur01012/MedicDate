@@ -31,7 +31,6 @@
             pnlHeaderAsistente = new Panel();
             lblTituloAsistente = new Label();
             pnlContenedor = new Panel();
-            pnlContenedor4 = new Panel();
             lblConfirmarContrasena = new Label();
             txtConfirmarContrasena = new TextBox();
             cmbTurno = new ComboBox();
@@ -63,8 +62,6 @@
             lblTelefonoSecundario = new Label();
             txtCurp = new TextBox();
             lblCurp = new Label();
-            pnlHeader6.SuspendLayout();
-            pnlContenedor4.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeaderAsistente
@@ -78,7 +75,7 @@
             pnlHeaderAsistente.Name = "pnlHeaderAsistente";
             pnlHeaderAsistente.Size = new Size(657, 55);
             pnlHeaderAsistente.TabIndex = 8;
-            pnlHeaderAsistente.Paint += pnlHeader6_Paint;
+            
             // 
             // lblTituloAsistente
             // 
@@ -91,7 +88,6 @@
             lblTituloAsistente.Size = new Size(152, 41);
             lblTituloAsistente.TabIndex = 0;
             lblTituloAsistente.Text = "Asistente";
-            lblTituloAsistente.Click += lblTituloAsistente_Click;
             // 
             // pnlContenedor
             // 
@@ -125,44 +121,6 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(657, 520);
             pnlContenedor.TabIndex = 9;
-            // 
-            // pnlContenedor4
-            // 
-            pnlContenedor4.BackColor = Color.LightGray;
-            pnlContenedor4.Controls.Add(txtCurp);
-            pnlContenedor4.Controls.Add(lblCurp);
-            pnlContenedor4.Controls.Add(txtTelefonoSecundario);
-            pnlContenedor4.Controls.Add(lblTelefonoSecundario);
-            pnlContenedor4.Controls.Add(lblConfirmarContrasena);
-            pnlContenedor4.Controls.Add(txtConfirmarContrasena);
-            pnlContenedor4.Controls.Add(cmbTurno);
-            pnlContenedor4.Controls.Add(lblTurno);
-            pnlContenedor4.Controls.Add(btnGuardar);
-            pnlContenedor4.Controls.Add(btnCancelar1);
-            pnlContenedor4.Controls.Add(cmbEstado);
-            pnlContenedor4.Controls.Add(lblEstado);
-            pnlContenedor4.Controls.Add(txtPassword);
-            pnlContenedor4.Controls.Add(lblPaswword);
-            pnlContenedor4.Controls.Add(txtUsuarioAsistente);
-            pnlContenedor4.Controls.Add(lblUsuario);
-            pnlContenedor4.Controls.Add(dtpFechaRegistro);
-            pnlContenedor4.Controls.Add(lblFechaRegistro);
-            pnlContenedor4.Controls.Add(txtTelefono);
-            pnlContenedor4.Controls.Add(lblTelefono);
-            pnlContenedor4.Controls.Add(txtEmail);
-            pnlContenedor4.Controls.Add(lblEmail);
-            pnlContenedor4.Controls.Add(txtAMaterno);
-            pnlContenedor4.Controls.Add(lblAMaterno);
-            pnlContenedor4.Controls.Add(txtAPaterno);
-            pnlContenedor4.Controls.Add(lblAPaterno);
-            pnlContenedor4.Controls.Add(lblNombreAsistente);
-            pnlContenedor4.Controls.Add(tctNombreAsistente);
-            pnlContenedor4.Controls.Add(lblDatosPersonales1);
-            pnlContenedor4.Dock = DockStyle.Fill;
-            pnlContenedor4.Location = new Point(0, 55);
-            pnlContenedor4.Name = "pnlContenedor4";
-            pnlContenedor4.Size = new Size(657, 660);
-            pnlContenedor4.TabIndex = 9;
             // 
             // lblConfirmarContrasena
             // 
@@ -271,24 +229,6 @@
             txtPassword.Size = new Size(299, 32);
             txtPassword.TabIndex = 51;
             txtPassword.UseSystemPasswordChar = true;
-            // 
-            // lblPassword
-            // 
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPassword.ForeColor = Color.Black;
-            lblPassword.Location = new Point(347, 277);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(91, 21);
-            lblPassword.TabIndex = 50;
-            lblPassword.Text = "Contraseña";
-            lblPaswword.AutoSize = true;
-            lblPaswword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPaswword.Location = new Point(342, 408);
-            lblPaswword.Name = "lblPaswword";
-            lblPaswword.Size = new Size(91, 21);
-            lblPaswword.TabIndex = 50;
-            lblPaswword.Text = "Contraseña";
             // 
             // txtUsuarioAsistente
             // 
@@ -480,7 +420,6 @@
             txtCurp.Name = "txtCurp";
             txtCurp.Size = new Size(299, 32);
             txtCurp.TabIndex = 67;
-            txtCurp.TextChanged += textBox1_TextChanged;
             // 
             // lblCurp
             // 
@@ -506,13 +445,8 @@
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
             ClientSize = new Size(657, 715);
-            Controls.Add(pnlContenedor4);
-            Controls.Add(pnlHeader6);
             Name = "frmAsistente";
             Text = "Gestion de Asistente";
-            pnlHeader6.ResumeLayout(false);
-            pnlContenedor4.ResumeLayout(false);
-            pnlContenedor4.PerformLayout();
             ResumeLayout(false);
         }
 

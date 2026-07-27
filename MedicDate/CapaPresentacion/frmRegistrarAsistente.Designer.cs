@@ -101,20 +101,6 @@
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja2_Click;
-            // btnDarBaja2
-            // 
-            btnDarBaja2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDarBaja2.BackColor = Color.FromArgb(176, 11, 11);
-            btnDarBaja2.FlatStyle = FlatStyle.Popup;
-            btnDarBaja2.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDarBaja2.ForeColor = Color.White;
-            btnDarBaja2.Location = new Point(1202, 31);
-            btnDarBaja2.Name = "btnDarBaja2";
-            btnDarBaja2.Size = new Size(148, 45);
-            btnDarBaja2.TabIndex = 11;
-            btnDarBaja2.Text = "Dar de Baja";
-            btnDarBaja2.UseVisualStyleBackColor = false;
-            btnDarBaja2.Click += btnDarBaja2_Click;
             // 
             // btnEditarAsistente
             // 
@@ -158,23 +144,6 @@
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvAsistentes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvAsistentes.BackgroundColor = Color.Gray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Gray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvAsistentes.DefaultCellStyle = dataGridViewCellStyle3;
             dgvAsistentes.EnableHeadersVisualStyles = false;
             dgvAsistentes.GridColor = Color.Gray;
             dgvAsistentes.Location = new Point(12, 74);

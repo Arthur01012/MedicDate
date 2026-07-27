@@ -169,7 +169,6 @@
             btnNuevoEspecialidad.TabIndex = 15;
             btnNuevoEspecialidad.Text = "Nuevo";
             btnNuevoEspecialidad.UseVisualStyleBackColor = false;
-            btnNuevoEspecialidad.Click += btnNuevoEspecialidad_Click;
             // 
             // dgvEspecialidad
             // 
