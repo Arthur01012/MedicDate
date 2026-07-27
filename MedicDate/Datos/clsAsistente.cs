@@ -3,6 +3,7 @@
     public class clsAsistente : clsEmpleado
     {
         public string turno { get; set; }
+        public string? NombreUsuario { get; set; }
 
         public clsAsistente()
         {

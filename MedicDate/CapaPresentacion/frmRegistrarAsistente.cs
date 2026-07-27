@@ -76,9 +76,9 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            
+
             DataGridViewRow? fila = null;
-          if (dgvAsistentes.CurrentRow != null)
+            if (dgvAsistentes.CurrentRow != null)
                 fila = dgvAsistentes.CurrentRow;
 
             if (fila == null)
@@ -128,6 +128,31 @@ namespace MedicDate.CapaPresentacion
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEditarAsistente_Click(object sender, EventArgs e)
+        {
+            // Obtener la fila actual (donde está el cursor)
+            DataGridViewRow? fila = dgvAsistentes.CurrentRow;
+
+            // Validar que exista una fila y que tenga datos
+            if (fila == null || fila.Cells["id_empleado"].Value == null)
+            {
+                MessageBox.Show("Seleccione un doctor para editar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener el ID del doctor desde la fila actual
+            int idAsistente = Convert.ToInt32(fila.Cells["id_empleado"].Value);
+
+            // Abrir el formulario de edición
+            frmAsistente frm = new frmAsistente(idAsistente);
+            frm.StartPosition = FormStartPosition.CenterParent;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                cargarGrid(); // Refrescar el DataGridView
             }
         }
     }

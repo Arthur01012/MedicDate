@@ -47,10 +47,27 @@ namespace MedicDate.CapaPresentacion
 
         private void btnEditarDoctor_Click(object sender, EventArgs e)
         {
-            frmDoctor frm = new frmDoctor();
+            // Obtener la fila actual (donde está el cursor)
+            DataGridViewRow? fila = dgvDoctores.CurrentRow;
 
+            // Validar que exista una fila y que tenga datos
+            if (fila == null || fila.Cells["id_empleado"].Value == null)
+            {
+                MessageBox.Show("Seleccione un doctor para editar.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtener el ID del doctor desde la fila actual
+            int idDoctor = Convert.ToInt32(fila.Cells["id_empleado"].Value);
+
+            // Abrir el formulario de edición
+            frmDoctor frm = new frmDoctor(idDoctor);
             frm.StartPosition = FormStartPosition.CenterParent;
-            frm.ShowDialog(this);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                cargarGrid(); // Refrescar el DataGridView
+            }
         }
 
         private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)

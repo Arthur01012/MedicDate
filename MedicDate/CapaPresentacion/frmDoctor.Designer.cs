@@ -279,6 +279,12 @@
             txtContraseña.Size = new Size(299, 32);
             txtContraseña.TabIndex = 26;
             txtContraseña.UseSystemPasswordChar = true;
+            txtContrasena.Font = new Font("Segoe UI", 10.8F);
+            txtContrasena.Location = new Point(11, 560);
+            txtContrasena.Name = "txtContrasena";
+            txtContrasena.PasswordChar = '*';
+            txtContrasena.Size = new Size(299, 31);
+            txtContrasena.TabIndex = 26;
             // 
             // lblPassword
             // 
