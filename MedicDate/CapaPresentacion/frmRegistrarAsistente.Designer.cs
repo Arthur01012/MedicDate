@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             pnlHeader5 = new Panel();
             lbAsistente = new Label();
             pnlContenedor2 = new Panel();
@@ -62,10 +62,12 @@
             // 
             lbAsistente.AutoSize = true;
             lbAsistente.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lbAsistente.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbAsistente.ForeColor = Color.White;
             lbAsistente.Location = new Point(3, 4);
             lbAsistente.Name = "lbAsistente";
             lbAsistente.Size = new Size(166, 41);
+            lbAsistente.Size = new Size(109, 28);
             lbAsistente.TabIndex = 0;
             lbAsistente.Text = "Asistentes";
             // 
@@ -99,6 +101,20 @@
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja2_Click;
+            // btnDarBaja2
+            // 
+            btnDarBaja2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDarBaja2.BackColor = Color.FromArgb(176, 11, 11);
+            btnDarBaja2.FlatStyle = FlatStyle.Popup;
+            btnDarBaja2.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDarBaja2.ForeColor = Color.White;
+            btnDarBaja2.Location = new Point(1202, 31);
+            btnDarBaja2.Name = "btnDarBaja2";
+            btnDarBaja2.Size = new Size(148, 45);
+            btnDarBaja2.TabIndex = 11;
+            btnDarBaja2.Text = "Dar de Baja";
+            btnDarBaja2.UseVisualStyleBackColor = false;
+            btnDarBaja2.Click += btnDarBaja2_Click;
             // 
             // btnEditarAsistente
             // 
@@ -107,12 +123,13 @@
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
             btnEditarAsistente.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEditarAsistente.Location = new Point(1046, 12);
+            btnEditarAsistente.Location = new Point(1022, 31);
             btnEditarAsistente.Name = "btnEditarAsistente";
             btnEditarAsistente.Size = new Size(148, 45);
             btnEditarAsistente.TabIndex = 10;
             btnEditarAsistente.Text = "Editar";
             btnEditarAsistente.UseVisualStyleBackColor = false;
+            btnEditarAsistente.Click += btnEditarAsistente_Click;
             // 
             // btnNuevoAsistente
             // 
@@ -120,7 +137,7 @@
             btnNuevoAsistente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoAsistente.FlatStyle = FlatStyle.Popup;
             btnNuevoAsistente.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNuevoAsistente.Location = new Point(861, 12);
+            btnNuevoAsistente.Location = new Point(837, 31);
             btnNuevoAsistente.Name = "btnNuevoAsistente";
             btnNuevoAsistente.Size = new Size(148, 45);
             btnNuevoAsistente.TabIndex = 9;
@@ -134,9 +151,9 @@
             dgvAsistentes.AllowUserToDeleteRows = false;
             dgvAsistentes.AllowUserToResizeColumns = false;
             dgvAsistentes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvAsistentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = Color.LightGray;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvAsistentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvAsistentes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -161,23 +178,42 @@
             dgvAsistentes.EnableHeadersVisualStyles = false;
             dgvAsistentes.GridColor = Color.Gray;
             dgvAsistentes.Location = new Point(12, 74);
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.Gray;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvAsistentes.DefaultCellStyle = dataGridViewCellStyle8;
+            dgvAsistentes.EnableHeadersVisualStyles = false;
+            dgvAsistentes.Location = new Point(41, 106);
             dgvAsistentes.MultiSelect = false;
             dgvAsistentes.Name = "dgvAsistentes";
             dgvAsistentes.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvAsistentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvAsistentes.RowHeadersVisible = false;
             dgvAsistentes.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvAsistentes.Size = new Size(1374, 626);
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dgvAsistentes.Size = new Size(1309, 594);
             dgvAsistentes.TabIndex = 8;
             // 
             // lblBuscar1
@@ -185,6 +221,8 @@
             lblBuscar1.AutoSize = true;
             lblBuscar1.Font = new Font("Candara", 13F, FontStyle.Bold);
             lblBuscar1.Location = new Point(12, 24);
+            lblBuscar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBuscar1.Location = new Point(42, 43);
             lblBuscar1.Name = "lblBuscar1";
             lblBuscar1.Size = new Size(81, 27);
             lblBuscar1.TabIndex = 7;
@@ -199,6 +237,11 @@
             txtBuscarAsistente.Name = "txtBuscarAsistente";
             txtBuscarAsistente.PlaceholderText = "Ingrese el nombre del Asistente";
             txtBuscarAsistente.Size = new Size(549, 32);
+            txtBuscarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscarAsistente.Location = new Point(107, 40);
+            txtBuscarAsistente.Name = "txtBuscarAsistente";
+            txtBuscarAsistente.PlaceholderText = "Ingrese el nombre del Asistente";
+            txtBuscarAsistente.Size = new Size(549, 30);
             txtBuscarAsistente.TabIndex = 6;
             txtBuscarAsistente.TextChanged += txtBuscarAsistente_TextChanged;
             // 

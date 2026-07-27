@@ -31,6 +31,9 @@
             pnlHeaderAsistente = new Panel();
             lblTituloAsistente = new Label();
             pnlContenedor = new Panel();
+            pnlContenedor4 = new Panel();
+            lblConfirmarContrasena = new Label();
+            txtConfirmarContrasena = new TextBox();
             cmbTurno = new ComboBox();
             lblTurno = new Label();
             btnGuardar = new Button();
@@ -56,6 +59,12 @@
             lblDatosPersonales1 = new Label();
             pnlHeaderAsistente.SuspendLayout();
             pnlContenedor.SuspendLayout();
+            txtTelefonoSecundario = new TextBox();
+            lblTelefonoSecundario = new Label();
+            txtCurp = new TextBox();
+            lblCurp = new Label();
+            pnlHeader6.SuspendLayout();
+            pnlContenedor4.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeaderAsistente
@@ -75,6 +84,7 @@
             // 
             lblTituloAsistente.AutoSize = true;
             lblTituloAsistente.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTituloAsistente.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloAsistente.ForeColor = Color.White;
             lblTituloAsistente.Location = new Point(3, 8);
             lblTituloAsistente.Name = "lblTituloAsistente";
@@ -116,16 +126,74 @@
             pnlContenedor.Size = new Size(657, 520);
             pnlContenedor.TabIndex = 9;
             // 
+            // pnlContenedor4
+            // 
+            pnlContenedor4.BackColor = Color.LightGray;
+            pnlContenedor4.Controls.Add(txtCurp);
+            pnlContenedor4.Controls.Add(lblCurp);
+            pnlContenedor4.Controls.Add(txtTelefonoSecundario);
+            pnlContenedor4.Controls.Add(lblTelefonoSecundario);
+            pnlContenedor4.Controls.Add(lblConfirmarContrasena);
+            pnlContenedor4.Controls.Add(txtConfirmarContrasena);
+            pnlContenedor4.Controls.Add(cmbTurno);
+            pnlContenedor4.Controls.Add(lblTurno);
+            pnlContenedor4.Controls.Add(btnGuardar);
+            pnlContenedor4.Controls.Add(btnCancelar1);
+            pnlContenedor4.Controls.Add(cmbEstado);
+            pnlContenedor4.Controls.Add(lblEstado);
+            pnlContenedor4.Controls.Add(txtPassword);
+            pnlContenedor4.Controls.Add(lblPaswword);
+            pnlContenedor4.Controls.Add(txtUsuarioAsistente);
+            pnlContenedor4.Controls.Add(lblUsuario);
+            pnlContenedor4.Controls.Add(dtpFechaRegistro);
+            pnlContenedor4.Controls.Add(lblFechaRegistro);
+            pnlContenedor4.Controls.Add(txtTelefono);
+            pnlContenedor4.Controls.Add(lblTelefono);
+            pnlContenedor4.Controls.Add(txtEmail);
+            pnlContenedor4.Controls.Add(lblEmail);
+            pnlContenedor4.Controls.Add(txtAMaterno);
+            pnlContenedor4.Controls.Add(lblAMaterno);
+            pnlContenedor4.Controls.Add(txtAPaterno);
+            pnlContenedor4.Controls.Add(lblAPaterno);
+            pnlContenedor4.Controls.Add(lblNombreAsistente);
+            pnlContenedor4.Controls.Add(tctNombreAsistente);
+            pnlContenedor4.Controls.Add(lblDatosPersonales1);
+            pnlContenedor4.Dock = DockStyle.Fill;
+            pnlContenedor4.Location = new Point(0, 55);
+            pnlContenedor4.Name = "pnlContenedor4";
+            pnlContenedor4.Size = new Size(657, 660);
+            pnlContenedor4.TabIndex = 9;
+            // 
+            // lblConfirmarContrasena
+            // 
+            lblConfirmarContrasena.AutoSize = true;
+            lblConfirmarContrasena.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConfirmarContrasena.Location = new Point(15, 409);
+            lblConfirmarContrasena.Name = "lblConfirmarContrasena";
+            lblConfirmarContrasena.Size = new Size(166, 21);
+            lblConfirmarContrasena.TabIndex = 63;
+            lblConfirmarContrasena.Text = "Confirmar Contraseña";
+            // 
+            // txtConfirmarContrasena
+            // 
+            txtConfirmarContrasena.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConfirmarContrasena.Location = new Point(15, 433);
+            txtConfirmarContrasena.Name = "txtConfirmarContrasena";
+            txtConfirmarContrasena.PasswordChar = '*';
+            txtConfirmarContrasena.Size = new Size(299, 32);
+            txtConfirmarContrasena.TabIndex = 53;
+            txtConfirmarContrasena.UseSystemPasswordChar = true;
+            // 
             // cmbTurno
             // 
             cmbTurno.BackColor = Color.White;
             cmbTurno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbTurno.ForeColor = Color.Black;
             cmbTurno.FormattingEnabled = true;
-            cmbTurno.Location = new Point(349, 368);
+            cmbTurno.Location = new Point(344, 306);
             cmbTurno.Name = "cmbTurno";
             cmbTurno.Size = new Size(299, 32);
-            cmbTurno.TabIndex = 57;
+            cmbTurno.TabIndex = 56;
             // 
             // lblTurno
             // 
@@ -133,6 +201,7 @@
             lblTurno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTurno.ForeColor = Color.Black;
             lblTurno.Location = new Point(349, 344);
+            lblTurno.Location = new Point(344, 282);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(52, 21);
             lblTurno.TabIndex = 56;
@@ -144,12 +213,13 @@
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGuardar.Location = new Point(516, 440);
+            btnGuardar.Location = new Point(513, 583);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(130, 52);
-            btnGuardar.TabIndex = 55;
+            btnGuardar.TabIndex = 62;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar1
             // 
@@ -158,10 +228,10 @@
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Location = new Point(349, 440);
+            btnCancelar1.Location = new Point(347, 583);
             btnCancelar1.Name = "btnCancelar1";
             btnCancelar1.Size = new Size(130, 52);
-            btnCancelar1.TabIndex = 54;
+            btnCancelar1.TabIndex = 60;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
             btnCancelar1.Click += btnCancelar1_Click;
@@ -172,10 +242,10 @@
             cmbEstado.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbEstado.ForeColor = Color.Black;
             cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(17, 368);
+            cmbEstado.Location = new Point(15, 501);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(299, 32);
-            cmbEstado.TabIndex = 53;
+            cmbEstado.TabIndex = 58;
             // 
             // lblEstado
             // 
@@ -183,6 +253,7 @@
             lblEstado.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEstado.ForeColor = Color.Black;
             lblEstado.Location = new Point(17, 344);
+            lblEstado.Location = new Point(15, 477);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(59, 21);
             lblEstado.TabIndex = 52;
@@ -194,6 +265,7 @@
             txtPassword.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.ForeColor = Color.Black;
             txtPassword.Location = new Point(347, 301);
+            txtPassword.Location = new Point(342, 432);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(299, 32);
@@ -210,6 +282,13 @@
             lblPassword.Size = new Size(91, 21);
             lblPassword.TabIndex = 50;
             lblPassword.Text = "Contraseña";
+            lblPaswword.AutoSize = true;
+            lblPaswword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPaswword.Location = new Point(342, 408);
+            lblPaswword.Name = "lblPaswword";
+            lblPaswword.Size = new Size(91, 21);
+            lblPaswword.TabIndex = 50;
+            lblPaswword.Text = "Contraseña";
             // 
             // txtUsuarioAsistente
             // 
@@ -217,6 +296,7 @@
             txtUsuarioAsistente.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuarioAsistente.ForeColor = Color.Black;
             txtUsuarioAsistente.Location = new Point(17, 301);
+            txtUsuarioAsistente.Location = new Point(15, 365);
             txtUsuarioAsistente.Name = "txtUsuarioAsistente";
             txtUsuarioAsistente.Size = new Size(299, 32);
             txtUsuarioAsistente.TabIndex = 49;
@@ -227,6 +307,7 @@
             lblUsuario.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblUsuario.ForeColor = Color.Black;
             lblUsuario.Location = new Point(17, 277);
+            lblUsuario.Location = new Point(15, 341);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(66, 21);
             lblUsuario.TabIndex = 48;
@@ -240,7 +321,7 @@
             dtpFechaRegistro.CalendarTitleForeColor = Color.Black;
             dtpFechaRegistro.CalendarTrailingForeColor = Color.Gray;
             dtpFechaRegistro.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaRegistro.Location = new Point(349, 234);
+            dtpFechaRegistro.Location = new Point(344, 365);
             dtpFechaRegistro.Name = "dtpFechaRegistro";
             dtpFechaRegistro.Size = new Size(299, 32);
             dtpFechaRegistro.TabIndex = 40;
@@ -251,10 +332,11 @@
             lblFechaRegistro.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblFechaRegistro.ForeColor = Color.Black;
             lblFechaRegistro.Location = new Point(349, 210);
+            lblFechaRegistro.Location = new Point(344, 341);
             lblFechaRegistro.Name = "lblFechaRegistro";
-            lblFechaRegistro.Size = new Size(52, 21);
+            lblFechaRegistro.Size = new Size(161, 21);
             lblFechaRegistro.TabIndex = 39;
-            lblFechaRegistro.Text = "Fecha";
+            lblFechaRegistro.Text = "Fecha de Nacimiento";
             // 
             // txtTelefono
             // 
@@ -282,6 +364,7 @@
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.Black;
+            txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.Location = new Point(349, 162);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(299, 32);
@@ -372,6 +455,43 @@
             lblDatosPersonales1.TabIndex = 28;
             lblDatosPersonales1.Text = "Datos Personales";
             // 
+            // txtTelefonoSecundario
+            // 
+            txtTelefonoSecundario.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTelefonoSecundario.Location = new Point(344, 234);
+            txtTelefonoSecundario.Name = "txtTelefonoSecundario";
+            txtTelefonoSecundario.Size = new Size(299, 32);
+            txtTelefonoSecundario.TabIndex = 65;
+            // 
+            // lblTelefonoSecundario
+            // 
+            lblTelefonoSecundario.AutoSize = true;
+            lblTelefonoSecundario.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTelefonoSecundario.Location = new Point(344, 210);
+            lblTelefonoSecundario.Name = "lblTelefonoSecundario";
+            lblTelefonoSecundario.Size = new Size(75, 21);
+            lblTelefonoSecundario.TabIndex = 64;
+            lblTelefonoSecundario.Text = "Teléfono";
+            // 
+            // txtCurp
+            // 
+            txtCurp.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCurp.Location = new Point(17, 306);
+            txtCurp.Name = "txtCurp";
+            txtCurp.Size = new Size(299, 32);
+            txtCurp.TabIndex = 67;
+            txtCurp.TextChanged += textBox1_TextChanged;
+            // 
+            // lblCurp
+            // 
+            lblCurp.AutoSize = true;
+            lblCurp.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCurp.Location = new Point(17, 283);
+            lblCurp.Name = "lblCurp";
+            lblCurp.Size = new Size(50, 21);
+            lblCurp.TabIndex = 66;
+            lblCurp.Text = "CURP";
+            // 
             // frmAsistente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -385,6 +505,14 @@
             pnlHeaderAsistente.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
+            ClientSize = new Size(657, 715);
+            Controls.Add(pnlContenedor4);
+            Controls.Add(pnlHeader6);
+            Name = "frmAsistente";
+            Text = "Gestion de Asistente";
+            pnlHeader6.ResumeLayout(false);
+            pnlContenedor4.ResumeLayout(false);
+            pnlContenedor4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -416,5 +544,11 @@
         private Label lblNombreAsistente;
         private TextBox tctNombreAsistente;
         private Label lblDatosPersonales1;
+        private Label lblConfirmarContrasena;
+        private TextBox txtConfirmarContrasena;
+        private TextBox txtCurp;
+        private Label lblCurp;
+        private TextBox txtTelefonoSecundario;
+        private Label lblTelefonoSecundario;
     }
 }
