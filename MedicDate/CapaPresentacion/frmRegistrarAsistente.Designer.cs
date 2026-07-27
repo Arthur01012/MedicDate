@@ -36,7 +36,7 @@
             pnlHeader5 = new Panel();
             lbAsistente = new Label();
             pnlContenedor2 = new Panel();
-            btnDarBaja2 = new Button();
+            btnDesactivar = new Button();
             btnEditarAsistente = new Button();
             btnNuevoAsistente = new Button();
             dgvAsistentes = new DataGridView();
@@ -52,6 +52,7 @@
             pnlHeader5.BackColor = Color.FromArgb(25, 85, 140);
             pnlHeader5.Controls.Add(lbAsistente);
             pnlHeader5.Dock = DockStyle.Top;
+            pnlHeader5.ForeColor = Color.Black;
             pnlHeader5.Location = new Point(0, 0);
             pnlHeader5.Name = "pnlHeader5";
             pnlHeader5.Size = new Size(1398, 47);
@@ -60,10 +61,12 @@
             // lbAsistente
             // 
             lbAsistente.AutoSize = true;
+            lbAsistente.Font = new Font("Candara", 20F, FontStyle.Bold);
             lbAsistente.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbAsistente.ForeColor = Color.White;
-            lbAsistente.Location = new Point(25, 9);
+            lbAsistente.Location = new Point(3, 4);
             lbAsistente.Name = "lbAsistente";
+            lbAsistente.Size = new Size(166, 41);
             lbAsistente.Size = new Size(109, 28);
             lbAsistente.TabIndex = 0;
             lbAsistente.Text = "Asistentes";
@@ -71,18 +74,33 @@
             // pnlContenedor2
             // 
             pnlContenedor2.BackColor = Color.LightGray;
-            pnlContenedor2.Controls.Add(btnDarBaja2);
+            pnlContenedor2.Controls.Add(btnDesactivar);
             pnlContenedor2.Controls.Add(btnEditarAsistente);
             pnlContenedor2.Controls.Add(btnNuevoAsistente);
             pnlContenedor2.Controls.Add(dgvAsistentes);
             pnlContenedor2.Controls.Add(lblBuscar1);
             pnlContenedor2.Controls.Add(txtBuscarAsistente);
             pnlContenedor2.Dock = DockStyle.Fill;
+            pnlContenedor2.ForeColor = Color.Black;
             pnlContenedor2.Location = new Point(0, 47);
             pnlContenedor2.Name = "pnlContenedor2";
             pnlContenedor2.Size = new Size(1398, 712);
             pnlContenedor2.TabIndex = 10;
             // 
+            // btnDesactivar
+            // 
+            btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
+            btnDesactivar.FlatStyle = FlatStyle.Popup;
+            btnDesactivar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDesactivar.ForeColor = Color.White;
+            btnDesactivar.Location = new Point(1226, 12);
+            btnDesactivar.Name = "btnDesactivar";
+            btnDesactivar.Size = new Size(148, 45);
+            btnDesactivar.TabIndex = 11;
+            btnDesactivar.Text = "Desactivar";
+            btnDesactivar.UseVisualStyleBackColor = false;
+            btnDesactivar.Click += btnDarBaja2_Click;
             // btnDarBaja2
             // 
             btnDarBaja2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -101,7 +119,7 @@
             // btnEditarAsistente
             // 
             btnEditarAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEditarAsistente.BackColor = Color.LightGray;
+            btnEditarAsistente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
             btnEditarAsistente.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -109,7 +127,7 @@
             btnEditarAsistente.Name = "btnEditarAsistente";
             btnEditarAsistente.Size = new Size(148, 45);
             btnEditarAsistente.TabIndex = 10;
-            btnEditarAsistente.Text = "Editar Asistente";
+            btnEditarAsistente.Text = "Editar";
             btnEditarAsistente.UseVisualStyleBackColor = false;
             btnEditarAsistente.Click += btnEditarAsistente_Click;
             // 
@@ -123,7 +141,7 @@
             btnNuevoAsistente.Name = "btnNuevoAsistente";
             btnNuevoAsistente.Size = new Size(148, 45);
             btnNuevoAsistente.TabIndex = 9;
-            btnNuevoAsistente.Text = "Agrgar Asistente";
+            btnNuevoAsistente.Text = "Agregar";
             btnNuevoAsistente.UseVisualStyleBackColor = false;
             btnNuevoAsistente.Click += btnNuevoAsistente_Click;
             // 
@@ -139,6 +157,27 @@
             dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvAsistentes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvAsistentes.BackgroundColor = Color.Gray;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Gray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvAsistentes.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvAsistentes.EnableHeadersVisualStyles = false;
+            dgvAsistentes.GridColor = Color.Gray;
+            dgvAsistentes.Location = new Point(12, 74);
             dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = Color.FromArgb(25, 85, 140);
             dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -180,15 +219,24 @@
             // lblBuscar1
             // 
             lblBuscar1.AutoSize = true;
+            lblBuscar1.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar1.Location = new Point(12, 24);
             lblBuscar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBuscar1.Location = new Point(42, 43);
             lblBuscar1.Name = "lblBuscar1";
-            lblBuscar1.Size = new Size(63, 21);
+            lblBuscar1.Size = new Size(81, 27);
             lblBuscar1.TabIndex = 7;
             lblBuscar1.Text = "Buscar:";
             // 
             // txtBuscarAsistente
             // 
+            txtBuscarAsistente.BackColor = Color.White;
+            txtBuscarAsistente.Font = new Font("Candara", 12F);
+            txtBuscarAsistente.ForeColor = Color.Black;
+            txtBuscarAsistente.Location = new Point(99, 24);
+            txtBuscarAsistente.Name = "txtBuscarAsistente";
+            txtBuscarAsistente.PlaceholderText = "Ingrese el nombre del Asistente";
+            txtBuscarAsistente.Size = new Size(549, 32);
             txtBuscarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBuscarAsistente.Location = new Point(107, 40);
             txtBuscarAsistente.Name = "txtBuscarAsistente";
@@ -219,7 +267,7 @@
         private Panel pnlHeader5;
         private Label lbAsistente;
         private Panel pnlContenedor2;
-        private Button btnDarBaja2;
+        private Button btnDesactivar;
         private Button btnEditarAsistente;
         private Button btnNuevoAsistente;
         private DataGridView dgvAsistentes;

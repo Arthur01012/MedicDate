@@ -48,6 +48,7 @@
             pnlHeader14.BackColor = Color.FromArgb(25, 85, 140);
             pnlHeader14.Controls.Add(lblTituloCitas);
             pnlHeader14.Dock = DockStyle.Top;
+            pnlHeader14.ForeColor = Color.Black;
             pnlHeader14.Location = new Point(0, 0);
             pnlHeader14.Name = "pnlHeader14";
             pnlHeader14.Size = new Size(1396, 47);
@@ -56,11 +57,11 @@
             // lblTituloCitas
             // 
             lblTituloCitas.AutoSize = true;
-            lblTituloCitas.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloCitas.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloCitas.ForeColor = Color.White;
-            lblTituloCitas.Location = new Point(25, 9);
+            lblTituloCitas.Location = new Point(3, 4);
             lblTituloCitas.Name = "lblTituloCitas";
-            lblTituloCitas.Size = new Size(51, 24);
+            lblTituloCitas.Size = new Size(88, 41);
             lblTituloCitas.TabIndex = 0;
             lblTituloCitas.Text = "Citas";
             // 
@@ -75,6 +76,7 @@
             pnlContenedor.Controls.Add(btnNuevoCita);
             pnlContenedor.Controls.Add(lblfiltrar);
             pnlContenedor.Dock = DockStyle.Fill;
+            pnlContenedor.ForeColor = Color.Black;
             pnlContenedor.Location = new Point(0, 47);
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
@@ -86,27 +88,31 @@
             btnConfirmarCita.BackColor = Color.LimeGreen;
             btnConfirmarCita.BackgroundImageLayout = ImageLayout.None;
             btnConfirmarCita.FlatStyle = FlatStyle.Popup;
-            btnConfirmarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnConfirmarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnConfirmarCita.Location = new Point(1071, 13);
             btnConfirmarCita.Name = "btnConfirmarCita";
             btnConfirmarCita.Size = new Size(148, 45);
             btnConfirmarCita.TabIndex = 19;
-            btnConfirmarCita.Text = "Confirmar Cita";
+            btnConfirmarCita.Text = "Confirmar";
             btnConfirmarCita.UseVisualStyleBackColor = false;
             // 
             // cmbFiltrarDoctor
             // 
-            cmbFiltrarDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            cmbFiltrarDoctor.BackColor = Color.White;
+            cmbFiltrarDoctor.Font = new Font("Candara", 12F);
+            cmbFiltrarDoctor.ForeColor = Color.Black;
             cmbFiltrarDoctor.FormattingEnabled = true;
-            cmbFiltrarDoctor.Location = new Point(82, 22);
+            cmbFiltrarDoctor.Location = new Point(99, 21);
             cmbFiltrarDoctor.Name = "cmbFiltrarDoctor";
-            cmbFiltrarDoctor.Size = new Size(370, 31);
+            cmbFiltrarDoctor.Size = new Size(370, 32);
             cmbFiltrarDoctor.TabIndex = 18;
             // 
             // dgvPacientes
             // 
             dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPacientes.BackgroundColor = Color.Gray;
             dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPacientes.GridColor = Color.Gray;
             dgvPacientes.Location = new Point(18, 79);
             dgvPacientes.Name = "dgvPacientes";
             dgvPacientes.RowHeadersWidth = 51;
@@ -118,27 +124,27 @@
             btnCancelarCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelarCita.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelarCita.FlatStyle = FlatStyle.Popup;
-            btnCancelarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnCancelarCita.ForeColor = Color.White;
             btnCancelarCita.Location = new Point(1236, 13);
             btnCancelarCita.Name = "btnCancelarCita";
             btnCancelarCita.Size = new Size(148, 45);
             btnCancelarCita.TabIndex = 16;
-            btnCancelarCita.Text = "Cancelar Cita";
+            btnCancelarCita.Text = "Cancelar";
             btnCancelarCita.UseVisualStyleBackColor = false;
             // 
             // btnEditarCita
             // 
             btnEditarCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEditarCita.BackColor = Color.LightGray;
+            btnEditarCita.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarCita.BackgroundImageLayout = ImageLayout.None;
             btnEditarCita.FlatStyle = FlatStyle.Popup;
-            btnEditarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnEditarCita.Location = new Point(903, 13);
             btnEditarCita.Name = "btnEditarCita";
             btnEditarCita.Size = new Size(148, 45);
             btnEditarCita.TabIndex = 15;
-            btnEditarCita.Text = "Editar Cita";
+            btnEditarCita.Text = "Editar";
             btnEditarCita.UseVisualStyleBackColor = false;
             // 
             // btnNuevoCita
@@ -146,21 +152,21 @@
             btnNuevoCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoCita.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoCita.FlatStyle = FlatStyle.Popup;
-            btnNuevoCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnNuevoCita.Location = new Point(737, 13);
             btnNuevoCita.Name = "btnNuevoCita";
             btnNuevoCita.Size = new Size(148, 45);
             btnNuevoCita.TabIndex = 14;
-            btnNuevoCita.Text = "Agrgar Cita";
+            btnNuevoCita.Text = "Agregar";
             btnNuevoCita.UseVisualStyleBackColor = false;
             // 
             // lblfiltrar
             // 
             lblfiltrar.AutoSize = true;
-            lblfiltrar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            lblfiltrar.Font = new Font("Candara", 13F, FontStyle.Bold);
             lblfiltrar.Location = new Point(18, 25);
             lblfiltrar.Name = "lblfiltrar";
-            lblfiltrar.Size = new Size(65, 23);
+            lblfiltrar.Size = new Size(75, 27);
             lblfiltrar.TabIndex = 13;
             lblfiltrar.Text = "Filtrar:";
             // 

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader13 = new Panel();
+            pnlHeaderPaciente = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
+            btnGuardar = new Button();
+            btnCancelar1 = new Button();
             txtNotas = new TextBox();
             txtAlergias = new TextBox();
             lblNotas = new Label();
@@ -60,30 +62,29 @@
             lblAPaterno = new Label();
             lblNombreDoctor = new Label();
             tctNombreDoctor = new TextBox();
-            btnGuardar = new Button();
-            btnCancelar1 = new Button();
-            pnlHeader13.SuspendLayout();
+            pnlHeaderPaciente.SuspendLayout();
             pnlContenedor.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlHeader13
+            // pnlHeaderPaciente
             // 
-            pnlHeader13.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader13.Controls.Add(lblTitulo);
-            pnlHeader13.Dock = DockStyle.Top;
-            pnlHeader13.Location = new Point(0, 0);
-            pnlHeader13.Name = "pnlHeader13";
-            pnlHeader13.Size = new Size(657, 55);
-            pnlHeader13.TabIndex = 8;
+            pnlHeaderPaciente.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderPaciente.Controls.Add(lblTitulo);
+            pnlHeaderPaciente.Dock = DockStyle.Top;
+            pnlHeaderPaciente.ForeColor = Color.Black;
+            pnlHeaderPaciente.Location = new Point(0, 0);
+            pnlHeaderPaciente.Name = "pnlHeaderPaciente";
+            pnlHeaderPaciente.Size = new Size(657, 55);
+            pnlHeaderPaciente.TabIndex = 8;
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(228, 0);
+            lblTitulo.Location = new Point(3, 7);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(186, 54);
+            lblTitulo.Size = new Size(142, 41);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Paciente";
             // 
@@ -127,278 +128,13 @@
             pnlContenedor.Size = new Size(657, 767);
             pnlContenedor.TabIndex = 9;
             // 
-            // txtNotas
-            // 
-            txtNotas.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNotas.Location = new Point(346, 597);
-            txtNotas.Multiline = true;
-            txtNotas.Name = "txtNotas";
-            txtNotas.Size = new Size(299, 89);
-            txtNotas.TabIndex = 41;
-            // 
-            // txtAlergias
-            // 
-            txtAlergias.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAlergias.Location = new Point(14, 597);
-            txtAlergias.Multiline = true;
-            txtAlergias.Name = "txtAlergias";
-            txtAlergias.Size = new Size(299, 89);
-            txtAlergias.TabIndex = 40;
-            // 
-            // lblNotas
-            // 
-            lblNotas.AutoSize = true;
-            lblNotas.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNotas.Location = new Point(346, 573);
-            lblNotas.Name = "lblNotas";
-            lblNotas.Size = new Size(116, 21);
-            lblNotas.TabIndex = 39;
-            lblNotas.Text = "Notas Medicas";
-            // 
-            // lblAlergias
-            // 
-            lblAlergias.AutoSize = true;
-            lblAlergias.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAlergias.Location = new Point(14, 573);
-            lblAlergias.Name = "lblAlergias";
-            lblAlergias.Size = new Size(67, 21);
-            lblAlergias.TabIndex = 38;
-            lblAlergias.Text = "Alergias";
-            // 
-            // lblDatosMedicos
-            // 
-            lblDatosMedicos.AutoSize = true;
-            lblDatosMedicos.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDatosMedicos.Location = new Point(3, 527);
-            lblDatosMedicos.Name = "lblDatosMedicos";
-            lblDatosMedicos.Size = new Size(158, 28);
-            lblDatosMedicos.TabIndex = 37;
-            lblDatosMedicos.Text = "Datos Medicos";
-            // 
-            // cmbMunicipio
-            // 
-            cmbMunicipio.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cmbMunicipio.FormattingEnabled = true;
-            cmbMunicipio.Location = new Point(14, 479);
-            cmbMunicipio.Name = "cmbMunicipio";
-            cmbMunicipio.Size = new Size(298, 32);
-            cmbMunicipio.TabIndex = 36;
-            // 
-            // lblMunicipio
-            // 
-            lblMunicipio.AutoSize = true;
-            lblMunicipio.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMunicipio.Location = new Point(14, 455);
-            lblMunicipio.Name = "lblMunicipio";
-            lblMunicipio.Size = new Size(86, 21);
-            lblMunicipio.TabIndex = 35;
-            lblMunicipio.Text = "Muinicipio";
-            // 
-            // txtLocalidad
-            // 
-            txtLocalidad.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLocalidad.Location = new Point(345, 408);
-            txtLocalidad.Name = "txtLocalidad";
-            txtLocalidad.Size = new Size(299, 32);
-            txtLocalidad.TabIndex = 34;
-            // 
-            // lblLocalidad
-            // 
-            lblLocalidad.AutoSize = true;
-            lblLocalidad.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLocalidad.Location = new Point(345, 385);
-            lblLocalidad.Name = "lblLocalidad";
-            lblLocalidad.Size = new Size(78, 21);
-            lblLocalidad.TabIndex = 33;
-            lblLocalidad.Text = "Localidad";
-            // 
-            // txtNumero
-            // 
-            txtNumero.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNumero.Location = new Point(13, 408);
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(299, 32);
-            txtNumero.TabIndex = 32;
-            // 
-            // lblNumero
-            // 
-            lblNumero.AutoSize = true;
-            lblNumero.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNumero.Location = new Point(13, 385);
-            lblNumero.Name = "lblNumero";
-            lblNumero.Size = new Size(69, 21);
-            lblNumero.TabIndex = 31;
-            lblNumero.Text = "Numero";
-            // 
-            // txtColonia
-            // 
-            txtColonia.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtColonia.Location = new Point(345, 333);
-            txtColonia.Name = "txtColonia";
-            txtColonia.Size = new Size(299, 32);
-            txtColonia.TabIndex = 30;
-            // 
-            // lblColonia
-            // 
-            lblColonia.AutoSize = true;
-            lblColonia.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblColonia.Location = new Point(345, 309);
-            lblColonia.Name = "lblColonia";
-            lblColonia.Size = new Size(64, 21);
-            lblColonia.TabIndex = 29;
-            lblColonia.Text = "Colonia";
-            // 
-            // lblDomicilio
-            // 
-            lblDomicilio.AutoSize = true;
-            lblDomicilio.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDomicilio.Location = new Point(13, 309);
-            lblDomicilio.Name = "lblDomicilio";
-            lblDomicilio.Size = new Size(44, 21);
-            lblDomicilio.TabIndex = 28;
-            lblDomicilio.Text = "Calle";
-            // 
-            // txtCalle
-            // 
-            txtCalle.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCalle.Location = new Point(13, 333);
-            txtCalle.Name = "txtCalle";
-            txtCalle.Size = new Size(299, 32);
-            txtCalle.TabIndex = 27;
-            // 
-            // lblSubDomicilio
-            // 
-            lblSubDomicilio.AutoSize = true;
-            lblSubDomicilio.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSubDomicilio.Location = new Point(3, 274);
-            lblSubDomicilio.Name = "lblSubDomicilio";
-            lblSubDomicilio.Size = new Size(106, 28);
-            lblSubDomicilio.TabIndex = 26;
-            lblSubDomicilio.Text = "Domicilio";
-            // 
-            // lblSubDatosPersonales
-            // 
-            lblSubDatosPersonales.AutoSize = true;
-            lblSubDatosPersonales.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSubDatosPersonales.Location = new Point(3, 12);
-            lblSubDatosPersonales.Name = "lblSubDatosPersonales";
-            lblSubDatosPersonales.Size = new Size(183, 28);
-            lblSubDatosPersonales.TabIndex = 25;
-            lblSubDatosPersonales.Text = "Datos Personales";
-            // 
-            // dtpFechaRegistro
-            // 
-            dtpFechaRegistro.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpFechaRegistro.Location = new Point(346, 221);
-            dtpFechaRegistro.Name = "dtpFechaRegistro";
-            dtpFechaRegistro.Size = new Size(299, 32);
-            dtpFechaRegistro.TabIndex = 24;
-            // 
-            // lblFechaNac
-            // 
-            lblFechaNac.AutoSize = true;
-            lblFechaNac.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaNac.Location = new Point(346, 197);
-            lblFechaNac.Name = "lblFechaNac";
-            lblFechaNac.Size = new Size(139, 21);
-            lblFechaNac.TabIndex = 23;
-            lblFechaNac.Text = "Fecha Nacimiento";
-            // 
-            // txtTelefono
-            // 
-            txtTelefono.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTelefono.Location = new Point(14, 221);
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(299, 32);
-            txtTelefono.TabIndex = 22;
-            // 
-            // lblTelefono
-            // 
-            lblTelefono.AutoSize = true;
-            lblTelefono.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTelefono.Location = new Point(14, 197);
-            lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(75, 21);
-            lblTelefono.TabIndex = 21;
-            lblTelefono.Text = "Teléfono";
-            // 
-            // txtEmal
-            // 
-            txtEmal.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtEmal.Location = new Point(346, 149);
-            txtEmal.Name = "txtEmal";
-            txtEmal.Size = new Size(299, 32);
-            txtEmal.TabIndex = 20;
-            // 
-            // lblEmail
-            // 
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmail.Location = new Point(346, 126);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(49, 21);
-            lblEmail.TabIndex = 19;
-            lblEmail.Text = "Email";
-            // 
-            // txtAMaterno
-            // 
-            txtAMaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAMaterno.Location = new Point(14, 149);
-            txtAMaterno.Name = "txtAMaterno";
-            txtAMaterno.Size = new Size(299, 32);
-            txtAMaterno.TabIndex = 18;
-            // 
-            // lblAMaterno
-            // 
-            lblAMaterno.AutoSize = true;
-            lblAMaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAMaterno.Location = new Point(14, 126);
-            lblAMaterno.Name = "lblAMaterno";
-            lblAMaterno.Size = new Size(136, 21);
-            lblAMaterno.TabIndex = 17;
-            lblAMaterno.Text = "Apellido Materno";
-            // 
-            // txtAPaterno
-            // 
-            txtAPaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAPaterno.Location = new Point(346, 74);
-            txtAPaterno.Name = "txtAPaterno";
-            txtAPaterno.Size = new Size(299, 32);
-            txtAPaterno.TabIndex = 16;
-            // 
-            // lblAPaterno
-            // 
-            lblAPaterno.AutoSize = true;
-            lblAPaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAPaterno.Location = new Point(346, 50);
-            lblAPaterno.Name = "lblAPaterno";
-            lblAPaterno.Size = new Size(130, 21);
-            lblAPaterno.TabIndex = 15;
-            lblAPaterno.Text = "Apellido Paterno";
-            // 
-            // lblNombreDoctor
-            // 
-            lblNombreDoctor.AutoSize = true;
-            lblNombreDoctor.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNombreDoctor.Location = new Point(14, 50);
-            lblNombreDoctor.Name = "lblNombreDoctor";
-            lblNombreDoctor.Size = new Size(69, 21);
-            lblNombreDoctor.TabIndex = 14;
-            lblNombreDoctor.Text = "Nombre";
-            // 
-            // tctNombreDoctor
-            // 
-            tctNombreDoctor.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tctNombreDoctor.Location = new Point(14, 74);
-            tctNombreDoctor.Name = "tctNombreDoctor";
-            tctNombreDoctor.Size = new Size(299, 32);
-            tctNombreDoctor.TabIndex = 13;
-            // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardar.ForeColor = Color.Black;
             btnGuardar.Location = new Point(514, 703);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(130, 52);
@@ -408,6 +144,7 @@
             // 
             // btnCancelar1
             // 
+            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -419,17 +156,330 @@
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
             // 
+            // txtNotas
+            // 
+            txtNotas.BackColor = Color.White;
+            txtNotas.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNotas.ForeColor = Color.Black;
+            txtNotas.Location = new Point(346, 597);
+            txtNotas.Multiline = true;
+            txtNotas.Name = "txtNotas";
+            txtNotas.Size = new Size(299, 89);
+            txtNotas.TabIndex = 41;
+            // 
+            // txtAlergias
+            // 
+            txtAlergias.BackColor = Color.White;
+            txtAlergias.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAlergias.ForeColor = Color.Black;
+            txtAlergias.Location = new Point(14, 597);
+            txtAlergias.Multiline = true;
+            txtAlergias.Name = "txtAlergias";
+            txtAlergias.Size = new Size(299, 89);
+            txtAlergias.TabIndex = 40;
+            // 
+            // lblNotas
+            // 
+            lblNotas.AutoSize = true;
+            lblNotas.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNotas.ForeColor = Color.Black;
+            lblNotas.Location = new Point(346, 573);
+            lblNotas.Name = "lblNotas";
+            lblNotas.Size = new Size(116, 21);
+            lblNotas.TabIndex = 39;
+            lblNotas.Text = "Notas Medicas";
+            lblNotas.Click += lblNotas_Click;
+            // 
+            // lblAlergias
+            // 
+            lblAlergias.AutoSize = true;
+            lblAlergias.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAlergias.ForeColor = Color.Black;
+            lblAlergias.Location = new Point(14, 573);
+            lblAlergias.Name = "lblAlergias";
+            lblAlergias.Size = new Size(67, 21);
+            lblAlergias.TabIndex = 38;
+            lblAlergias.Text = "Alergias";
+            // 
+            // lblDatosMedicos
+            // 
+            lblDatosMedicos.AutoSize = true;
+            lblDatosMedicos.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblDatosMedicos.ForeColor = Color.Black;
+            lblDatosMedicos.Location = new Point(3, 527);
+            lblDatosMedicos.Name = "lblDatosMedicos";
+            lblDatosMedicos.Size = new Size(149, 27);
+            lblDatosMedicos.TabIndex = 37;
+            lblDatosMedicos.Text = "Datos Medicos";
+            // 
+            // cmbMunicipio
+            // 
+            cmbMunicipio.BackColor = Color.White;
+            cmbMunicipio.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbMunicipio.ForeColor = Color.Black;
+            cmbMunicipio.FormattingEnabled = true;
+            cmbMunicipio.Location = new Point(14, 479);
+            cmbMunicipio.Name = "cmbMunicipio";
+            cmbMunicipio.Size = new Size(298, 32);
+            cmbMunicipio.TabIndex = 36;
+            // 
+            // lblMunicipio
+            // 
+            lblMunicipio.AutoSize = true;
+            lblMunicipio.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMunicipio.ForeColor = Color.Black;
+            lblMunicipio.Location = new Point(14, 456);
+            lblMunicipio.Name = "lblMunicipio";
+            lblMunicipio.Size = new Size(86, 21);
+            lblMunicipio.TabIndex = 35;
+            lblMunicipio.Text = "Muinicipio";
+            // 
+            // txtLocalidad
+            // 
+            txtLocalidad.BackColor = Color.White;
+            txtLocalidad.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLocalidad.ForeColor = Color.Black;
+            txtLocalidad.Location = new Point(345, 408);
+            txtLocalidad.Name = "txtLocalidad";
+            txtLocalidad.Size = new Size(299, 32);
+            txtLocalidad.TabIndex = 34;
+            // 
+            // lblLocalidad
+            // 
+            lblLocalidad.AutoSize = true;
+            lblLocalidad.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLocalidad.ForeColor = Color.Black;
+            lblLocalidad.Location = new Point(345, 385);
+            lblLocalidad.Name = "lblLocalidad";
+            lblLocalidad.Size = new Size(78, 21);
+            lblLocalidad.TabIndex = 33;
+            lblLocalidad.Text = "Localidad";
+            // 
+            // txtNumero
+            // 
+            txtNumero.BackColor = Color.White;
+            txtNumero.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNumero.ForeColor = Color.Black;
+            txtNumero.Location = new Point(13, 408);
+            txtNumero.Name = "txtNumero";
+            txtNumero.Size = new Size(299, 32);
+            txtNumero.TabIndex = 32;
+            // 
+            // lblNumero
+            // 
+            lblNumero.AutoSize = true;
+            lblNumero.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNumero.ForeColor = Color.Black;
+            lblNumero.Location = new Point(13, 385);
+            lblNumero.Name = "lblNumero";
+            lblNumero.Size = new Size(69, 21);
+            lblNumero.TabIndex = 31;
+            lblNumero.Text = "Numero";
+            // 
+            // txtColonia
+            // 
+            txtColonia.BackColor = Color.White;
+            txtColonia.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtColonia.ForeColor = Color.Black;
+            txtColonia.Location = new Point(345, 333);
+            txtColonia.Name = "txtColonia";
+            txtColonia.Size = new Size(299, 32);
+            txtColonia.TabIndex = 30;
+            // 
+            // lblColonia
+            // 
+            lblColonia.AutoSize = true;
+            lblColonia.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblColonia.ForeColor = Color.Black;
+            lblColonia.Location = new Point(345, 309);
+            lblColonia.Name = "lblColonia";
+            lblColonia.Size = new Size(64, 21);
+            lblColonia.TabIndex = 29;
+            lblColonia.Text = "Colonia";
+            // 
+            // lblDomicilio
+            // 
+            lblDomicilio.AutoSize = true;
+            lblDomicilio.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDomicilio.ForeColor = Color.Black;
+            lblDomicilio.Location = new Point(13, 309);
+            lblDomicilio.Name = "lblDomicilio";
+            lblDomicilio.Size = new Size(44, 21);
+            lblDomicilio.TabIndex = 28;
+            lblDomicilio.Text = "Calle";
+            // 
+            // txtCalle
+            // 
+            txtCalle.BackColor = Color.White;
+            txtCalle.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCalle.ForeColor = Color.Black;
+            txtCalle.Location = new Point(13, 333);
+            txtCalle.Name = "txtCalle";
+            txtCalle.Size = new Size(299, 32);
+            txtCalle.TabIndex = 27;
+            // 
+            // lblSubDomicilio
+            // 
+            lblSubDomicilio.AutoSize = true;
+            lblSubDomicilio.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblSubDomicilio.ForeColor = Color.Black;
+            lblSubDomicilio.Location = new Point(3, 274);
+            lblSubDomicilio.Name = "lblSubDomicilio";
+            lblSubDomicilio.Size = new Size(99, 27);
+            lblSubDomicilio.TabIndex = 26;
+            lblSubDomicilio.Text = "Domicilio";
+            // 
+            // lblSubDatosPersonales
+            // 
+            lblSubDatosPersonales.AutoSize = true;
+            lblSubDatosPersonales.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblSubDatosPersonales.ForeColor = Color.Black;
+            lblSubDatosPersonales.Location = new Point(3, 12);
+            lblSubDatosPersonales.Name = "lblSubDatosPersonales";
+            lblSubDatosPersonales.Size = new Size(172, 27);
+            lblSubDatosPersonales.TabIndex = 25;
+            lblSubDatosPersonales.Text = "Datos Personales";
+            // 
+            // dtpFechaRegistro
+            // 
+            dtpFechaRegistro.CalendarForeColor = Color.Black;
+            dtpFechaRegistro.CalendarMonthBackground = Color.White;
+            dtpFechaRegistro.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
+            dtpFechaRegistro.CalendarTitleForeColor = Color.Black;
+            dtpFechaRegistro.CalendarTrailingForeColor = Color.Gray;
+            dtpFechaRegistro.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpFechaRegistro.Location = new Point(346, 221);
+            dtpFechaRegistro.Name = "dtpFechaRegistro";
+            dtpFechaRegistro.Size = new Size(299, 32);
+            dtpFechaRegistro.TabIndex = 24;
+            // 
+            // lblFechaNac
+            // 
+            lblFechaNac.AutoSize = true;
+            lblFechaNac.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaNac.ForeColor = Color.Black;
+            lblFechaNac.Location = new Point(346, 197);
+            lblFechaNac.Name = "lblFechaNac";
+            lblFechaNac.Size = new Size(139, 21);
+            lblFechaNac.TabIndex = 23;
+            lblFechaNac.Text = "Fecha Nacimiento";
+            // 
+            // txtTelefono
+            // 
+            txtTelefono.BackColor = Color.White;
+            txtTelefono.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTelefono.ForeColor = Color.Black;
+            txtTelefono.Location = new Point(14, 221);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(299, 32);
+            txtTelefono.TabIndex = 22;
+            // 
+            // lblTelefono
+            // 
+            lblTelefono.AutoSize = true;
+            lblTelefono.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTelefono.ForeColor = Color.Black;
+            lblTelefono.Location = new Point(14, 197);
+            lblTelefono.Name = "lblTelefono";
+            lblTelefono.Size = new Size(75, 21);
+            lblTelefono.TabIndex = 21;
+            lblTelefono.Text = "Teléfono";
+            // 
+            // txtEmal
+            // 
+            txtEmal.BackColor = Color.White;
+            txtEmal.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmal.ForeColor = Color.Black;
+            txtEmal.Location = new Point(346, 149);
+            txtEmal.Name = "txtEmal";
+            txtEmal.Size = new Size(299, 32);
+            txtEmal.TabIndex = 20;
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEmail.ForeColor = Color.Black;
+            lblEmail.Location = new Point(346, 126);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(49, 21);
+            lblEmail.TabIndex = 19;
+            lblEmail.Text = "Email";
+            // 
+            // txtAMaterno
+            // 
+            txtAMaterno.BackColor = Color.White;
+            txtAMaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAMaterno.ForeColor = Color.Black;
+            txtAMaterno.Location = new Point(14, 149);
+            txtAMaterno.Name = "txtAMaterno";
+            txtAMaterno.Size = new Size(299, 32);
+            txtAMaterno.TabIndex = 18;
+            // 
+            // lblAMaterno
+            // 
+            lblAMaterno.AutoSize = true;
+            lblAMaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAMaterno.ForeColor = Color.Black;
+            lblAMaterno.Location = new Point(14, 126);
+            lblAMaterno.Name = "lblAMaterno";
+            lblAMaterno.Size = new Size(136, 21);
+            lblAMaterno.TabIndex = 17;
+            lblAMaterno.Text = "Apellido Materno";
+            // 
+            // txtAPaterno
+            // 
+            txtAPaterno.BackColor = Color.White;
+            txtAPaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAPaterno.ForeColor = Color.Black;
+            txtAPaterno.Location = new Point(346, 74);
+            txtAPaterno.Name = "txtAPaterno";
+            txtAPaterno.Size = new Size(299, 32);
+            txtAPaterno.TabIndex = 16;
+            // 
+            // lblAPaterno
+            // 
+            lblAPaterno.AutoSize = true;
+            lblAPaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAPaterno.ForeColor = Color.Black;
+            lblAPaterno.Location = new Point(346, 50);
+            lblAPaterno.Name = "lblAPaterno";
+            lblAPaterno.Size = new Size(130, 21);
+            lblAPaterno.TabIndex = 15;
+            lblAPaterno.Text = "Apellido Paterno";
+            // 
+            // lblNombreDoctor
+            // 
+            lblNombreDoctor.AutoSize = true;
+            lblNombreDoctor.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNombreDoctor.ForeColor = Color.Black;
+            lblNombreDoctor.Location = new Point(14, 50);
+            lblNombreDoctor.Name = "lblNombreDoctor";
+            lblNombreDoctor.Size = new Size(69, 21);
+            lblNombreDoctor.TabIndex = 14;
+            lblNombreDoctor.Text = "Nombre";
+            // 
+            // tctNombreDoctor
+            // 
+            tctNombreDoctor.BackColor = Color.White;
+            tctNombreDoctor.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tctNombreDoctor.ForeColor = Color.Black;
+            tctNombreDoctor.Location = new Point(14, 74);
+            tctNombreDoctor.Name = "tctNombreDoctor";
+            tctNombreDoctor.Size = new Size(299, 32);
+            tctNombreDoctor.TabIndex = 13;
+            // 
             // frmPaciente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(657, 822);
             Controls.Add(pnlContenedor);
-            Controls.Add(pnlHeader13);
+            Controls.Add(pnlHeaderPaciente);
             Name = "frmPaciente";
             Text = "frmPaciente";
-            pnlHeader13.ResumeLayout(false);
-            pnlHeader13.PerformLayout();
+            pnlHeaderPaciente.ResumeLayout(false);
+            pnlHeaderPaciente.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
             ResumeLayout(false);
@@ -437,7 +487,7 @@
 
         #endregion
 
-        private Panel pnlHeader13;
+        private Panel pnlHeaderPaciente;
         private Label lblTitulo;
         private Panel pnlContenedor;
         private DateTimePicker dtpFechaRegistro;
