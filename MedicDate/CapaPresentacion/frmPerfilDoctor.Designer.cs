@@ -28,71 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader2 = new Panel();
+            pnlHeaderPerfil = new Panel();
             lblTitulo = new Label();
-            lblSubDomicilio = new Label();
-            dataGridView1 = new DataGridView();
-            label1 = new Label();
+            lblFichaDoctor = new Label();
+            dgvFicha = new DataGridView();
+            lblHorario = new Label();
             dataGridView2 = new DataGridView();
-            pnlHeader2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            pnlHeaderPerfil.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFicha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader2
+            // pnlHeaderPerfil
             // 
-            pnlHeader2.BackColor = Color.FromArgb(14, 121, 196);
-            pnlHeader2.Controls.Add(lblTitulo);
-            pnlHeader2.Dock = DockStyle.Top;
-            pnlHeader2.Location = new Point(0, 0);
-            pnlHeader2.Name = "pnlHeader2";
-            pnlHeader2.Size = new Size(982, 47);
-            pnlHeader2.TabIndex = 8;
+            pnlHeaderPerfil.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderPerfil.Controls.Add(lblTitulo);
+            pnlHeaderPerfil.Dock = DockStyle.Top;
+            pnlHeaderPerfil.ForeColor = Color.Black;
+            pnlHeaderPerfil.Location = new Point(0, 0);
+            pnlHeaderPerfil.Name = "pnlHeaderPerfil";
+            pnlHeaderPerfil.Size = new Size(982, 47);
+            pnlHeaderPerfil.TabIndex = 8;
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(25, 9);
+            lblTitulo.Location = new Point(3, 3);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(56, 24);
+            lblTitulo.Size = new Size(96, 41);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Perfil";
             // 
-            // lblSubDomicilio
+            // lblFichaDoctor
             // 
-            lblSubDomicilio.AutoSize = true;
-            lblSubDomicilio.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSubDomicilio.Location = new Point(12, 50);
-            lblSubDomicilio.Name = "lblSubDomicilio";
-            lblSubDomicilio.Size = new Size(170, 28);
-            lblSubDomicilio.TabIndex = 27;
-            lblSubDomicilio.Text = "Ficha del doctor";
+            lblFichaDoctor.AutoSize = true;
+            lblFichaDoctor.BackColor = Color.LightGray;
+            lblFichaDoctor.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblFichaDoctor.ForeColor = Color.Black;
+            lblFichaDoctor.Location = new Point(12, 52);
+            lblFichaDoctor.Name = "lblFichaDoctor";
+            lblFichaDoctor.Size = new Size(162, 27);
+            lblFichaDoctor.TabIndex = 27;
+            lblFichaDoctor.Text = "Ficha del doctor";
             // 
-            // dataGridView1
+            // dgvFicha
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 81);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(958, 150);
-            dataGridView1.TabIndex = 28;
+            dgvFicha.BackgroundColor = Color.Gray;
+            dgvFicha.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFicha.GridColor = Color.Gray;
+            dgvFicha.Location = new Point(12, 81);
+            dgvFicha.Name = "dgvFicha";
+            dgvFicha.RowHeadersWidth = 51;
+            dgvFicha.Size = new Size(958, 150);
+            dgvFicha.TabIndex = 28;
             // 
-            // label1
+            // lblHorario
             // 
-            label1.AccessibleRole = AccessibleRole.MenuPopup;
-            label1.AutoSize = true;
-            label1.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 240);
-            label1.Name = "label1";
-            label1.Size = new Size(88, 28);
-            label1.TabIndex = 29;
-            label1.Text = "Horario";
+            lblHorario.AccessibleRole = AccessibleRole.MenuPopup;
+            lblHorario.AutoSize = true;
+            lblHorario.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblHorario.ForeColor = Color.Black;
+            lblHorario.Location = new Point(12, 242);
+            lblHorario.Name = "lblHorario";
+            lblHorario.Size = new Size(82, 27);
+            lblHorario.TabIndex = 29;
+            lblHorario.Text = "Horario";
             // 
             // dataGridView2
             // 
+            dataGridView2.BackgroundColor = Color.Gray;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.GridColor = Color.Gray;
             dataGridView2.Location = new Point(12, 271);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
@@ -104,17 +112,18 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightGray;
             ClientSize = new Size(982, 453);
             Controls.Add(dataGridView2);
-            Controls.Add(label1);
-            Controls.Add(dataGridView1);
-            Controls.Add(lblSubDomicilio);
-            Controls.Add(pnlHeader2);
+            Controls.Add(lblHorario);
+            Controls.Add(dgvFicha);
+            Controls.Add(lblFichaDoctor);
+            Controls.Add(pnlHeaderPerfil);
             Name = "frmPerfilDoctor";
             Text = "frmPerfilDoctor";
-            pnlHeader2.ResumeLayout(false);
-            pnlHeader2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            pnlHeaderPerfil.ResumeLayout(false);
+            pnlHeaderPerfil.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvFicha).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -122,11 +131,11 @@
 
         #endregion
 
-        private Panel pnlHeader2;
+        private Panel pnlHeaderPerfil;
         private Label lblTitulo;
-        private Label lblSubDomicilio;
-        private DataGridView dataGridView1;
-        private Label label1;
+        private Label lblFichaDoctor;
+        private DataGridView dgvFicha;
+        private Label lblHorario;
         private DataGridView dataGridView2;
     }
 }

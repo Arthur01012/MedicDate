@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader6 = new Panel();
+            pnlHeaderAsistente = new Panel();
             lblTituloAsistente = new Label();
+            pnlContenedor = new Panel();
             pnlContenedor4 = new Panel();
             lblConfirmarContrasena = new Label();
             txtConfirmarContrasena = new TextBox();
@@ -40,7 +41,7 @@
             cmbEstado = new ComboBox();
             lblEstado = new Label();
             txtPassword = new TextBox();
-            lblPaswword = new Label();
+            lblPassword = new Label();
             txtUsuarioAsistente = new TextBox();
             lblUsuario = new Label();
             dtpFechaRegistro = new DateTimePicker();
@@ -49,13 +50,15 @@
             lblTelefono = new Label();
             txtEmail = new TextBox();
             lblEmail = new Label();
-            txtAMaterno = new TextBox();
-            lblAMaterno = new Label();
-            txtAPaterno = new TextBox();
-            lblAPaterno = new Label();
+            txtApeMaterno = new TextBox();
+            lblApeMaterno = new Label();
+            txtApePaterno = new TextBox();
+            lblApePaterno = new Label();
             lblNombreAsistente = new Label();
             tctNombreAsistente = new TextBox();
             lblDatosPersonales1 = new Label();
+            pnlHeaderAsistente.SuspendLayout();
+            pnlContenedor.SuspendLayout();
             txtTelefonoSecundario = new TextBox();
             lblTelefonoSecundario = new Label();
             txtCurp = new TextBox();
@@ -64,25 +67,64 @@
             pnlContenedor4.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlHeader6
+            // pnlHeaderAsistente
             // 
-            pnlHeader6.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader6.Controls.Add(lblTituloAsistente);
-            pnlHeader6.Dock = DockStyle.Top;
-            pnlHeader6.Location = new Point(0, 0);
-            pnlHeader6.Name = "pnlHeader6";
-            pnlHeader6.Size = new Size(657, 55);
-            pnlHeader6.TabIndex = 8;
+            pnlHeaderAsistente.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderAsistente.Controls.Add(lblTituloAsistente);
+            pnlHeaderAsistente.Dock = DockStyle.Top;
+            pnlHeaderAsistente.Font = new Font("Segoe UI", 9F);
+            pnlHeaderAsistente.ForeColor = Color.Black;
+            pnlHeaderAsistente.Location = new Point(0, 0);
+            pnlHeaderAsistente.Name = "pnlHeaderAsistente";
+            pnlHeaderAsistente.Size = new Size(657, 55);
+            pnlHeaderAsistente.TabIndex = 8;
+            pnlHeaderAsistente.Paint += pnlHeader6_Paint;
             // 
             // lblTituloAsistente
             // 
+            lblTituloAsistente.AutoSize = true;
+            lblTituloAsistente.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloAsistente.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloAsistente.ForeColor = Color.White;
-            lblTituloAsistente.Location = new Point(229, 0);
+            lblTituloAsistente.Location = new Point(3, 8);
             lblTituloAsistente.Name = "lblTituloAsistente";
-            lblTituloAsistente.Size = new Size(200, 54);
+            lblTituloAsistente.Size = new Size(152, 41);
             lblTituloAsistente.TabIndex = 0;
             lblTituloAsistente.Text = "Asistente";
+            lblTituloAsistente.Click += lblTituloAsistente_Click;
+            // 
+            // pnlContenedor
+            // 
+            pnlContenedor.BackColor = Color.LightGray;
+            pnlContenedor.Controls.Add(cmbTurno);
+            pnlContenedor.Controls.Add(lblTurno);
+            pnlContenedor.Controls.Add(btnGuardar);
+            pnlContenedor.Controls.Add(btnCancelar1);
+            pnlContenedor.Controls.Add(cmbEstado);
+            pnlContenedor.Controls.Add(lblEstado);
+            pnlContenedor.Controls.Add(txtPassword);
+            pnlContenedor.Controls.Add(lblPassword);
+            pnlContenedor.Controls.Add(txtUsuarioAsistente);
+            pnlContenedor.Controls.Add(lblUsuario);
+            pnlContenedor.Controls.Add(dtpFechaRegistro);
+            pnlContenedor.Controls.Add(lblFechaRegistro);
+            pnlContenedor.Controls.Add(txtTelefono);
+            pnlContenedor.Controls.Add(lblTelefono);
+            pnlContenedor.Controls.Add(txtEmail);
+            pnlContenedor.Controls.Add(lblEmail);
+            pnlContenedor.Controls.Add(txtApeMaterno);
+            pnlContenedor.Controls.Add(lblApeMaterno);
+            pnlContenedor.Controls.Add(txtApePaterno);
+            pnlContenedor.Controls.Add(lblApePaterno);
+            pnlContenedor.Controls.Add(lblNombreAsistente);
+            pnlContenedor.Controls.Add(tctNombreAsistente);
+            pnlContenedor.Controls.Add(lblDatosPersonales1);
+            pnlContenedor.Dock = DockStyle.Fill;
+            pnlContenedor.ForeColor = Color.Black;
+            pnlContenedor.Location = new Point(0, 55);
+            pnlContenedor.Name = "pnlContenedor";
+            pnlContenedor.Size = new Size(657, 520);
+            pnlContenedor.TabIndex = 9;
             // 
             // pnlContenedor4
             // 
@@ -144,7 +186,9 @@
             // 
             // cmbTurno
             // 
+            cmbTurno.BackColor = Color.White;
             cmbTurno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbTurno.ForeColor = Color.Black;
             cmbTurno.FormattingEnabled = true;
             cmbTurno.Location = new Point(344, 306);
             cmbTurno.Name = "cmbTurno";
@@ -155,6 +199,8 @@
             // 
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTurno.ForeColor = Color.Black;
+            lblTurno.Location = new Point(349, 344);
             lblTurno.Location = new Point(344, 282);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(52, 21);
@@ -163,6 +209,7 @@
             // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -176,6 +223,7 @@
             // 
             // btnCancelar1
             // 
+            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -190,7 +238,9 @@
             // 
             // cmbEstado
             // 
+            cmbEstado.BackColor = Color.White;
             cmbEstado.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbEstado.ForeColor = Color.Black;
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Location = new Point(15, 501);
             cmbEstado.Name = "cmbEstado";
@@ -201,6 +251,8 @@
             // 
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEstado.ForeColor = Color.Black;
+            lblEstado.Location = new Point(17, 344);
             lblEstado.Location = new Point(15, 477);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(59, 21);
@@ -209,7 +261,10 @@
             // 
             // txtPassword
             // 
+            txtPassword.BackColor = Color.White;
             txtPassword.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPassword.ForeColor = Color.Black;
+            txtPassword.Location = new Point(347, 301);
             txtPassword.Location = new Point(342, 432);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
@@ -217,8 +272,16 @@
             txtPassword.TabIndex = 51;
             txtPassword.UseSystemPasswordChar = true;
             // 
-            // lblPaswword
+            // lblPassword
             // 
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPassword.ForeColor = Color.Black;
+            lblPassword.Location = new Point(347, 277);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(91, 21);
+            lblPassword.TabIndex = 50;
+            lblPassword.Text = "Contraseña";
             lblPaswword.AutoSize = true;
             lblPaswword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPaswword.Location = new Point(342, 408);
@@ -229,7 +292,10 @@
             // 
             // txtUsuarioAsistente
             // 
+            txtUsuarioAsistente.BackColor = Color.White;
             txtUsuarioAsistente.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsuarioAsistente.ForeColor = Color.Black;
+            txtUsuarioAsistente.Location = new Point(17, 301);
             txtUsuarioAsistente.Location = new Point(15, 365);
             txtUsuarioAsistente.Name = "txtUsuarioAsistente";
             txtUsuarioAsistente.Size = new Size(299, 32);
@@ -239,6 +305,8 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = Color.Black;
+            lblUsuario.Location = new Point(17, 277);
             lblUsuario.Location = new Point(15, 341);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(66, 21);
@@ -247,6 +315,11 @@
             // 
             // dtpFechaRegistro
             // 
+            dtpFechaRegistro.CalendarForeColor = Color.Black;
+            dtpFechaRegistro.CalendarMonthBackground = Color.White;
+            dtpFechaRegistro.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
+            dtpFechaRegistro.CalendarTitleForeColor = Color.Black;
+            dtpFechaRegistro.CalendarTrailingForeColor = Color.Gray;
             dtpFechaRegistro.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpFechaRegistro.Location = new Point(344, 365);
             dtpFechaRegistro.Name = "dtpFechaRegistro";
@@ -257,6 +330,8 @@
             // 
             lblFechaRegistro.AutoSize = true;
             lblFechaRegistro.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaRegistro.ForeColor = Color.Black;
+            lblFechaRegistro.Location = new Point(349, 210);
             lblFechaRegistro.Location = new Point(344, 341);
             lblFechaRegistro.Name = "lblFechaRegistro";
             lblFechaRegistro.Size = new Size(161, 21);
@@ -265,7 +340,9 @@
             // 
             // txtTelefono
             // 
+            txtTelefono.BackColor = Color.White;
             txtTelefono.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTelefono.ForeColor = Color.Black;
             txtTelefono.Location = new Point(17, 234);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(299, 32);
@@ -275,6 +352,7 @@
             // 
             lblTelefono.AutoSize = true;
             lblTelefono.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTelefono.ForeColor = Color.Black;
             lblTelefono.Location = new Point(17, 210);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(75, 21);
@@ -283,6 +361,9 @@
             // 
             // txtEmail
             // 
+            txtEmail.BackColor = Color.White;
+            txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.ForeColor = Color.Black;
             txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.Location = new Point(349, 162);
             txtEmail.Name = "txtEmail";
@@ -293,52 +374,60 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEmail.ForeColor = Color.Black;
             lblEmail.Location = new Point(349, 139);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(49, 21);
             lblEmail.TabIndex = 35;
             lblEmail.Text = "Email";
             // 
-            // txtAMaterno
+            // txtApeMaterno
             // 
-            txtAMaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAMaterno.Location = new Point(17, 162);
-            txtAMaterno.Name = "txtAMaterno";
-            txtAMaterno.Size = new Size(299, 32);
-            txtAMaterno.TabIndex = 34;
+            txtApeMaterno.BackColor = Color.White;
+            txtApeMaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtApeMaterno.ForeColor = Color.Black;
+            txtApeMaterno.Location = new Point(17, 162);
+            txtApeMaterno.Name = "txtApeMaterno";
+            txtApeMaterno.Size = new Size(299, 32);
+            txtApeMaterno.TabIndex = 34;
             // 
-            // lblAMaterno
+            // lblApeMaterno
             // 
-            lblAMaterno.AutoSize = true;
-            lblAMaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAMaterno.Location = new Point(17, 139);
-            lblAMaterno.Name = "lblAMaterno";
-            lblAMaterno.Size = new Size(136, 21);
-            lblAMaterno.TabIndex = 33;
-            lblAMaterno.Text = "Apellido Materno";
+            lblApeMaterno.AutoSize = true;
+            lblApeMaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblApeMaterno.ForeColor = Color.Black;
+            lblApeMaterno.Location = new Point(17, 139);
+            lblApeMaterno.Name = "lblApeMaterno";
+            lblApeMaterno.Size = new Size(136, 21);
+            lblApeMaterno.TabIndex = 33;
+            lblApeMaterno.Text = "Apellido Materno";
             // 
-            // txtAPaterno
+            // txtApePaterno
             // 
-            txtAPaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAPaterno.Location = new Point(349, 87);
-            txtAPaterno.Name = "txtAPaterno";
-            txtAPaterno.Size = new Size(299, 32);
-            txtAPaterno.TabIndex = 32;
+            txtApePaterno.BackColor = Color.White;
+            txtApePaterno.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtApePaterno.ForeColor = Color.Black;
+            txtApePaterno.Location = new Point(349, 87);
+            txtApePaterno.Name = "txtApePaterno";
+            txtApePaterno.Size = new Size(299, 32);
+            txtApePaterno.TabIndex = 32;
             // 
-            // lblAPaterno
+            // lblApePaterno
             // 
-            lblAPaterno.AutoSize = true;
-            lblAPaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblAPaterno.Location = new Point(349, 63);
-            lblAPaterno.Name = "lblAPaterno";
-            lblAPaterno.Size = new Size(130, 21);
-            lblAPaterno.TabIndex = 31;
-            lblAPaterno.Text = "Apellido Paterno";
+            lblApePaterno.AutoSize = true;
+            lblApePaterno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblApePaterno.ForeColor = Color.Black;
+            lblApePaterno.Location = new Point(349, 63);
+            lblApePaterno.Name = "lblApePaterno";
+            lblApePaterno.Size = new Size(130, 21);
+            lblApePaterno.TabIndex = 31;
+            lblApePaterno.Text = "Apellido Paterno";
             // 
             // lblNombreAsistente
             // 
             lblNombreAsistente.AutoSize = true;
             lblNombreAsistente.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNombreAsistente.ForeColor = Color.Black;
             lblNombreAsistente.Location = new Point(17, 63);
             lblNombreAsistente.Name = "lblNombreAsistente";
             lblNombreAsistente.Size = new Size(69, 21);
@@ -347,7 +436,9 @@
             // 
             // tctNombreAsistente
             // 
+            tctNombreAsistente.BackColor = Color.White;
             tctNombreAsistente.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tctNombreAsistente.ForeColor = Color.Black;
             tctNombreAsistente.Location = new Point(17, 87);
             tctNombreAsistente.Name = "tctNombreAsistente";
             tctNombreAsistente.Size = new Size(299, 32);
@@ -356,10 +447,11 @@
             // lblDatosPersonales1
             // 
             lblDatosPersonales1.AutoSize = true;
-            lblDatosPersonales1.Font = new Font("Candara", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDatosPersonales1.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblDatosPersonales1.ForeColor = Color.Black;
             lblDatosPersonales1.Location = new Point(8, 15);
             lblDatosPersonales1.Name = "lblDatosPersonales1";
-            lblDatosPersonales1.Size = new Size(183, 28);
+            lblDatosPersonales1.Size = new Size(172, 27);
             lblDatosPersonales1.TabIndex = 28;
             lblDatosPersonales1.Text = "Datos Personales";
             // 
@@ -404,6 +496,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(657, 575);
+            Controls.Add(pnlContenedor);
+            Controls.Add(pnlHeaderAsistente);
+            Name = "frmAsistente";
+            Text = "Gestion de Asistente";
+            pnlHeaderAsistente.ResumeLayout(false);
+            pnlHeaderAsistente.PerformLayout();
+            pnlContenedor.ResumeLayout(false);
+            pnlContenedor.PerformLayout();
             ClientSize = new Size(657, 715);
             Controls.Add(pnlContenedor4);
             Controls.Add(pnlHeader6);
@@ -417,9 +518,9 @@
 
         #endregion
 
-        private Panel pnlHeader6;
+        private Panel pnlHeaderAsistente;
         private Label lblTituloAsistente;
-        private Panel pnlContenedor4;
+        private Panel pnlContenedor;
         private ComboBox cmbTurno;
         private Label lblTurno;
         private Button btnGuardar;
@@ -427,7 +528,7 @@
         private ComboBox cmbEstado;
         private Label lblEstado;
         private TextBox txtPassword;
-        private Label lblPaswword;
+        private Label lblPassword;
         private TextBox txtUsuarioAsistente;
         private Label lblUsuario;
         private DateTimePicker dtpFechaRegistro;
@@ -436,10 +537,10 @@
         private Label lblTelefono;
         private TextBox txtEmail;
         private Label lblEmail;
-        private TextBox txtAMaterno;
-        private Label lblAMaterno;
-        private TextBox txtAPaterno;
-        private Label lblAPaterno;
+        private TextBox txtApeMaterno;
+        private Label lblApeMaterno;
+        private TextBox txtApePaterno;
+        private Label lblApePaterno;
         private Label lblNombreAsistente;
         private TextBox tctNombreAsistente;
         private Label lblDatosPersonales1;

@@ -16,5 +16,10 @@ namespace MedicDate.CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void frmAgendaGeneral_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

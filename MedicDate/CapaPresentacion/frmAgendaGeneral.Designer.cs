@@ -28,42 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader14 = new Panel();
+            pnlHeaderAgendaGeneral = new Panel();
             lblTituloAgenda = new Label();
             pnlContenedor = new Panel();
+            dgvDoctores = new DataGridView();
             lblBuscar = new Label();
             txtBuscarDoctor = new TextBox();
-            dataGridView1 = new DataGridView();
-            pnlHeader14.SuspendLayout();
+            pnlHeaderAgendaGeneral.SuspendLayout();
             pnlContenedor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDoctores).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader14
+            // pnlHeaderAgendaGeneral
             // 
-            pnlHeader14.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader14.Controls.Add(lblTituloAgenda);
-            pnlHeader14.Dock = DockStyle.Top;
-            pnlHeader14.Location = new Point(0, 0);
-            pnlHeader14.Name = "pnlHeader14";
-            pnlHeader14.Size = new Size(1396, 47);
-            pnlHeader14.TabIndex = 11;
+            pnlHeaderAgendaGeneral.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderAgendaGeneral.Controls.Add(lblTituloAgenda);
+            pnlHeaderAgendaGeneral.Dock = DockStyle.Top;
+            pnlHeaderAgendaGeneral.Font = new Font("Segoe UI", 9F);
+            pnlHeaderAgendaGeneral.Location = new Point(0, 0);
+            pnlHeaderAgendaGeneral.Name = "pnlHeaderAgendaGeneral";
+            pnlHeaderAgendaGeneral.Size = new Size(1396, 47);
+            pnlHeaderAgendaGeneral.TabIndex = 11;
             // 
             // lblTituloAgenda
             // 
             lblTituloAgenda.AutoSize = true;
-            lblTituloAgenda.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloAgenda.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(25, 9);
+            lblTituloAgenda.Location = new Point(3, 4);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(146, 24);
+            lblTituloAgenda.Size = new Size(250, 41);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Agenda General";
             // 
             // pnlContenedor
             // 
             pnlContenedor.BackColor = Color.LightGray;
-            pnlContenedor.Controls.Add(dataGridView1);
+            pnlContenedor.Controls.Add(dgvDoctores);
             pnlContenedor.Controls.Add(lblBuscar);
             pnlContenedor.Controls.Add(txtBuscarDoctor);
             pnlContenedor.Dock = DockStyle.Fill;
@@ -72,57 +73,65 @@
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 12;
             // 
+            // dgvDoctores
+            // 
+            dgvDoctores.BackgroundColor = Color.Gray;
+            dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDoctores.GridColor = Color.Gray;
+            dgvDoctores.Location = new Point(12, 67);
+            dgvDoctores.Name = "dgvDoctores";
+            dgvDoctores.RowHeadersWidth = 51;
+            dgvDoctores.Size = new Size(1372, 633);
+            dgvDoctores.TabIndex = 10;
+            // 
             // lblBuscar
             // 
             lblBuscar.AutoSize = true;
-            lblBuscar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblBuscar.Location = new Point(7, 21);
+            lblBuscar.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar.ForeColor = Color.Black;
+            lblBuscar.Location = new Point(7, 19);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(68, 23);
+            lblBuscar.Size = new Size(81, 27);
             lblBuscar.TabIndex = 9;
             lblBuscar.Text = "Buscar:";
             // 
             // txtBuscarDoctor
             // 
-            txtBuscarDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            txtBuscarDoctor.Location = new Point(72, 18);
+            txtBuscarDoctor.BackColor = Color.White;
+            txtBuscarDoctor.Font = new Font("Candara", 12F);
+            txtBuscarDoctor.ForeColor = Color.Black;
+            txtBuscarDoctor.Location = new Point(101, 19);
             txtBuscarDoctor.Name = "txtBuscarDoctor";
             txtBuscarDoctor.PlaceholderText = "Ingrese el nombre del Doctor";
-            txtBuscarDoctor.Size = new Size(549, 30);
+            txtBuscarDoctor.Size = new Size(549, 32);
             txtBuscarDoctor.TabIndex = 8;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 67);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1372, 633);
-            dataGridView1.TabIndex = 10;
             // 
             // frmAgendaGeneral
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1396, 759);
             Controls.Add(pnlContenedor);
-            Controls.Add(pnlHeader14);
+            Controls.Add(pnlHeaderAgendaGeneral);
+            ForeColor = Color.Black;
             Name = "frmAgendaGeneral";
-            pnlHeader14.ResumeLayout(false);
-            pnlHeader14.PerformLayout();
+            Load += frmAgendaGeneral_Load;
+            pnlHeaderAgendaGeneral.ResumeLayout(false);
+            pnlHeaderAgendaGeneral.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDoctores).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlHeader14;
+        private Panel pnlHeaderAgendaGeneral;
         private Label lblTituloAgenda;
         private Panel pnlContenedor;
         private Label lblBuscar;
         private TextBox txtBuscarDoctor;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDoctores;
     }
 }
