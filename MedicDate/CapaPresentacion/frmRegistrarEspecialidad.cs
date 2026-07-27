@@ -35,14 +35,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnNuevoEspecialidad_Click(object sender, EventArgs e)
-        {
-            frmEspecialidades frm = new frmEspecialidades();
-
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.ShowDialog(this);
-        }
-
         private void txtBuscarEspecialidad_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBuscarEspecialidad.Text))

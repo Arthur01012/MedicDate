@@ -71,8 +71,8 @@ namespace MedicDate.CapaPresentacion
 
                 // Llenar controles
                 tctNombreAsistente.Text = asistente.nombre;
-                txtAPaterno.Text = asistente.apellido_paterno;
-                txtAMaterno.Text = asistente.apellido_materno;
+                txtApePaterno.Text = asistente.apellido_paterno;
+                txtApeMaterno.Text = asistente.apellido_materno;
                 dtpFechaRegistro.Value = asistente.fecha_nacimiento;
                 txtCurp.Text = asistente.curp;
                 txtEmail.Text = asistente.email;
@@ -88,7 +88,7 @@ namespace MedicDate.CapaPresentacion
                 txtConfirmarContrasena.Enabled = false;
                 txtPassword.Text = "";
                 txtConfirmarContrasena.Text = "";
-                lblPaswword.Text = "Contraseña (no editable)";
+                lblPassword.Text = "Contraseña (no editable)";
                 lblConfirmarContrasena.Text = "Confirmar (no editable)";
 
                 // Cambiar texto del botón
@@ -117,8 +117,8 @@ namespace MedicDate.CapaPresentacion
             {
                 // Llenar objeto asistente con los datos del formulario
                 asistente.nombre = tctNombreAsistente.Text.Trim();
-                asistente.apellido_paterno = txtAPaterno.Text.Trim();
-                asistente.apellido_materno = txtAMaterno.Text.Trim();
+                asistente.apellido_paterno = txtApePaterno.Text.Trim();
+                asistente.apellido_materno = txtApeMaterno.Text.Trim();
                 asistente.fecha_nacimiento = dtpFechaRegistro.Value;
                 asistente.email = txtEmail.Text.Trim();
                 asistente.curp = txtCurp.Text.Trim().ToUpper();
@@ -186,11 +186,11 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Apellido Paterno
-            if (string.IsNullOrEmpty(txtAPaterno.Text))
+            if (string.IsNullOrEmpty(txtApePaterno.Text))
             {
                 MessageBox.Show("El apellido paterno es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAPaterno.Focus();
+                txtApePaterno.Focus();
                 return false;
             }
 
@@ -308,8 +308,8 @@ namespace MedicDate.CapaPresentacion
         private void LimpiarFormulario()
         {
             tctNombreAsistente.Clear();
-            txtAPaterno.Clear();
-            txtAMaterno.Clear();
+            txtApePaterno.Clear();
+            txtApeMaterno.Clear();
             txtEmail.Clear();
             txtTelefono.Clear();
             txtUsuarioAsistente.Clear();
@@ -328,7 +328,7 @@ namespace MedicDate.CapaPresentacion
             txtUsuarioAsistente.BackColor = System.Drawing.Color.White;
             txtPassword.BackColor = System.Drawing.Color.White;
             txtConfirmarContrasena.BackColor = System.Drawing.Color.White;
-            lblPaswword.Text = "Contraseña";
+            lblPassword.Text = "Contraseña";
             lblConfirmarContrasena.Text = "Confirmar Contraseña";
             btnGuardar.Text = "Guardar";
             this.Text = "Gestion de Asistente";
@@ -338,17 +338,6 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pnlHeader6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblTituloAsistente_Click(object sender, EventArgs e)
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

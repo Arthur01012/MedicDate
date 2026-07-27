@@ -93,18 +93,6 @@
             btnDesactivar.TabIndex = 11;
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
-            btnDarBaja3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDarBaja3.BackColor = Color.FromArgb(176, 11, 11);
-            btnDarBaja3.FlatStyle = FlatStyle.Popup;
-            btnDarBaja3.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDarBaja3.ForeColor = Color.White;
-            btnDarBaja3.Location = new Point(1226, 12);
-            btnDarBaja3.Name = "btnDarBaja3";
-            btnDarBaja3.Size = new Size(148, 45);
-            btnDarBaja3.TabIndex = 11;
-            btnDarBaja3.Text = "Dar de Baja";
-            btnDarBaja3.UseVisualStyleBackColor = false;
-            btnDarBaja3.Click += btnDarBaja3_Click;
             // 
             // btnEditarHorario
             // 

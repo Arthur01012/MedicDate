@@ -45,17 +45,17 @@ namespace MedicDate.CapaPresentacion
         private void ConfigurarDateTimePickers()
         {
             // Configurar para que solo muestren la hora en formato 12h
-            dateTimePicker1.CustomFormat = "hh:mm tt";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.ShowUpDown = true;
+            dtpInicio.CustomFormat = "hh:mm tt";
+            dtpInicio.Format = DateTimePickerFormat.Custom;
+            dtpInicio.ShowUpDown = true;
 
-            dateTimePicker2.CustomFormat = "hh:mm tt";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.ShowUpDown = true;
+            dtpFin.CustomFormat = "hh:mm tt";
+            dtpFin.Format = DateTimePickerFormat.Custom;
+            dtpFin.ShowUpDown = true;
 
             // Valores por defecto
-            dateTimePicker1.Value = DateTime.Today.AddHours(8); // 8:00 AM
-            dateTimePicker2.Value = DateTime.Today.AddHours(12); // 12:00 PM
+            dtpInicio.Value = DateTime.Today.AddHours(8); // 8:00 AM
+            dtpFin.Value = DateTime.Today.AddHours(12); // 12:00 PM
         }
 
         private void CargarDatosHorario(int idHorario)
@@ -80,8 +80,8 @@ namespace MedicDate.CapaPresentacion
                 string dia = row["dia_semana"].ToString();
                 MarcarDia(dia);
 
-                dateTimePicker1.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_inicio"].ToString()));
-                dateTimePicker2.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_fin"].ToString()));
+                dtpInicio.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_inicio"].ToString()));
+                dtpFin.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_fin"].ToString()));
                 txtIntervalo.Text = row["intervalo_atencion"].ToString();
                 chkActivo.Checked = Convert.ToBoolean(row["activo"]);
 
@@ -141,8 +141,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            TimeSpan horaInicio = dateTimePicker1.Value.TimeOfDay;
-            TimeSpan horaFin = dateTimePicker2.Value.TimeOfDay;
+            TimeSpan horaInicio = dtpInicio.Value.TimeOfDay;
+            TimeSpan horaFin = dtpFin.Value.TimeOfDay;
 
             if (horaInicio >= horaFin)
             {
@@ -165,8 +165,8 @@ namespace MedicDate.CapaPresentacion
             if (!ValidarDatos()) return;
 
             int idDoctor = (int)cmbDoctores.SelectedValue;
-            TimeSpan horaInicio = dateTimePicker1.Value.TimeOfDay;
-            TimeSpan horaFin = dateTimePicker2.Value.TimeOfDay;
+            TimeSpan horaInicio = dtpInicio.Value.TimeOfDay;
+            TimeSpan horaFin = dtpFin.Value.TimeOfDay;
             int intervalo = Convert.ToInt32(txtIntervalo.Text);
             bool activo = chkActivo.Checked;
             var dias = ObtenerDiasSeleccionados();

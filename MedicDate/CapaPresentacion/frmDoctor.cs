@@ -11,9 +11,9 @@ namespace MedicDate.CapaPresentacion
     public partial class frmDoctor : Form
     {
         private clsDoctor doctor = new clsDoctor();
-        private int? idDoctorEditar = null; // Indica si estamos en modo edición
+        private int? idDoctorEditar = null;
         private bool estadoOriginal;
-        // Constructor para registro nuevo
+
         public frmDoctor()
         {
             InitializeComponent();
@@ -21,7 +21,6 @@ namespace MedicDate.CapaPresentacion
             CargarEspecialidades();
         }
 
-        // Constructor para edición (recibe el ID del doctor)
         public frmDoctor(int idDoctor) : this()
         {
             idDoctorEditar = idDoctor;
@@ -55,48 +54,39 @@ namespace MedicDate.CapaPresentacion
                     return;
                 }
 
-                // Asignar el doctor real y guardar su estado original
                 doctor = doctorEdit;
-                estadoOriginal = doctor.estado; // ✅ AHORA sí es el estado real del doctor cargado
+                estadoOriginal = doctor.estado;
 
-                // Llenar controles
                 txtNombreDoctor.Text = doctor.nombre;
                 txtAPaterno.Text = doctor.apellido_paterno;
                 txtAMaterno.Text = doctor.apellido_materno;
                 dtpFechaNacimiento.Value = doctor.fecha_nacimiento;
                 txtCurp.Text = doctor.curp;
                 txtEmail.Text = doctor.email;
-                txtTelefono.Text = doctor.telefono_principal;
+                txtTelefonoPrimario.Text = doctor.telefono_principal;
                 txtTelefonoSecundario.Text = doctor.telefono_secundario;
                 dtpFechaContratacion.Value = doctor.fecha_contratacion;
                 chkActivo.Checked = doctor.estado;
                 txtCedula.Text = doctor.cedula_profesional;
                 txtConsultorio.Text = doctor.consultorio;
 
-                // Seleccionar especialidad
                 if (doctor.especialidad_principal.HasValue)
                     cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;
 
-                // Mostrar nombre de usuario (si existe)
                 txtUsuario.Text = doctorEdit.NombreUsuario ?? "";
                 txtUsuario.Enabled = false;
-                txtContrasena.Enabled = false;
+                txtContraseña.Enabled = false;
                 txtConfirmarContrasena.Enabled = false;
-                txtContrasena.Text = "";
+                txtContraseña.Text = "";
                 txtConfirmarContrasena.Text = "";
-                lblPaswword.Text = "Contraseña (no editable)";
+                lblPassword.Text = "Contraseña (no editable)";
                 lblConfirmarContrasena.Text = "Confirmar (no editable)";
 
-                // Cambiar texto del botón y título
                 btnGuardar.Text = "Actualizar";
                 this.Text = "Editar Doctor";
 
-                // Deshabilitar campos de usuario y contraseña visualmente
-                txtUsuario.Enabled = false;
-                txtContrasena.Enabled = false;
-                txtConfirmarContrasena.Enabled = false;
                 txtUsuario.BackColor = System.Drawing.Color.LightGray;
-                txtContrasena.BackColor = System.Drawing.Color.LightGray;
+                txtContraseña.BackColor = System.Drawing.Color.LightGray;
                 txtConfirmarContrasena.BackColor = System.Drawing.Color.LightGray;
             }
             catch (Exception ex)
@@ -115,7 +105,6 @@ namespace MedicDate.CapaPresentacion
 
             try
             {
-                // Llenar objeto doctor con los datos del formulario
                 doctor.nombre = txtNombreDoctor.Text.Trim();
                 doctor.apellido_paterno = txtAPaterno.Text.Trim();
                 doctor.apellido_materno = txtAMaterno.Text.Trim();
@@ -134,23 +123,20 @@ namespace MedicDate.CapaPresentacion
                 {
                     doctor.id_empleado = idDoctorEditar.Value;
 
-                    // 1. Siempre actualizar datos personales del empleado
                     if (!clsEmpleadoDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el empleado.");
 
-                    // 2. Siempre actualizar datos del doctor
                     if (!clsDoctorDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el doctor.");
 
-                    // 3. Si cambió el estado, aplicar baja o reactivación
                     if (doctor.estado != estadoOriginal)
                     {
-                        if (doctor.estado) // Nuevo estado = activo
+                        if (doctor.estado)
                         {
                             if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
                                 throw new Exception("No se pudo reactivar el doctor.");
                         }
-                        else // Nuevo estado = inactivo
+                        else
                         {
                             if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
                                 throw new Exception("No se pudo dar de baja al doctor.");
@@ -163,19 +149,16 @@ namespace MedicDate.CapaPresentacion
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                else // MODO REGISTRO 
+                else // MODO REGISTRO
                 {
-                    // Crear usuario
                     doctor.id_usuario = CrearUsuario(transaccion);
                     if (!doctor.id_usuario.HasValue)
                         throw new Exception("No se pudo crear el usuario.");
 
-                    // Insertar empleado
                     doctor.id_empleado = clsEmpleadoDAL.Insertar(doctor, transaccion);
                     if (doctor.id_empleado == 0)
                         throw new Exception("No se pudo insertar el empleado.");
 
-                    // Insertar doctor
                     if (!clsDoctorDAL.Insertar(doctor, transaccion))
                         throw new Exception("No se pudo insertar el doctor.");
 
@@ -191,22 +174,6 @@ namespace MedicDate.CapaPresentacion
                 MessageBox.Show($"Error: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private int? CrearUsuario(MySqlTransaction? transaccion = null)
-        {
-            clsUsuario usuario = new clsUsuario
-            {
-                usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContraseña.Text.Trim(),
-                id_rol = (int)clsUsuario.Roles.Doctor,
-                activo = true
-            };
-
-            if (clsUsuarioDAL.CrearUsuario(usuario, transaccion))
-                return usuario.id_usuario;
-
-            return null;
         }
 
         private bool ValidarDatos()
@@ -228,11 +195,11 @@ namespace MedicDate.CapaPresentacion
                 txtAPaterno.Focus();
                 return false;
             }
+
             // Email
             if (string.IsNullOrEmpty(txtEmail.Text))
             {
-                MessageBox.Show("El email es obligatorio" +
-                    ".", "Validación",
+                MessageBox.Show("El email es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtEmail.Focus();
                 return false;
@@ -244,7 +211,8 @@ namespace MedicDate.CapaPresentacion
                 txtEmail.Focus();
                 return false;
             }
-            // CURP 
+
+            // CURP
             if (string.IsNullOrEmpty(txtCurp.Text))
             {
                 MessageBox.Show("El CURP es obligatorio.", "Validación",
@@ -260,11 +228,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-
             // Teléfono principal (opcional)
             if (!string.IsNullOrEmpty(txtTelefonoPrimario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoPrimario.Text))
-            // Teléfono principal 
-            if (!string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
             {
                 MessageBox.Show("El teléfono principal no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -272,7 +237,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Teléfono secundario
+            // Teléfono secundario (opcional)
             if (!string.IsNullOrEmpty(txtTelefonoSecundario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
             {
                 MessageBox.Show("El teléfono secundario no es válido.", "Validación",
@@ -299,7 +264,6 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-
             // Fecha de nacimiento
             if (!clsValidaciones.EsEdadValida(dtpFechaNacimiento.Value, 18, 120))
             {
@@ -318,8 +282,9 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-        
-        
+            // ============================================================
+            // VALIDACIONES DE USUARIO Y CONTRASEÑA (SOLO EN REGISTRO NUEVO)
+            // ============================================================
             if (!idDoctorEditar.HasValue) // Solo si es registro nuevo
             {
                 // Usuario
@@ -332,41 +297,24 @@ namespace MedicDate.CapaPresentacion
                 }
 
                 // Contraseña
-                if (string.IsNullOrEmpty(txtContrasena.Text))
+                if (string.IsNullOrEmpty(txtContraseña.Text))
                 {
                     MessageBox.Show("La contraseña es obligatoria.", "Validación",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtContrasena.Focus();
+                    txtContraseña.Focus();
                     return false;
                 }
-                if (txtContrasena.Text != txtConfirmarContrasena.Text)
+                if (txtContraseña.Text != txtConfirmarContrasena.Text)
                 {
                     MessageBox.Show("Las contraseñas no coinciden.", "Validación",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtContrasena.Clear();
+                    txtContraseña.Clear();
                     txtConfirmarContrasena.Clear();
-                    txtContrasena.Focus();
+                    txtContraseña.Focus();
                     return false;
                 }
             }
 
-            // Contraseña
-            if (string.IsNullOrEmpty(txtContraseña.Text))
-            {
-                MessageBox.Show("La contraseña es obligatoria.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContraseña.Focus();
-                return false;
-            }
-            if (txtContraseña.Text != txtConfirmarContrasena.Text)
-            {
-                MessageBox.Show("Las contraseñas no coinciden.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtContraseña.Clear();
-                txtConfirmarContrasena.Clear();
-                txtContraseña.Focus();
-                return false;
-            }
             return true;
         }
 
@@ -375,7 +323,7 @@ namespace MedicDate.CapaPresentacion
             clsUsuario usuario = new clsUsuario
             {
                 usuario = txtUsuario.Text.Trim(),
-                contrasena = txtContrasena.Text.Trim(),
+                contrasena = txtContraseña.Text.Trim(),
                 id_rol = (int)clsUsuario.Roles.Doctor,
                 activo = true
             };
@@ -409,12 +357,12 @@ namespace MedicDate.CapaPresentacion
 
             // Restaurar estado de controles
             txtUsuario.Enabled = true;
-            txtContrasena.Enabled = true;
+            txtContraseña.Enabled = true;
             txtConfirmarContrasena.Enabled = true;
             txtUsuario.BackColor = System.Drawing.Color.White;
-            txtContrasena.BackColor = System.Drawing.Color.White;
+            txtContraseña.BackColor = System.Drawing.Color.White;
             txtConfirmarContrasena.BackColor = System.Drawing.Color.White;
-            lblPaswword.Text = "Contraseña";
+            lblPassword.Text = "Contraseña";
             lblConfirmarContrasena.Text = "Confirmar Contraseña";
             btnGuardar.Text = "Guardar";
             this.Text = "Registrar Doctor";
@@ -424,11 +372,6 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pnlContenedor_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

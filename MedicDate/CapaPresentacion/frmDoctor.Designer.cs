@@ -136,7 +136,6 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(655, 755);
             pnlContenedor.TabIndex = 8;
-            pnlContenedor.Paint += pnlContenedor_Paint;
             // 
             // txtConfirmarContrasena
             // 
@@ -266,25 +265,6 @@
             btnCancelar1.TabIndex = 30;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelar1_Click;
-            // 
-            // txtContraseña
-            // 
-            txtContraseña.BackColor = Color.White;
-            txtContraseña.Font = new Font("Candara", 12F);
-            txtContraseña.ForeColor = Color.Black;
-            txtContraseña.Location = new Point(344, 486);
-            txtContraseña.Name = "txtContraseña";
-            txtContraseña.PasswordChar = '*';
-            txtContraseña.Size = new Size(299, 32);
-            txtContraseña.TabIndex = 26;
-            txtContraseña.UseSystemPasswordChar = true;
-            txtContrasena.Font = new Font("Segoe UI", 10.8F);
-            txtContrasena.Location = new Point(11, 560);
-            txtContrasena.Name = "txtContrasena";
-            txtContrasena.PasswordChar = '*';
-            txtContrasena.Size = new Size(299, 31);
-            txtContrasena.TabIndex = 26;
             // 
             // lblPassword
             // 
