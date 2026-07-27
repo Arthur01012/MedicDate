@@ -28,44 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader5 = new Panel();
-            lbEspecialidad = new Label();
+            pnlHeaderEspecialidades = new Panel();
+            lblEspecialidad = new Label();
             pnlContenedor = new Panel();
+            txtDescripcion = new TextBox();
+            lblDescripcion = new Label();
+            txtEspecialidad = new TextBox();
+            lblNombreEspecialidad = new Label();
             btnDarBaja4 = new Button();
             btnEditarEspecialidad = new Button();
             btnNuevoEspecialidad = new Button();
             dgvEspecialidad = new DataGridView();
             lblBuscar1 = new Label();
             txtBuscarEspecialidad = new TextBox();
-            pnlHeader5.SuspendLayout();
+            pnlHeaderEspecialidades.SuspendLayout();
             pnlContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEspecialidad).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader5
+            // pnlHeaderEspecialidades
             // 
-            pnlHeader5.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader5.Controls.Add(lbEspecialidad);
-            pnlHeader5.Dock = DockStyle.Top;
-            pnlHeader5.Location = new Point(0, 0);
-            pnlHeader5.Name = "pnlHeader5";
-            pnlHeader5.Size = new Size(1398, 47);
-            pnlHeader5.TabIndex = 10;
+            pnlHeaderEspecialidades.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderEspecialidades.Controls.Add(lblEspecialidad);
+            pnlHeaderEspecialidades.Dock = DockStyle.Top;
+            pnlHeaderEspecialidades.ForeColor = Color.Black;
+            pnlHeaderEspecialidades.Location = new Point(0, 0);
+            pnlHeaderEspecialidades.Name = "pnlHeaderEspecialidades";
+            pnlHeaderEspecialidades.Size = new Size(1398, 47);
+            pnlHeaderEspecialidades.TabIndex = 10;
             // 
-            // lbEspecialidad
+            // lblEspecialidad
             // 
-            lbEspecialidad.AutoSize = true;
-            lbEspecialidad.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEspecialidad.ForeColor = Color.White;
-            lbEspecialidad.Location = new Point(25, 9);
-            lbEspecialidad.Name = "lbEspecialidad";
-            lbEspecialidad.Size = new Size(134, 24);
-            lbEspecialidad.TabIndex = 0;
-            lbEspecialidad.Text = "Especialidades";
+            lblEspecialidad.AutoSize = true;
+            lblEspecialidad.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblEspecialidad.ForeColor = Color.White;
+            lblEspecialidad.Location = new Point(3, 4);
+            lblEspecialidad.Name = "lblEspecialidad";
+            lblEspecialidad.Size = new Size(229, 41);
+            lblEspecialidad.TabIndex = 0;
+            lblEspecialidad.Text = "Especialidades";
             // 
             // pnlContenedor
             // 
             pnlContenedor.BackColor = Color.LightGray;
+            pnlContenedor.Controls.Add(txtDescripcion);
+            pnlContenedor.Controls.Add(lblDescripcion);
+            pnlContenedor.Controls.Add(txtEspecialidad);
+            pnlContenedor.Controls.Add(lblNombreEspecialidad);
             pnlContenedor.Controls.Add(btnDarBaja4);
             pnlContenedor.Controls.Add(btnEditarEspecialidad);
             pnlContenedor.Controls.Add(btnNuevoEspecialidad);
@@ -73,10 +82,52 @@
             pnlContenedor.Controls.Add(lblBuscar1);
             pnlContenedor.Controls.Add(txtBuscarEspecialidad);
             pnlContenedor.Dock = DockStyle.Fill;
+            pnlContenedor.ForeColor = Color.Black;
             pnlContenedor.Location = new Point(0, 47);
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1398, 712);
             pnlContenedor.TabIndex = 11;
+            // 
+            // txtDescripcion
+            // 
+            txtDescripcion.BackColor = Color.White;
+            txtDescripcion.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescripcion.ForeColor = Color.Black;
+            txtDescripcion.Location = new Point(12, 102);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(1374, 142);
+            txtDescripcion.TabIndex = 119;
+            // 
+            // lblDescripcion
+            // 
+            lblDescripcion.AutoSize = true;
+            lblDescripcion.Font = new Font("Candara", 10.2F);
+            lblDescripcion.Location = new Point(12, 75);
+            lblDescripcion.Name = "lblDescripcion";
+            lblDescripcion.Size = new Size(95, 21);
+            lblDescripcion.TabIndex = 118;
+            lblDescripcion.Text = "Descripcion";
+            // 
+            // txtEspecialidad
+            // 
+            txtEspecialidad.BackColor = Color.White;
+            txtEspecialidad.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEspecialidad.ForeColor = Color.Black;
+            txtEspecialidad.Location = new Point(12, 40);
+            txtEspecialidad.Name = "txtEspecialidad";
+            txtEspecialidad.Size = new Size(1374, 32);
+            txtEspecialidad.TabIndex = 117;
+            // 
+            // lblNombreEspecialidad
+            // 
+            lblNombreEspecialidad.AutoSize = true;
+            lblNombreEspecialidad.Font = new Font("Candara", 10.2F);
+            lblNombreEspecialidad.Location = new Point(12, 16);
+            lblNombreEspecialidad.Name = "lblNombreEspecialidad";
+            lblNombreEspecialidad.Size = new Size(69, 21);
+            lblNombreEspecialidad.TabIndex = 116;
+            lblNombreEspecialidad.Text = "Nombre";
             // 
             // btnDarBaja4
             // 
@@ -85,7 +136,7 @@
             btnDarBaja4.FlatStyle = FlatStyle.Popup;
             btnDarBaja4.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDarBaja4.ForeColor = Color.White;
-            btnDarBaja4.Location = new Point(1226, 12);
+            btnDarBaja4.Location = new Point(1226, 280);
             btnDarBaja4.Name = "btnDarBaja4";
             btnDarBaja4.Size = new Size(148, 45);
             btnDarBaja4.TabIndex = 17;
@@ -95,11 +146,11 @@
             // btnEditarEspecialidad
             // 
             btnEditarEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEditarEspecialidad.BackColor = Color.LightGray;
+            btnEditarEspecialidad.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarEspecialidad.BackgroundImageLayout = ImageLayout.None;
             btnEditarEspecialidad.FlatStyle = FlatStyle.Popup;
             btnEditarEspecialidad.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEditarEspecialidad.Location = new Point(1046, 12);
+            btnEditarEspecialidad.Location = new Point(1046, 280);
             btnEditarEspecialidad.Name = "btnEditarEspecialidad";
             btnEditarEspecialidad.Size = new Size(148, 45);
             btnEditarEspecialidad.TabIndex = 16;
@@ -112,7 +163,7 @@
             btnNuevoEspecialidad.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoEspecialidad.FlatStyle = FlatStyle.Popup;
             btnNuevoEspecialidad.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNuevoEspecialidad.Location = new Point(861, 12);
+            btnNuevoEspecialidad.Location = new Point(861, 280);
             btnNuevoEspecialidad.Name = "btnNuevoEspecialidad";
             btnNuevoEspecialidad.Size = new Size(148, 45);
             btnNuevoEspecialidad.TabIndex = 15;
@@ -123,30 +174,34 @@
             // dgvEspecialidad
             // 
             dgvEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvEspecialidad.BackgroundColor = Color.Gray;
             dgvEspecialidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEspecialidad.Location = new Point(12, 74);
+            dgvEspecialidad.GridColor = Color.Gray;
+            dgvEspecialidad.Location = new Point(12, 403);
             dgvEspecialidad.Name = "dgvEspecialidad";
             dgvEspecialidad.RowHeadersWidth = 51;
-            dgvEspecialidad.Size = new Size(1374, 626);
+            dgvEspecialidad.Size = new Size(1374, 300);
             dgvEspecialidad.TabIndex = 14;
             // 
             // lblBuscar1
             // 
             lblBuscar1.AutoSize = true;
-            lblBuscar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblBuscar1.Location = new Point(12, 24);
+            lblBuscar1.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar1.Location = new Point(12, 355);
             lblBuscar1.Name = "lblBuscar1";
-            lblBuscar1.Size = new Size(63, 21);
+            lblBuscar1.Size = new Size(81, 27);
             lblBuscar1.TabIndex = 13;
             lblBuscar1.Text = "Buscar:";
             // 
             // txtBuscarEspecialidad
             // 
-            txtBuscarEspecialidad.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtBuscarEspecialidad.Location = new Point(77, 21);
+            txtBuscarEspecialidad.BackColor = Color.White;
+            txtBuscarEspecialidad.Font = new Font("Candara", 12F);
+            txtBuscarEspecialidad.ForeColor = Color.Black;
+            txtBuscarEspecialidad.Location = new Point(97, 353);
             txtBuscarEspecialidad.Name = "txtBuscarEspecialidad";
             txtBuscarEspecialidad.PlaceholderText = "Nombre de la Especialidad";
-            txtBuscarEspecialidad.Size = new Size(549, 28);
+            txtBuscarEspecialidad.Size = new Size(549, 32);
             txtBuscarEspecialidad.TabIndex = 12;
             txtBuscarEspecialidad.TextChanged += txtBuscarEspecialidad_TextChanged;
             // 
@@ -156,11 +211,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1398, 759);
             Controls.Add(pnlContenedor);
-            Controls.Add(pnlHeader5);
+            Controls.Add(pnlHeaderEspecialidades);
             Name = "frmRegistrarEspecialidad";
             Text = "frmRegistrarEspecialidadcs";
-            pnlHeader5.ResumeLayout(false);
-            pnlHeader5.PerformLayout();
+            pnlHeaderEspecialidades.ResumeLayout(false);
+            pnlHeaderEspecialidades.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEspecialidad).EndInit();
@@ -169,8 +224,8 @@
 
         #endregion
 
-        private Panel pnlHeader5;
-        private Label lbEspecialidad;
+        private Panel pnlHeaderEspecialidades;
+        private Label lblEspecialidad;
         private Panel pnlContenedor;
         private Button btnDarBaja4;
         private Button btnEditarEspecialidad;
@@ -178,5 +233,9 @@
         private DataGridView dgvEspecialidad;
         private Label lblBuscar1;
         private TextBox txtBuscarEspecialidad;
+        private TextBox txtEspecialidad;
+        private Label lblNombreEspecialidad;
+        private TextBox txtDescripcion;
+        private Label lblDescripcion;
     }
 }

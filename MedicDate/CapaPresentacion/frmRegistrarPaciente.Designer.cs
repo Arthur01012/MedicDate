@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader12 = new Panel();
+            pnlHeaderPacientes = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
             dgvPacientes = new DataGridView();
@@ -37,35 +37,36 @@
             btnNuevoPaciente = new Button();
             lblBuscar = new Label();
             txtBuscarDoctor = new TextBox();
-            pnlHeader12.SuspendLayout();
+            pnlHeaderPacientes.SuspendLayout();
             pnlContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPacientes).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader12
+            // pnlHeaderPacientes
             // 
-            pnlHeader12.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader12.Controls.Add(lblTitulo);
-            pnlHeader12.Dock = DockStyle.Top;
-            pnlHeader12.Location = new Point(0, 0);
-            pnlHeader12.Name = "pnlHeader12";
-            pnlHeader12.Size = new Size(1396, 47);
-            pnlHeader12.TabIndex = 9;
+            pnlHeaderPacientes.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderPacientes.Controls.Add(lblTitulo);
+            pnlHeaderPacientes.Dock = DockStyle.Top;
+            pnlHeaderPacientes.ForeColor = Color.Black;
+            pnlHeaderPacientes.Location = new Point(0, 0);
+            pnlHeaderPacientes.Name = "pnlHeaderPacientes";
+            pnlHeaderPacientes.Size = new Size(1396, 47);
+            pnlHeaderPacientes.TabIndex = 9;
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(25, 9);
+            lblTitulo.Location = new Point(3, 4);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(91, 24);
+            lblTitulo.Size = new Size(156, 41);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Pacientes";
             // 
             // pnlContenedor
             // 
-            pnlContenedor.BackColor = Color.Gainsboro;
+            pnlContenedor.BackColor = Color.LightGray;
             pnlContenedor.Controls.Add(dgvPacientes);
             pnlContenedor.Controls.Add(btnverHistorial);
             pnlContenedor.Controls.Add(btnEditarPaciente);
@@ -81,7 +82,9 @@
             // dgvPacientes
             // 
             dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPacientes.BackgroundColor = Color.Gray;
             dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPacientes.GridColor = Color.Gray;
             dgvPacientes.Location = new Point(10, 74);
             dgvPacientes.Name = "dgvPacientes";
             dgvPacientes.RowHeadersWidth = 51;
@@ -93,7 +96,7 @@
             btnverHistorial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnverHistorial.BackColor = Color.DarkGoldenrod;
             btnverHistorial.FlatStyle = FlatStyle.Popup;
-            btnverHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnverHistorial.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnverHistorial.ForeColor = Color.Black;
             btnverHistorial.Location = new Point(1231, 14);
             btnverHistorial.Name = "btnverHistorial";
@@ -105,15 +108,15 @@
             // btnEditarPaciente
             // 
             btnEditarPaciente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnEditarPaciente.BackColor = Color.LightGray;
+            btnEditarPaciente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarPaciente.BackgroundImageLayout = ImageLayout.None;
             btnEditarPaciente.FlatStyle = FlatStyle.Popup;
-            btnEditarPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarPaciente.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnEditarPaciente.Location = new Point(1051, 14);
             btnEditarPaciente.Name = "btnEditarPaciente";
             btnEditarPaciente.Size = new Size(148, 45);
             btnEditarPaciente.TabIndex = 9;
-            btnEditarPaciente.Text = "Editar Paciente";
+            btnEditarPaciente.Text = "Editar";
             btnEditarPaciente.UseVisualStyleBackColor = false;
             // 
             // btnNuevoPaciente
@@ -121,43 +124,48 @@
             btnNuevoPaciente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoPaciente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoPaciente.FlatStyle = FlatStyle.Popup;
-            btnNuevoPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoPaciente.Font = new Font("Candara", 10.2F, FontStyle.Bold);
             btnNuevoPaciente.Location = new Point(866, 14);
             btnNuevoPaciente.Name = "btnNuevoPaciente";
             btnNuevoPaciente.Size = new Size(148, 45);
             btnNuevoPaciente.TabIndex = 8;
-            btnNuevoPaciente.Text = "Agrgar Paciente";
+            btnNuevoPaciente.Text = "Agregar";
             btnNuevoPaciente.UseVisualStyleBackColor = false;
             // 
             // lblBuscar
             // 
             lblBuscar.AutoSize = true;
-            lblBuscar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            lblBuscar.BackColor = Color.LightGray;
+            lblBuscar.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar.Location = new Point(17, 26);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(68, 23);
+            lblBuscar.Size = new Size(89, 30);
             lblBuscar.TabIndex = 7;
             lblBuscar.Text = "Buscar:";
             // 
             // txtBuscarDoctor
             // 
-            txtBuscarDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            txtBuscarDoctor.Location = new Point(82, 23);
+            txtBuscarDoctor.BackColor = Color.White;
+            txtBuscarDoctor.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            txtBuscarDoctor.ForeColor = Color.Black;
+            txtBuscarDoctor.Location = new Point(111, 23);
             txtBuscarDoctor.Name = "txtBuscarDoctor";
             txtBuscarDoctor.PlaceholderText = "Ingrese el nombre del Paciente";
-            txtBuscarDoctor.Size = new Size(549, 30);
+            txtBuscarDoctor.Size = new Size(549, 34);
             txtBuscarDoctor.TabIndex = 6;
             // 
             // frmRegistrarPaciente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1396, 759);
             Controls.Add(pnlContenedor);
-            Controls.Add(pnlHeader12);
+            Controls.Add(pnlHeaderPacientes);
+            ForeColor = Color.Black;
             Name = "frmRegistrarPaciente";
-            pnlHeader12.ResumeLayout(false);
-            pnlHeader12.PerformLayout();
+            pnlHeaderPacientes.ResumeLayout(false);
+            pnlHeaderPacientes.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPacientes).EndInit();
@@ -166,7 +174,7 @@
 
         #endregion
 
-        private Panel pnlHeader12;
+        private Panel pnlHeaderPacientes;
         private Label lblTitulo;
         private Panel pnlContenedor;
         private Button btnverHistorial;

@@ -16,5 +16,10 @@ namespace MedicDate.CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void lblNombrePaciente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

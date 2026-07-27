@@ -28,52 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlHeader14 = new Panel();
+            pnlHeaderAgenda = new Panel();
             lblTituloAgenda = new Label();
             dtpFechaCita = new DateTimePicker();
             cmbDoctor = new ComboBox();
             btnVerDetalle = new Button();
-            dataGridView1 = new DataGridView();
-            pnlHeader14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvCita = new DataGridView();
+            pnlHeaderAgenda.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCita).BeginInit();
             SuspendLayout();
             // 
-            // pnlHeader14
+            // pnlHeaderAgenda
             // 
-            pnlHeader14.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader14.Controls.Add(lblTituloAgenda);
-            pnlHeader14.Dock = DockStyle.Top;
-            pnlHeader14.Location = new Point(0, 0);
-            pnlHeader14.Name = "pnlHeader14";
-            pnlHeader14.Size = new Size(882, 47);
-            pnlHeader14.TabIndex = 12;
+            pnlHeaderAgenda.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderAgenda.Controls.Add(lblTituloAgenda);
+            pnlHeaderAgenda.Dock = DockStyle.Top;
+            pnlHeaderAgenda.Font = new Font("Segoe UI", 9F);
+            pnlHeaderAgenda.ForeColor = Color.Black;
+            pnlHeaderAgenda.Location = new Point(0, 0);
+            pnlHeaderAgenda.Name = "pnlHeaderAgenda";
+            pnlHeaderAgenda.Size = new Size(882, 47);
+            pnlHeaderAgenda.TabIndex = 12;
             // 
             // lblTituloAgenda
             // 
             lblTituloAgenda.AutoSize = true;
-            lblTituloAgenda.Font = new Font("Candara", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloAgenda.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(25, 9);
+            lblTituloAgenda.Location = new Point(3, 3);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(76, 24);
+            lblTituloAgenda.Size = new Size(130, 41);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Agenda";
+            lblTituloAgenda.Click += lblTituloAgenda_Click;
             // 
             // dtpFechaCita
             // 
-            dtpFechaCita.Font = new Font("Segoe UI", 12F);
+            dtpFechaCita.CalendarFont = new Font("Candara", 12F);
+            dtpFechaCita.CalendarForeColor = Color.Black;
+            dtpFechaCita.CalendarMonthBackground = Color.White;
+            dtpFechaCita.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
+            dtpFechaCita.CalendarTitleForeColor = Color.Black;
+            dtpFechaCita.CalendarTrailingForeColor = Color.Gray;
+            dtpFechaCita.Font = new Font("Candara", 12F);
             dtpFechaCita.Location = new Point(12, 53);
             dtpFechaCita.Name = "dtpFechaCita";
-            dtpFechaCita.Size = new Size(299, 34);
+            dtpFechaCita.Size = new Size(299, 32);
             dtpFechaCita.TabIndex = 30;
             // 
             // cmbDoctor
             // 
-            cmbDoctor.Font = new Font("Segoe UI", 12F);
+            cmbDoctor.BackColor = Color.White;
+            cmbDoctor.Font = new Font("Candara", 12F);
+            cmbDoctor.ForeColor = Color.Black;
             cmbDoctor.FormattingEnabled = true;
-            cmbDoctor.Location = new Point(333, 51);
+            cmbDoctor.Location = new Point(333, 52);
             cmbDoctor.Name = "cmbDoctor";
-            cmbDoctor.Size = new Size(299, 36);
+            cmbDoctor.Size = new Size(299, 32);
             cmbDoctor.TabIndex = 31;
             // 
             // btnVerDetalle
@@ -82,49 +93,54 @@
             btnVerDetalle.BackColor = Color.FromArgb(166, 202, 236);
             btnVerDetalle.FlatStyle = FlatStyle.Popup;
             btnVerDetalle.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnVerDetalle.Location = new Point(12, 396);
+            btnVerDetalle.ForeColor = Color.Black;
+            btnVerDetalle.Location = new Point(722, 396);
             btnVerDetalle.Name = "btnVerDetalle";
             btnVerDetalle.Size = new Size(148, 45);
             btnVerDetalle.TabIndex = 33;
             btnVerDetalle.Text = "Ver detalle";
             btnVerDetalle.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvCita
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 93);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(858, 297);
-            dataGridView1.TabIndex = 34;
+            dgvCita.BackgroundColor = Color.Gray;
+            dgvCita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCita.GridColor = Color.Gray;
+            dgvCita.Location = new Point(13, 93);
+            dgvCita.Name = "dgvCita";
+            dgvCita.RowHeadersWidth = 51;
+            dgvCita.Size = new Size(858, 297);
+            dgvCita.TabIndex = 34;
             // 
             // frmAgenda
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightGray;
             ClientSize = new Size(882, 453);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvCita);
             Controls.Add(btnVerDetalle);
             Controls.Add(cmbDoctor);
             Controls.Add(dtpFechaCita);
-            Controls.Add(pnlHeader14);
+            Controls.Add(pnlHeaderAgenda);
+            ForeColor = Color.Black;
             Name = "frmAgenda";
             Text = "Agenda";
             Load += frmAgenda_Load;
-            pnlHeader14.ResumeLayout(false);
-            pnlHeader14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            pnlHeaderAgenda.ResumeLayout(false);
+            pnlHeaderAgenda.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCita).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlHeader14;
+        private Panel pnlHeaderAgenda;
         private Label lblTituloAgenda;
         private DateTimePicker dtpFechaCita;
         private ComboBox cmbDoctor;
         private Panel panel1;
         private Button btnVerDetalle;
-        private DataGridView dataGridView1;
+        private DataGridView dgvCita;
     }
 }
