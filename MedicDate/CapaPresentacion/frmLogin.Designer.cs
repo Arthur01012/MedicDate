@@ -59,11 +59,11 @@
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblPassword.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblPassword.ForeColor = Color.Black;
             lblPassword.Location = new Point(117, 347);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(118, 27);
+            lblPassword.Size = new Size(130, 30);
             lblPassword.TabIndex = 1;
             lblPassword.Text = "Contraseña";
             // 
@@ -71,35 +71,35 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.LightGray;
-            lblUsuario.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblUsuario.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblUsuario.ForeColor = Color.Black;
             lblUsuario.Location = new Point(117, 273);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(83, 27);
+            lblUsuario.Size = new Size(92, 30);
             lblUsuario.TabIndex = 2;
             lblUsuario.Text = "Usuario";
             // 
             // txtUsuario
             // 
             txtUsuario.BackColor = Color.White;
-            txtUsuario.Font = new Font("Candara", 12F);
+            txtUsuario.Font = new Font("Segoe UI", 12F);
             txtUsuario.ForeColor = Color.Black;
             txtUsuario.Location = new Point(117, 302);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Ingrese su usuario";
-            txtUsuario.Size = new Size(322, 32);
+            txtUsuario.Size = new Size(322, 34);
             txtUsuario.TabIndex = 3;
             txtUsuario.KeyPress += txtUsuario_KeyPress;
             // 
             // txtPassword
             // 
             txtPassword.BackColor = Color.White;
-            txtPassword.Font = new Font("Candara", 12F);
+            txtPassword.Font = new Font("Segoe UI", 12F);
             txtPassword.ForeColor = Color.Black;
             txtPassword.Location = new Point(117, 376);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Ingrese su contraseña";
-            txtPassword.Size = new Size(322, 32);
+            txtPassword.Size = new Size(322, 34);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             txtPassword.KeyPress += txtPassword_KeyPress;
@@ -128,11 +128,11 @@
             // lblIniciarSesion
             // 
             lblIniciarSesion.AutoSize = true;
-            lblIniciarSesion.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblIniciarSesion.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblIniciarSesion.ForeColor = Color.White;
-            lblIniciarSesion.Location = new Point(172, 16);
+            lblIniciarSesion.Location = new Point(167, 15);
             lblIniciarSesion.Name = "lblIniciarSesion";
-            lblIniciarSesion.Size = new Size(205, 41);
+            lblIniciarSesion.Size = new Size(229, 46);
             lblIniciarSesion.TabIndex = 0;
             lblIniciarSesion.Text = "Iniciar sesión";
             // 
@@ -142,7 +142,7 @@
             btnCancelar.BackColor = Color.FromArgb(165, 165, 173);
             btnCancelar.FlatAppearance.BorderColor = Color.White;
             btnCancelar.FlatStyle = FlatStyle.Popup;
-            btnCancelar.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.Black;
             btnCancelar.Location = new Point(117, 438);
             btnCancelar.Name = "btnCancelar";
@@ -158,7 +158,7 @@
             btnAcceder.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAcceder.BackColor = Color.FromArgb(14, 121, 196);
             btnAcceder.FlatStyle = FlatStyle.Popup;
-            btnAcceder.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnAcceder.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAcceder.ForeColor = Color.White;
             btnAcceder.Location = new Point(329, 438);
             btnAcceder.Name = "btnAcceder";

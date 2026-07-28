@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeader14 = new Panel();
             lblTituloCitas = new Label();
             pnlContenedor = new Panel();
@@ -61,11 +61,11 @@
             // lblTituloCitas
             // 
             lblTituloCitas.AutoSize = true;
-            lblTituloCitas.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTituloCitas.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTituloCitas.ForeColor = Color.White;
-            lblTituloCitas.Location = new Point(3, 4);
+            lblTituloCitas.Location = new Point(3, -1);
             lblTituloCitas.Name = "lblTituloCitas";
-            lblTituloCitas.Size = new Size(88, 41);
+            lblTituloCitas.Size = new Size(97, 46);
             lblTituloCitas.TabIndex = 0;
             lblTituloCitas.Text = "Citas";
             // 
@@ -92,7 +92,7 @@
             btnConfirmarCita.BackColor = Color.LimeGreen;
             btnConfirmarCita.BackgroundImageLayout = ImageLayout.None;
             btnConfirmarCita.FlatStyle = FlatStyle.Popup;
-            btnConfirmarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnConfirmarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnConfirmarCita.Location = new Point(1071, 13);
             btnConfirmarCita.Name = "btnConfirmarCita";
             btnConfirmarCita.Size = new Size(148, 45);
@@ -103,36 +103,37 @@
             // cmbFiltrarDoctor
             // 
             cmbFiltrarDoctor.BackColor = Color.White;
-            cmbFiltrarDoctor.Font = new Font("Candara", 12F);
+            cmbFiltrarDoctor.Font = new Font("Segoe UI", 12F);
             cmbFiltrarDoctor.ForeColor = Color.Black;
             cmbFiltrarDoctor.FormattingEnabled = true;
-            cmbFiltrarDoctor.Location = new Point(99, 21);
+            cmbFiltrarDoctor.Location = new Point(106, 27);
             cmbFiltrarDoctor.Name = "cmbFiltrarDoctor";
-            cmbFiltrarDoctor.Size = new Size(370, 32);
+            cmbFiltrarDoctor.Size = new Size(370, 36);
             cmbFiltrarDoctor.TabIndex = 18;
-            //
+            cmbFiltrarDoctor.SelectedIndexChanged += cmbFiltrarDoctor_SelectedIndexChanged;
+            // 
             // dgvPacientes
-            //
+            // 
             dgvPacientes.AllowDrop = true;
             dgvPacientes.AllowUserToAddRows = false;
             dgvPacientes.AllowUserToDeleteRows = false;
             dgvPacientes.AllowUserToResizeColumns = false;
             dgvPacientes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPacientes.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPacientes.EnableHeadersVisualStyles = false;
             dgvPacientes.GridColor = Color.Gray;
@@ -140,19 +141,19 @@
             dgvPacientes.MultiSelect = false;
             dgvPacientes.Name = "dgvPacientes";
             dgvPacientes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvPacientes.RowHeadersVisible = false;
             dgvPacientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvPacientes.ScrollBars = ScrollBars.Horizontal;
             dgvPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPacientes.Size = new Size(1360, 621);
@@ -163,7 +164,7 @@
             btnCancelarCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelarCita.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelarCita.FlatStyle = FlatStyle.Popup;
-            btnCancelarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnCancelarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelarCita.ForeColor = Color.White;
             btnCancelarCita.Location = new Point(1236, 13);
             btnCancelarCita.Name = "btnCancelarCita";
@@ -178,7 +179,7 @@
             btnEditarCita.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarCita.BackgroundImageLayout = ImageLayout.None;
             btnEditarCita.FlatStyle = FlatStyle.Popup;
-            btnEditarCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnEditarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarCita.Location = new Point(903, 13);
             btnEditarCita.Name = "btnEditarCita";
             btnEditarCita.Size = new Size(148, 45);
@@ -191,7 +192,7 @@
             btnNuevoCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoCita.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoCita.FlatStyle = FlatStyle.Popup;
-            btnNuevoCita.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnNuevoCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnNuevoCita.Location = new Point(737, 13);
             btnNuevoCita.Name = "btnNuevoCita";
             btnNuevoCita.Size = new Size(148, 45);
@@ -202,10 +203,10 @@
             // lblfiltrar
             // 
             lblfiltrar.AutoSize = true;
-            lblfiltrar.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblfiltrar.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblfiltrar.Location = new Point(18, 25);
             lblfiltrar.Name = "lblfiltrar";
-            lblfiltrar.Size = new Size(75, 27);
+            lblfiltrar.Size = new Size(82, 30);
             lblfiltrar.TabIndex = 13;
             lblfiltrar.Text = "Filtrar:";
             // 
