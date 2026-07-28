@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             pnlHeaderMedicDate = new Panel();
-            lblTitulo = new Label();
             lblUsuario = new Label();
+            lblTitulo = new Label();
             pnlLateral1 = new Panel();
             btnCerrar = new Button();
             btnEspecialidades = new Button();
@@ -45,6 +45,7 @@
             // pnlHeaderMedicDate
             // 
             pnlHeaderMedicDate.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderMedicDate.Controls.Add(lblUsuario);
             pnlHeaderMedicDate.Controls.Add(lblTitulo);
             pnlHeaderMedicDate.Dock = DockStyle.Top;
             pnlHeaderMedicDate.ForeColor = Color.Black;
@@ -52,6 +53,19 @@
             pnlHeaderMedicDate.Name = "pnlHeaderMedicDate";
             pnlHeaderMedicDate.Size = new Size(1582, 47);
             pnlHeaderMedicDate.TabIndex = 7;
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Location = new Point(1450, 9);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(83, 27);
+            lblUsuario.TabIndex = 0;
+            lblUsuario.Text = "Usuario";
+            lblUsuario.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblTitulo
             // 
@@ -64,22 +78,10 @@
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "Medic Date";
             // 
-            // lblUsuario
-            // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Font = new Font("Candara", 13F, FontStyle.Bold);
-            lblUsuario.ForeColor = Color.White;
-            lblUsuario.Location = new Point(43, 14);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(83, 27);
-            lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuario";
-            // 
             // pnlLateral1
             // 
             pnlLateral1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlLateral1.BackColor = Color.FromArgb(25, 85, 140);
-            pnlLateral1.Controls.Add(lblUsuario);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
             pnlLateral1.Controls.Add(btnHorarios);
@@ -187,7 +189,6 @@
             pnlHeaderMedicDate.ResumeLayout(false);
             pnlHeaderMedicDate.PerformLayout();
             pnlLateral1.ResumeLayout(false);
-            pnlLateral1.PerformLayout();
             ResumeLayout(false);
         }
 
