@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeaderPacientes = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
@@ -60,11 +60,11 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(3, 4);
+            lblTitulo.Location = new Point(3, -1);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(156, 41);
+            lblTitulo.Size = new Size(169, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Pacientes";
             // 
@@ -82,29 +82,29 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 10;
-            //
+            // 
             // dgvPacientes
-            //
+            // 
             dgvPacientes.AllowDrop = true;
             dgvPacientes.AllowUserToAddRows = false;
             dgvPacientes.AllowUserToDeleteRows = false;
             dgvPacientes.AllowUserToResizeColumns = false;
             dgvPacientes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPacientes.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPacientes.EnableHeadersVisualStyles = false;
             dgvPacientes.GridColor = Color.Gray;
@@ -112,19 +112,19 @@
             dgvPacientes.MultiSelect = false;
             dgvPacientes.Name = "dgvPacientes";
             dgvPacientes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvPacientes.RowHeadersVisible = false;
             dgvPacientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvPacientes.ScrollBars = ScrollBars.Horizontal;
             dgvPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPacientes.Size = new Size(1374, 626);
@@ -135,7 +135,7 @@
             btnverHistorial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnverHistorial.BackColor = Color.DarkGoldenrod;
             btnverHistorial.FlatStyle = FlatStyle.Popup;
-            btnverHistorial.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnverHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnverHistorial.ForeColor = Color.Black;
             btnverHistorial.Location = new Point(1231, 14);
             btnverHistorial.Name = "btnverHistorial";
@@ -150,7 +150,7 @@
             btnEditarPaciente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarPaciente.BackgroundImageLayout = ImageLayout.None;
             btnEditarPaciente.FlatStyle = FlatStyle.Popup;
-            btnEditarPaciente.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnEditarPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarPaciente.Location = new Point(1051, 14);
             btnEditarPaciente.Name = "btnEditarPaciente";
             btnEditarPaciente.Size = new Size(148, 45);
@@ -163,7 +163,7 @@
             btnNuevoPaciente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoPaciente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoPaciente.FlatStyle = FlatStyle.Popup;
-            btnNuevoPaciente.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnNuevoPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnNuevoPaciente.Location = new Point(866, 14);
             btnNuevoPaciente.Name = "btnNuevoPaciente";
             btnNuevoPaciente.Size = new Size(148, 45);

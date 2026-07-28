@@ -61,11 +61,11 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(3, 3);
+            lblTitulo.Location = new Point(3, -2);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(96, 41);
+            lblTitulo.Size = new Size(106, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Perfil";
             // 
@@ -73,16 +73,16 @@
             // 
             lblFichaDoctor.AutoSize = true;
             lblFichaDoctor.BackColor = Color.LightGray;
-            lblFichaDoctor.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblFichaDoctor.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblFichaDoctor.ForeColor = Color.Black;
-            lblFichaDoctor.Location = new Point(12, 52);
+            lblFichaDoctor.Location = new Point(12, 49);
             lblFichaDoctor.Name = "lblFichaDoctor";
-            lblFichaDoctor.Size = new Size(162, 27);
+            lblFichaDoctor.Size = new Size(179, 30);
             lblFichaDoctor.TabIndex = 27;
             lblFichaDoctor.Text = "Ficha del doctor";
-            //
+            // 
             // dgvFicha
-            //
+            // 
             dgvFicha.AllowDrop = true;
             dgvFicha.AllowUserToAddRows = false;
             dgvFicha.AllowUserToDeleteRows = false;
@@ -132,16 +132,16 @@
             // 
             lblHorario.AccessibleRole = AccessibleRole.MenuPopup;
             lblHorario.AutoSize = true;
-            lblHorario.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblHorario.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblHorario.ForeColor = Color.Black;
-            lblHorario.Location = new Point(12, 242);
+            lblHorario.Location = new Point(12, 239);
             lblHorario.Name = "lblHorario";
-            lblHorario.Size = new Size(82, 27);
+            lblHorario.Size = new Size(92, 30);
             lblHorario.TabIndex = 29;
             lblHorario.Text = "Horario";
-            //
+            // 
             // dataGridView2
-            //
+            // 
             dataGridView2.AllowDrop = true;
             dataGridView2.AllowUserToAddRows = false;
             dataGridView2.AllowUserToDeleteRows = false;

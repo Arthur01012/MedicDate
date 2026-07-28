@@ -59,16 +59,16 @@
             // lblTituloAgenda
             // 
             lblTituloAgenda.AutoSize = true;
-            lblTituloAgenda.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTituloAgenda.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(3, 3);
+            lblTituloAgenda.Location = new Point(3, -2);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(180, 41);
+            lblTituloAgenda.Size = new Size(198, 46);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Detalle cita";
-            //
+            // 
             // dgvCitas
-            //
+            // 
             dgvCitas.AllowDrop = true;
             dgvCitas.AllowUserToAddRows = false;
             dgvCitas.AllowUserToDeleteRows = false;
@@ -117,18 +117,18 @@
             // lblNotaInterna
             // 
             lblNotaInterna.AutoSize = true;
-            lblNotaInterna.Font = new Font("Candara", 10.2F);
+            lblNotaInterna.Font = new Font("Segoe UI", 10.2F);
             lblNotaInterna.ForeColor = Color.Black;
-            lblNotaInterna.Location = new Point(12, 260);
+            lblNotaInterna.Location = new Point(12, 258);
             lblNotaInterna.Name = "lblNotaInterna";
-            lblNotaInterna.Size = new Size(100, 21);
+            lblNotaInterna.Size = new Size(107, 23);
             lblNotaInterna.TabIndex = 117;
             lblNotaInterna.Text = "Nota interna";
             // 
             // txtNotaInterna
             // 
             txtNotaInterna.BackColor = Color.White;
-            txtNotaInterna.Font = new Font("Candara", 12F);
+            txtNotaInterna.Font = new Font("Segoe UI", 12F);
             txtNotaInterna.ForeColor = Color.Black;
             txtNotaInterna.Location = new Point(12, 284);
             txtNotaInterna.Multiline = true;
@@ -141,7 +141,7 @@
             btnCerrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCerrar.BackColor = Color.FromArgb(176, 11, 11);
             btnCerrar.FlatStyle = FlatStyle.Popup;
-            btnCerrar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCerrar.ForeColor = Color.White;
             btnCerrar.Location = new Point(398, 397);
             btnCerrar.Name = "btnCerrar";
@@ -155,7 +155,7 @@
             btnIniciarConsulta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnIniciarConsulta.BackColor = Color.DarkGoldenrod;
             btnIniciarConsulta.FlatStyle = FlatStyle.Popup;
-            btnIniciarConsulta.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnIniciarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnIniciarConsulta.ForeColor = Color.Black;
             btnIniciarConsulta.Location = new Point(552, 397);
             btnIniciarConsulta.Name = "btnIniciarConsulta";
@@ -170,7 +170,7 @@
             btnFinalizarConsulta.BackColor = Color.LimeGreen;
             btnFinalizarConsulta.BackgroundImageLayout = ImageLayout.None;
             btnFinalizarConsulta.FlatStyle = FlatStyle.Popup;
-            btnFinalizarConsulta.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnFinalizarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnFinalizarConsulta.ForeColor = Color.Black;
             btnFinalizarConsulta.Location = new Point(706, 397);
             btnFinalizarConsulta.Name = "btnFinalizarConsulta";

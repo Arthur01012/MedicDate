@@ -55,29 +55,29 @@
             // lblPaciente
             // 
             lblPaciente.AutoSize = true;
-            lblPaciente.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblPaciente.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblPaciente.ForeColor = Color.White;
-            lblPaciente.Location = new Point(3, 3);
+            lblPaciente.Location = new Point(3, -2);
             lblPaciente.Name = "lblPaciente";
-            lblPaciente.Size = new Size(156, 41);
+            lblPaciente.Size = new Size(169, 46);
             lblPaciente.TabIndex = 0;
             lblPaciente.Text = "Pacientes";
             // 
             // txtBuscar
             // 
             txtBuscar.BackColor = Color.White;
-            txtBuscar.Font = new Font("Candara", 12F);
+            txtBuscar.Font = new Font("Segoe UI", 12F);
             txtBuscar.ForeColor = Color.Black;
             txtBuscar.Location = new Point(12, 56);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.PlaceholderText = "Ingrese el nombre del Doctor";
-            txtBuscar.Size = new Size(549, 32);
+            txtBuscar.Size = new Size(549, 34);
             txtBuscar.TabIndex = 12;
             txtBuscar.Text = "Buscar";
             txtBuscar.TextChanged += txtBuscarDoctor_TextChanged;
-            //
+            // 
             // dgvPacientes
-            //
+            // 
             dgvPacientes.AllowDrop = true;
             dgvPacientes.AllowUserToAddRows = false;
             dgvPacientes.AllowUserToDeleteRows = false;
@@ -127,7 +127,7 @@
             // 
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
-            btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.Black;
             btnGuardar.Location = new Point(840, 339);
             btnGuardar.Name = "btnGuardar";

@@ -38,13 +38,14 @@
             btnAsistentes = new Button();
             btnDoctores = new Button();
             pnlContenedor = new Panel();
+            label1 = new Label();
             pnlHeaderMedicDate.SuspendLayout();
             pnlLateral1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeaderMedicDate
             // 
-            pnlHeaderMedicDate.BackColor = Color.FromArgb(25, 85, 140);
+            pnlHeaderMedicDate.BackColor = Color.FromArgb(14, 121, 196);
             pnlHeaderMedicDate.Controls.Add(lblUsuario);
             pnlHeaderMedicDate.Controls.Add(lblTitulo);
             pnlHeaderMedicDate.Dock = DockStyle.Top;
@@ -58,11 +59,11 @@
             // 
             lblUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblUsuario.AutoSize = true;
-            lblUsuario.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblUsuario.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblUsuario.ForeColor = Color.White;
             lblUsuario.Location = new Point(1450, 9);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(83, 27);
+            lblUsuario.Size = new Size(92, 30);
             lblUsuario.TabIndex = 0;
             lblUsuario.Text = "Usuario";
             lblUsuario.TextAlign = ContentAlignment.MiddleCenter;
@@ -82,6 +83,7 @@
             // 
             pnlLateral1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlLateral1.BackColor = Color.FromArgb(25, 85, 140);
+            pnlLateral1.Controls.Add(label1);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
             pnlLateral1.Controls.Add(btnHorarios);
@@ -98,7 +100,7 @@
             btnCerrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnCerrar.BackColor = Color.FromArgb(176, 11, 11);
             btnCerrar.FlatStyle = FlatStyle.Popup;
-            btnCerrar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCerrar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCerrar.ForeColor = Color.White;
             btnCerrar.Location = new Point(12, 734);
             btnCerrar.Name = "btnCerrar";
@@ -112,7 +114,7 @@
             // 
             btnEspecialidades.BackColor = Color.FromArgb(166, 202, 236);
             btnEspecialidades.FlatStyle = FlatStyle.Popup;
-            btnEspecialidades.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEspecialidades.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEspecialidades.ForeColor = Color.Black;
             btnEspecialidades.Location = new Point(10, 255);
             btnEspecialidades.Name = "btnEspecialidades";
@@ -126,7 +128,7 @@
             // 
             btnHorarios.BackColor = Color.FromArgb(166, 202, 236);
             btnHorarios.FlatStyle = FlatStyle.Popup;
-            btnHorarios.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHorarios.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnHorarios.ForeColor = Color.Black;
             btnHorarios.Location = new Point(10, 189);
             btnHorarios.Name = "btnHorarios";
@@ -140,7 +142,7 @@
             // 
             btnAsistentes.BackColor = Color.FromArgb(166, 202, 236);
             btnAsistentes.FlatStyle = FlatStyle.Popup;
-            btnAsistentes.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAsistentes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAsistentes.ForeColor = Color.Black;
             btnAsistentes.Location = new Point(10, 122);
             btnAsistentes.Name = "btnAsistentes";
@@ -154,7 +156,7 @@
             // 
             btnDoctores.BackColor = Color.FromArgb(166, 202, 236);
             btnDoctores.FlatStyle = FlatStyle.Popup;
-            btnDoctores.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDoctores.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDoctores.ForeColor = Color.Black;
             btnDoctores.Location = new Point(10, 55);
             btnDoctores.Name = "btnDoctores";
@@ -173,6 +175,17 @@
             pnlContenedor.Size = new Size(1416, 806);
             pnlContenedor.TabIndex = 9;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(35, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 31);
+            label1.TabIndex = 0;
+            label1.Text = "Modulo";
+            // 
             // frmPrincipalAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -189,6 +202,7 @@
             pnlHeaderMedicDate.ResumeLayout(false);
             pnlHeaderMedicDate.PerformLayout();
             pnlLateral1.ResumeLayout(false);
+            pnlLateral1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -204,5 +218,6 @@
         private Button btnDoctores;
         public Label lblUsuario;
         public Label lblTitulo;
+        private Label label1;
     }
 }

@@ -68,11 +68,11 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(3, 8);
+            lblTitulo.Location = new Point(3, 7);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(129, 41);
+            lblTitulo.Size = new Size(144, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Horario";
             // 
@@ -104,6 +104,7 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(632, 488);
             pnlContenedor.TabIndex = 1;
+            pnlContenedor.Paint += pnlContenedor_Paint;
             // 
             // dtpFin
             // 
@@ -113,13 +114,13 @@
             dtpFin.CalendarTitleForeColor = Color.Black;
             dtpFin.CalendarTrailingForeColor = Color.Gray;
             dtpFin.CustomFormat = "hh:mm tt";
-            dtpFin.Font = new Font("Candara", 12F);
+            dtpFin.Font = new Font("Segoe UI", 12F);
             dtpFin.Format = DateTimePickerFormat.Custom;
             dtpFin.Location = new Point(159, 303);
             dtpFin.Name = "dtpFin";
             dtpFin.RightToLeftLayout = true;
             dtpFin.ShowUpDown = true;
-            dtpFin.Size = new Size(118, 32);
+            dtpFin.Size = new Size(118, 34);
             dtpFin.TabIndex = 118;
             // 
             // dtpInicio
@@ -131,21 +132,21 @@
             dtpInicio.CalendarTitleForeColor = Color.Black;
             dtpInicio.CalendarTrailingForeColor = Color.Gray;
             dtpInicio.CustomFormat = "hh:mm tt";
-            dtpInicio.Font = new Font("Candara", 12F);
+            dtpInicio.Font = new Font("Segoe UI", 12F);
             dtpInicio.Format = DateTimePickerFormat.Custom;
             dtpInicio.Location = new Point(16, 303);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.ShowUpDown = true;
-            dtpInicio.Size = new Size(124, 32);
+            dtpInicio.Size = new Size(124, 34);
             dtpInicio.TabIndex = 117;
             // 
             // chkActivo
             // 
             chkActivo.AutoSize = true;
-            chkActivo.Font = new Font("Candara", 11F);
+            chkActivo.Font = new Font("Segoe UI", 11F);
             chkActivo.Location = new Point(27, 363);
             chkActivo.Name = "chkActivo";
-            chkActivo.Size = new Size(84, 27);
+            chkActivo.Size = new Size(86, 29);
             chkActivo.TabIndex = 116;
             chkActivo.Text = "Activo";
             chkActivo.UseVisualStyleBackColor = true;
@@ -155,7 +156,7 @@
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
-            btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnGuardar.Location = new Point(479, 409);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(130, 52);
@@ -168,7 +169,7 @@
             btnCancelar5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar5.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar5.FlatStyle = FlatStyle.Popup;
-            btnCancelar5.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnCancelar5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar5.ForeColor = Color.White;
             btnCancelar5.Location = new Point(312, 409);
             btnCancelar5.Name = "btnCancelar5";
@@ -181,51 +182,51 @@
             // txtIntervalo
             // 
             txtIntervalo.BackColor = Color.White;
-            txtIntervalo.Font = new Font("Candara", 12F);
+            txtIntervalo.Font = new Font("Segoe UI", 12F);
             txtIntervalo.ForeColor = Color.Black;
             txtIntervalo.Location = new Point(312, 303);
             txtIntervalo.Name = "txtIntervalo";
-            txtIntervalo.Size = new Size(297, 32);
+            txtIntervalo.Size = new Size(297, 34);
             txtIntervalo.TabIndex = 113;
             // 
             // lblIntervalo
             // 
             lblIntervalo.AutoSize = true;
-            lblIntervalo.Font = new Font("Candara", 13F, FontStyle.Bold);
-            lblIntervalo.Location = new Point(312, 273);
+            lblIntervalo.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblIntervalo.Location = new Point(312, 271);
             lblIntervalo.Name = "lblIntervalo";
-            lblIntervalo.Size = new Size(154, 27);
+            lblIntervalo.Size = new Size(169, 30);
             lblIntervalo.TabIndex = 112;
             lblIntervalo.Text = "Intervalo (Min)";
             // 
             // lblHoraFin
             // 
             lblHoraFin.AutoSize = true;
-            lblHoraFin.Font = new Font("Candara", 13F, FontStyle.Bold);
-            lblHoraFin.Location = new Point(159, 274);
+            lblHoraFin.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblHoraFin.Location = new Point(159, 272);
             lblHoraFin.Name = "lblHoraFin";
-            lblHoraFin.Size = new Size(90, 27);
+            lblHoraFin.Size = new Size(100, 30);
             lblHoraFin.TabIndex = 109;
             lblHoraFin.Text = "Hora Fin";
             // 
             // lblHoraInicio
             // 
             lblHoraInicio.AutoSize = true;
-            lblHoraInicio.Font = new Font("Candara", 13F, FontStyle.Bold);
-            lblHoraInicio.Location = new Point(16, 274);
+            lblHoraInicio.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblHoraInicio.Location = new Point(16, 272);
             lblHoraInicio.Name = "lblHoraInicio";
-            lblHoraInicio.Size = new Size(112, 27);
+            lblHoraInicio.Size = new Size(126, 30);
             lblHoraInicio.TabIndex = 108;
             lblHoraInicio.Text = "Hora Inicio";
             // 
             // chkDomingo
             // 
             chkDomingo.AutoSize = true;
-            chkDomingo.Font = new Font("Candara", 11F);
+            chkDomingo.Font = new Font("Segoe UI", 11F);
             chkDomingo.ForeColor = Color.Black;
             chkDomingo.Location = new Point(312, 193);
             chkDomingo.Name = "chkDomingo";
-            chkDomingo.Size = new Size(106, 27);
+            chkDomingo.Size = new Size(112, 29);
             chkDomingo.TabIndex = 107;
             chkDomingo.Text = "Domingo";
             chkDomingo.UseVisualStyleBackColor = true;
@@ -233,11 +234,11 @@
             // chkSabado
             // 
             chkSabado.AutoSize = true;
-            chkSabado.Font = new Font("Candara", 11F);
+            chkSabado.Font = new Font("Segoe UI", 11F);
             chkSabado.ForeColor = Color.Black;
             chkSabado.Location = new Point(171, 193);
             chkSabado.Name = "chkSabado";
-            chkSabado.Size = new Size(92, 27);
+            chkSabado.Size = new Size(97, 29);
             chkSabado.TabIndex = 106;
             chkSabado.Text = "Sabado";
             chkSabado.UseVisualStyleBackColor = true;
@@ -245,11 +246,11 @@
             // chkViernes
             // 
             chkViernes.AutoSize = true;
-            chkViernes.Font = new Font("Candara", 11F);
+            chkViernes.Font = new Font("Segoe UI", 11F);
             chkViernes.ForeColor = Color.Black;
             chkViernes.Location = new Point(27, 193);
             chkViernes.Name = "chkViernes";
-            chkViernes.Size = new Size(92, 27);
+            chkViernes.Size = new Size(97, 29);
             chkViernes.TabIndex = 105;
             chkViernes.Text = "Viernes";
             chkViernes.UseVisualStyleBackColor = true;
@@ -257,11 +258,11 @@
             // chkJueves
             // 
             chkJueves.AutoSize = true;
-            chkJueves.Font = new Font("Candara", 11F);
+            chkJueves.Font = new Font("Segoe UI", 11F);
             chkJueves.ForeColor = Color.Black;
             chkJueves.Location = new Point(470, 137);
             chkJueves.Name = "chkJueves";
-            chkJueves.Size = new Size(87, 27);
+            chkJueves.Size = new Size(89, 29);
             chkJueves.TabIndex = 104;
             chkJueves.Text = "Jueves";
             chkJueves.UseVisualStyleBackColor = true;
@@ -269,11 +270,11 @@
             // chkMiercoles
             // 
             chkMiercoles.AutoSize = true;
-            chkMiercoles.Font = new Font("Candara", 11F);
+            chkMiercoles.Font = new Font("Segoe UI", 11F);
             chkMiercoles.ForeColor = Color.Black;
             chkMiercoles.Location = new Point(312, 136);
             chkMiercoles.Name = "chkMiercoles";
-            chkMiercoles.Size = new Size(111, 27);
+            chkMiercoles.Size = new Size(116, 29);
             chkMiercoles.TabIndex = 103;
             chkMiercoles.Text = "Miercoles";
             chkMiercoles.UseVisualStyleBackColor = true;
@@ -281,11 +282,11 @@
             // chkMartes
             // 
             chkMartes.AutoSize = true;
-            chkMartes.Font = new Font("Candara", 11F);
+            chkMartes.Font = new Font("Segoe UI", 11F);
             chkMartes.ForeColor = Color.Black;
             chkMartes.Location = new Point(171, 136);
             chkMartes.Name = "chkMartes";
-            chkMartes.Size = new Size(89, 27);
+            chkMartes.Size = new Size(92, 29);
             chkMartes.TabIndex = 102;
             chkMartes.Text = "Martes";
             chkMartes.UseVisualStyleBackColor = true;
@@ -293,11 +294,11 @@
             // chkLunes
             // 
             chkLunes.AutoSize = true;
-            chkLunes.Font = new Font("Candara", 11F);
+            chkLunes.Font = new Font("Segoe UI", 11F);
             chkLunes.ForeColor = Color.Black;
             chkLunes.Location = new Point(27, 137);
             chkLunes.Name = "chkLunes";
-            chkLunes.Size = new Size(79, 27);
+            chkLunes.Size = new Size(83, 29);
             chkLunes.TabIndex = 101;
             chkLunes.Text = "Lunes";
             chkLunes.UseVisualStyleBackColor = true;
@@ -305,11 +306,11 @@
             // lblDias
             // 
             lblDias.AutoSize = true;
-            lblDias.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblDias.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblDias.ForeColor = Color.Black;
             lblDias.Location = new Point(16, 103);
             lblDias.Name = "lblDias";
-            lblDias.Size = new Size(181, 27);
+            lblDias.Size = new Size(200, 30);
             lblDias.TabIndex = 100;
             lblDias.Text = "Dias de la Semana";
             // 
@@ -317,21 +318,21 @@
             // 
             cmbDoctores.BackColor = Color.White;
             cmbDoctores.FlatStyle = FlatStyle.System;
-            cmbDoctores.Font = new Font("Candara", 12F);
+            cmbDoctores.Font = new Font("Segoe UI", 12F);
             cmbDoctores.FormattingEnabled = true;
             cmbDoctores.Location = new Point(16, 52);
             cmbDoctores.Name = "cmbDoctores";
-            cmbDoctores.Size = new Size(297, 32);
+            cmbDoctores.Size = new Size(297, 36);
             cmbDoctores.TabIndex = 99;
             // 
             // lblDoctor
             // 
             lblDoctor.AutoSize = true;
-            lblDoctor.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblDoctor.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblDoctor.ForeColor = Color.Black;
-            lblDoctor.Location = new Point(16, 23);
+            lblDoctor.Location = new Point(16, 20);
             lblDoctor.Name = "lblDoctor";
-            lblDoctor.Size = new Size(76, 27);
+            lblDoctor.Size = new Size(84, 30);
             lblDoctor.TabIndex = 98;
             lblDoctor.Text = "Doctor";
             // 

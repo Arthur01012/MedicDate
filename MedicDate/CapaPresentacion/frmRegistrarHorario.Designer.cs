@@ -60,11 +60,11 @@
             // lblHorario
             // 
             lblHorario.AutoSize = true;
-            lblHorario.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblHorario.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblHorario.ForeColor = Color.White;
-            lblHorario.Location = new Point(3, 3);
+            lblHorario.Location = new Point(3, -1);
             lblHorario.Name = "lblHorario";
-            lblHorario.Size = new Size(143, 41);
+            lblHorario.Size = new Size(159, 46);
             lblHorario.TabIndex = 0;
             lblHorario.Text = "Horarios";
             // 
@@ -89,7 +89,7 @@
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
-            btnDesactivar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
             btnDesactivar.Location = new Point(1226, 12);
             btnDesactivar.Name = "btnDesactivar";
@@ -104,7 +104,7 @@
             btnEditarHorario.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarHorario.BackgroundImageLayout = ImageLayout.None;
             btnEditarHorario.FlatStyle = FlatStyle.Popup;
-            btnEditarHorario.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditarHorario.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarHorario.ForeColor = Color.Black;
             btnEditarHorario.Location = new Point(1046, 12);
             btnEditarHorario.Name = "btnEditarHorario";
@@ -119,7 +119,7 @@
             btnAsignarHora.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAsignarHora.BackColor = Color.FromArgb(166, 202, 236);
             btnAsignarHora.FlatStyle = FlatStyle.Popup;
-            btnAsignarHora.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAsignarHora.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAsignarHora.ForeColor = Color.Black;
             btnAsignarHora.Location = new Point(861, 12);
             btnAsignarHora.Name = "btnAsignarHora";
@@ -128,9 +128,9 @@
             btnAsignarHora.Text = "Asignar";
             btnAsignarHora.UseVisualStyleBackColor = false;
             btnAsignarHora.Click += btnAsignarHora_Click;
-            //
+            // 
             // dgvHorarios
-            //
+            // 
             dgvHorarios.AllowDrop = true;
             dgvHorarios.AllowUserToAddRows = false;
             dgvHorarios.AllowUserToDeleteRows = false;
@@ -179,23 +179,23 @@
             // lblBuscar3
             // 
             lblBuscar3.AutoSize = true;
-            lblBuscar3.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar3.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar3.ForeColor = Color.Black;
             lblBuscar3.Location = new Point(12, 24);
             lblBuscar3.Name = "lblBuscar3";
-            lblBuscar3.Size = new Size(81, 27);
+            lblBuscar3.Size = new Size(89, 30);
             lblBuscar3.TabIndex = 7;
             lblBuscar3.Text = "Buscar:";
             // 
             // txtBuscarDoctor1
             // 
             txtBuscarDoctor1.BackColor = Color.White;
-            txtBuscarDoctor1.Font = new Font("Candara", 12F);
+            txtBuscarDoctor1.Font = new Font("Segoe UI", 12F);
             txtBuscarDoctor1.ForeColor = Color.Black;
-            txtBuscarDoctor1.Location = new Point(96, 23);
+            txtBuscarDoctor1.Location = new Point(102, 26);
             txtBuscarDoctor1.Name = "txtBuscarDoctor1";
             txtBuscarDoctor1.PlaceholderText = "Ingrese el nombre del Doctor";
-            txtBuscarDoctor1.Size = new Size(549, 32);
+            txtBuscarDoctor1.Size = new Size(549, 34);
             txtBuscarDoctor1.TabIndex = 6;
             txtBuscarDoctor1.TextChanged += txtBuscarDoctor1_TextChanged;
             // 
