@@ -228,7 +228,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Teléfono principal (opcional)
+            // Teléfono principal 
             if (!string.IsNullOrEmpty(txtTelefonoPrimario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoPrimario.Text))
             {
                 MessageBox.Show("El teléfono principal no es válido.", "Validación",
@@ -237,7 +237,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Teléfono secundario (opcional)
+            // Teléfono secundario 
             if (!string.IsNullOrEmpty(txtTelefonoSecundario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
             {
                 MessageBox.Show("El teléfono secundario no es válido.", "Validación",
@@ -273,7 +273,7 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Fecha de contratación (no futura)
+            // Fecha de contratación 
             if (dtpFechaContratacion.Value > DateTime.Today)
             {
                 MessageBox.Show("La fecha de contratación no puede ser futura.", "Validación",
@@ -281,10 +281,6 @@ namespace MedicDate.CapaPresentacion
                 dtpFechaContratacion.Focus();
                 return false;
             }
-
-            // ============================================================
-            // VALIDACIONES DE USUARIO Y CONTRASEÑA (SOLO EN REGISTRO NUEVO)
-            // ============================================================
             if (!idDoctorEditar.HasValue) // Solo si es registro nuevo
             {
                 // Usuario

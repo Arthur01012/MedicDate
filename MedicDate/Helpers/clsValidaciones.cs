@@ -5,49 +5,53 @@ namespace MedicDate.Helpers
 {
     public static class clsValidaciones
     {
-        public static bool EsEmailValido(string email) // Validación básica de correo electrónico
+        public static bool EsEmailValido(string email)
         {
-            if (string.IsNullOrEmpty(email)) return false; // Verifica si el correo electrónico es nulo o vacío
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email); // Intenta crear una instancia de MailAddress con el correo electrónico proporcionado
-                return addr.Address == email; // Verifica si la dirección de correo electrónico es válida comparando la propiedad Address con el correo electrónico original
-            }
-            catch
-            {
-                return false;
-            }
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            string patron = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(email, patron);
         }
 
-        public static bool EsTelefonoValido(string telefono) // Validación básica de número de teléfono (10 dígitos)
+        public static bool EsTelefonoValido(string telefono)
         {
-            if (string.IsNullOrEmpty(telefono)) return false; // Verifica si el número de teléfono es nulo o vacío
-            return Regex.IsMatch(telefono, @"^[0-9]{10}$"); // Verifica si el número de teléfono tiene exactamente 10 dígitos utilizando una expresión regular
+            if (string.IsNullOrWhiteSpace(telefono)) return false;
+            string soloNumeros = Regex.Replace(telefono, @"[^0-9]", "");
+            return soloNumeros.Length == 10;
         }
 
         public static bool EsCURPValido(string curp)
         {
-            if (string.IsNullOrEmpty(curp)) return false; // Verifica si la CURP es nula o vacía
-            return Regex.IsMatch(curp, @"^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$"); // Verifica si la CURP tiene el formato correcto utilizando una expresión regular
+            if (string.IsNullOrWhiteSpace(curp)) return false;
+
+            // Eliminar espacios y convertir a mayúsculas
+            curp = curp.Trim().ToUpper();
+
+            // Debe tener exactamente 18 caracteres
+            if (curp.Length != 18) return false;
+
+            // Solo permitir letras mayúsculas (A-Z) y números (0-9)
+            foreach (char c in curp)
+            {
+                if (!char.IsLetterOrDigit(c)) return false;
+                if (char.IsLetter(c) && !char.IsUpper(c)) return false;
+            }
+
+            return true;
         }
 
-        public static bool EsFechaNacimientoValida(DateTime fechaNacimiento)// Validación de fecha de nacimiento
+        public static bool EsFechaNacimientoValida(DateTime fechaNacimiento)
         {
-            return fechaNacimiento <= DateTime.Today // No puede ser una fecha futura
-                   && fechaNacimiento.Year >= 1900 // No puede ser menor a 1900
-                   && fechaNacimiento > DateTime.Today.AddYears(-120); // No mayor a 120 años
+            return fechaNacimiento <= DateTime.Today
+                   && fechaNacimiento.Year >= 1900
+                   && fechaNacimiento > DateTime.Today.AddYears(-120);
         }
 
-
-        public static bool EsEdadValida(DateTime fechaNacimiento, int edadMinima = 0, int edadMaxima = 120) // Validación de edad basada en la fecha de nacimiento
+        public static bool EsEdadValida(DateTime fechaNacimiento, int edadMinima = 0, int edadMaxima = 120)
         {
-            if (fechaNacimiento > DateTime.Today) // Verifica si la fecha de nacimiento es una fecha futura
-                return false; // No puede ser una fecha futura
-
-            int edad = DateTime.Today.Year - fechaNacimiento.Year; // Calcula la edad en años
-            if (fechaNacimiento.Date > DateTime.Today.AddYears(-edad)) edad--; // Ajusta la edad si el cumpleaños aún no ha ocurrido este año
-
-            return edad >= edadMinima && edad <= edadMaxima; // Verifica si la edad está dentro del rango permitido (edad mínima y máxima)
+            if (fechaNacimiento > DateTime.Today) return false;
+            int edad = DateTime.Today.Year - fechaNacimiento.Year;
+            if (fechaNacimiento.Date > DateTime.Today.AddYears(-edad)) edad--;
+            return edad >= edadMinima && edad <= edadMaxima;
         }
     }
 }
