@@ -18,7 +18,7 @@ namespace MedicDate.Procesos
                 string sql = @"
                     SELECT 
                         CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
-                        E.fecha_nacimiento AS Fecha_Nacimiento,
+                        E.fecha_nacimiento AS 'Fecha Nacimiento',
                         E.curp AS Curp,
                         E.email AS Correo,
                         E.telefono_principal AS Telefono,
@@ -55,7 +55,7 @@ namespace MedicDate.Procesos
                 string sql = @"
                     SELECT 
                         CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
-                        E.fecha_nacimiento AS Fecha_Nacimiento,
+                        E.fecha_nacimiento AS 'Fecha Nacimiento',
                         E.curp AS Curp,
                         E.email AS Correo,
                         E.telefono_principal AS Telefono,

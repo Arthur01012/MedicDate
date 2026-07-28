@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeaderCita = new Panel();
             lblTituloAgenda = new Label();
             dgvCitas = new DataGridView();
@@ -62,15 +66,51 @@
             lblTituloAgenda.Size = new Size(180, 41);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Detalle cita";
-            // 
+            //
             // dgvCitas
-            // 
-            dgvCitas.BackgroundColor = Color.Gray;
+            //
+            dgvCitas.AllowDrop = true;
+            dgvCitas.AllowUserToAddRows = false;
+            dgvCitas.AllowUserToDeleteRows = false;
+            dgvCitas.AllowUserToResizeColumns = false;
+            dgvCitas.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgvCitas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCitas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCitas.BackgroundColor = Color.LightGray;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitas.EnableHeadersVisualStyles = false;
             dgvCitas.GridColor = Color.Gray;
             dgvCitas.Location = new Point(12, 53);
+            dgvCitas.MultiSelect = false;
             dgvCitas.Name = "dgvCitas";
-            dgvCitas.RowHeadersWidth = 51;
+            dgvCitas.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvCitas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvCitas.RowHeadersVisible = false;
+            dgvCitas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvCitas.ScrollBars = ScrollBars.Horizontal;
+            dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCitas.Size = new Size(858, 190);
             dgvCitas.TabIndex = 14;
             // 
