@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeaderDoctores = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
@@ -60,11 +60,11 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(4, 3);
+            lblTitulo.Location = new Point(4, -1);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(149, 41);
+            lblTitulo.Size = new Size(163, 46);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Doctores";
             // 
@@ -90,7 +90,7 @@
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
-            btnDesactivar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
             btnDesactivar.Location = new Point(1191, 31);
             btnDesactivar.Name = "btnDesactivar";
@@ -106,7 +106,7 @@
             btnEditarDoctor.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarDoctor.BackgroundImageLayout = ImageLayout.None;
             btnEditarDoctor.FlatStyle = FlatStyle.Popup;
-            btnEditarDoctor.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditarDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarDoctor.Location = new Point(1015, 31);
             btnEditarDoctor.Name = "btnEditarDoctor";
             btnEditarDoctor.Size = new Size(148, 45);
@@ -120,7 +120,7 @@
             btnNuevoDoctor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoDoctor.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoDoctor.FlatStyle = FlatStyle.Popup;
-            btnNuevoDoctor.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevoDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnNuevoDoctor.Location = new Point(832, 31);
             btnNuevoDoctor.Name = "btnNuevoDoctor";
             btnNuevoDoctor.Size = new Size(148, 45);
@@ -136,21 +136,21 @@
             dgvDoctores.AllowUserToDeleteRows = false;
             dgvDoctores.AllowUserToResizeColumns = false;
             dgvDoctores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvDoctores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvDoctores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvDoctores.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDoctores.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoctores.EnableHeadersVisualStyles = false;
             dgvDoctores.GridColor = Color.Gray;
@@ -158,19 +158,19 @@
             dgvDoctores.MultiSelect = false;
             dgvDoctores.Name = "dgvDoctores";
             dgvDoctores.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvDoctores.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvDoctores.RowHeadersVisible = false;
             dgvDoctores.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvDoctores.ScrollBars = ScrollBars.Horizontal;
             dgvDoctores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDoctores.Size = new Size(1284, 601);
@@ -180,23 +180,23 @@
             // 
             lblBuscar.AutoSize = true;
             lblBuscar.BackColor = Color.LightGray;
-            lblBuscar.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar.ForeColor = Color.Black;
             lblBuscar.Location = new Point(55, 49);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(81, 27);
+            lblBuscar.Size = new Size(89, 30);
             lblBuscar.TabIndex = 1;
             lblBuscar.Text = "Buscar:";
             // 
             // txtBuscarDoctor
             // 
             txtBuscarDoctor.BackColor = Color.White;
-            txtBuscarDoctor.Font = new Font("Candara", 12F);
+            txtBuscarDoctor.Font = new Font("Segoe UI", 12F);
             txtBuscarDoctor.ForeColor = Color.Black;
-            txtBuscarDoctor.Location = new Point(142, 48);
+            txtBuscarDoctor.Location = new Point(147, 52);
             txtBuscarDoctor.Name = "txtBuscarDoctor";
             txtBuscarDoctor.PlaceholderText = "Ingrese el nombre del Doctor";
-            txtBuscarDoctor.Size = new Size(549, 32);
+            txtBuscarDoctor.Size = new Size(549, 34);
             txtBuscarDoctor.TabIndex = 0;
             txtBuscarDoctor.TextChanged += txtBuscarDoctor_TextChanged;
             // 

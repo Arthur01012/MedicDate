@@ -57,11 +57,11 @@
             // lblTituloAgenda
             // 
             lblTituloAgenda.AutoSize = true;
-            lblTituloAgenda.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblTituloAgenda.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(3, 4);
+            lblTituloAgenda.Location = new Point(3, -1);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(250, 41);
+            lblTituloAgenda.Size = new Size(275, 46);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Agenda General";
             // 
@@ -76,9 +76,9 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 12;
-            //
+            // 
             // dgvDoctores
-            //
+            // 
             dgvDoctores.AllowDrop = true;
             dgvDoctores.AllowUserToAddRows = false;
             dgvDoctores.AllowUserToDeleteRows = false;
@@ -127,23 +127,23 @@
             // lblBuscar
             // 
             lblBuscar.AutoSize = true;
-            lblBuscar.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar.ForeColor = Color.Black;
             lblBuscar.Location = new Point(7, 19);
             lblBuscar.Name = "lblBuscar";
-            lblBuscar.Size = new Size(81, 27);
+            lblBuscar.Size = new Size(89, 30);
             lblBuscar.TabIndex = 9;
             lblBuscar.Text = "Buscar:";
             // 
             // txtBuscarDoctor
             // 
             txtBuscarDoctor.BackColor = Color.White;
-            txtBuscarDoctor.Font = new Font("Candara", 12F);
+            txtBuscarDoctor.Font = new Font("Segoe UI", 12F);
             txtBuscarDoctor.ForeColor = Color.Black;
             txtBuscarDoctor.Location = new Point(101, 19);
             txtBuscarDoctor.Name = "txtBuscarDoctor";
             txtBuscarDoctor.PlaceholderText = "Ingrese el nombre del Doctor";
-            txtBuscarDoctor.Size = new Size(549, 32);
+            txtBuscarDoctor.Size = new Size(549, 34);
             txtBuscarDoctor.TabIndex = 8;
             // 
             // frmAgendaGeneral

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeaderEspecialidades = new Panel();
             lblEspecialidad = new Label();
             pnlContenedor = new Panel();
@@ -64,11 +64,11 @@
             // lblEspecialidad
             // 
             lblEspecialidad.AutoSize = true;
-            lblEspecialidad.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblEspecialidad.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblEspecialidad.ForeColor = Color.White;
-            lblEspecialidad.Location = new Point(3, 4);
+            lblEspecialidad.Location = new Point(3, -1);
             lblEspecialidad.Name = "lblEspecialidad";
-            lblEspecialidad.Size = new Size(229, 41);
+            lblEspecialidad.Size = new Size(249, 46);
             lblEspecialidad.TabIndex = 0;
             lblEspecialidad.Text = "Especialidades";
             // 
@@ -95,7 +95,7 @@
             // txtDescripcion
             // 
             txtDescripcion.BackColor = Color.White;
-            txtDescripcion.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescripcion.Font = new Font("Segoe UI", 12F);
             txtDescripcion.ForeColor = Color.Black;
             txtDescripcion.Location = new Point(12, 102);
             txtDescripcion.Multiline = true;
@@ -106,30 +106,30 @@
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
-            lblDescripcion.Font = new Font("Candara", 10.2F);
+            lblDescripcion.Font = new Font("Segoe UI", 10.2F);
             lblDescripcion.Location = new Point(12, 75);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(95, 21);
+            lblDescripcion.Size = new Size(98, 23);
             lblDescripcion.TabIndex = 118;
             lblDescripcion.Text = "Descripcion";
             // 
             // txtEspecialidad
             // 
             txtEspecialidad.BackColor = Color.White;
-            txtEspecialidad.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEspecialidad.Font = new Font("Segoe UI", 12F);
             txtEspecialidad.ForeColor = Color.Black;
             txtEspecialidad.Location = new Point(12, 40);
             txtEspecialidad.Name = "txtEspecialidad";
-            txtEspecialidad.Size = new Size(1374, 32);
+            txtEspecialidad.Size = new Size(1374, 34);
             txtEspecialidad.TabIndex = 117;
             // 
             // lblNombreEspecialidad
             // 
             lblNombreEspecialidad.AutoSize = true;
-            lblNombreEspecialidad.Font = new Font("Candara", 10.2F);
+            lblNombreEspecialidad.Font = new Font("Segoe UI", 10.2F);
             lblNombreEspecialidad.Location = new Point(12, 16);
             lblNombreEspecialidad.Name = "lblNombreEspecialidad";
-            lblNombreEspecialidad.Size = new Size(69, 21);
+            lblNombreEspecialidad.Size = new Size(73, 23);
             lblNombreEspecialidad.TabIndex = 116;
             lblNombreEspecialidad.Text = "Nombre";
             // 
@@ -138,13 +138,13 @@
             btnDarBaja4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDarBaja4.BackColor = Color.FromArgb(176, 11, 11);
             btnDarBaja4.FlatStyle = FlatStyle.Popup;
-            btnDarBaja4.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDarBaja4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDarBaja4.ForeColor = Color.White;
             btnDarBaja4.Location = new Point(1226, 280);
             btnDarBaja4.Name = "btnDarBaja4";
             btnDarBaja4.Size = new Size(148, 45);
             btnDarBaja4.TabIndex = 17;
-            btnDarBaja4.Text = "Dar de Baja";
+            btnDarBaja4.Text = "Eliminar";
             btnDarBaja4.UseVisualStyleBackColor = false;
             // 
             // btnEditarEspecialidad
@@ -153,7 +153,7 @@
             btnEditarEspecialidad.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarEspecialidad.BackgroundImageLayout = ImageLayout.None;
             btnEditarEspecialidad.FlatStyle = FlatStyle.Popup;
-            btnEditarEspecialidad.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditarEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarEspecialidad.Location = new Point(1046, 280);
             btnEditarEspecialidad.Name = "btnEditarEspecialidad";
             btnEditarEspecialidad.Size = new Size(148, 45);
@@ -166,36 +166,36 @@
             btnNuevoEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoEspecialidad.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoEspecialidad.FlatStyle = FlatStyle.Popup;
-            btnNuevoEspecialidad.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevoEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnNuevoEspecialidad.Location = new Point(861, 280);
             btnNuevoEspecialidad.Name = "btnNuevoEspecialidad";
             btnNuevoEspecialidad.Size = new Size(148, 45);
             btnNuevoEspecialidad.TabIndex = 15;
             btnNuevoEspecialidad.Text = "Nuevo";
             btnNuevoEspecialidad.UseVisualStyleBackColor = false;
-            //
+            // 
             // dgvEspecialidad
-            //
+            // 
             dgvEspecialidad.AllowDrop = true;
             dgvEspecialidad.AllowUserToAddRows = false;
             dgvEspecialidad.AllowUserToDeleteRows = false;
             dgvEspecialidad.AllowUserToResizeColumns = false;
             dgvEspecialidad.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvEspecialidad.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvEspecialidad.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvEspecialidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEspecialidad.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvEspecialidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvEspecialidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvEspecialidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEspecialidad.EnableHeadersVisualStyles = false;
             dgvEspecialidad.GridColor = Color.Gray;
@@ -203,19 +203,19 @@
             dgvEspecialidad.MultiSelect = false;
             dgvEspecialidad.Name = "dgvEspecialidad";
             dgvEspecialidad.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvEspecialidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvEspecialidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvEspecialidad.RowHeadersVisible = false;
             dgvEspecialidad.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvEspecialidad.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvEspecialidad.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvEspecialidad.ScrollBars = ScrollBars.Horizontal;
             dgvEspecialidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEspecialidad.Size = new Size(1374, 300);
@@ -224,22 +224,22 @@
             // lblBuscar1
             // 
             lblBuscar1.AutoSize = true;
-            lblBuscar1.Font = new Font("Candara", 13F, FontStyle.Bold);
+            lblBuscar1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar1.Location = new Point(12, 355);
             lblBuscar1.Name = "lblBuscar1";
-            lblBuscar1.Size = new Size(81, 27);
+            lblBuscar1.Size = new Size(89, 30);
             lblBuscar1.TabIndex = 13;
             lblBuscar1.Text = "Buscar:";
             // 
             // txtBuscarEspecialidad
             // 
             txtBuscarEspecialidad.BackColor = Color.White;
-            txtBuscarEspecialidad.Font = new Font("Candara", 12F);
+            txtBuscarEspecialidad.Font = new Font("Segoe UI", 12F);
             txtBuscarEspecialidad.ForeColor = Color.Black;
-            txtBuscarEspecialidad.Location = new Point(97, 353);
+            txtBuscarEspecialidad.Location = new Point(108, 359);
             txtBuscarEspecialidad.Name = "txtBuscarEspecialidad";
             txtBuscarEspecialidad.PlaceholderText = "Nombre de la Especialidad";
-            txtBuscarEspecialidad.Size = new Size(549, 32);
+            txtBuscarEspecialidad.Size = new Size(549, 34);
             txtBuscarEspecialidad.TabIndex = 12;
             txtBuscarEspecialidad.TextChanged += txtBuscarEspecialidad_TextChanged;
             // 

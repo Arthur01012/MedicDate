@@ -63,11 +63,11 @@
             // lblCitas
             // 
             lblCitas.AutoSize = true;
-            lblCitas.Font = new Font("Candara", 20F, FontStyle.Bold);
+            lblCitas.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblCitas.ForeColor = Color.White;
             lblCitas.Location = new Point(3, 7);
             lblCitas.Name = "lblCitas";
-            lblCitas.Size = new Size(88, 41);
+            lblCitas.Size = new Size(97, 46);
             lblCitas.TabIndex = 0;
             lblCitas.Text = "Citas";
             // 
@@ -100,7 +100,7 @@
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
-            btnGuardar.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnGuardar.Location = new Point(499, 411);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(130, 52);
@@ -113,7 +113,7 @@
             btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar1.FlatStyle = FlatStyle.Popup;
-            btnCancelar1.Font = new Font("Candara", 10.2F, FontStyle.Bold);
+            btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar1.ForeColor = Color.White;
             btnCancelar1.Location = new Point(332, 411);
             btnCancelar1.Name = "btnCancelar1";
@@ -125,18 +125,18 @@
             // lblMotivo
             // 
             lblMotivo.AutoSize = true;
-            lblMotivo.Font = new Font("Candara", 10.2F);
+            lblMotivo.Font = new Font("Segoe UI", 10.2F);
             lblMotivo.ForeColor = Color.Black;
-            lblMotivo.Location = new Point(12, 240);
+            lblMotivo.Location = new Point(12, 237);
             lblMotivo.Name = "lblMotivo";
-            lblMotivo.Size = new Size(63, 21);
+            lblMotivo.Size = new Size(63, 23);
             lblMotivo.TabIndex = 35;
             lblMotivo.Text = "Motivo";
             // 
             // txtMotivo
             // 
             txtMotivo.BackColor = Color.White;
-            txtMotivo.Font = new Font("Candara", 12F);
+            txtMotivo.Font = new Font("Segoe UI", 12F);
             txtMotivo.ForeColor = Color.Black;
             txtMotivo.Location = new Point(12, 263);
             txtMotivo.Multiline = true;
@@ -147,22 +147,22 @@
             // lblCosto
             // 
             lblCosto.AutoSize = true;
-            lblCosto.Font = new Font("Candara", 10.2F);
+            lblCosto.Font = new Font("Segoe UI", 10.2F);
             lblCosto.ForeColor = Color.Black;
-            lblCosto.Location = new Point(12, 174);
+            lblCosto.Location = new Point(12, 171);
             lblCosto.Name = "lblCosto";
-            lblCosto.Size = new Size(52, 21);
+            lblCosto.Size = new Size(54, 23);
             lblCosto.TabIndex = 33;
             lblCosto.Text = "Costo";
             // 
             // txtcosto
             // 
             txtcosto.BackColor = Color.White;
-            txtcosto.Font = new Font("Candara", 12F);
+            txtcosto.Font = new Font("Segoe UI", 12F);
             txtcosto.ForeColor = Color.Black;
             txtcosto.Location = new Point(12, 197);
             txtcosto.Name = "txtcosto";
-            txtcosto.Size = new Size(299, 32);
+            txtcosto.Size = new Size(299, 34);
             txtcosto.TabIndex = 32;
             // 
             // dtpHoraCita
@@ -173,21 +173,21 @@
             dtpHoraCita.CalendarTitleForeColor = Color.Black;
             dtpHoraCita.CalendarTrailingForeColor = Color.Gray;
             dtpHoraCita.CustomFormat = "hh:mm";
-            dtpHoraCita.Font = new Font("Candara", 12F);
+            dtpHoraCita.Font = new Font("Segoe UI", 12F);
             dtpHoraCita.Format = DateTimePickerFormat.Time;
             dtpHoraCita.Location = new Point(330, 125);
             dtpHoraCita.Name = "dtpHoraCita";
             dtpHoraCita.ShowUpDown = true;
-            dtpHoraCita.Size = new Size(299, 32);
+            dtpHoraCita.Size = new Size(299, 34);
             dtpHoraCita.TabIndex = 31;
             // 
             // lblHoraCita
             // 
             lblHoraCita.AutoSize = true;
-            lblHoraCita.Font = new Font("Candara", 10.2F);
-            lblHoraCita.Location = new Point(330, 102);
+            lblHoraCita.Font = new Font("Segoe UI", 10.2F);
+            lblHoraCita.Location = new Point(330, 100);
             lblHoraCita.Name = "lblHoraCita";
-            lblHoraCita.Size = new Size(45, 21);
+            lblHoraCita.Size = new Size(47, 23);
             lblHoraCita.TabIndex = 30;
             lblHoraCita.Text = "Hora";
             // 
@@ -198,52 +198,52 @@
             dtpFechaCita.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
             dtpFechaCita.CalendarTitleForeColor = Color.Black;
             dtpFechaCita.CalendarTrailingForeColor = Color.Gray;
-            dtpFechaCita.Font = new Font("Candara", 12F);
+            dtpFechaCita.Font = new Font("Segoe UI", 12F);
             dtpFechaCita.Location = new Point(12, 125);
             dtpFechaCita.Name = "dtpFechaCita";
-            dtpFechaCita.Size = new Size(299, 32);
+            dtpFechaCita.Size = new Size(299, 34);
             dtpFechaCita.TabIndex = 29;
             // 
             // lblFechaCita
             // 
             lblFechaCita.AutoSize = true;
-            lblFechaCita.Font = new Font("Candara", 10.2F);
-            lblFechaCita.Location = new Point(12, 102);
+            lblFechaCita.Font = new Font("Segoe UI", 10.2F);
+            lblFechaCita.Location = new Point(12, 100);
             lblFechaCita.Name = "lblFechaCita";
-            lblFechaCita.Size = new Size(52, 21);
+            lblFechaCita.Size = new Size(54, 23);
             lblFechaCita.TabIndex = 28;
             lblFechaCita.Text = "Fecha";
             // 
             // cmbDoctor
             // 
             cmbDoctor.BackColor = Color.White;
-            cmbDoctor.Font = new Font("Candara", 12F);
+            cmbDoctor.Font = new Font("Segoe UI", 12F);
             cmbDoctor.ForeColor = Color.Black;
             cmbDoctor.FormattingEnabled = true;
             cmbDoctor.Location = new Point(330, 47);
             cmbDoctor.Name = "cmbDoctor";
-            cmbDoctor.Size = new Size(299, 32);
+            cmbDoctor.Size = new Size(299, 36);
             cmbDoctor.TabIndex = 27;
             // 
             // lblNombreDoctor
             // 
             lblNombreDoctor.AutoSize = true;
-            lblNombreDoctor.Font = new Font("Candara", 10.2F);
+            lblNombreDoctor.Font = new Font("Segoe UI", 10.2F);
             lblNombreDoctor.ForeColor = Color.Black;
-            lblNombreDoctor.Location = new Point(330, 24);
+            lblNombreDoctor.Location = new Point(330, 22);
             lblNombreDoctor.Name = "lblNombreDoctor";
-            lblNombreDoctor.Size = new Size(61, 21);
+            lblNombreDoctor.Size = new Size(62, 23);
             lblNombreDoctor.TabIndex = 26;
             lblNombreDoctor.Text = "Doctor";
             // 
             // lblNombrePaciente
             // 
             lblNombrePaciente.AutoSize = true;
-            lblNombrePaciente.Font = new Font("Candara", 10.2F);
+            lblNombrePaciente.Font = new Font("Segoe UI", 10.2F);
             lblNombrePaciente.ForeColor = Color.Black;
-            lblNombrePaciente.Location = new Point(12, 23);
+            lblNombrePaciente.Location = new Point(12, 22);
             lblNombrePaciente.Name = "lblNombrePaciente";
-            lblNombrePaciente.Size = new Size(72, 21);
+            lblNombrePaciente.Size = new Size(74, 23);
             lblNombrePaciente.TabIndex = 4;
             lblNombrePaciente.Text = "Paciente";
             lblNombrePaciente.Click += lblNombrePaciente_Click;
@@ -251,11 +251,11 @@
             // tctNombrePaciente
             // 
             tctNombrePaciente.BackColor = Color.White;
-            tctNombrePaciente.Font = new Font("Candara", 12F);
+            tctNombrePaciente.Font = new Font("Segoe UI", 12F);
             tctNombrePaciente.ForeColor = Color.Black;
             tctNombrePaciente.Location = new Point(12, 47);
             tctNombrePaciente.Name = "tctNombrePaciente";
-            tctNombrePaciente.Size = new Size(299, 32);
+            tctNombrePaciente.Size = new Size(299, 34);
             tctNombrePaciente.TabIndex = 3;
             // 
             // frmCita

@@ -16,5 +16,10 @@ namespace MedicDate.CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void cmbFiltrarDoctor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
