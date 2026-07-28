@@ -80,7 +80,6 @@
             // lblTituloAsistente
             // 
             lblTituloAsistente.AutoSize = true;
-            lblTituloAsistente.Font = new Font("Candara", 20F, FontStyle.Bold);
             lblTituloAsistente.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloAsistente.ForeColor = Color.White;
             lblTituloAsistente.Location = new Point(3, 8);
@@ -115,11 +114,17 @@
             pnlContenedor.Controls.Add(lblNombreAsistente);
             pnlContenedor.Controls.Add(tctNombreAsistente);
             pnlContenedor.Controls.Add(lblDatosPersonales1);
+            pnlContenedor.Controls.Add(lblConfirmarContrasena);
+            pnlContenedor.Controls.Add(txtConfirmarContrasena);
+            pnlContenedor.Controls.Add(txtTelefonoSecundario);
+            pnlContenedor.Controls.Add(lblTelefonoSecundario);
+            pnlContenedor.Controls.Add(txtCurp);
+            pnlContenedor.Controls.Add(lblCurp);
             pnlContenedor.Dock = DockStyle.Fill;
             pnlContenedor.ForeColor = Color.Black;
             pnlContenedor.Location = new Point(0, 55);
             pnlContenedor.Name = "pnlContenedor";
-            pnlContenedor.Size = new Size(657, 520);
+            pnlContenedor.Size = new Size(657, 660);
             pnlContenedor.TabIndex = 9;
             // 
             // lblConfirmarContrasena
@@ -158,7 +163,6 @@
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTurno.ForeColor = Color.Black;
-            lblTurno.Location = new Point(349, 344);
             lblTurno.Location = new Point(344, 282);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(52, 21);
@@ -210,7 +214,6 @@
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEstado.ForeColor = Color.Black;
-            lblEstado.Location = new Point(17, 344);
             lblEstado.Location = new Point(15, 477);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(59, 21);
@@ -222,31 +225,39 @@
             txtPassword.BackColor = Color.White;
             txtPassword.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPassword.ForeColor = Color.Black;
-            txtPassword.Location = new Point(347, 301);
             txtPassword.Location = new Point(342, 432);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(299, 32);
             txtPassword.TabIndex = 51;
             txtPassword.UseSystemPasswordChar = true;
-            // 
+            //
+            // lblPassword
+            //
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPassword.ForeColor = Color.Black;
+            lblPassword.Location = new Point(342, 409);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(112, 21);
+            lblPassword.TabIndex = 50;
+            lblPassword.Text = "Contraseña";
+            //
             // txtUsuarioAsistente
-            // 
+            //
             txtUsuarioAsistente.BackColor = Color.White;
             txtUsuarioAsistente.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuarioAsistente.ForeColor = Color.Black;
-            txtUsuarioAsistente.Location = new Point(17, 301);
             txtUsuarioAsistente.Location = new Point(15, 365);
             txtUsuarioAsistente.Name = "txtUsuarioAsistente";
             txtUsuarioAsistente.Size = new Size(299, 32);
             txtUsuarioAsistente.TabIndex = 49;
-            // 
+            //
             // lblUsuario
-            // 
+            //
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblUsuario.ForeColor = Color.Black;
-            lblUsuario.Location = new Point(17, 277);
             lblUsuario.Location = new Point(15, 341);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(66, 21);
@@ -271,7 +282,6 @@
             lblFechaRegistro.AutoSize = true;
             lblFechaRegistro.Font = new Font("Candara", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblFechaRegistro.ForeColor = Color.Black;
-            lblFechaRegistro.Location = new Point(349, 210);
             lblFechaRegistro.Location = new Point(344, 341);
             lblFechaRegistro.Name = "lblFechaRegistro";
             lblFechaRegistro.Size = new Size(161, 21);
@@ -304,7 +314,6 @@
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.Black;
-            txtEmail.Font = new Font("Candara", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.Location = new Point(349, 162);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(299, 32);
@@ -435,7 +444,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(657, 575);
+            ClientSize = new Size(657, 715);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderAsistente);
             Name = "frmAsistente";
@@ -444,9 +453,6 @@
             pnlHeaderAsistente.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
-            ClientSize = new Size(657, 715);
-            Name = "frmAsistente";
-            Text = "Gestion de Asistente";
             ResumeLayout(false);
         }
 

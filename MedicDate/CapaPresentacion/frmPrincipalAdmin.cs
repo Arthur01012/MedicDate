@@ -21,7 +21,7 @@ namespace MedicDate.CapaPresentacion
         public frmPrincipalAdmin()
         {
             InitializeComponent();
-            principal = new clsPrincipal(); 
+            principal = new clsPrincipal();
         }
 
         private void btnDoctores_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace MedicDate.CapaPresentacion
             {
                 lblUsuario.Text = Sesion.UsuarioActual.nombre_rol;
             }
-            
+
         }
     }
 }
