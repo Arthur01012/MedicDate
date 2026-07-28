@@ -60,11 +60,11 @@
             // lbAsistente
             // 
             lbAsistente.AutoSize = true;
-            lbAsistente.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbAsistente.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lbAsistente.ForeColor = Color.White;
-            lbAsistente.Location = new Point(3, 4);
+            lbAsistente.Location = new Point(3, -1);
             lbAsistente.Name = "lbAsistente";
-            lbAsistente.Size = new Size(109, 28);
+            lbAsistente.Size = new Size(182, 46);
             lbAsistente.TabIndex = 0;
             lbAsistente.Text = "Asistentes";
             // 
@@ -89,7 +89,7 @@
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
-            btnDesactivar.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
             btnDesactivar.Location = new Point(1202, 31);
             btnDesactivar.Name = "btnDesactivar";
@@ -105,7 +105,7 @@
             btnEditarAsistente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
-            btnEditarAsistente.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarAsistente.Location = new Point(1022, 31);
             btnEditarAsistente.Name = "btnEditarAsistente";
             btnEditarAsistente.Size = new Size(148, 45);
@@ -119,7 +119,7 @@
             btnNuevoAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoAsistente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoAsistente.FlatStyle = FlatStyle.Popup;
-            btnNuevoAsistente.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNuevoAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnNuevoAsistente.Location = new Point(837, 31);
             btnNuevoAsistente.Name = "btnNuevoAsistente";
             btnNuevoAsistente.Size = new Size(148, 45);
@@ -127,9 +127,9 @@
             btnNuevoAsistente.Text = "Agregar";
             btnNuevoAsistente.UseVisualStyleBackColor = false;
             btnNuevoAsistente.Click += btnNuevoAsistente_Click;
-            //
+            // 
             // dgvAsistentes
-            //
+            // 
             dgvAsistentes.AllowDrop = true;
             dgvAsistentes.AllowUserToAddRows = false;
             dgvAsistentes.AllowUserToDeleteRows = false;
@@ -178,22 +178,22 @@
             // lblBuscar1
             // 
             lblBuscar1.AutoSize = true;
-            lblBuscar1.Font = new Font("Candara", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBuscar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblBuscar1.Location = new Point(42, 43);
             lblBuscar1.Name = "lblBuscar1";
-            lblBuscar1.Size = new Size(63, 21);
+            lblBuscar1.Size = new Size(68, 23);
             lblBuscar1.TabIndex = 7;
             lblBuscar1.Text = "Buscar:";
             // 
             // txtBuscarAsistente
             // 
             txtBuscarAsistente.BackColor = Color.White;
-            txtBuscarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscarAsistente.Font = new Font("Segoe UI", 12F);
             txtBuscarAsistente.ForeColor = Color.Black;
-            txtBuscarAsistente.Location = new Point(107, 40);
+            txtBuscarAsistente.Location = new Point(113, 38);
             txtBuscarAsistente.Name = "txtBuscarAsistente";
             txtBuscarAsistente.PlaceholderText = "Ingrese el nombre del Asistente";
-            txtBuscarAsistente.Size = new Size(549, 30);
+            txtBuscarAsistente.Size = new Size(549, 34);
             txtBuscarAsistente.TabIndex = 6;
             txtBuscarAsistente.TextChanged += txtBuscarAsistente_TextChanged;
             // 

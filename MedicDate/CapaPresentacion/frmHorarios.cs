@@ -30,7 +30,7 @@ namespace MedicDate.CapaPresentacion
         {
             try
             {
-                DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos(); 
+                DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos();
                 cmbDoctores.DataSource = doctores;
                 cmbDoctores.DisplayMember = "NombreCompleto";
                 cmbDoctores.ValueMember = "id_empleado";
@@ -264,6 +264,11 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar5_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pnlContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
