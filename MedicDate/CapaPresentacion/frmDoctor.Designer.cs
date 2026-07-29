@@ -192,7 +192,7 @@
             // 
             chkActivo.AutoSize = true;
             chkActivo.Font = new Font("Segoe UI", 11F);
-            chkActivo.Location = new Point(301, 471);
+            chkActivo.Location = new Point(301, 472);
             chkActivo.Margin = new Padding(4, 2, 4, 2);
             chkActivo.Name = "chkActivo";
             chkActivo.Size = new Size(70, 24);
@@ -540,6 +540,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmDoctor";
             Text = "Gestinar Doctor";
+            Load += frmDoctor_Load;
             pnlHeaderDoctor.ResumeLayout(false);
             pnlHeaderDoctor.PerformLayout();
             pnlContenedor.ResumeLayout(false);
