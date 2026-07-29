@@ -32,13 +32,19 @@
             lblUsuario = new Label();
             lblTitulo = new Label();
             pnlLateral1 = new Panel();
+            btnPerfilD = new Button();
+            btnPacientesD = new Button();
+            btnAgendaD = new Button();
+            btnAgendaGeneralA = new Button();
+            btnCitasA = new Button();
+            btnPacientesA = new Button();
+            label1 = new Label();
             btnCerrar = new Button();
             btnEspecialidades = new Button();
             btnHorarios = new Button();
             btnAsistentes = new Button();
             btnDoctores = new Button();
             pnlContenedor = new Panel();
-            label1 = new Label();
             pnlHeaderMedicDate.SuspendLayout();
             pnlLateral1.SuspendLayout();
             SuspendLayout();
@@ -83,6 +89,12 @@
             // 
             pnlLateral1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlLateral1.BackColor = Color.FromArgb(25, 85, 140);
+            pnlLateral1.Controls.Add(btnPerfilD);
+            pnlLateral1.Controls.Add(btnPacientesD);
+            pnlLateral1.Controls.Add(btnAgendaD);
+            pnlLateral1.Controls.Add(btnAgendaGeneralA);
+            pnlLateral1.Controls.Add(btnCitasA);
+            pnlLateral1.Controls.Add(btnPacientesA);
             pnlLateral1.Controls.Add(label1);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
@@ -94,6 +106,93 @@
             pnlLateral1.Name = "pnlLateral1";
             pnlLateral1.Size = new Size(168, 806);
             pnlLateral1.TabIndex = 8;
+            // 
+            // btnPerfilD
+            // 
+            btnPerfilD.BackColor = Color.FromArgb(166, 202, 236);
+            btnPerfilD.FlatStyle = FlatStyle.Popup;
+            btnPerfilD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPerfilD.Location = new Point(12, 651);
+            btnPerfilD.Name = "btnPerfilD";
+            btnPerfilD.Size = new Size(148, 60);
+            btnPerfilD.TabIndex = 2;
+            btnPerfilD.Text = "Perfil";
+            btnPerfilD.UseVisualStyleBackColor = false;
+            // 
+            // btnPacientesD
+            // 
+            btnPacientesD.BackColor = Color.FromArgb(166, 202, 236);
+            btnPacientesD.FlatStyle = FlatStyle.Popup;
+            btnPacientesD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnPacientesD.ForeColor = Color.Black;
+            btnPacientesD.Location = new Point(12, 585);
+            btnPacientesD.Name = "btnPacientesD";
+            btnPacientesD.Size = new Size(148, 60);
+            btnPacientesD.TabIndex = 1;
+            btnPacientesD.Text = "Pacientes";
+            btnPacientesD.UseVisualStyleBackColor = false;
+            // 
+            // btnAgendaD
+            // 
+            btnAgendaD.BackColor = Color.FromArgb(166, 202, 236);
+            btnAgendaD.FlatStyle = FlatStyle.Popup;
+            btnAgendaD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgendaD.ForeColor = Color.Black;
+            btnAgendaD.Location = new Point(12, 519);
+            btnAgendaD.Name = "btnAgendaD";
+            btnAgendaD.Size = new Size(148, 60);
+            btnAgendaD.TabIndex = 0;
+            btnAgendaD.Text = "Agenda";
+            btnAgendaD.UseVisualStyleBackColor = false;
+            // 
+            // btnAgendaGeneralA
+            // 
+            btnAgendaGeneralA.BackColor = Color.FromArgb(166, 202, 236);
+            btnAgendaGeneralA.FlatStyle = FlatStyle.Popup;
+            btnAgendaGeneralA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgendaGeneralA.ForeColor = Color.Black;
+            btnAgendaGeneralA.Location = new Point(10, 453);
+            btnAgendaGeneralA.Name = "btnAgendaGeneralA";
+            btnAgendaGeneralA.Size = new Size(148, 60);
+            btnAgendaGeneralA.TabIndex = 2;
+            btnAgendaGeneralA.Text = "Agenda general";
+            btnAgendaGeneralA.UseVisualStyleBackColor = false;
+            // 
+            // btnCitasA
+            // 
+            btnCitasA.BackColor = Color.FromArgb(166, 202, 236);
+            btnCitasA.FlatStyle = FlatStyle.Popup;
+            btnCitasA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCitasA.Location = new Point(11, 387);
+            btnCitasA.Name = "btnCitasA";
+            btnCitasA.Size = new Size(148, 60);
+            btnCitasA.TabIndex = 1;
+            btnCitasA.Text = "Citas";
+            btnCitasA.UseVisualStyleBackColor = false;
+            // 
+            // btnPacientesA
+            // 
+            btnPacientesA.BackColor = Color.FromArgb(166, 202, 236);
+            btnPacientesA.FlatStyle = FlatStyle.Popup;
+            btnPacientesA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPacientesA.ForeColor = Color.Black;
+            btnPacientesA.Location = new Point(10, 321);
+            btnPacientesA.Name = "btnPacientesA";
+            btnPacientesA.Size = new Size(148, 60);
+            btnPacientesA.TabIndex = 0;
+            btnPacientesA.Text = "Pacientes";
+            btnPacientesA.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(35, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 31);
+            label1.TabIndex = 0;
+            label1.Text = "Modulo";
             // 
             // btnCerrar
             // 
@@ -175,17 +274,6 @@
             pnlContenedor.Size = new Size(1416, 806);
             pnlContenedor.TabIndex = 9;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(35, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(99, 31);
-            label1.TabIndex = 0;
-            label1.Text = "Modulo";
-            // 
             // frmPrincipalAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -219,5 +307,11 @@
         public Label lblUsuario;
         public Label lblTitulo;
         private Label label1;
+        private Button btnPacientesA;
+        private Button btnAgendaGeneralA;
+        private Button btnCitasA;
+        private Button btnPacientesD;
+        private Button btnAgendaD;
+        private Button btnPerfilD;
     }
 }
