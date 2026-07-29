@@ -57,8 +57,59 @@ namespace MedicDate.CapaPresentacion
             if (Sesion.UsuarioActual != null)
             {
                 lblUsuario.Text = Sesion.UsuarioActual.nombre_rol;
+                ConfigurarMenu();
             }
 
+        }
+
+        private void ConfigurarMenu()
+        {
+            if (Sesion.UsuarioActual != null)
+            {
+                // Ocultar todos los botones por defecto
+                btnDoctores.Visible= false;
+                btnAsistentes.Visible = false;
+                btnHorarios.Visible = false;
+                btnEspecialidades.Visible = false;
+                btnPacientesA.Visible = false;
+                btnCitasA.Visible = false;
+                btnAgendaGeneralA.Visible = false;
+                btnAgendaD.Visible = false;
+                btnPacientesD.Visible = false;
+                btnPerfilD.Visible = false;
+
+                // Mostrar botones según el rol del usuario
+                switch (Sesion.UsuarioActual.id_rol)
+                {
+                    case (int)clsUsuario.Roles.Administrador:
+                        btnDoctores.Visible = true;
+                        btnAsistentes.Visible = true;
+                        btnHorarios.Visible = true;
+                        btnEspecialidades.Visible = true;
+                        break;
+                    case (int)clsUsuario.Roles.Asistente:
+                        btnPacientesA.Visible = true;
+                        btnPacientesA.Location = new Point(10, 55); // Ajusta la posición
+
+                        btnCitasA.Visible = true;
+                        btnCitasA.Location = new Point(10, 122); // Ajusta la posición
+
+                        btnAgendaGeneralA.Visible = true;
+                        btnAgendaGeneralA.Location = new Point(10, 189); // Ajusta la posición
+
+                        break;
+                    case (int)clsUsuario.Roles.Doctor:
+                        btnAgendaD.Visible = true;
+                        btnAgendaD.Location = new Point(10, 55); // Ajusta la posición
+
+                        btnPacientesD.Visible = true;
+                        btnPacientesD.Location = new Point(10, 122); // Ajusta la posición
+
+                        btnPerfilD.Visible = true;
+                        btnPerfilD.Location = new Point(10, 189); // Ajusta la posición
+                        break;
+                }
+            }
         }
     }
 }
