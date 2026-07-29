@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeaderPacientes = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
@@ -78,16 +82,51 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 10;
-            // 
+            //
             // dgvPacientes
-            // 
+            //
+            dgvPacientes.AllowDrop = true;
+            dgvPacientes.AllowUserToAddRows = false;
+            dgvPacientes.AllowUserToDeleteRows = false;
+            dgvPacientes.AllowUserToResizeColumns = false;
+            dgvPacientes.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvPacientes.BackgroundColor = Color.Gray;
+            dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPacientes.BackgroundColor = Color.LightGray;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPacientes.EnableHeadersVisualStyles = false;
             dgvPacientes.GridColor = Color.Gray;
             dgvPacientes.Location = new Point(10, 74);
+            dgvPacientes.MultiSelect = false;
             dgvPacientes.Name = "dgvPacientes";
-            dgvPacientes.RowHeadersWidth = 51;
+            dgvPacientes.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvPacientes.RowHeadersVisible = false;
+            dgvPacientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvPacientes.ScrollBars = ScrollBars.Horizontal;
+            dgvPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPacientes.Size = new Size(1374, 626);
             dgvPacientes.TabIndex = 11;
             // 

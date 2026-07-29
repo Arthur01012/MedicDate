@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeaderHorarios = new Panel();
             lblHorario = new Label();
             pnlContenedor = new Panel();
@@ -124,21 +128,51 @@
             btnAsignarHora.Text = "Asignar";
             btnAsignarHora.UseVisualStyleBackColor = false;
             btnAsignarHora.Click += btnAsignarHora_Click;
-            // 
+            //
             // dgvHorarios
-            // 
+            //
+            dgvHorarios.AllowDrop = true;
             dgvHorarios.AllowUserToAddRows = false;
             dgvHorarios.AllowUserToDeleteRows = false;
             dgvHorarios.AllowUserToResizeColumns = false;
             dgvHorarios.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgvHorarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvHorarios.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvHorarios.BackgroundColor = Color.Gray;
+            dgvHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvHorarios.BackgroundColor = Color.LightGray;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvHorarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvHorarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHorarios.EnableHeadersVisualStyles = false;
+            dgvHorarios.GridColor = Color.Gray;
             dgvHorarios.Location = new Point(12, 74);
             dgvHorarios.MultiSelect = false;
             dgvHorarios.Name = "dgvHorarios";
             dgvHorarios.ReadOnly = true;
-            dgvHorarios.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvHorarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvHorarios.RowHeadersVisible = false;
+            dgvHorarios.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvHorarios.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvHorarios.ScrollBars = ScrollBars.Horizontal;
+            dgvHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHorarios.Size = new Size(1374, 626);
             dgvHorarios.TabIndex = 8;
             // 
