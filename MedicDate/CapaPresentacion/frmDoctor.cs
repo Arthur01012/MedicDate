@@ -38,7 +38,7 @@ namespace MedicDate.CapaPresentacion
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
-            chkActivo.Checked = false; // Por defecto activo en registro nuevo
+            chkActivo.Checked = false;
         }
 
         private void CargarEspecialidades()
@@ -127,7 +127,7 @@ namespace MedicDate.CapaPresentacion
                 doctor.telefono_principal = txtTelefonoPrimario.Text.Trim();
                 doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
-                doctor.estado = chkActivo.Checked; 
+                doctor.estado = chkActivo.Checked;
 
                 doctor.cedula_profesional = txtCedula.Text.Trim();
                 doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
@@ -147,19 +147,19 @@ namespace MedicDate.CapaPresentacion
                         throw new Exception("No se pudo actualizar el doctor.");
 
                     //// 3. Si el estado cambió, aplicar baja o reactivación
-
-                    if (doctor.estado) // Pasó de inactivo → activo
+                    if (doctor.estado != estadoOriginal)
                     {
-                        if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
-                            throw new Exception("No se pudo reactivar el doctor.");
+                        if (doctor.estado) // Pasó de inactivo → activo
+                        {
+                            if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
+                                throw new Exception("No se pudo reactivar el doctor.");
+                        }
+                        else // Pasó de activo → inactivo
+                        {
+                            if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
+                                throw new Exception("No se pudo dar de baja al doctor.");
+                        }
                     }
-                    else // Pasó de activo → inactivo
-                    {
-                        if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
-                            throw new Exception("No se pudo dar de baja al doctor.");
-                    }
-
-
                     transaccion.Commit();
                     MessageBox.Show("Doctor actualizado exitosamente.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -380,7 +380,7 @@ namespace MedicDate.CapaPresentacion
             cmbEspecialidad.SelectedIndex = -1;
             txtNombreDoctor.Focus();
 
-            // Restaurar estado de controles (en caso de que se haya usado en edición)
+            // Restaurar estado de controles 
             txtUsuario.Enabled = true;
             txtContraseña.Enabled = true;
             txtConfirmarContrasena.Enabled = true;
