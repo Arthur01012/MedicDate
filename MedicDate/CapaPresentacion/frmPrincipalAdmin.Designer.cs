@@ -38,6 +38,7 @@
             btnAgendaGeneralA = new Button();
             btnCitasA = new Button();
             btnPacientesA = new Button();
+            btnReportes = new Button();
             label1 = new Label();
             btnCerrar = new Button();
             btnEspecialidades = new Button();
@@ -95,6 +96,7 @@
             pnlLateral1.Controls.Add(btnAgendaGeneralA);
             pnlLateral1.Controls.Add(btnCitasA);
             pnlLateral1.Controls.Add(btnPacientesA);
+            pnlLateral1.Controls.Add(btnReportes);
             pnlLateral1.Controls.Add(label1);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
@@ -112,7 +114,7 @@
             btnPerfilD.BackColor = Color.FromArgb(166, 202, 236);
             btnPerfilD.FlatStyle = FlatStyle.Popup;
             btnPerfilD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPerfilD.Location = new Point(12, 651);
+            btnPerfilD.Location = new Point(10, 657);
             btnPerfilD.Name = "btnPerfilD";
             btnPerfilD.Size = new Size(148, 60);
             btnPerfilD.TabIndex = 2;
@@ -125,7 +127,7 @@
             btnPacientesD.FlatStyle = FlatStyle.Popup;
             btnPacientesD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnPacientesD.ForeColor = Color.Black;
-            btnPacientesD.Location = new Point(12, 585);
+            btnPacientesD.Location = new Point(10, 597);
             btnPacientesD.Name = "btnPacientesD";
             btnPacientesD.Size = new Size(148, 60);
             btnPacientesD.TabIndex = 1;
@@ -138,7 +140,7 @@
             btnAgendaD.FlatStyle = FlatStyle.Popup;
             btnAgendaD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgendaD.ForeColor = Color.Black;
-            btnAgendaD.Location = new Point(12, 519);
+            btnAgendaD.Location = new Point(10, 537);
             btnAgendaD.Name = "btnAgendaD";
             btnAgendaD.Size = new Size(148, 60);
             btnAgendaD.TabIndex = 0;
@@ -151,7 +153,7 @@
             btnAgendaGeneralA.FlatStyle = FlatStyle.Popup;
             btnAgendaGeneralA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAgendaGeneralA.ForeColor = Color.Black;
-            btnAgendaGeneralA.Location = new Point(10, 453);
+            btnAgendaGeneralA.Location = new Point(10, 477);
             btnAgendaGeneralA.Name = "btnAgendaGeneralA";
             btnAgendaGeneralA.Size = new Size(148, 60);
             btnAgendaGeneralA.TabIndex = 2;
@@ -163,7 +165,7 @@
             btnCitasA.BackColor = Color.FromArgb(166, 202, 236);
             btnCitasA.FlatStyle = FlatStyle.Popup;
             btnCitasA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCitasA.Location = new Point(11, 387);
+            btnCitasA.Location = new Point(10, 417);
             btnCitasA.Name = "btnCitasA";
             btnCitasA.Size = new Size(148, 60);
             btnCitasA.TabIndex = 1;
@@ -176,12 +178,25 @@
             btnPacientesA.FlatStyle = FlatStyle.Popup;
             btnPacientesA.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPacientesA.ForeColor = Color.Black;
-            btnPacientesA.Location = new Point(10, 321);
+            btnPacientesA.Location = new Point(10, 357);
             btnPacientesA.Name = "btnPacientesA";
             btnPacientesA.Size = new Size(148, 60);
             btnPacientesA.TabIndex = 0;
             btnPacientesA.Text = "Pacientes";
             btnPacientesA.UseVisualStyleBackColor = false;
+            // 
+            // btnReportes
+            // 
+            btnReportes.BackColor = Color.FromArgb(166, 202, 236);
+            btnReportes.FlatStyle = FlatStyle.Popup;
+            btnReportes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReportes.ForeColor = Color.Black;
+            btnReportes.Location = new Point(10, 297);
+            btnReportes.Name = "btnReportes";
+            btnReportes.Size = new Size(148, 60);
+            btnReportes.TabIndex = 5;
+            btnReportes.Text = "Reportes";
+            btnReportes.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -204,7 +219,7 @@
             btnCerrar.Location = new Point(12, 734);
             btnCerrar.Name = "btnCerrar";
             btnCerrar.Size = new Size(148, 60);
-            btnCerrar.TabIndex = 5;
+            btnCerrar.TabIndex = 6;
             btnCerrar.Text = "Cerrar sesión";
             btnCerrar.UseVisualStyleBackColor = false;
             btnCerrar.Click += btnCerrar_Click_1;
@@ -215,7 +230,7 @@
             btnEspecialidades.FlatStyle = FlatStyle.Popup;
             btnEspecialidades.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEspecialidades.ForeColor = Color.Black;
-            btnEspecialidades.Location = new Point(10, 255);
+            btnEspecialidades.Location = new Point(10, 237);
             btnEspecialidades.Name = "btnEspecialidades";
             btnEspecialidades.Size = new Size(148, 60);
             btnEspecialidades.TabIndex = 4;
@@ -229,7 +244,7 @@
             btnHorarios.FlatStyle = FlatStyle.Popup;
             btnHorarios.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnHorarios.ForeColor = Color.Black;
-            btnHorarios.Location = new Point(10, 189);
+            btnHorarios.Location = new Point(10, 177);
             btnHorarios.Name = "btnHorarios";
             btnHorarios.Size = new Size(148, 60);
             btnHorarios.TabIndex = 3;
@@ -243,7 +258,7 @@
             btnAsistentes.FlatStyle = FlatStyle.Popup;
             btnAsistentes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAsistentes.ForeColor = Color.Black;
-            btnAsistentes.Location = new Point(10, 122);
+            btnAsistentes.Location = new Point(10, 116);
             btnAsistentes.Name = "btnAsistentes";
             btnAsistentes.Size = new Size(148, 61);
             btnAsistentes.TabIndex = 2;
@@ -313,5 +328,6 @@
         private Button btnPacientesD;
         private Button btnAgendaD;
         private Button btnPerfilD;
+        private Button btnReportes;
     }
 }
