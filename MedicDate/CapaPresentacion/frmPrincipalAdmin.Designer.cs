@@ -120,6 +120,7 @@
             btnPerfilD.TabIndex = 2;
             btnPerfilD.Text = "Perfil";
             btnPerfilD.UseVisualStyleBackColor = false;
+            btnPerfilD.Click += btnPerfilD_Click;
             // 
             // btnPacientesD
             // 
@@ -133,6 +134,7 @@
             btnPacientesD.TabIndex = 1;
             btnPacientesD.Text = "Pacientes";
             btnPacientesD.UseVisualStyleBackColor = false;
+            btnPacientesD.Click += btnPacientesD_Click;
             // 
             // btnAgendaD
             // 
@@ -146,6 +148,7 @@
             btnAgendaD.TabIndex = 0;
             btnAgendaD.Text = "Agenda";
             btnAgendaD.UseVisualStyleBackColor = false;
+            btnAgendaD.Click += btnAgendaD_Click;
             // 
             // btnAgendaGeneralA
             // 
@@ -159,6 +162,7 @@
             btnAgendaGeneralA.TabIndex = 2;
             btnAgendaGeneralA.Text = "Agenda general";
             btnAgendaGeneralA.UseVisualStyleBackColor = false;
+            btnAgendaGeneralA.Click += btnAgendaGeneralA_Click;
             // 
             // btnCitasA
             // 
@@ -171,6 +175,7 @@
             btnCitasA.TabIndex = 1;
             btnCitasA.Text = "Citas";
             btnCitasA.UseVisualStyleBackColor = false;
+            btnCitasA.Click += btnCitasA_Click;
             // 
             // btnPacientesA
             // 
@@ -184,6 +189,7 @@
             btnPacientesA.TabIndex = 0;
             btnPacientesA.Text = "Pacientes";
             btnPacientesA.UseVisualStyleBackColor = false;
+            btnPacientesA.Click += btnPacientesA_Click;
             // 
             // btnReportes
             // 
