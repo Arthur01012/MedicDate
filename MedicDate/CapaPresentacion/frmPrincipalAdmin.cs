@@ -71,6 +71,7 @@ namespace MedicDate.CapaPresentacion
                 btnAsistentes.Visible = false;
                 btnHorarios.Visible = false;
                 btnEspecialidades.Visible = false;
+                btnReportes.Visible = false;
                 btnPacientesA.Visible = false;
                 btnCitasA.Visible = false;
                 btnAgendaGeneralA.Visible = false;
@@ -83,9 +84,20 @@ namespace MedicDate.CapaPresentacion
                 {
                     case (int)clsUsuario.Roles.Administrador:
                         btnDoctores.Visible = true;
+                        btnDoctores.Location = new Point(10, 55);
+
                         btnAsistentes.Visible = true;
+                        btnAsistentes.Location = new Point(10, 122);
+
                         btnHorarios.Visible = true;
+                        btnHorarios.Location = new Point(10, 189);
+
                         btnEspecialidades.Visible = true;
+                        btnEspecialidades.Location = new Point(10, 256);
+                        
+                        btnReportes.Visible = true;
+                        btnReportes.Location = new Point(10, 323);
+
                         break;
                     case (int)clsUsuario.Roles.Asistente:
                         btnPacientesA.Visible = true;
