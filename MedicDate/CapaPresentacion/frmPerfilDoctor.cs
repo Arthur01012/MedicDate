@@ -17,9 +17,5 @@ namespace MedicDate.CapaPresentacion
             InitializeComponent();
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
