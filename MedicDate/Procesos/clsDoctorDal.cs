@@ -120,11 +120,6 @@ namespace MedicDate.Procesos
         {
             var (tipo, estadoActual, idUsuario) = ObtenerInfoDoctor(idEmpleado, transaccion);
 
-            if (estadoActual == activar)
-                throw new InvalidOperationException(activar
-                    ? "El doctor ya está activo."
-                    : "El doctor ya está inactivo.");
-
             MySqlConnection? conexionLocal = null;
             MySqlTransaction? transaccionLocal = null;
             bool usarTransaccionLocal = transaccion == null;
@@ -148,10 +143,9 @@ namespace MedicDate.Procesos
                 if (clsConexion.EjecutarNonQuery(sqlEmpleado, paramEmpleado, transaccionUsar) == 0)
                     throw new Exception($"No se pudo {(activar ? "reactivar" : "desactivar")} el empleado.");
 
-                string sqlHorarios = activar
-                    ? "UPDATE horario SET activo = 1 WHERE id_doctor = @id"
-                    : "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
-                MySqlParameter[] paramHorarios = { new MySqlParameter("@id", idEmpleado) };
+                string sqlHorarios = "UPDATE horario SET activo = @nuevoEstado WHERE id_doctor = @id";
+
+                MySqlParameter[] paramHorarios = { new MySqlParameter("@id", idEmpleado), new MySqlParameter("@nuevoEstado", nuevoEstado) };
                 clsConexion.EjecutarNonQuery(sqlHorarios, paramHorarios, transaccionUsar);
 
                 if (!activar)

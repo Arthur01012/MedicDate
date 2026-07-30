@@ -14,23 +14,40 @@ namespace MedicDate.CapaPresentacion
         private int? idDoctorEditar = null;
         private bool estadoOriginal;
 
-        public frmDoctor()
+        //public frmDoctor()
+        //{
+        //    InitializeComponent();
+        //}
+
+        public frmDoctor(int idDoctor)
         {
             InitializeComponent();
+            CargarEspecialidades();
+            ConfigurarFormulario();
+            if (idDoctor != 0)
+            {
+                idDoctorEditar = idDoctor;
+                chkActivo.Enabled = true;
+                CargarDatosDoctor(idDoctor);
 
-        }
+            }
+            else
+            {
+                chkActivo.Checked = true;
+                chkActivo.Enabled = false;
+            }
 
-        public frmDoctor(int idDoctor) : this()
-        {
-            idDoctorEditar = idDoctor;
-            CargarDatosDoctor(idDoctor);
         }
 
         private void ConfigurarFormulario()
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
-            chkActivo.Checked = true; // Por defecto activo en registro nuevo
+            chkActivo.Checked = false; // Por defecto activo en registro nuevo
+            // si en bd el campo estado==1
+
+            //chkActivo.Checked = true;
+
         }
 
         private void CargarEspecialidades()
@@ -56,9 +73,6 @@ namespace MedicDate.CapaPresentacion
                 // Asignar el objeto doctor y guardar su estado original
                 doctor = doctorEdit;
                 estadoOriginal = doctor.estado;
-
-                // (Opcional) Mensaje de depuración
-                MessageBox.Show($"Estado cargado: {doctor.estado} | Original: {estadoOriginal}", "Depuración Carga");
 
                 // Llenar controles
                 txtNombreDoctor.Text = doctor.nombre;
@@ -122,13 +136,12 @@ namespace MedicDate.CapaPresentacion
                 doctor.telefono_principal = txtTelefonoPrimario.Text.Trim();
                 doctor.telefono_secundario = txtTelefonoSecundario.Text.Trim();
                 doctor.fecha_contratacion = dtpFechaContratacion.Value;
-                doctor.estado = chkActivo.Checked; // ⬅️ Leer directamente del CheckBox
+                doctor.estado = chkActivo.Checked; 
+
                 doctor.cedula_profesional = txtCedula.Text.Trim();
                 doctor.especialidad_principal = (int)cmbEspecialidad.SelectedValue;
                 doctor.consultorio = txtConsultorio.Text.Trim();
 
-                // (Opcional) Mensaje de depuración
-                MessageBox.Show($"Doctor.Estado: {doctor.estado} | EstadoOriginal: {estadoOriginal}", "Depuración Guardar");
 
                 if (idDoctorEditar.HasValue) // MODO EDICIÓN
                 {
@@ -142,25 +155,27 @@ namespace MedicDate.CapaPresentacion
                     if (!clsDoctorDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el doctor.");
 
-                    // 3. Si el estado cambió, aplicar baja o reactivación
-                    if (doctor.estado != estadoOriginal)
+
+
+                    //// 3. Si el estado cambió, aplicar baja o reactivación
+
+                    if (doctor.estado) // Pasó de inactivo → activo
                     {
-                        if (doctor.estado) // Pasó de inactivo → activo
-                        {
-                            if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
-                                throw new Exception("No se pudo reactivar el doctor.");
-                        }
-                        else // Pasó de activo → inactivo
-                        {
-                            if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
-                                throw new Exception("No se pudo dar de baja al doctor.");
-                        }
+                        if (!clsDoctorDAL.Reactivar(doctor.id_empleado, transaccion))
+                            throw new Exception("No se pudo reactivar el doctor.");
                     }
+                    else // Pasó de activo → inactivo
+                    {
+                        if (!clsDoctorDAL.DarBaja(doctor.id_empleado, transaccion))
+                            throw new Exception("No se pudo dar de baja al doctor.");
+                    }
+
 
                     transaccion.Commit();
                     MessageBox.Show("Doctor actualizado exitosamente.", "Éxito",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
+
                     this.Close();
                 }
                 else // MODO REGISTRO
@@ -237,7 +252,7 @@ namespace MedicDate.CapaPresentacion
                 txtEmail.Focus();
                 return false;
             }
-
+            //telefonos opcionales
             // Teléfono principal 
             if (!string.IsNullOrEmpty(txtTelefonoPrimario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoPrimario.Text))
             {
@@ -248,7 +263,7 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Teléfono secundario
-            if (!string.IsNullOrEmpty(txtTelefonoPrimario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
+            if (!string.IsNullOrEmpty(txtTelefonoSecundario.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSecundario.Text))
             {
                 MessageBox.Show("El teléfono secundario no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -283,8 +298,8 @@ namespace MedicDate.CapaPresentacion
             // consultorio
             if (string.IsNullOrEmpty(txtConsultorio.Text))
             {
-                MessageBox.Show("El consultorio es obligatorio","Validación",
-                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("El consultorio es obligatorio", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtConsultorio.Focus();
                 return false;
             }
@@ -392,13 +407,13 @@ namespace MedicDate.CapaPresentacion
 
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
         private void frmDoctor_Load(object sender, EventArgs e)
         {
-            CargarEspecialidades();
-            ConfigurarFormulario();
+
         }
     }
 }

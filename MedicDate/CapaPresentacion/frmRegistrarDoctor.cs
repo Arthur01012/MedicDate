@@ -39,7 +39,7 @@ namespace MedicDate.CapaPresentacion
 
         private void btnNuevoDoctor_Click(object sender, EventArgs e)
         {
-            frmDoctor frm = new frmDoctor();
+            frmDoctor frm = new frmDoctor(0);
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);
@@ -103,9 +103,9 @@ namespace MedicDate.CapaPresentacion
 
             // Obtener fila seleccionada
             DataGridViewRow? fila = null;
-           if (dgvDoctores.CurrentRow != null)
+            if (dgvDoctores.CurrentRow != null)
                 fila = dgvDoctores.CurrentRow;
-            
+
 
             if (fila == null)
             {
@@ -120,10 +120,10 @@ namespace MedicDate.CapaPresentacion
 
             // Confirmar
             DialogResult confirm = MessageBox.Show(
-                $"¿Dar de baja al doctor {nombreDoctor}?" + 
+                $"¿Dar de baja al doctor {nombreDoctor}?" +
                 "Esta acción:\n" +
-                "-Desactivará al doctor.\n"+
-                "-Desactivará su horario.\n"+
+                "-Desactivará al doctor.\n" +
+                "-Desactivará su horario.\n" +
                 "-Desactivará su usario",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
@@ -151,6 +151,11 @@ namespace MedicDate.CapaPresentacion
                 MessageBox.Show($"Error: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmRegistrarDoctor_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
