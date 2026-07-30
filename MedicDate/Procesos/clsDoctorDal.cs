@@ -22,7 +22,7 @@ namespace MedicDate.Procesos
 
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
-        public DataTable CargarDataGrid(int pagina, int registros) // Método para cargar todos los doctores activos
+        public DataTable CargarDataGrid(int pagina, int registros) // Método para cargar todos los doctores 
         {
             var tabla = new DataTable();
             try
@@ -30,23 +30,24 @@ namespace MedicDate.Procesos
                 using var conexion = clsConexion.ObtenerConexion();
                 int offset = (pagina - 1) * registros;
 
-                // Consulta SQL para obtener la información de los doctores activos
+                // Consulta SQL para obtener la información de los doctores 
                 string sql = @"
-                    SELECT 
+                   SELECT 
                         CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+                        E.fecha_nacimiento AS 'Fecha Nacimiento',
                         E.curp AS Curp,
                         E.email AS Correo,
                         E.telefono_principal AS Telefono,
                         E.id_empleado,
-                        E.estado AS Estado, -- ⬅️ Se conserva esta columna para mostrar el estado
+                        E.estado AS Estado,
                         D.cedula_profesional AS Cedula,
                         S.nombre_especialidad AS Especialidad,
                         D.consultorio AS Consultorio
                     FROM empleado E
                     INNER JOIN doctor D ON E.id_empleado = D.id_empleado
                     LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.estado = 1 AND E.tipo_empleado = 'doctor'
-                    ORDER BY E.apellido_paterno,E.nombre
+                    WHERE E.tipo_empleado = 'doctor'
+                    ORDER BY E.estado DESC, E.apellido_paterno
                     LIMIT @limite OFFSET @offset";
                 
                 //using var adapter = new MySqlDataAdapter(sql, conexion); // Se utiliza MySqlDataAdapter para llenar el DataTable con los resultados de la consulta
@@ -132,7 +133,7 @@ namespace MedicDate.Procesos
                           CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
                    FROM empleado e
                    INNER JOIN doctor d ON e.id_empleado = d.id_empleado
-                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor' -- 🔒 SE MANTIENE EL FILTRO
+                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor'
                    ORDER BY e.apellido_paterno, e.nombre";
             return clsConexion.EjecutarConsulta(sql);
         }
@@ -163,11 +164,6 @@ namespace MedicDate.Procesos
             MySqlTransaction? transaccion = null)
         {
             var (tipo, estadoActual, idUsuario) = ObtenerInfoDoctor(idEmpleado, transaccion);
-
-            if (estadoActual == activar)
-                throw new InvalidOperationException(activar
-                    ? "El doctor ya está activo."
-                    : "El doctor ya está inactivo.");
 
             MySqlConnection? conexionLocal = null;
             MySqlTransaction? transaccionLocal = null;
