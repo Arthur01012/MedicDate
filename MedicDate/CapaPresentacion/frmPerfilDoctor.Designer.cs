@@ -186,7 +186,6 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(958, 170);
             dataGridView2.TabIndex = 30;
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // frmPerfilDoctor
             // 
