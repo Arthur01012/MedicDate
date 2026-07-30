@@ -97,6 +97,7 @@
             btnDesactivar.TabIndex = 11;
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
+            btnDesactivar.Click += btnDesactivar_Click;
             // 
             // btnEditarHorario
             // 

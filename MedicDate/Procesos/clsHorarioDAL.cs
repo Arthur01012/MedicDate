@@ -7,7 +7,7 @@ namespace MedicDate.Procesos
 {
     public class clsHorarioDAL
     {
-    
+
         // Carga todos los horarios con el nombre del doctor para mostrar en un DataGridView.
 
         public DataTable CargarGrid()
@@ -17,7 +17,8 @@ namespace MedicDate.Procesos
             {
                 using var conexion = clsConexion.ObtenerConexion();
                 string sql = @"
-                    SELECT h.id_horario,
+                    SELECT 
+                           h.id_horario,
                            CONCAT(e.nombre, ' ', e.apellido_paterno) AS Doctor,
                            h.dia_semana,
                            h.hora_inicio,
@@ -41,9 +42,9 @@ namespace MedicDate.Procesos
             }
         }
 
-        
+
         // Busca horarios por nombre del doctor (coincidencia parcial).
-        
+
         public DataTable Buscar(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
@@ -55,6 +56,7 @@ namespace MedicDate.Procesos
                 using var conexion = clsConexion.ObtenerConexion();
                 string sql = @"
                     SELECT h.id_horario,
+                           h.id_doctor,
                            CONCAT(e.nombre, ' ', e.apellido_paterno) AS Doctor,
                            h.dia_semana,
                            h.hora_inicio,
@@ -193,6 +195,26 @@ namespace MedicDate.Procesos
 
             int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
             return filasAfectadas > 0;
+        }
+        public static bool DesactivarTodosPorDoctor(int idDoctor, MySqlTransaction? transaccion = null)
+        {
+            // Actualiza todos los registros cuyo id_doctor coincida
+            string sql = "UPDATE horario SET activo = 0 WHERE id_doctor = @id_doctor;";
+
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@id_doctor", idDoctor)
+            };
+
+            try
+            {
+                int filasAfectadas = clsConexion.EjecutarNonQuery(sql, parametros, transaccion);
+                // Devuelve true si afectó al menos 1 fila, o false si no tenía horarios activos
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la base de datos al desactivar los horarios del doctor: " + ex.Message, ex);
+            }
         }
     }
 }
