@@ -31,7 +31,6 @@ namespace MedicDate.CapaPresentacion
             Doctor = new clsDoctorDAL();
             int total = Doctor.TotalDoctores();
 
-
             totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
             dgvDoctores.DataSource = null;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;

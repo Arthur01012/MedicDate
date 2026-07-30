@@ -72,8 +72,7 @@ namespace MedicDate.Procesos
             string sql = @"SELECT COUNT(*)
                            FROM empleado E
                            INNER JOIN doctor D ON E.id_empleado=D.id_empleado
-                           WHERE E.estado=1
-                           AND E.tipo_empleado='doctor'
+                           WHERE E.tipo_empleado='asistente'
                            AND CONCAT(E.nombre,' ',E.apellido_paterno,' ',E.apellido_materno)
                            LIKE @nombre";
 
@@ -86,46 +85,44 @@ namespace MedicDate.Procesos
 
         public DataTable Consultar(string texto, int pagina, int registros)
         {
-            if (string.IsNullOrWhiteSpace(texto)) // Si el texto de búsqueda está vacío o es nulo, se cargan todos los doctores activos
-                return CargarDataGrid(1,10); 
+            if (string.IsNullOrWhiteSpace(texto))
+                return CargarDataGrid(pagina, registros); // usa la página real, no fija 1,10
 
             var tabla = new DataTable();
             try
             {
                 using var conexion = clsConexion.ObtenerConexion();
                 int offset = (pagina - 1) * registros;
-                // Consulta SQL para buscar doctores por nombre completo, utilizando LIKE para coincidencias parciales
-                string sql = @"
-                    SELECT 
-                        CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
-                        E.fecha_nacimiento AS 'Fecha Nacimiento',
-                        E.curp AS Curp,
-                        E.email AS Correo,
-                        E.telefono_principal AS Telefono,
-                        E.id_empleado,
-                        E.estado AS Estado,
-                        D.cedula_profesional AS Cedula,
-                        S.nombre_especialidad AS Especialidad,
-                        D.consultorio AS Consultorio
-                    FROM empleado E
-                    INNER JOIN doctor D ON E.id_empleado = D.id_empleado
-                    LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.estado = 1 AND E.tipo_empleado = 'doctor'
-                    AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre
-                    ORDER BY E.apellido_paterno, E.nombre
-                    LIMIT @limite OFFSET @offset";
-                // Se utiliza un parámetro para evitar inyecciones SQL y permitir coincidencias parciales
-                using var cmd = new MySqlCommand(sql, conexion); // Se crea un comando SQL con la consulta y la conexión
+
+                string sql = @"SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+                         E.fecha_nacimiento AS Fecha_Nacimiento,
+                         E.curp AS Curp,
+                         E.email AS Correo,
+                         E.telefono_principal AS Telefono,
+                         E.telefono_secundario AS 'Telefono secundario',
+                         E.tipo_empleado AS Tipo,
+                         E.id_empleado,
+                         E.estado AS Estado,
+                         A.id_empleado, A.turno
+                       FROM empleado E
+                       INNER JOIN asistente A ON E.id_empleado = A.id_empleado
+                       WHERE E.tipo_empleado = 'asistente'
+                       AND E.estado = 1
+                       AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre
+                       ORDER BY E.apellido_paterno, E.nombre
+                       LIMIT @limite OFFSET @offset;";
+
+                using var cmd = new MySqlCommand(sql, conexion);
                 cmd.Parameters.AddWithValue("@limite", registros);
                 cmd.Parameters.AddWithValue("@offset", offset);
-                cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%"); // Se agrega el parámetro con el texto de búsqueda, rodeado de % para permitir coincidencias parciales
-                using var adapter = new MySqlDataAdapter(cmd); // Se utiliza MySqlDataAdapter para llenar el DataTable con los resultados de la consulta
-                adapter.Fill(tabla); // Llenar el DataTable con los resultados de la consulta
+                cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%");
+                using var adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(tabla);
                 return tabla;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Error en búsqueda de doctores: {ex.Message}", ex);
+                throw new Exception("Error en la conexion: " + ex.Message);
             }
         }
 

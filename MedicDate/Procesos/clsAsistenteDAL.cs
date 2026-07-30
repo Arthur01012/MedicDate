@@ -1,6 +1,8 @@
 ﻿using MedicDate.Datos;
 using MedicDate.Procesos;
+using Microsoft.Win32;
 using MySqlConnector;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,80 +11,120 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace MedicDate.Procesos
 {
     internal class clsAsistenteDAL
     {
-        private MySqlDataAdapter consulta;
-        private DataTable tabla;
-       
-        public object? CargarDataGrid()
-        {
-            tabla = new DataTable();
 
+        public int TotalAsistentes()
+        {
+            using var conexion = clsConexion.ObtenerConexion();
+
+            string sql = @"SELECT COUNT(*)
+                           FROM empleado
+                           WHERE estado = 1
+                           AND tipo_empleado = 'asistente'";
+
+            using var cmd = new MySqlConnector.MySqlCommand(sql, conexion);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public DataTable CargarDataGrid(int pagina, int registros)
+        {
+            var tabla = new DataTable();
             try
             {
-                using (var conexion = clsConexion.ObtenerConexion())
-                {
-                    string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo'," +
-                                 "E.fecha_nacimiento AS Fecha_Nacimiento, " +
-                                 "E.curp AS Curp, " +
-                                 "E.email AS Correo, " +
-                                 "E.telefono_principal AS Telefono, " +
-                                 "E.telefono_secundario AS 'Telefono secundario', " +
-                                 "E.tipo_empleado AS Tipo, " +
-                                 "E.id_empleado, " +
-                                 "E.estado AS Estado, " +
-                                 "A.id_empleado, A.turno " +
-                                 "FROM empleado E INNER JOIN asistente A ON E.id_empleado = A.id_empleado;";
+                using var conexion = clsConexion.ObtenerConexion();
+                int offset = (pagina - 1) * registros;
 
-                    using (consulta = new MySqlDataAdapter(sql, conexion))
-                    {
-                        consulta.Fill(tabla);
-                    }
-                }
+                string sql = @"SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+                                 E.fecha_nacimiento AS Fecha_Nacimiento,
+                                 E.curp AS Curp,
+                                 E.email AS Correo,
+                                 E.telefono_principal AS Telefono,
+                                 E.telefono_secundario AS 'Telefono secundario',
+                                 E.tipo_empleado AS Tipo,
+                                 E.id_empleado,
+                                 E.estado AS Estado,
+                                 A.id_empleado, A.turno FROM empleado E INNER JOIN asistente A ON E.id_empleado = A.id_empleado 
+                                 WHERE E.tipo_empleado = 'asistente' 
+                                 ORDER BY E.apellido_paterno, E.nombre 
+                                 LIMIT @limite OFFSET @offset;";
+
+                using var cmd = new MySqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@limite", registros);
+                cmd.Parameters.AddWithValue("@offset", offset);
+                using var adapter = new MySqlDataAdapter(cmd);
+
+                adapter.Fill(tabla);
+                return tabla;
             }
             catch (Exception ex)
             {
                 throw new Exception("Error en la tabla " + ex.Message);
             }
-            return tabla;
         }
 
-        public DataTable Consultar(string text)
+        public int TotalBusqueda(string texto)
         {
-            tabla = new DataTable();
+            using var conexion = clsConexion.ObtenerConexion();
 
+            string sql = @"SELECT COUNT(*)
+                   FROM empleado E
+                   INNER JOIN asistente A ON E.id_empleado = A.id_empleado
+                   WHERE E.estado = 1
+                   AND E.tipo_empleado = 'asistente'
+                   AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno)
+                   LIKE @nombre";
+
+            using var cmd = new MySqlCommand(sql, conexion);
+            cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%");
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public DataTable Consultar(string texto, int pagina, int registros)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return CargarDataGrid(pagina, registros); // usa la página real, no fija 1,10
+
+            var tabla = new DataTable();
             try
             {
-                using (var conexion = clsConexion.ObtenerConexion())
-                {
-                    string sql = "SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo'," +
-                                "E.curp AS Curp," +
-                                "E.email AS Correo," +
-                                "E.telefono_principal AS Telefono," +
-                                "E.id_usuario, U.id_usuario, R.id_rol, R.nombre AS Tipo " +
-                                "FROM empleado E " +
-                                "INNER JOIN usuario U ON E.id_usuario = U.id_usuario " +
-                                "INNER JOIN rol R ON U.id_rol = R.id_rol " +
-                                "WHERE R.nombre = 'Asistente' " +
-                                "AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre;";
+                using var conexion = clsConexion.ObtenerConexion();
+                int offset = (pagina - 1) * registros;
 
-                    using (var consultar = new MySqlCommand(sql, conexion))
-                    {
-                        consultar.Parameters.AddWithValue("@nombre", "%" + text + "%");
-                        using (consulta = new MySqlDataAdapter(consultar))
-                        {
-                            consulta.Fill(tabla);
-                        }
-                    }
-                }
+                string sql = @"SELECT CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+                         E.fecha_nacimiento AS Fecha_Nacimiento,
+                         E.curp AS Curp,
+                         E.email AS Correo,
+                         E.telefono_principal AS Telefono,
+                         E.telefono_secundario AS 'Telefono secundario',
+                         E.tipo_empleado AS Tipo,
+                         E.id_empleado,
+                         E.estado AS Estado,
+                         A.id_empleado, A.turno
+                       FROM empleado E
+                       INNER JOIN asistente A ON E.id_empleado = A.id_empleado
+                       WHERE E.tipo_empleado = 'asistente'
+                       AND E.estado = 1 AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre
+                       ORDER BY E.apellido_paterno, E.nombre
+                       LIMIT @limite OFFSET @offset;";
+
+                using var cmd = new MySqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@limite", registros);
+                cmd.Parameters.AddWithValue("@offset", offset);
+                cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%");
+                using var adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(tabla);
+                return tabla;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en la conexion" + ex.Message);
+                throw new Exception("Error en la conexion: " + ex.Message);
             }
-            return tabla;
         }
 
         public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
@@ -130,7 +172,7 @@ namespace MedicDate.Procesos
         /// <param name="transaccion">Transacción externa.</param>
         /// 
 
-        
+
         private static bool CambiarEstadoAsistente(int idEmpleado, bool activar, MySqlTransaction? transaccion = null)
         {
             var (tipo, estadoActual, idUsuario) = ObtenerInfoAsistente(idEmpleado, transaccion);
