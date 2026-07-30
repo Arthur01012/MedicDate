@@ -22,14 +22,14 @@ namespace MedicDate.Procesos
                         E.email AS Correo,
                         E.telefono_principal AS Telefono,
                         E.id_empleado,
-                        E.estado AS Estado, -- ⬅️ Se conserva esta columna para mostrar el estado
+                        E.estado AS Estado,
                         D.cedula_profesional AS Cedula,
                         S.nombre_especialidad AS Especialidad,
                         D.consultorio AS Consultorio
                     FROM empleado E
                     INNER JOIN doctor D ON E.id_empleado = D.id_empleado
                     LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.tipo_empleado = 'doctor' -- ✅ ELIMINADO el filtro 'E.estado = 1'
+                    WHERE E.tipo_empleado = 'doctor'
                     ORDER BY E.estado DESC, E.apellido_paterno"; // Los activos aparecen primero
 
                 using var adapter = new MySqlDataAdapter(sql, conexion);
@@ -66,7 +66,7 @@ namespace MedicDate.Procesos
                     FROM empleado E
                     INNER JOIN doctor D ON E.id_empleado = D.id_empleado
                     LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.tipo_empleado = 'doctor' -- ✅ ELIMINADO el filtro 'E.estado = 1'
+                    WHERE E.tipo_empleado = 'doctor'
                       AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre
                     ORDER BY E.estado DESC, E.apellido_paterno";
 
@@ -88,7 +88,7 @@ namespace MedicDate.Procesos
                           CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
                    FROM empleado e
                    INNER JOIN doctor d ON e.id_empleado = d.id_empleado
-                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor' -- 🔒 SE MANTIENE EL FILTRO
+                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor' 
                    ORDER BY e.apellido_paterno, e.nombre";
             return clsConexion.EjecutarConsulta(sql);
         }
@@ -190,12 +190,6 @@ namespace MedicDate.Procesos
 
         public static bool Insertar(clsDoctor doctor, MySqlTransaction? transaccion = null)
         {
-            string consultaExiste = "SELECT COUNT(*) FROM doctor WHERE id_empleado = @id";
-            MySqlParameter[] paramExiste = { new MySqlParameter("@id", doctor.id_empleado) };
-            object existe = clsConexion.EjecutarScalar(consultaExiste, paramExiste, transaccion);
-            if (existe != null && Convert.ToInt32(existe) > 0)
-                throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.");
-
             string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula";
             MySqlParameter[] paramCedula = { new MySqlParameter("@cedula", doctor.cedula_profesional) };
             object cedulaExiste = clsConexion.EjecutarScalar(consultaCedula, paramCedula, transaccion);
@@ -223,8 +217,6 @@ namespace MedicDate.Procesos
                 {
                     if (ex.Message.Contains("cedula_profesional"))
                         throw new InvalidOperationException($"La cédula '{doctor.cedula_profesional}' ya está registrada.", ex);
-                    else if (ex.Message.Contains("id_empleado"))
-                        throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.", ex);
                     else
                         throw new InvalidOperationException("El registro ya existe.", ex);
                 }
@@ -232,8 +224,6 @@ namespace MedicDate.Procesos
                 {
                     if (ex.Message.Contains("id_empleado"))
                         throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} no existe.", ex);
-                    else if (ex.Message.Contains("especialidad_principal"))
-                        throw new InvalidOperationException($"La especialidad seleccionada no es válida.", ex);
                     else
                         throw new InvalidOperationException("Error de clave foránea al insertar el doctor.", ex);
                 }
