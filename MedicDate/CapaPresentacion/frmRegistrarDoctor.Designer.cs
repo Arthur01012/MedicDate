@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeaderDoctores = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
+            lblPagina = new Label();
+            btnDespues = new Button();
+            btnAnterior = new Button();
             btnDesactivar = new Button();
             btnEditarDoctor = new Button();
             btnNuevoDoctor = new Button();
@@ -72,6 +75,9 @@
             // 
             pnlContenedor.BackColor = Color.LightGray;
             pnlContenedor.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenedor.Controls.Add(lblPagina);
+            pnlContenedor.Controls.Add(btnDespues);
+            pnlContenedor.Controls.Add(btnAnterior);
             pnlContenedor.Controls.Add(btnDesactivar);
             pnlContenedor.Controls.Add(btnEditarDoctor);
             pnlContenedor.Controls.Add(btnNuevoDoctor);
@@ -84,6 +90,48 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1398, 712);
             pnlContenedor.TabIndex = 10;
+            // 
+            // lblPagina
+            // 
+            lblPagina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPagina.AutoSize = true;
+            lblPagina.BackColor = Color.LightGray;
+            lblPagina.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPagina.ForeColor = Color.Black;
+            lblPagina.Location = new Point(1155, 663);
+            lblPagina.Name = "lblPagina";
+            lblPagina.Size = new Size(64, 23);
+            lblPagina.TabIndex = 8;
+            lblPagina.Text = "Página";
+            lblPagina.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnDespues
+            // 
+            btnDespues.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDespues.BackColor = Color.FromArgb(166, 202, 236);
+            btnDespues.FlatStyle = FlatStyle.Popup;
+            btnDespues.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDespues.Location = new Point(1284, 647);
+            btnDespues.Name = "btnDespues";
+            btnDespues.Size = new Size(55, 45);
+            btnDespues.TabIndex = 7;
+            btnDespues.Text = ">";
+            btnDespues.UseVisualStyleBackColor = false;
+            btnDespues.Click += btnDespues_Click;
+            // 
+            // btnAnterior
+            // 
+            btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAnterior.BackColor = Color.FromArgb(166, 202, 236);
+            btnAnterior.FlatStyle = FlatStyle.Popup;
+            btnAnterior.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnterior.Location = new Point(1082, 647);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(55, 45);
+            btnAnterior.TabIndex = 6;
+            btnAnterior.Text = "<";
+            btnAnterior.UseVisualStyleBackColor = false;
+            btnAnterior.Click += btnAnterior_Click;
             // 
             // btnDesactivar
             // 
@@ -136,21 +184,22 @@
             dgvDoctores.AllowUserToDeleteRows = false;
             dgvDoctores.AllowUserToResizeColumns = false;
             dgvDoctores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dgvDoctores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgvDoctores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvDoctores.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDoctores.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgvDoctores.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDoctores.EnableHeadersVisualStyles = false;
             dgvDoctores.GridColor = Color.Gray;
@@ -158,22 +207,22 @@
             dgvDoctores.MultiSelect = false;
             dgvDoctores.Name = "dgvDoctores";
             dgvDoctores.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvDoctores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvDoctores.RowHeadersVisible = false;
             dgvDoctores.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvDoctores.ScrollBars = ScrollBars.Horizontal;
             dgvDoctores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDoctores.Size = new Size(1284, 601);
+            dgvDoctores.Size = new Size(1284, 543);
             dgvDoctores.TabIndex = 2;
             // 
             // lblBuscar
@@ -228,5 +277,8 @@
         private Button btnNuevoDoctor;
         private Button btnDesactivar;
         private Button btnEditarDoctor;
+        private Button btnDespues;
+        private Button btnAnterior;
+        private Label lblPagina;
     }
 }

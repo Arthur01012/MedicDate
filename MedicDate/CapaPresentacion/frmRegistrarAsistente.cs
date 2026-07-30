@@ -14,6 +14,10 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmRegistrarAsistente : Form
     {
+        private int paginaActual = 1;
+        private int registrosPorPagina = 10;
+        private int totalPaginas;
+
         clsAsistenteDAL asistente;
         public frmRegistrarAsistente()
         {
@@ -31,13 +35,17 @@ namespace MedicDate.CapaPresentacion
         public void cargarGrid()
         {
             asistente = new clsAsistenteDAL();
+            int total = asistente.TotalAsistentes();
+
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
             dgvAsistentes.DataSource = null;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
             {
-                dgvAsistentes.DataSource = asistente.CargarDataGrid();
+                dgvAsistentes.DataSource = asistente.CargarDataGrid(paginaActual, registrosPorPagina);
                 dgvAsistentes.Columns["id_empleado"].Visible = false;
                 dgvAsistentes.Columns["id_empleado1"].Visible = false;
+                lblPagina.Text = $"Página {paginaActual} de {totalPaginas}";
             }
             catch (Exception ex)
             {
@@ -47,23 +55,24 @@ namespace MedicDate.CapaPresentacion
 
         private void txtBuscarAsistente_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBuscarAsistente.Text))
+            paginaActual = 1;
+
+            asistente = new clsAsistenteDAL();
+
+            if (string.IsNullOrWhiteSpace(txtBuscarAsistente.Text))
             {
                 cargarGrid();
                 return;
             }
 
-            asistente = new clsAsistenteDAL();
-            dgvAsistentes.DataSource = null;
-            dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            try
-            {
-                dgvAsistentes.DataSource = asistente.Consultar(txtBuscarAsistente.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            int total = asistente.TotalBusqueda(txtBuscarAsistente.Text);
+
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
+
+            dgvAsistentes.DataSource = asistente.Consultar(
+                txtBuscarAsistente.Text,
+                paginaActual,
+                registrosPorPagina);
         }
 
         private void btnDarBaja2_Click(object sender, EventArgs e)
@@ -153,6 +162,24 @@ namespace MedicDate.CapaPresentacion
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 cargarGrid(); // Refrescar el DataGridView
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                cargarGrid();
+            }
+        }
+
+        private void btnDespues_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                cargarGrid();
             }
         }
     }
