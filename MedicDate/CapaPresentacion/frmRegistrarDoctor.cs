@@ -50,7 +50,7 @@ namespace MedicDate.CapaPresentacion
 
         private void btnNuevoDoctor_Click(object sender, EventArgs e)
         {
-            frmDoctor frm = new frmDoctor();
+            frmDoctor frm = new frmDoctor(0);
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);
