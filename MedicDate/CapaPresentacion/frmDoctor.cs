@@ -14,11 +14,6 @@ namespace MedicDate.CapaPresentacion
         private int? idDoctorEditar = null;
         private bool estadoOriginal;
 
-        //public frmDoctor()
-        //{
-        //    InitializeComponent();
-        //}
-
         public frmDoctor(int idDoctor)
         {
             InitializeComponent();
@@ -44,10 +39,6 @@ namespace MedicDate.CapaPresentacion
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
             chkActivo.Checked = false; // Por defecto activo en registro nuevo
-            // si en bd el campo estado==1
-
-            //chkActivo.Checked = true;
-
         }
 
         private void CargarEspecialidades()
@@ -84,7 +75,7 @@ namespace MedicDate.CapaPresentacion
                 txtTelefonoPrimario.Text = doctor.telefono_principal;
                 txtTelefonoSecundario.Text = doctor.telefono_secundario;
                 dtpFechaContratacion.Value = doctor.fecha_contratacion;
-                chkActivo.Checked = doctor.estado; // ⬅️ Sin evento, no dispara nada
+                chkActivo.Checked = doctor.estado;
                 txtCedula.Text = doctor.cedula_profesional;
                 txtConsultorio.Text = doctor.consultorio;
 
@@ -154,8 +145,6 @@ namespace MedicDate.CapaPresentacion
                     // 2. Actualizar doctor (solo datos específicos)
                     if (!clsDoctorDAL.Actualizar(doctor, transaccion))
                         throw new Exception("No se pudo actualizar el doctor.");
-
-
 
                     //// 3. Si el estado cambió, aplicar baja o reactivación
 
@@ -409,11 +398,6 @@ namespace MedicDate.CapaPresentacion
         {
 
             this.Close();
-        }
-
-        private void frmDoctor_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

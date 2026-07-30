@@ -540,7 +540,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmDoctor";
             Text = "Gestinar Doctor";
-            Load += frmDoctor_Load;
             pnlHeaderDoctor.ResumeLayout(false);
             pnlHeaderDoctor.PerformLayout();
             pnlContenedor.ResumeLayout(false);
