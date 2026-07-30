@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeaderEspecialidades = new Panel();
             lblEspecialidad = new Label();
             pnlContenedor = new Panel();
@@ -146,6 +146,7 @@
             btnDarBaja4.TabIndex = 17;
             btnDarBaja4.Text = "Eliminar";
             btnDarBaja4.UseVisualStyleBackColor = false;
+            btnDarBaja4.Click += btnDarBaja4_Click;
             // 
             // btnEditarEspecialidad
             // 
@@ -160,6 +161,7 @@
             btnEditarEspecialidad.TabIndex = 16;
             btnEditarEspecialidad.Text = "Editar";
             btnEditarEspecialidad.UseVisualStyleBackColor = false;
+            btnEditarEspecialidad.Click += btnEditarEspecialidad_Click;
             // 
             // btnNuevoEspecialidad
             // 
@@ -173,6 +175,7 @@
             btnNuevoEspecialidad.TabIndex = 15;
             btnNuevoEspecialidad.Text = "Nuevo";
             btnNuevoEspecialidad.UseVisualStyleBackColor = false;
+            btnNuevoEspecialidad.Click += btnNuevoEspecialidad_Click;
             // 
             // dgvEspecialidad
             // 
@@ -181,21 +184,21 @@
             dgvEspecialidad.AllowUserToDeleteRows = false;
             dgvEspecialidad.AllowUserToResizeColumns = false;
             dgvEspecialidad.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dgvEspecialidad.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.LightGray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dgvEspecialidad.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvEspecialidad.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvEspecialidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEspecialidad.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvEspecialidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvEspecialidad.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvEspecialidad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEspecialidad.EnableHeadersVisualStyles = false;
             dgvEspecialidad.GridColor = Color.Gray;
@@ -203,23 +206,24 @@
             dgvEspecialidad.MultiSelect = false;
             dgvEspecialidad.Name = "dgvEspecialidad";
             dgvEspecialidad.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvEspecialidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvEspecialidad.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvEspecialidad.RowHeadersVisible = false;
             dgvEspecialidad.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvEspecialidad.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvEspecialidad.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvEspecialidad.ScrollBars = ScrollBars.Horizontal;
             dgvEspecialidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEspecialidad.Size = new Size(1374, 300);
             dgvEspecialidad.TabIndex = 14;
+            dgvEspecialidad.CellClick += dgvEspecialidad_CellClick;
             // 
             // lblBuscar1
             // 
