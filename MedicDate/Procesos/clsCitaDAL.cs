@@ -35,7 +35,7 @@ namespace MedicDate.Procesos
             var tabla = new DataTable();
             try
             {
-                using var conexion = clsConexion.ObtenerConexion();                
+                using var conexion = clsConexion.ObtenerConexion();
                 string sql = ObtenerQueryBase() + @"
                     WHERE c.fecha = @fecha AND c.estado != 'Cancelada'
                     ORDER BY c.hora";
@@ -252,5 +252,39 @@ namespace MedicDate.Procesos
             }
             return horasOcupadas;
         }
+        public static DataTable ObtenerCitasDoctorRango(int idDoctor, DateTime fechaInicio, DateTime fechaFin)
+        {
+            string sql = @"
+        SELECT fecha, hora, duracion
+        FROM cita 
+        WHERE id_doctor = @idDoctor 
+          AND fecha BETWEEN @fechaInicio AND @fechaFin
+          AND estado != 'Cancelada'";
+
+            MySqlParameter[] parametros = {
+        new MySqlParameter("@idDoctor", idDoctor),
+        new MySqlParameter("@fechaInicio", fechaInicio.Date),
+        new MySqlParameter("@fechaFin", fechaFin.Date)
+    };
+
+            return clsConexion.EjecutarConsulta(sql, parametros);
+        }
+        // Método para obtener las citas de un DOCTOR específico en una FECHA específica
+        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha)
+        {
+            string sql = ObtenerQueryBase() + @"
+        WHERE c.id_doctor = @idDoctor
+          AND c.fecha = @fecha
+          AND c.estado != 'Cancelada'
+        ORDER BY c.hora";
+
+            MySqlParameter[] parametros = {
+        new MySqlParameter("@idDoctor", idDoctor),
+        new MySqlParameter("@fecha", fecha.Date)
+    };
+
+            return clsConexion.EjecutarConsulta(sql, parametros);
+        }
+
     }
 }
