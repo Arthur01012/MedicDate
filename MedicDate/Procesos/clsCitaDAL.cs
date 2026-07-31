@@ -8,7 +8,6 @@ namespace MedicDate.Procesos
 {
     internal class clsCitaDAL
     {
-        // Método para cargar TODAS las citas activas de un día específico
         public static DataTable CargarDataGrid(DateTime fecha)
         {
             var tabla = new DataTable();
@@ -48,10 +47,10 @@ namespace MedicDate.Procesos
             }
         }
 
-        // Método para buscar (devuelve todas las citas del día que coincidan con el texto)
+        
         public static DataTable Consultar(DateTime fecha, string texto)
         {
-            // Si no escribió nada, devolvemos todo el día
+            
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid(fecha);
 
