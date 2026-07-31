@@ -73,5 +73,17 @@ namespace MedicDate.Procesos
             }
         }
 
+        public static DataTable ObtenerTodos()
+        {
+            string sql = @"
+        SELECT 
+            id_paciente,
+            CONCAT(nombre, ' ', apellido_paterno, ' ', IFNULL(apellido_materno, '')) AS NombreCompleto
+        FROM paciente 
+        ORDER BY apellido_paterno, nombre ASC";
+
+            return clsConexion.EjecutarConsulta(sql);
+        }
+
     }
 }

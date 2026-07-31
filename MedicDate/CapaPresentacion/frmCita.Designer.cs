@@ -31,13 +31,13 @@
             pnlHeaderCita = new Panel();
             lblCitas = new Label();
             pnlContanedor = new Panel();
+            cmbHoraCita = new ComboBox();
             btnGuardar = new Button();
             btnCancelar1 = new Button();
             lblMotivo = new Label();
             txtMotivo = new TextBox();
             lblCosto = new Label();
             txtcosto = new TextBox();
-            dtpHoraCita = new DateTimePicker();
             lblHoraCita = new Label();
             dtpFechaCita = new DateTimePicker();
             lblFechaCita = new Label();
@@ -74,13 +74,13 @@
             // pnlContanedor
             // 
             pnlContanedor.BackColor = Color.LightGray;
+            pnlContanedor.Controls.Add(cmbHoraCita);
             pnlContanedor.Controls.Add(btnGuardar);
             pnlContanedor.Controls.Add(btnCancelar1);
             pnlContanedor.Controls.Add(lblMotivo);
             pnlContanedor.Controls.Add(txtMotivo);
             pnlContanedor.Controls.Add(lblCosto);
             pnlContanedor.Controls.Add(txtcosto);
-            pnlContanedor.Controls.Add(dtpHoraCita);
             pnlContanedor.Controls.Add(lblHoraCita);
             pnlContanedor.Controls.Add(dtpFechaCita);
             pnlContanedor.Controls.Add(lblFechaCita);
@@ -95,6 +95,17 @@
             pnlContanedor.Size = new Size(641, 488);
             pnlContanedor.TabIndex = 10;
             // 
+            // cmbHoraCita
+            // 
+            cmbHoraCita.BackColor = Color.White;
+            cmbHoraCita.Font = new Font("Segoe UI", 12F);
+            cmbHoraCita.ForeColor = Color.Black;
+            cmbHoraCita.FormattingEnabled = true;
+            cmbHoraCita.Location = new Point(330, 127);
+            cmbHoraCita.Name = "cmbHoraCita";
+            cmbHoraCita.Size = new Size(299, 36);
+            cmbHoraCita.TabIndex = 38;
+            // 
             // btnGuardar
             // 
             btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -107,6 +118,7 @@
             btnGuardar.TabIndex = 37;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar1
             // 
@@ -121,6 +133,7 @@
             btnCancelar1.TabIndex = 36;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
+            btnCancelar1.Click += btnCancelar1_Click;
             // 
             // lblMotivo
             // 
@@ -165,22 +178,6 @@
             txtcosto.Size = new Size(299, 34);
             txtcosto.TabIndex = 32;
             // 
-            // dtpHoraCita
-            // 
-            dtpHoraCita.CalendarForeColor = Color.Black;
-            dtpHoraCita.CalendarMonthBackground = Color.White;
-            dtpHoraCita.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
-            dtpHoraCita.CalendarTitleForeColor = Color.Black;
-            dtpHoraCita.CalendarTrailingForeColor = Color.Gray;
-            dtpHoraCita.CustomFormat = "hh:mm";
-            dtpHoraCita.Font = new Font("Segoe UI", 12F);
-            dtpHoraCita.Format = DateTimePickerFormat.Time;
-            dtpHoraCita.Location = new Point(330, 125);
-            dtpHoraCita.Name = "dtpHoraCita";
-            dtpHoraCita.ShowUpDown = true;
-            dtpHoraCita.Size = new Size(299, 34);
-            dtpHoraCita.TabIndex = 31;
-            // 
             // lblHoraCita
             // 
             lblHoraCita.AutoSize = true;
@@ -203,6 +200,7 @@
             dtpFechaCita.Name = "dtpFechaCita";
             dtpFechaCita.Size = new Size(299, 34);
             dtpFechaCita.TabIndex = 29;
+            dtpFechaCita.ValueChanged += dtpFechaCita_ValueChanged;
             // 
             // lblFechaCita
             // 
@@ -246,7 +244,6 @@
             lblNombrePaciente.Size = new Size(74, 23);
             lblNombrePaciente.TabIndex = 4;
             lblNombrePaciente.Text = "Paciente";
-            lblNombrePaciente.Click += lblNombrePaciente_Click;
             // 
             // tctNombrePaciente
             // 
@@ -267,6 +264,7 @@
             Controls.Add(pnlHeaderCita);
             Name = "frmCita";
             Text = "Gestion de Citas";
+            Load += frmCita_Load;
             pnlHeaderCita.ResumeLayout(false);
             pnlHeaderCita.PerformLayout();
             pnlContanedor.ResumeLayout(false);
@@ -283,7 +281,6 @@
         private TextBox tctNombrePaciente;
         private ComboBox cmbDoctor;
         private Label lblNombreDoctor;
-        private DateTimePicker dtpHoraCita;
         private Label lblHoraCita;
         private DateTimePicker dtpFechaCita;
         private Label lblFechaCita;
@@ -293,5 +290,6 @@
         private TextBox txtcosto;
         private Button btnGuardar;
         private Button btnCancelar1;
+        private ComboBox cmbHoraCita;
     }
 }
