@@ -8,30 +8,35 @@ namespace MedicDate.Procesos
 {
     internal class clsCitaDAL
     {
+        private static string ObtenerQueryBase()
+        {
+            return @"
+                SELECT 
+                    c.id_cita,
+                    CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) AS Paciente,
+                    c.fecha AS Fecha,
+                    c.hora AS Hora,
+                    c.motivo AS Motivo,
+                    p.telefono_principal AS 'Teléfono Paciente',
+                    s.nombre_especialidad AS Especialidad,
+                    CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS Doctor,
+                    c.estado AS Estado,
+                    c.costo AS Costo
+                FROM cita c
+                INNER JOIN paciente p ON c.id_paciente = p.id_paciente
+                INNER JOIN empleado e ON c.id_doctor = e.id_empleado
+                LEFT JOIN doctor d ON e.id_empleado = d.id_empleado
+                LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad";
+        }
+
+
         public static DataTable CargarDataGrid(DateTime fecha)
         {
             var tabla = new DataTable();
             try
             {
-                using var conexion = clsConexion.ObtenerConexion();
-
-                string sql = @"
-                    SELECT 
-                        c.id_cita,
-                        c.fecha AS Fecha,
-                        c.hora AS Hora,
-                        c.motivo AS Motivo,
-                        c.estado AS Estado,
-                        c.costo AS Costo,
-                        CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) AS Paciente,
-                        p.telefono_principal AS 'Teléfono Paciente',
-                        CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS Doctor,
-                        s.nombre_especialidad AS Especialidad
-                    FROM cita c
-                    INNER JOIN paciente p ON c.id_paciente = p.id_paciente
-                    INNER JOIN empleado e ON c.id_doctor = e.id_empleado
-                    LEFT JOIN doctor d ON e.id_empleado = d.id_empleado
-                    LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad
+                using var conexion = clsConexion.ObtenerConexion();                
+                string sql = ObtenerQueryBase() + @"
                     WHERE c.fecha = @fecha AND c.estado != 'Cancelada'
                     ORDER BY c.hora";
 
@@ -47,10 +52,8 @@ namespace MedicDate.Procesos
             }
         }
 
-        
         public static DataTable Consultar(DateTime fecha, string texto)
         {
-            
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid(fecha);
 
@@ -58,24 +61,7 @@ namespace MedicDate.Procesos
             try
             {
                 using var conexion = clsConexion.ObtenerConexion();
-
-                string sql = @"
-                    SELECT 
-                        c.id_cita,
-                        c.fecha AS Fecha,
-                        c.hora AS Hora,
-                        c.motivo AS Motivo,
-                        c.estado AS Estado,
-                        c.costo AS Costo,
-                        CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) AS Paciente,
-                        p.telefono_principal AS 'Teléfono Paciente',
-                        CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS Doctor,
-                        s.nombre_especialidad AS Especialidad
-                    FROM cita c
-                    INNER JOIN paciente p ON c.id_paciente = p.id_paciente
-                    INNER JOIN empleado e ON c.id_doctor = e.id_empleado
-                    LEFT JOIN doctor d ON e.id_empleado = d.id_empleado
-                    LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad
+                string sql = ObtenerQueryBase() + @"
                     WHERE c.fecha = @fecha AND c.estado != 'Cancelada'
                       AND (CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) LIKE @texto
                            OR CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) LIKE @texto
@@ -97,37 +83,16 @@ namespace MedicDate.Procesos
 
         public static DataTable ObtenerCitas(int? idDoctor = null)
         {
-            string sql = @"
-        SELECT 
-            c.id_cita,
-            c.fecha AS Fecha,
-            c.hora AS Hora,
-            c.motivo AS Motivo,
-            c.estado AS Estado,
-            c.costo AS Costo,
-            CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) AS Paciente,
-            p.telefono_principal AS 'Teléfono Paciente',
-            CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS Doctor,
-            s.nombre_especialidad AS Especialidad
-        FROM cita c
-        INNER JOIN paciente p ON c.id_paciente = p.id_paciente
-        INNER JOIN empleado e ON c.id_doctor = e.id_empleado
-        LEFT JOIN doctor d ON e.id_empleado = d.id_empleado
-        LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad
-        WHERE c.estado != 'Cancelada'";
-
-            if (idDoctor.HasValue)
-            {
-                sql += " AND c.id_doctor = @idDoctor";
-            }
-
-            sql += " ORDER BY c.fecha DESC, c.hora DESC";
+            string sql = ObtenerQueryBase() + @" WHERE c.estado != 'Cancelada'";
 
             var parametros = new List<MySqlParameter>();
             if (idDoctor.HasValue)
             {
+                sql += " AND c.id_doctor = @idDoctor";
                 parametros.Add(new MySqlParameter("@idDoctor", idDoctor.Value));
             }
+
+            sql += " ORDER BY c.fecha DESC, c.hora DESC";
 
             return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
         }
@@ -141,17 +106,14 @@ namespace MedicDate.Procesos
             };
             return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
         }
-        public static bool Cancelar(int id_cita)
-        {
-            string consulta = "UPDATE cita SET estado = 'Cancelada' WHERE id_cita = @id";
-            MySqlParameter[] parametros = { new MySqlParameter("@id", id_cita) };
-            return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
-        }
+
+        public static bool Cancelar(int id_cita) => CambiarEstado(id_cita, "Cancelada");
+
         public static clsCita ObtenerPorId(int id_cita)
         {
             string consulta = @"SELECT c.*, 
-                               p.nombre + ' ' + p.apellido_paterno + ' ' + IFNULL(p.apellido_materno, '') as nombre_paciente,
-                               e.nombre + ' ' + e.apellido_paterno + ' ' + IFNULL(e.apellido_materno, '') as nombre_doctor
+                               CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) as nombre_paciente,
+                               CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) as nombre_doctor
                                FROM cita c
                                INNER JOIN paciente p ON c.id_paciente = p.id_paciente
                                INNER JOIN empleado e ON c.id_doctor = e.id_empleado
@@ -182,6 +144,7 @@ namespace MedicDate.Procesos
             }
             return null;
         }
+
         public static bool VerificarDisponibilidad(int id_doctor, DateTime fecha, TimeSpan hora, int duracion)
         {
             string consulta = @"SELECT COUNT(*) FROM cita 
@@ -204,6 +167,7 @@ namespace MedicDate.Procesos
             int count = Convert.ToInt32(clsConexion.EjecutarScalar(consulta, parametros));
             return count == 0;
         }
+
         public static int Insertar(clsCita cita, MySqlTransaction? transaccion = null)
         {
             string consulta = @"INSERT INTO cita 
@@ -255,6 +219,7 @@ namespace MedicDate.Procesos
 
             return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
         }
+
         public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)
         {
             string sql = @"SELECT hora_inicio, hora_fin 
@@ -262,9 +227,9 @@ namespace MedicDate.Procesos
                    WHERE id_doctor = @idDoctor AND dia_semana = @diaSemana";
 
             MySqlParameter[] parametros = {
-        new MySqlParameter("@idDoctor", idDoctor),
-        new MySqlParameter("@diaSemana", diaSemana)
-    };
+                new MySqlParameter("@idDoctor", idDoctor),
+                new MySqlParameter("@diaSemana", diaSemana)
+            };
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
 
@@ -276,9 +241,9 @@ namespace MedicDate.Procesos
                    AND estado != 'Cancelada'";
 
             MySqlParameter[] parametros = {
-        new MySqlParameter("@idDoctor", idDoctor),
-        new MySqlParameter("@fecha", fecha)
-    };
+                new MySqlParameter("@idDoctor", idDoctor),
+                new MySqlParameter("@fecha", fecha)
+            };
 
             DataTable tabla = clsConexion.EjecutarConsulta(sql, parametros);
             foreach (DataRow row in tabla.Rows)
