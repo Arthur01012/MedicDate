@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MedicDate.Procesos;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MedicDate.CapaPresentacion
@@ -19,7 +14,39 @@ namespace MedicDate.CapaPresentacion
 
         private void frmAgendaGeneral_Load(object sender, EventArgs e)
         {
+            CargarAgenda();
+        }
 
+        private void CargarAgenda()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtBuscarDoctor.Text))
+                {
+                    dgvCitas.DataSource = clsCitaDAL.CargarDataGrid(dtpFecha.Value);
+                }
+                else
+                {
+                    dgvCitas.DataSource = clsCitaDAL.Consultar(dtpFecha.Value, txtBuscarDoctor.Text);
+                }
+
+                dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar agenda:\n\n{ex.Message}", "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        {
+            CargarAgenda();
+        }
+
+
+        private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)
+        {
+            CargarAgenda(); 
         }
     }
 }
