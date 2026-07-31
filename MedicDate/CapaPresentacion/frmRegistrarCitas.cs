@@ -84,12 +84,10 @@ namespace MedicDate.CapaPresentacion
             {
                 int idCita = Convert.ToInt32(rowView["id_cita"]);
 
-                // Descomenta esto cuando tengas tu frmCita preparado para editar:
-                // frmCita frm = new frmCita(idCita);
-                // frm.ShowDialog();
+                frmCita frm = new frmCita(idCita);
+                frm.ShowDialog();
 
-                MessageBox.Show($"Funcionalidad pendiente: Editar cita ID {idCita}", "Desarrollo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CargarCitas();
+
             }
         }
 
