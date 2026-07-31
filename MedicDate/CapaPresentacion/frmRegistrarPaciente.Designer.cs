@@ -134,14 +134,19 @@
             // 
             btnverHistorial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnverHistorial.BackColor = Color.DarkGoldenrod;
+            btnverHistorial.BackgroundImageLayout = ImageLayout.None;
             btnverHistorial.FlatStyle = FlatStyle.Popup;
             btnverHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnverHistorial.ForeColor = Color.Black;
+            btnverHistorial.Image = Properties.Resources.ver_historial_black;
+            btnverHistorial.ImageAlign = ContentAlignment.TopLeft;
             btnverHistorial.Location = new Point(1231, 14);
             btnverHistorial.Name = "btnverHistorial";
+            btnverHistorial.Padding = new Padding(8, 0, 6, 0);
             btnverHistorial.Size = new Size(148, 45);
             btnverHistorial.TabIndex = 10;
             btnverHistorial.Text = "Ver Historial";
+            btnverHistorial.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnverHistorial.UseVisualStyleBackColor = false;
             btnverHistorial.Click += btnverHistorial_Click;
             // 
@@ -152,11 +157,16 @@
             btnEditarPaciente.BackgroundImageLayout = ImageLayout.None;
             btnEditarPaciente.FlatStyle = FlatStyle.Popup;
             btnEditarPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarPaciente.Image = Properties.Resources.editar_black;
+            btnEditarPaciente.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditarPaciente.Location = new Point(1051, 14);
             btnEditarPaciente.Name = "btnEditarPaciente";
+            btnEditarPaciente.Padding = new Padding(8, 0, 6, 0);
             btnEditarPaciente.Size = new Size(148, 45);
             btnEditarPaciente.TabIndex = 9;
             btnEditarPaciente.Text = "Editar";
+            btnEditarPaciente.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarPaciente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarPaciente.UseVisualStyleBackColor = false;
             // 
             // btnNuevoPaciente
@@ -165,11 +175,16 @@
             btnNuevoPaciente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoPaciente.FlatStyle = FlatStyle.Popup;
             btnNuevoPaciente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoPaciente.Image = Properties.Resources.nuevo_black;
+            btnNuevoPaciente.ImageAlign = ContentAlignment.MiddleLeft;
             btnNuevoPaciente.Location = new Point(866, 14);
             btnNuevoPaciente.Name = "btnNuevoPaciente";
+            btnNuevoPaciente.Padding = new Padding(8, 0, 6, 0);
             btnNuevoPaciente.Size = new Size(148, 45);
             btnNuevoPaciente.TabIndex = 8;
             btnNuevoPaciente.Text = "Agregar";
+            btnNuevoPaciente.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoPaciente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoPaciente.UseVisualStyleBackColor = false;
             // 
             // lblBuscar

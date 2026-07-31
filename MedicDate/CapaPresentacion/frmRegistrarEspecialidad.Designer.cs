@@ -140,6 +140,11 @@
             btnDarBaja4.FlatStyle = FlatStyle.Popup;
             btnDarBaja4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDarBaja4.ForeColor = Color.White;
+            btnDarBaja4.Image = MedicDate.Properties.Resources.eliminar_white;
+            btnDarBaja4.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDarBaja4.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDarBaja4.TextAlign = ContentAlignment.MiddleRight;
+            btnDarBaja4.Padding = new Padding(8, 0, 6, 0);
             btnDarBaja4.Location = new Point(1226, 280);
             btnDarBaja4.Name = "btnDarBaja4";
             btnDarBaja4.Size = new Size(148, 45);
@@ -155,6 +160,11 @@
             btnEditarEspecialidad.BackgroundImageLayout = ImageLayout.None;
             btnEditarEspecialidad.FlatStyle = FlatStyle.Popup;
             btnEditarEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarEspecialidad.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarEspecialidad.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditarEspecialidad.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarEspecialidad.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarEspecialidad.Padding = new Padding(8, 0, 6, 0);
             btnEditarEspecialidad.Location = new Point(1046, 280);
             btnEditarEspecialidad.Name = "btnEditarEspecialidad";
             btnEditarEspecialidad.Size = new Size(148, 45);
@@ -169,6 +179,11 @@
             btnNuevoEspecialidad.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoEspecialidad.FlatStyle = FlatStyle.Popup;
             btnNuevoEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoEspecialidad.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoEspecialidad.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNuevoEspecialidad.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnNuevoEspecialidad.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoEspecialidad.Padding = new Padding(8, 0, 6, 0);
             btnNuevoEspecialidad.Location = new Point(861, 280);
             btnNuevoEspecialidad.Name = "btnNuevoEspecialidad";
             btnNuevoEspecialidad.Size = new Size(148, 45);

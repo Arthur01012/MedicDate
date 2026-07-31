@@ -59,5 +59,245 @@ namespace MedicDate.Properties {
                 resourceCulture = value;
             }
         }
+
+        /// <summary>
+        ///   Icono (28x28) para el botón Guardar. Fondo esperado: claro (texto/icono en negro).
+        /// </summary>
+        internal static global::System.Drawing.Bitmap guardar_black {
+            get {
+                object obj = ResourceManager.GetObject("guardar_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para los botones Cancelar/Cerrar. Fondo rojo (#B00B0B): icono en blanco.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap cancelar_white {
+            get {
+                object obj = ResourceManager.GetObject("cancelar_white", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Perfil / usuario.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap usuario_black {
+            get {
+                object obj = ResourceManager.GetObject("usuario_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Pacientes.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap pacientes_black {
+            get {
+                object obj = ResourceManager.GetObject("pacientes_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Agenda / Agenda general.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap agenda_black {
+            get {
+                object obj = ResourceManager.GetObject("agenda_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Citas.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap confirmar_cita_black {
+            get {
+                object obj = ResourceManager.GetObject("confirmar_cita_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Reportes.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap reportes_black {
+            get {
+                object obj = ResourceManager.GetObject("reportes_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Especialidades.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap especialidades_black {
+            get {
+                object obj = ResourceManager.GetObject("especialidades_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Horarios.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap horarios_black {
+            get {
+                object obj = ResourceManager.GetObject("horarios_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Asistentes.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap asistentes_black {
+            get {
+                object obj = ResourceManager.GetObject("asistentes_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Doctores.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap doctores_black {
+            get {
+                object obj = ResourceManager.GetObject("doctores_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Cerrar sesión. Fondo rojo (#B00B0B): icono en blanco.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap cerrar_sesion_white {
+            get {
+                object obj = ResourceManager.GetObject("cerrar_sesion_white", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Nuevo/Agregar.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap nuevo_black {
+            get {
+                object obj = ResourceManager.GetObject("nuevo_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Editar.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap editar_black {
+            get {
+                object obj = ResourceManager.GetObject("editar_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Eliminar. Fondo rojo: icono en blanco.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap eliminar_white {
+            get {
+                object obj = ResourceManager.GetObject("eliminar_white", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Desactivar. Fondo rojo: icono en blanco.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap desactivar_white {
+            get {
+                object obj = ResourceManager.GetObject("desactivar_white", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Ver Detalle.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap detalle_black {
+            get {
+                object obj = ResourceManager.GetObject("detalle_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para navegación "Anterior".
+        /// </summary>
+        internal static global::System.Drawing.Bitmap anterior_black {
+            get {
+                object obj = ResourceManager.GetObject("anterior_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para navegación "Siguiente".
+        /// </summary>
+        internal static global::System.Drawing.Bitmap siguiente_black {
+            get {
+                object obj = ResourceManager.GetObject("siguiente_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Acceder (login).
+        /// </summary>
+        internal static global::System.Drawing.Bitmap acceder_black {
+            get {
+                object obj = ResourceManager.GetObject("acceder_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Cancelar sobre fondo no rojo (ej. gris).
+        /// </summary>
+        internal static global::System.Drawing.Bitmap cancelar_black {
+            get {
+                object obj = ResourceManager.GetObject("cancelar_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Ver Historial.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap ver_historial_black {
+            get {
+                object obj = ResourceManager.GetObject("ver_historial_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Iniciar Consulta.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap iniciar_consulta_black {
+            get {
+                object obj = ResourceManager.GetObject("iniciar_consulta_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        /// <summary>
+        ///   Icono (28x28) para Finalizar Consulta.
+        /// </summary>
+        internal static global::System.Drawing.Bitmap finalizar_consulta_black {
+            get {
+                object obj = ResourceManager.GetObject("finalizar_consulta_black", resourceCulture);
+                return ((global::System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

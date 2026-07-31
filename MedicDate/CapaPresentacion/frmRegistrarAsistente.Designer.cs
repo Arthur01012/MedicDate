@@ -110,35 +110,42 @@
             btnDespues.BackColor = Color.FromArgb(166, 202, 236);
             btnDespues.FlatStyle = FlatStyle.Popup;
             btnDespues.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDespues.Image = MedicDate.Properties.Resources.siguiente_black;
+            btnDespues.ImageAlign = ContentAlignment.MiddleCenter;
             btnDespues.Location = new Point(1295, 652);
             btnDespues.Name = "btnDespues";
             btnDespues.Size = new Size(55, 45);
             btnDespues.TabIndex = 13;
-            btnDespues.Text = ">";
             btnDespues.UseVisualStyleBackColor = false;
             btnDespues.Click += btnDespues_Click;
-            // 
+            //
             // btnAnterior
-            // 
+            //
             btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAnterior.BackColor = Color.FromArgb(166, 202, 236);
             btnAnterior.FlatStyle = FlatStyle.Popup;
             btnAnterior.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnterior.Image = MedicDate.Properties.Resources.anterior_black;
+            btnAnterior.ImageAlign = ContentAlignment.MiddleCenter;
             btnAnterior.Location = new Point(1093, 652);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.Size = new Size(55, 45);
             btnAnterior.TabIndex = 12;
-            btnAnterior.Text = "<";
             btnAnterior.UseVisualStyleBackColor = false;
             btnAnterior.Click += btnAnterior_Click;
-            // 
+            //
             // btnDesactivar
-            // 
+            //
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
+            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1202, 31);
             btnDesactivar.Name = "btnDesactivar";
             btnDesactivar.Size = new Size(148, 45);
@@ -146,14 +153,19 @@
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja2_Click;
-            // 
+            //
             // btnEditarAsistente
-            // 
+            //
             btnEditarAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarAsistente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
             btnEditarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarAsistente.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarAsistente.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditarAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarAsistente.Padding = new Padding(8, 0, 6, 0);
             btnEditarAsistente.Location = new Point(1022, 31);
             btnEditarAsistente.Name = "btnEditarAsistente";
             btnEditarAsistente.Size = new Size(148, 45);
@@ -161,13 +173,18 @@
             btnEditarAsistente.Text = "Editar";
             btnEditarAsistente.UseVisualStyleBackColor = false;
             btnEditarAsistente.Click += btnEditarAsistente_Click;
-            // 
+            //
             // btnNuevoAsistente
-            // 
+            //
             btnNuevoAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoAsistente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoAsistente.FlatStyle = FlatStyle.Popup;
             btnNuevoAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoAsistente.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoAsistente.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNuevoAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnNuevoAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoAsistente.Padding = new Padding(8, 0, 6, 0);
             btnNuevoAsistente.Location = new Point(837, 31);
             btnNuevoAsistente.Name = "btnNuevoAsistente";
             btnNuevoAsistente.Size = new Size(148, 45);

@@ -93,6 +93,11 @@
             btnConfirmarCita.BackgroundImageLayout = ImageLayout.None;
             btnConfirmarCita.FlatStyle = FlatStyle.Popup;
             btnConfirmarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnConfirmarCita.Image = MedicDate.Properties.Resources.confirmar_cita_black;
+            btnConfirmarCita.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfirmarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnConfirmarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnConfirmarCita.Padding = new Padding(8, 0, 6, 0);
             btnConfirmarCita.Location = new Point(1071, 13);
             btnConfirmarCita.Name = "btnConfirmarCita";
             btnConfirmarCita.Size = new Size(148, 45);
@@ -166,6 +171,11 @@
             btnCancelarCita.FlatStyle = FlatStyle.Popup;
             btnCancelarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelarCita.ForeColor = Color.White;
+            btnCancelarCita.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelarCita.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelarCita.Padding = new Padding(8, 0, 6, 0);
             btnCancelarCita.Location = new Point(1236, 13);
             btnCancelarCita.Name = "btnCancelarCita";
             btnCancelarCita.Size = new Size(148, 45);
@@ -180,6 +190,11 @@
             btnEditarCita.BackgroundImageLayout = ImageLayout.None;
             btnEditarCita.FlatStyle = FlatStyle.Popup;
             btnEditarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarCita.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarCita.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarCita.Padding = new Padding(8, 0, 6, 0);
             btnEditarCita.Location = new Point(903, 13);
             btnEditarCita.Name = "btnEditarCita";
             btnEditarCita.Size = new Size(148, 45);
@@ -193,6 +208,11 @@
             btnNuevoCita.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoCita.FlatStyle = FlatStyle.Popup;
             btnNuevoCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoCita.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoCita.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNuevoCita.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnNuevoCita.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoCita.Padding = new Padding(8, 0, 6, 0);
             btnNuevoCita.Location = new Point(737, 13);
             btnNuevoCita.Name = "btnNuevoCita";
             btnNuevoCita.Size = new Size(148, 45);

@@ -91,6 +91,11 @@
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
+            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1226, 12);
             btnDesactivar.Name = "btnDesactivar";
             btnDesactivar.Size = new Size(148, 45);
@@ -107,6 +112,11 @@
             btnEditarHorario.FlatStyle = FlatStyle.Popup;
             btnEditarHorario.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarHorario.ForeColor = Color.Black;
+            btnEditarHorario.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarHorario.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditarHorario.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarHorario.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarHorario.Padding = new Padding(8, 0, 6, 0);
             btnEditarHorario.Location = new Point(1046, 12);
             btnEditarHorario.Name = "btnEditarHorario";
             btnEditarHorario.Size = new Size(148, 45);
@@ -122,6 +132,11 @@
             btnAsignarHora.FlatStyle = FlatStyle.Popup;
             btnAsignarHora.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAsignarHora.ForeColor = Color.Black;
+            btnAsignarHora.Image = MedicDate.Properties.Resources.horarios_black;
+            btnAsignarHora.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAsignarHora.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAsignarHora.TextAlign = ContentAlignment.MiddleRight;
+            btnAsignarHora.Padding = new Padding(8, 0, 6, 0);
             btnAsignarHora.Location = new Point(861, 12);
             btnAsignarHora.Name = "btnAsignarHora";
             btnAsignarHora.Size = new Size(148, 45);
