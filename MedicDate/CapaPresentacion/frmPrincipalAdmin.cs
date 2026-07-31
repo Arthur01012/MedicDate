@@ -47,10 +47,48 @@ namespace MedicDate.CapaPresentacion
             principal.agregarAlContenedor(new frmRegistrarEspecialidad(), pnlContenedor);
         }
 
+        private void btnPacientesA_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmRegistrarPaciente(), pnlContenedor);
+        }
+
+        private void btnCitasA_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmRegistrarCitas(), pnlContenedor);
+        }
+
+        private void btnAgendaGeneralA_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmAgendaGeneral(), pnlContenedor);
+        }
+
+        private void btnAgendaD_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmAgenda(), pnlContenedor);
+        }
+
+        private void btnPacientesD_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmPacientesD(), pnlContenedor);
+        }
+
+        private void btnPerfilD_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmPerfilDoctor(), pnlContenedor);
+        }
+
+        
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
 
         private void frmPrincipalAdmin_Load(object sender, EventArgs e)
         {
@@ -67,7 +105,7 @@ namespace MedicDate.CapaPresentacion
             if (Sesion.UsuarioActual != null)
             {
                 // Ocultar todos los botones por defecto
-                btnDoctores.Visible= false;
+                btnDoctores.Visible = false;
                 btnAsistentes.Visible = false;
                 btnHorarios.Visible = false;
                 btnEspecialidades.Visible = false;
@@ -94,7 +132,7 @@ namespace MedicDate.CapaPresentacion
 
                         btnEspecialidades.Visible = true;
                         btnEspecialidades.Location = new Point(10, 256);
-                        
+
                         btnReportes.Visible = true;
                         btnReportes.Location = new Point(10, 323);
 

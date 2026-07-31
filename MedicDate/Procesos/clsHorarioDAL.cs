@@ -216,5 +216,29 @@ namespace MedicDate.Procesos
                 throw new Exception("Error en la base de datos al desactivar los horarios del doctor: " + ex.Message, ex);
             }
         }
+        public static DataTable ObtenerHorariosDoctor(int idDoctor)
+        {
+            string sql = @"
+        SELECT 
+            dia_semana AS 'Día',
+            hora_inicio AS 'Hora Inicio',
+            hora_fin AS 'Hora Fin',
+            CASE WHEN activo = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado
+        FROM horario 
+        WHERE id_doctor = @id_doctor
+        ORDER BY 
+            CASE dia_semana 
+                WHEN 'Lunes' THEN 1
+                WHEN 'Martes' THEN 2
+                WHEN 'Miércoles' THEN 3
+                WHEN 'Jueves' THEN 4
+                WHEN 'Viernes' THEN 5
+                WHEN 'Sábado' THEN 6
+                WHEN 'Domingo' THEN 7
+            END ASC, hora_inicio ASC;";
+
+            MySqlParameter[] parametros = { new MySqlParameter("@id_doctor", idDoctor) };
+            return clsConexion.EjecutarConsulta(sql, parametros);
+        }
     }
 }
