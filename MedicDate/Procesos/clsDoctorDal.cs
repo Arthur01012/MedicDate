@@ -377,5 +377,24 @@ namespace MedicDate.Procesos
                 NombreUsuario = row["NombreUsuario"]?.ToString()
             };
         }
+        public static DataTable ObtenerFichaDoctor(int idEmpleado)
+        {
+            string sql = @"
+            SELECT 
+            CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+            E.curp AS CURP,
+            E.email AS Correo,
+            E.telefono_principal AS Teléfono,
+            D.cedula_profesional AS 'Cédula Profesional',
+            S.nombre_especialidad AS Especialidad,
+            D.consultorio AS Consultorio
+            FROM empleado E
+            INNER JOIN doctor D ON E.id_empleado = D.id_empleado
+            LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
+            WHERE E.id_empleado = @id;";
+
+            MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) };
+            return clsConexion.EjecutarConsulta(sql, parametros);
+        }
     }
 }
