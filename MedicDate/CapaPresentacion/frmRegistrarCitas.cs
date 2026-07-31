@@ -24,8 +24,8 @@ namespace MedicDate.CapaPresentacion
             DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos();
 
             cmbFiltrarDoctor.DataSource = doctores;
-            cmbFiltrarDoctor.DisplayMember = "NombreCompleto"; 
-            cmbFiltrarDoctor.ValueMember = "id_empleado";      
+            cmbFiltrarDoctor.DisplayMember = "NombreCompleto";
+            cmbFiltrarDoctor.ValueMember = "id_empleado";
 
 
             cmbFiltrarDoctor.SelectedIndex = -1;
@@ -66,7 +66,7 @@ namespace MedicDate.CapaPresentacion
         {
             frmCita frm = new frmCita();
             frm.ShowDialog();
-            CargarCitas(); 
+            CargarCitas();
         }
 
 
@@ -82,7 +82,7 @@ namespace MedicDate.CapaPresentacion
             DataRowView rowView = dgvCitas.SelectedRows[0].DataBoundItem as DataRowView;
             if (rowView != null)
             {
-                int idCita = Convert.ToInt32(rowView["id_cita"]); 
+                int idCita = Convert.ToInt32(rowView["id_cita"]);
 
                 // Descomenta esto cuando tengas tu frmCita preparado para editar:
                 // frmCita frm = new frmCita(idCita);
@@ -155,6 +155,12 @@ namespace MedicDate.CapaPresentacion
                     }
                 }
             }
+        }
+
+        private void btnLimpiarFiltro_Click(object sender, EventArgs e)
+        {
+            cmbFiltrarDoctor.SelectedIndex = -1;
+            CargarCitas();  
         }
     }
 }
