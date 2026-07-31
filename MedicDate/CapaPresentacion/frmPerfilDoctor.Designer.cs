@@ -200,6 +200,7 @@
             Controls.Add(pnlHeaderPerfil);
             Name = "frmPerfilDoctor";
             Text = "frmPerfilDoctor";
+            Load += frmPerfilDoctor_Load;
             pnlHeaderPerfil.ResumeLayout(false);
             pnlHeaderPerfil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFicha).EndInit();
