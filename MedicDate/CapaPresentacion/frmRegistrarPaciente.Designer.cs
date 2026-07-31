@@ -143,6 +143,7 @@
             btnverHistorial.TabIndex = 10;
             btnverHistorial.Text = "Ver Historial";
             btnverHistorial.UseVisualStyleBackColor = false;
+            btnverHistorial.Click += btnverHistorial_Click;
             // 
             // btnEditarPaciente
             // 

@@ -29,5 +29,10 @@ namespace MedicDate.CapaPresentacion
             dgvPacientes.DataSource = pacienteDAL.Consultar(txtBuscarPaciente.Text);
             dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        private void btnverHistorial_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
