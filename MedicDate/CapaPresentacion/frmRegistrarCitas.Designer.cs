@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             pnlHeader14 = new Panel();
             lblTituloCitas = new Label();
             pnlContenedor = new Panel();
             btnConfirmarCita = new Button();
             cmbFiltrarDoctor = new ComboBox();
-            dgvPacientes = new DataGridView();
+            dgvCitas = new DataGridView();
             btnCancelarCita = new Button();
             btnEditarCita = new Button();
             btnNuevoCita = new Button();
             lblfiltrar = new Label();
             pnlHeader14.SuspendLayout();
             pnlContenedor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPacientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
             SuspendLayout();
             // 
             // pnlHeader14
@@ -74,7 +74,7 @@
             pnlContenedor.BackColor = Color.LightGray;
             pnlContenedor.Controls.Add(btnConfirmarCita);
             pnlContenedor.Controls.Add(cmbFiltrarDoctor);
-            pnlContenedor.Controls.Add(dgvPacientes);
+            pnlContenedor.Controls.Add(dgvCitas);
             pnlContenedor.Controls.Add(btnCancelarCita);
             pnlContenedor.Controls.Add(btnEditarCita);
             pnlContenedor.Controls.Add(btnNuevoCita);
@@ -99,6 +99,7 @@
             btnConfirmarCita.TabIndex = 19;
             btnConfirmarCita.Text = "Confirmar";
             btnConfirmarCita.UseVisualStyleBackColor = false;
+            btnConfirmarCita.Click += btnConfirmarCita_Click;
             // 
             // cmbFiltrarDoctor
             // 
@@ -112,52 +113,52 @@
             cmbFiltrarDoctor.TabIndex = 18;
             cmbFiltrarDoctor.SelectedIndexChanged += cmbFiltrarDoctor_SelectedIndexChanged;
             // 
-            // dgvPacientes
+            // dgvCitas
             // 
-            dgvPacientes.AllowDrop = true;
-            dgvPacientes.AllowUserToAddRows = false;
-            dgvPacientes.AllowUserToDeleteRows = false;
-            dgvPacientes.AllowUserToResizeColumns = false;
-            dgvPacientes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.LightGray;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dgvPacientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            dgvPacientes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvPacientes.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dgvPacientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPacientes.EnableHeadersVisualStyles = false;
-            dgvPacientes.GridColor = Color.Gray;
-            dgvPacientes.Location = new Point(18, 79);
-            dgvPacientes.MultiSelect = false;
-            dgvPacientes.Name = "dgvPacientes";
-            dgvPacientes.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvPacientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dgvPacientes.RowHeadersVisible = false;
-            dgvPacientes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvPacientes.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            dgvPacientes.ScrollBars = ScrollBars.Horizontal;
-            dgvPacientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPacientes.Size = new Size(1360, 621);
-            dgvPacientes.TabIndex = 17;
+            dgvCitas.AllowDrop = true;
+            dgvCitas.AllowUserToAddRows = false;
+            dgvCitas.AllowUserToDeleteRows = false;
+            dgvCitas.AllowUserToResizeColumns = false;
+            dgvCitas.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.BackColor = Color.LightGray;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dgvCitas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dgvCitas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCitas.BackgroundColor = Color.LightGray;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitas.EnableHeadersVisualStyles = false;
+            dgvCitas.GridColor = Color.Gray;
+            dgvCitas.Location = new Point(18, 79);
+            dgvCitas.MultiSelect = false;
+            dgvCitas.Name = "dgvCitas";
+            dgvCitas.ReadOnly = true;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgvCitas.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dgvCitas.RowHeadersVisible = false;
+            dgvCitas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dgvCitas.ScrollBars = ScrollBars.Horizontal;
+            dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCitas.Size = new Size(1360, 621);
+            dgvCitas.TabIndex = 17;
             // 
             // btnCancelarCita
             // 
@@ -172,6 +173,7 @@
             btnCancelarCita.TabIndex = 16;
             btnCancelarCita.Text = "Cancelar";
             btnCancelarCita.UseVisualStyleBackColor = false;
+            btnCancelarCita.Click += btnCancelarCita_Click;
             // 
             // btnEditarCita
             // 
@@ -186,6 +188,7 @@
             btnEditarCita.TabIndex = 15;
             btnEditarCita.Text = "Editar";
             btnEditarCita.UseVisualStyleBackColor = false;
+            btnEditarCita.Click += btnEditarCita_Click;
             // 
             // btnNuevoCita
             // 
@@ -199,6 +202,7 @@
             btnNuevoCita.TabIndex = 14;
             btnNuevoCita.Text = "Agregar";
             btnNuevoCita.UseVisualStyleBackColor = false;
+            btnNuevoCita.Click += btnNuevoCita_Click;
             // 
             // lblfiltrar
             // 
@@ -218,11 +222,12 @@
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeader14);
             Name = "frmRegistrarCitas";
+            Load += frmRegistrarCitas_Load;
             pnlHeader14.ResumeLayout(false);
             pnlHeader14.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPacientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
             ResumeLayout(false);
         }
 
@@ -232,7 +237,7 @@
         private Label lblTituloCitas;
         private Panel pnlContenedor;
         private ComboBox cmbFiltrarDoctor;
-        private DataGridView dgvPacientes;
+        private DataGridView dgvCitas;
         private Button btnCancelarCita;
         private Button btnEditarCita;
         private Button btnNuevoCita;
