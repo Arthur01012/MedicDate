@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeader14 = new Panel();
             lblTituloCitas = new Label();
             pnlContenedor = new Panel();
+            lstHorasDisponibles = new ListBox();
+            lblHorasLibres = new Label();
+            dtpFechaCita = new DateTimePicker();
             btnLimpiarFiltro = new Button();
             btnConfirmarCita = new Button();
             cmbFiltrarDoctor = new ComboBox();
@@ -73,6 +76,9 @@
             // pnlContenedor
             // 
             pnlContenedor.BackColor = Color.LightGray;
+            pnlContenedor.Controls.Add(lstHorasDisponibles);
+            pnlContenedor.Controls.Add(lblHorasLibres);
+            pnlContenedor.Controls.Add(dtpFechaCita);
             pnlContenedor.Controls.Add(btnLimpiarFiltro);
             pnlContenedor.Controls.Add(btnConfirmarCita);
             pnlContenedor.Controls.Add(cmbFiltrarDoctor);
@@ -87,6 +93,31 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 11;
+            pnlContenedor.Paint += pnlContenedor_Paint;
+            // 
+            // lstHorasDisponibles
+            // 
+            lstHorasDisponibles.FormattingEnabled = true;
+            lstHorasDisponibles.Location = new Point(152, 67);
+            lstHorasDisponibles.Name = "lstHorasDisponibles";
+            lstHorasDisponibles.Size = new Size(150, 104);
+            lstHorasDisponibles.TabIndex = 23;
+            // 
+            // lblHorasLibres
+            // 
+            lblHorasLibres.AutoSize = true;
+            lblHorasLibres.Location = new Point(18, 67);
+            lblHorasLibres.Name = "lblHorasLibres";
+            lblHorasLibres.Size = new Size(128, 20);
+            lblHorasLibres.TabIndex = 22;
+            lblHorasLibres.Text = "Horas disponibles";
+            // 
+            // dtpFechaCita
+            // 
+            dtpFechaCita.Location = new Point(661, 37);
+            dtpFechaCita.Name = "dtpFechaCita";
+            dtpFechaCita.Size = new Size(250, 27);
+            dtpFechaCita.TabIndex = 21;
             // 
             // btnLimpiarFiltro
             // 
@@ -110,16 +141,16 @@
             btnConfirmarCita.BackgroundImageLayout = ImageLayout.None;
             btnConfirmarCita.FlatStyle = FlatStyle.Popup;
             btnConfirmarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnConfirmarCita.Image = MedicDate.Properties.Resources.confirmar_cita_black;
+            btnConfirmarCita.Image = Properties.Resources.confirmar_cita_black;
             btnConfirmarCita.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnConfirmarCita.TextAlign = ContentAlignment.MiddleRight;
-            btnConfirmarCita.Padding = new Padding(8, 0, 6, 0);
             btnConfirmarCita.Location = new Point(1071, 13);
             btnConfirmarCita.Name = "btnConfirmarCita";
+            btnConfirmarCita.Padding = new Padding(8, 0, 6, 0);
             btnConfirmarCita.Size = new Size(148, 45);
             btnConfirmarCita.TabIndex = 19;
             btnConfirmarCita.Text = "Confirmar";
+            btnConfirmarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnConfirmarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnConfirmarCita.UseVisualStyleBackColor = false;
             btnConfirmarCita.Click += btnConfirmarCita_Click;
             // 
@@ -142,44 +173,44 @@
             dgvCitas.AllowUserToDeleteRows = false;
             dgvCitas.AllowUserToResizeColumns = false;
             dgvCitas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvCitas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvCitas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvCitas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCitas.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCitas.EnableHeadersVisualStyles = false;
             dgvCitas.GridColor = Color.Gray;
-            dgvCitas.Location = new Point(18, 79);
+            dgvCitas.Location = new Point(18, 179);
             dgvCitas.MultiSelect = false;
             dgvCitas.Name = "dgvCitas";
             dgvCitas.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCitas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvCitas.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvCitas.RowHeadersVisible = false;
             dgvCitas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvCitas.ScrollBars = ScrollBars.Horizontal;
             dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCitas.Size = new Size(1360, 621);
+            dgvCitas.Size = new Size(1360, 521);
             dgvCitas.TabIndex = 17;
             // 
             // btnCancelarCita
@@ -189,16 +220,16 @@
             btnCancelarCita.FlatStyle = FlatStyle.Popup;
             btnCancelarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelarCita.ForeColor = Color.White;
-            btnCancelarCita.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelarCita.Image = Properties.Resources.cancelar_white;
             btnCancelarCita.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelarCita.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelarCita.Padding = new Padding(8, 0, 6, 0);
             btnCancelarCita.Location = new Point(1236, 13);
             btnCancelarCita.Name = "btnCancelarCita";
+            btnCancelarCita.Padding = new Padding(8, 0, 6, 0);
             btnCancelarCita.Size = new Size(148, 45);
             btnCancelarCita.TabIndex = 16;
             btnCancelarCita.Text = "Cancelar";
+            btnCancelarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelarCita.UseVisualStyleBackColor = false;
             btnCancelarCita.Click += btnCancelarCita_Click;
             // 
@@ -209,16 +240,16 @@
             btnEditarCita.BackgroundImageLayout = ImageLayout.None;
             btnEditarCita.FlatStyle = FlatStyle.Popup;
             btnEditarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnEditarCita.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarCita.Image = Properties.Resources.editar_black;
             btnEditarCita.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEditarCita.TextAlign = ContentAlignment.MiddleRight;
-            btnEditarCita.Padding = new Padding(8, 0, 6, 0);
             btnEditarCita.Location = new Point(903, 13);
             btnEditarCita.Name = "btnEditarCita";
+            btnEditarCita.Padding = new Padding(8, 0, 6, 0);
             btnEditarCita.Size = new Size(148, 45);
             btnEditarCita.TabIndex = 15;
             btnEditarCita.Text = "Editar";
+            btnEditarCita.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarCita.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarCita.UseVisualStyleBackColor = false;
             btnEditarCita.Click += btnEditarCita_Click;
             // 
@@ -228,16 +259,16 @@
             btnNuevoCita.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoCita.FlatStyle = FlatStyle.Popup;
             btnNuevoCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnNuevoCita.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoCita.Image = Properties.Resources.nuevo_black;
             btnNuevoCita.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNuevoCita.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnNuevoCita.TextAlign = ContentAlignment.MiddleRight;
-            btnNuevoCita.Padding = new Padding(8, 0, 6, 0);
             btnNuevoCita.Location = new Point(737, 13);
             btnNuevoCita.Name = "btnNuevoCita";
+            btnNuevoCita.Padding = new Padding(8, 0, 6, 0);
             btnNuevoCita.Size = new Size(148, 45);
             btnNuevoCita.TabIndex = 14;
             btnNuevoCita.Text = "Agregar";
+            btnNuevoCita.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoCita.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoCita.UseVisualStyleBackColor = false;
             btnNuevoCita.Click += btnNuevoCita_Click;
             // 
@@ -281,5 +312,8 @@
         private Label lblfiltrar;
         private Button btnConfirmarCita;
         private Button btnLimpiarFiltro;
+        private DateTimePicker dtpFechaCita;
+        private ListBox lstHorasDisponibles;
+        private Label lblHorasLibres;
     }
 }
