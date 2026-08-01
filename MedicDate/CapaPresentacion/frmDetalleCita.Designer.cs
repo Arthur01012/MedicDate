@@ -143,11 +143,16 @@
             btnCerrar.FlatStyle = FlatStyle.Popup;
             btnCerrar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCerrar.ForeColor = Color.White;
+            btnCerrar.Image = Properties.Resources.cancelar_white;
+            btnCerrar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCerrar.Location = new Point(398, 397);
             btnCerrar.Name = "btnCerrar";
+            btnCerrar.Padding = new Padding(8, 0, 6, 0);
             btnCerrar.Size = new Size(148, 45);
             btnCerrar.TabIndex = 119;
             btnCerrar.Text = "Cerrar";
+            btnCerrar.TextAlign = ContentAlignment.MiddleRight;
+            btnCerrar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCerrar.UseVisualStyleBackColor = false;
             // 
             // btnIniciarConsulta
@@ -157,11 +162,16 @@
             btnIniciarConsulta.FlatStyle = FlatStyle.Popup;
             btnIniciarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnIniciarConsulta.ForeColor = Color.Black;
+            btnIniciarConsulta.Image = Properties.Resources.iniciar_consulta_black;
+            btnIniciarConsulta.ImageAlign = ContentAlignment.TopLeft;
             btnIniciarConsulta.Location = new Point(552, 397);
             btnIniciarConsulta.Name = "btnIniciarConsulta";
+            btnIniciarConsulta.Padding = new Padding(8, 0, 6, 0);
             btnIniciarConsulta.Size = new Size(148, 45);
             btnIniciarConsulta.TabIndex = 120;
             btnIniciarConsulta.Text = "Iniciar Consulta";
+            btnIniciarConsulta.TextAlign = ContentAlignment.BottomCenter;
+            btnIniciarConsulta.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnIniciarConsulta.UseVisualStyleBackColor = false;
             // 
             // btnFinalizarConsulta
@@ -172,11 +182,16 @@
             btnFinalizarConsulta.FlatStyle = FlatStyle.Popup;
             btnFinalizarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnFinalizarConsulta.ForeColor = Color.Black;
+            btnFinalizarConsulta.Image = Properties.Resources.finalizar_consulta_black;
+            btnFinalizarConsulta.ImageAlign = ContentAlignment.TopLeft;
             btnFinalizarConsulta.Location = new Point(706, 397);
             btnFinalizarConsulta.Name = "btnFinalizarConsulta";
-            btnFinalizarConsulta.Size = new Size(164, 45);
+            btnFinalizarConsulta.Padding = new Padding(8, 0, 6, 0);
+            btnFinalizarConsulta.Size = new Size(148, 45);
             btnFinalizarConsulta.TabIndex = 121;
             btnFinalizarConsulta.Text = "Finalizar consulta";
+            btnFinalizarConsulta.TextAlign = ContentAlignment.MiddleRight;
+            btnFinalizarConsulta.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFinalizarConsulta.UseVisualStyleBackColor = false;
             // 
             // frmDetalleCita
