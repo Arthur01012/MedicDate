@@ -91,20 +91,26 @@ namespace MedicDate.Procesos
 
         public void ValidarYPrepararCita(clsCita cita, int? idCitaEdicion, DateTime fechaOriginal, TimeSpan? horaOriginal)
         {
+            
+            if (cita == null)
+            {
+                throw new ArgumentNullException(nameof(cita), "El doctor no tiene horario disponible para la fecha seleccionada.");
+            }
 
+            
             if (idCitaEdicion.HasValue && fechaOriginal == cita.fecha)
             {
                 return;
             }
 
-
+            
             var disponibilidad = ObtenerHorasDisponibles(cita.id_doctor, cita.fecha, idCitaEdicion);
             if (!disponibilidad.DoctorAtiende)
             {
                 throw new InvalidOperationException("El doctor no tiene horario disponible para la fecha seleccionada.");
             }
 
-
+            
             if (!clsCitaDAL.VerificarDisponibilidad(cita.id_doctor, cita.fecha, cita.hora, cita.duracion))
             {
                 throw new InvalidOperationException("Alguien más ya reservó esta hora. Por favor, seleccione otra.");
@@ -112,7 +118,7 @@ namespace MedicDate.Procesos
         }
 
 
-        public List<DisponibilidadDia> ObtenerCalendarioDisponibilidad(int idDoctor, DateTime fechaInicio, int diasAVer)
+      /*  public List<DisponibilidadDia> ObtenerCalendarioDisponibilidad(int idDoctor, DateTime fechaInicio, int diasAVer)
         {
             var resultado = new List<DisponibilidadDia>();
             DateTime fechaFin = fechaInicio.AddDays(diasAVer);
@@ -183,6 +189,6 @@ namespace MedicDate.Procesos
             }
 
             return resultado;
-        }
+        }*/
     }
 }
