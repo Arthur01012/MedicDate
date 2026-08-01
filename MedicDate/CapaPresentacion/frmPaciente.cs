@@ -83,27 +83,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            //Apellido Materno
-            if (string.IsNullOrEmpty(txtAMaterno.Text))
-            {
-                MessageBox.Show("El apellido materno es obligatorio.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                txtAMaterno.Focus();
-                return false;
-            }
-            //Gmail
-            if (string.IsNullOrEmpty(txtEmal.Text))
-            {
-                MessageBox.Show("El email es obligatorio.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                txtEmal.Focus();
-                return false;
-            }
-
             // Verifica que el formato del correo sea válido
-            if (!clsValidaciones.EsEmailValido(txtEmal.Text))
+            if (!string.IsNullOrEmpty(txtEmal.Text) && !clsValidaciones.EsTelefonoValido(txtEmal.Text))
             {
                 MessageBox.Show("El email no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -113,7 +94,7 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Teléfono 
-            if (string.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
             {
                 MessageBox.Show("El teléfono es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -122,29 +103,9 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-
-            // Verifica que el número de teléfono tenga un formato válido
-            if (!clsValidaciones.EsTelefonoValido(txtTelefono.Text))
-            {
-                MessageBox.Show("El teléfono no es válido.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                txtTelefono.Focus();
-                return false;
-            }
-
-            //telefono secundario
-            if (string.IsNullOrEmpty(txtTelefonoSec.Text))
-            {
-                MessageBox.Show("El teléfono secundario es obligatorio.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                txtTelefonoSec.Focus();
-                return false;
-            }
-
+            
             // Verifica que el número de teléfono secundario
-            if (!clsValidaciones.EsTelefonoValido(txtTelefonoSec.Text))
+            if (!string.IsNullOrEmpty(txtTelefonoSec.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSec.Text))
             {
                 MessageBox.Show("El teléfono secundario no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -192,6 +153,7 @@ namespace MedicDate.CapaPresentacion
                 txtNumero.Focus();
                 return false;
             }
+
             //Localidadd
             if (string.IsNullOrEmpty(txtLocalidad.Text))
             {
@@ -201,6 +163,7 @@ namespace MedicDate.CapaPresentacion
                 txtLocalidad.Focus();
                 return false;
             }
+
             //Municipio
             if (cmbMunicipio.SelectedIndex == -1)
             {
@@ -221,15 +184,6 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            //Nota
-            if (string.IsNullOrEmpty(txtNotas.Text))
-            {
-                MessageBox.Show("El campo Notas es obligatorio.", "Validación",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                txtNotas.Focus();
-                return false;
-            }
 
             return true;
         }
