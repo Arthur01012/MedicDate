@@ -7,8 +7,7 @@ using System.Text.RegularExpressions;
 namespace MedicDate.Procesos
 {
     internal class clsCitaDAL
-    {
-        // 1. Consulta base reutilizable (DRY)
+    {        
         private static string ObtenerQueryBase()
         {
             return @"
@@ -30,7 +29,6 @@ namespace MedicDate.Procesos
                 LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad";
         }
 
-        // 2. Carga básica por fecha
         public static DataTable CargarDataGrid(DateTime fecha)
         {
             var tabla = new DataTable();
@@ -52,8 +50,7 @@ namespace MedicDate.Procesos
                 throw new Exception($"Error al cargar citas: {ex.Message}", ex);
             }
         }
-
-        // 3. Búsqueda combinada por fecha + texto (Paciente, Doctor o Especialidad)
+        
         public static DataTable Consultar(DateTime fecha, string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
@@ -83,7 +80,6 @@ namespace MedicDate.Procesos
             }
         }
 
-        // 4. Obtener citas (Opción global sin filtros de fecha, filtro opcional por Doctor)
         public static DataTable ObtenerCitas(int? idDoctor = null)
         {
             string sql = ObtenerQueryBase() + @" WHERE c.estado != 'Cancelada'";
@@ -107,7 +103,6 @@ namespace MedicDate.Procesos
             return ObtenerCitas(idDoctor, fecha, null);
         }
 
-        // 6. Obtener citas (Filtro por Doctor, Fecha y Estado)
         public static DataTable ObtenerCitas(int idDoctor, DateTime fecha, string estado = null)
         {
             string sql = ObtenerQueryBase() + @"
@@ -134,8 +129,7 @@ namespace MedicDate.Procesos
 
             return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
         }
-
-        // 7. Obtener citas en un rango de fechas para un doctor (Para calendario de disponibilidad)
+        
         public static DataTable ObtenerCitasDoctorRango(int idDoctor, DateTime fechaInicio, DateTime fechaFin)
         {
             string sql = @"
@@ -154,7 +148,6 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
 
-        // 8. Métodos de acción (CRUD y Validaciones)
         public static bool CambiarEstado(int id_cita, string nuevoEstado)
         {
             string consulta = "UPDATE cita SET estado = @estado WHERE id_cita = @id";
@@ -280,7 +273,6 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
         }
 
-        // 9. Métodos para gestión de horarios
         public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)
         {
             string sql = @"
@@ -323,8 +315,8 @@ namespace MedicDate.Procesos
 
             if (dt.Rows.Count > 0)
             {
-                string type = dt.Rows[0]["Type"].ToString(); // Resultado: "enum('Pendiente','Confirmada',...)"
-                                                             // Extraemos los valores usando una expresión regular
+                string type = dt.Rows[0]["Type"].ToString();
+                                                             
                 MatchCollection matches = Regex.Matches(type, "'([^']*)'");
                 foreach (Match match in matches)
                 {

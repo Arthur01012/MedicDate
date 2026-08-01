@@ -14,7 +14,6 @@ namespace MedicDate.CapaPresentacion
 
         private void frmAgenda_Load(object sender, EventArgs e)
         {
-            // 1. Validar que la sesión esté activa
             if (Sesion.IdEmpleadoActual == 0)
             {
                 MessageBox.Show("Debe iniciar sesión como doctor para ver la agenda.",
@@ -22,23 +21,17 @@ namespace MedicDate.CapaPresentacion
                 this.Close();
                 return;
             }
-
-            // 2. Configurar fecha por defecto y cargar filtros
             dtpFechaCita.Value = DateTime.Today;
             CargarFiltrosEstados();
             CargarCitas();
         }
 
-        // --- CARGA EL COMBOBOX CON LOS ESTADOS DISPONIBLES ---
         private void CargarFiltrosEstados()
         {
             // Obtenemos la lista de estados desde la Capa de Negocio
             cmbFiltroEstado.DataSource = clsCitaNegocio.ObtenerEstadosCita();
-            // Seleccionamos "Todos" por defecto
             cmbFiltroEstado.SelectedIndex = 0;
         }
-
-        // --- CARGA LAS CITAS DEL DOCTOR LOGEADO, FILTRADAS POR FECHA Y ESTADO ---
         private void CargarCitas()
         {
             try
@@ -47,7 +40,6 @@ namespace MedicDate.CapaPresentacion
                 DateTime fecha = dtpFechaCita.Value.Date;
                 string estadoSeleccionado = cmbFiltroEstado.SelectedItem?.ToString() ?? "Todos";
 
-                // Pedimos la agenda filtrada a la Capa de Negocio
                 DataTable tabla = clsCitaNegocio.ObtenerAgendaDoctor(idDoctor, fecha, estadoSeleccionado);
 
                 dgvCita.DataSource = tabla;
@@ -59,7 +51,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- EVENTOS DE CAMBIO DE FECHA O ESTADO ---
         private void cmbDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarCitas();
@@ -70,7 +61,6 @@ namespace MedicDate.CapaPresentacion
             CargarCitas();
         }
 
-        // --- BOTÓN VER DETALLE ---
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
             if (dgvCita.SelectedRows.Count == 0)
@@ -80,13 +70,10 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Obtenemos el ID de la cita de la fila seleccionada
             int idCita = Convert.ToInt32(dgvCita.SelectedRows[0].Cells["id_cita"].Value);
 
-            // Abrimos el formulario de detalle
             frmDetalleCita frm = new frmDetalleCita(idCita);
 
-            // Si el usuario hizo algún cambio y cerró con OK, recargamos la agenda
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 CargarCitas();
