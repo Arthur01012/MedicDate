@@ -167,6 +167,17 @@ namespace MedicDate.Procesos
                     throw new Exception("Error al crear el usuario: " + ex.Message, ex);
             }
         }
+
+        public static int ObtenerIdEmpleadoPorIdUsuario(int idUsuario)
+        {
+            string sql = "SELECT id_empleado FROM empleado WHERE id_usuario = @id_usuario";
+            MySqlParameter[] param = { new MySqlParameter("@id_usuario", idUsuario) };
+
+            object resultado = clsConexion.EjecutarScalar(sql, param);
+
+            // Retorna el ID si existe, o 0 si no existe o es nulo
+            return (resultado != null && resultado != DBNull.Value) ? Convert.ToInt32(resultado) : 0;
+        }
     }
 }
 

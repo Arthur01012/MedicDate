@@ -144,12 +144,17 @@
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar.ForeColor = Color.Black;
+            btnCancelar.Image = Properties.Resources.cancelar_black;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.Location = new Point(117, 438);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(110, 47);
+            btnCancelar.Padding = new Padding(6, 0, 4, 0);
+            btnCancelar.Size = new Size(130, 47);
             btnCancelar.TabIndex = 6;
             btnCancelar.TabStop = false;
             btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
@@ -160,11 +165,16 @@
             btnAcceder.FlatStyle = FlatStyle.Popup;
             btnAcceder.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAcceder.ForeColor = Color.White;
-            btnAcceder.Location = new Point(329, 438);
+            btnAcceder.Image = Properties.Resources.acceder_black;
+            btnAcceder.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAcceder.Location = new Point(309, 438);
             btnAcceder.Name = "btnAcceder";
-            btnAcceder.Size = new Size(110, 47);
+            btnAcceder.Padding = new Padding(6, 0, 4, 0);
+            btnAcceder.Size = new Size(130, 47);
             btnAcceder.TabIndex = 7;
             btnAcceder.Text = "Acceder";
+            btnAcceder.TextAlign = ContentAlignment.MiddleRight;
+            btnAcceder.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAcceder.UseVisualStyleBackColor = false;
             btnAcceder.Click += btnAcceder_Click;
             // 

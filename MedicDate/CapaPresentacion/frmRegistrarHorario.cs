@@ -139,5 +139,45 @@ namespace MedicDate.CapaPresentacion
             else
                 Buscar(txtBuscarDoctor1.Text);
         }
+
+        private void btnDesactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                DataGridViewRow filaSeleccionada = dgvHorarios.SelectedRows[0];
+
+                int idDoctor = Convert.ToInt32(filaSeleccionada.Cells["id_doctor"].Value);
+                string nombreDoctor = filaSeleccionada.Cells["Doctor"].Value?.ToString() ?? "Doctor";
+
+                DialogResult resultado = MessageBox.Show(
+                    $"¿Estás seguro de desactivar TODOS los horarios del doctor '{nombreDoctor}'?\n\n" +
+                    "Todos los bloques horarios activos de este doctor pasarán a estar inactivos.",
+                    "Desactivar horarios masivos",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    if (clsHorarioDAL.DesactivarTodosPorDoctor(idDoctor))
+                    {
+                        MessageBox.Show($"Todos los horarios del doctor '{nombreDoctor}' han sido desactivados.",
+                            "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        CargarGrid(); // Recargar la tabla para reflejar el cambio
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo desactivar los horarios. Verifique que el doctor exista.",
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error inesperado al desactivar los horarios: {ex.Message}",
+                    "Error del sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

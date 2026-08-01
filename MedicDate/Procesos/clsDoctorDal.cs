@@ -1,5 +1,6 @@
 ﻿using MedicDate.Datos;
 using MedicDate.Procesos;
+using Microsoft.Win32;
 using MySqlConnector;
 using System;
 using System.Data;
@@ -8,13 +9,91 @@ namespace MedicDate.Procesos
 {
     public class clsDoctorDAL
     {
-        public DataTable CargarDataGrid() // Método para cargar todos los doctores activos
+        public int TotalDoctores()
+        {
+            using var conexion = clsConexion.ObtenerConexion();
+
+            string sql = @"SELECT COUNT(*)
+                   FROM empleado
+                   WHERE estado = 1
+                   AND tipo_empleado='doctor'";
+
+            using var cmd = new MySqlConnector.MySqlCommand(sql, conexion);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+        public DataTable CargarDataGrid(int pagina, int registros) // Método para cargar todos los doctores 
         {
             var tabla = new DataTable();
             try
             {
                 using var conexion = clsConexion.ObtenerConexion();
-                // Consulta SQL para obtener la información de los doctores activos
+                int offset = (pagina - 1) * registros;
+
+                // Consulta SQL para obtener la información de los doctores 
+                string sql = @"
+                   SELECT 
+                        CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+                        E.fecha_nacimiento AS 'Fecha Nacimiento',
+                        E.curp AS Curp,
+                        E.email AS Correo,
+                        E.telefono_principal AS Telefono,
+                        E.id_empleado,
+                        E.estado AS Estado,
+                        D.cedula_profesional AS Cedula,
+                        S.nombre_especialidad AS Especialidad,
+                        D.consultorio AS Consultorio
+                    FROM empleado E
+                    INNER JOIN doctor D ON E.id_empleado = D.id_empleado
+                    LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
+                    WHERE E.tipo_empleado = 'doctor'
+                    ORDER BY E.estado DESC, E.apellido_paterno
+                    LIMIT @limite OFFSET @offset";
+
+
+                using var cmd = new MySqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@limite", registros);
+                cmd.Parameters.AddWithValue("@offset", offset);
+                using var adapter = new MySqlDataAdapter(cmd);
+
+                adapter.Fill(tabla); // Llenar el DataTable con los resultados de la consulta
+                return tabla;
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"Error de base de datos al cargar doctores: {ex.Message}", ex);
+            }
+        }
+
+        public int TotalBusqueda(string texto)
+        {
+            using var conexion = clsConexion.ObtenerConexion();
+
+            string sql = @"SELECT COUNT(*)
+                           FROM empleado E
+                           INNER JOIN doctor D ON E.id_empleado=D.id_empleado
+                           WHERE E.tipo_empleado='doctor'
+                           AND CONCAT(E.nombre,' ',E.apellido_paterno,' ',E.apellido_materno)
+                           LIKE @nombre";
+
+            using var cmd = new MySqlCommand(sql, conexion);
+            cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%");
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public DataTable Consultar(string texto, int pagina, int registros)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return CargarDataGrid(pagina, registros);
+
+            var tabla = new DataTable();
+            try
+            {
+                using var conexion = clsConexion.ObtenerConexion();
+                int offset = (pagina - 1) * registros;
+
+                // MEJORA: Se agregó "OR S.nombre_especialidad LIKE @nombre" en el WHERE
                 string sql = @"
                     SELECT 
                         CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
@@ -30,96 +109,66 @@ namespace MedicDate.Procesos
                     FROM empleado E
                     INNER JOIN doctor D ON E.id_empleado = D.id_empleado
                     LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.estado = 1 AND E.tipo_empleado = 'doctor'";
-                
-                using var adapter = new MySqlDataAdapter(sql, conexion); // Se utiliza MySqlDataAdapter para llenar el DataTable con los resultados de la consulta
-                adapter.Fill(tabla); // Llenar el DataTable con los resultados de la consulta
+                    WHERE E.tipo_empleado = 'doctor'
+                      AND (
+                          CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre
+                          OR S.nombre_especialidad LIKE @nombre
+                      )
+                    ORDER BY E.estado DESC, E.apellido_paterno
+                    LIMIT @limite OFFSET @offset;";
+
+                using var cmd = new MySqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@limite", registros);
+                cmd.Parameters.AddWithValue("@offset", offset);
+                cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%");
+                using var adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(tabla);
                 return tabla;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                throw new Exception($"Error de base de datos al cargar doctores: {ex.Message}", ex);
+                throw new Exception("Error en la conexion: " + ex.Message);
             }
         }
 
-        public DataTable Consultar(string texto)
+        public static DataTable ObtenerDoctoresActivos()
         {
-            if (string.IsNullOrWhiteSpace(texto)) // Si el texto de búsqueda está vacío o es nulo, se cargan todos los doctores activos
-                return CargarDataGrid(); 
-
-            var tabla = new DataTable();
-            try
-            {
-                using var conexion = clsConexion.ObtenerConexion();
-                // Consulta SQL para buscar doctores por nombre completo, utilizando LIKE para coincidencias parciales
-                string sql = @"
-                    SELECT 
-                        CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
-                        E.fecha_nacimiento AS 'Fecha Nacimiento',
-                        E.curp AS Curp,
-                        E.email AS Correo,
-                        E.telefono_principal AS Telefono,
-                        E.id_empleado,
-                        D.cedula_profesional AS Cedula,
-                        S.nombre_especialidad AS Especialidad,
-                        D.consultorio AS Consultorio
-                    FROM empleado E
-                    INNER JOIN doctor D ON E.id_empleado = D.id_empleado
-                    LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
-                    WHERE E.estado = 1 AND E.tipo_empleado = 'doctor'
-                      AND CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) LIKE @nombre";
-                // Se utiliza un parámetro para evitar inyecciones SQL y permitir coincidencias parciales
-                using var cmd = new MySqlCommand(sql, conexion); // Se crea un comando SQL con la consulta y la conexión
-                cmd.Parameters.AddWithValue("@nombre", "%" + texto + "%"); // Se agrega el parámetro con el texto de búsqueda, rodeado de % para permitir coincidencias parciales
-                using var adapter = new MySqlDataAdapter(cmd); // Se utiliza MySqlDataAdapter para llenar el DataTable con los resultados de la consulta
-                adapter.Fill(tabla); // Llenar el DataTable con los resultados de la consulta
-                return tabla;
-            }
-            catch (MySqlException ex)
-            {
-                throw new Exception($"Error en búsqueda de doctores: {ex.Message}", ex);
-            }
+            string sql = @"SELECT e.id_empleado,
+                          CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
+                   FROM empleado e
+                   INNER JOIN doctor d ON e.id_empleado = d.id_empleado
+                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor'
+                   ORDER BY e.apellido_paterno, e.nombre";
+            return clsConexion.EjecutarConsulta(sql);
         }
-        
-        /// Obtiene la información de un empleado: tipo, estado e id_usuario.
-        /// Lanza excepciones si no existe o no es doctor.
-        private static (string tipo, bool estado, int? idUsuario) ObtenerInfoDoctor(  
-            int idEmpleado,                       
-            MySqlTransaction? transaccion = null) // Método privado para obtener información de un doctor por su ID de empleado
-        {
-            string consulta = @"SELECT tipo_empleado, estado, id_usuario FROM empleado WHERE id_empleado = @id"; // Consulta SQL para obtener el tipo de empleado, estado e ID de usuario asociado
-            MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) }; // Se crea un parámetro para evitar inyecciones SQL
 
-            DataTable resultado = clsConexion.EjecutarConsulta(consulta, parametros, transaccion); // Se ejecuta la consulta y se obtiene el resultado en un DataTable
-            if (resultado.Rows.Count == 0) // Si no se encuentra ningún registro, se lanza una excepción indicando que el empleado no existe
+        private static (string tipo, bool estado, int? idUsuario) ObtenerInfoDoctor(
+            int idEmpleado,
+            MySqlTransaction? transaccion = null)
+        {
+            string consulta = @"SELECT tipo_empleado, estado, id_usuario FROM empleado WHERE id_empleado = @id";
+            MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) };
+
+            DataTable resultado = clsConexion.EjecutarConsulta(consulta, parametros, transaccion);
+            if (resultado.Rows.Count == 0)
                 throw new ArgumentException("El empleado no existe.");
 
-            DataRow row = resultado.Rows[0]; // Se obtiene la primera fila del resultado
-            string tipo = row["tipo_empleado"].ToString()!; // Se obtiene el tipo de empleado y se asegura que no sea nulo
-            
-            bool estado = Convert.ToBoolean(row["estado"]); // Se obtiene el estado del empleado (activo/inactivo) y se convierte a boolean
-            int? idUsuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]); // Se obtiene el ID de usuario asociado, si existe; si no, se asigna null
+            DataRow row = resultado.Rows[0];
+            string tipo = row["tipo_empleado"].ToString()!;
 
-            return (tipo, estado, idUsuario); // Se retorna una tupla con el tipo de empleado, estado e ID de usuario asociado
+            bool estado = Convert.ToBoolean(row["estado"]);
+            int? idUsuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]);
+
+            return (tipo, estado, idUsuario);
         }
 
-     
-        /// Cambia el estado de un doctor (activo/inactivo) y actualiza recursos asociados.
         private static bool CambiarEstadoDoctor(
             int idEmpleado,
             bool activar,
-            MySqlTransaction? transaccion = null) // Método privado para cambiar el estado de un doctor (activo/inactivo) y actualizar recursos asociados
+            MySqlTransaction? transaccion = null)
         {
-            // 1. Obtener información del doctor
             var (tipo, estadoActual, idUsuario) = ObtenerInfoDoctor(idEmpleado, transaccion);
 
-            // 2. Validar que el estado actual sea diferente al deseado
-            if (estadoActual == activar)
-                throw new InvalidOperationException(activar
-                    ? "El doctor ya está activo."
-                    : "El doctor ya está inactivo.");// Si el estado actual es igual al deseado, se lanza una excepción indicando que no se puede cambiar el estado
-
-            // 3. Transacción local
             MySqlConnection? conexionLocal = null;
             MySqlTransaction? transaccionLocal = null;
             bool usarTransaccionLocal = transaccion == null;
@@ -132,9 +181,8 @@ namespace MedicDate.Procesos
                     transaccionLocal = conexionLocal.BeginTransaction();
                 }
 
-                MySqlTransaction transaccionUsar = transaccion ?? transaccionLocal!; // Se utiliza la transacción proporcionada o la transacción local si no se proporciona ninguna
+                MySqlTransaction transaccionUsar = transaccion ?? transaccionLocal!;
 
-                // 4. Actualizar estado del empleado
                 int nuevoEstado = activar ? 1 : 0;
                 string sqlEmpleado = "UPDATE empleado SET estado = @estado WHERE id_empleado = @id";
                 MySqlParameter[] paramEmpleado = {
@@ -144,14 +192,12 @@ namespace MedicDate.Procesos
                 if (clsConexion.EjecutarNonQuery(sqlEmpleado, paramEmpleado, transaccionUsar) == 0)
                     throw new Exception($"No se pudo {(activar ? "reactivar" : "desactivar")} el empleado.");
 
-                // 5. Actualizar horarios (activo/inactivo)
                 string sqlHorarios = activar
                     ? "UPDATE horario SET activo = 1 WHERE id_doctor = @id"
                     : "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
                 MySqlParameter[] paramHorarios = { new MySqlParameter("@id", idEmpleado) };
                 clsConexion.EjecutarNonQuery(sqlHorarios, paramHorarios, transaccionUsar);
 
-                // 6. Si es baja, cancelar citas futuras (solo cuando se desactiva)
                 if (!activar)
                 {
                     string sqlCitas = @"UPDATE cita 
@@ -162,7 +208,6 @@ namespace MedicDate.Procesos
                     clsConexion.EjecutarNonQuery(sqlCitas, paramCitas, transaccionUsar);
                 }
 
-                // 7. Actualizar estado del usuario asociado
                 if (idUsuario.HasValue)
                 {
                     string sqlUsuario = activar
@@ -172,7 +217,6 @@ namespace MedicDate.Procesos
                     clsConexion.EjecutarNonQuery(sqlUsuario, paramUsuario, transaccionUsar);
                 }
 
-                // 8. Commit si se usó transacción local
                 if (usarTransaccionLocal)
                     transaccionLocal?.Commit();
 
@@ -196,14 +240,12 @@ namespace MedicDate.Procesos
 
         public static bool Insertar(clsDoctor doctor, MySqlTransaction? transaccion = null)
         {
-            // Validar que el empleado no sea ya doctor
             string consultaExiste = "SELECT COUNT(*) FROM doctor WHERE id_empleado = @id";
             MySqlParameter[] paramExiste = { new MySqlParameter("@id", doctor.id_empleado) };
             object existe = clsConexion.EjecutarScalar(consultaExiste, paramExiste, transaccion);
             if (existe != null && Convert.ToInt32(existe) > 0)
                 throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.");
 
-            // Validar cédula única
             string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula";
             MySqlParameter[] paramCedula = { new MySqlParameter("@cedula", doctor.cedula_profesional) };
             object cedulaExiste = clsConexion.EjecutarScalar(consultaCedula, paramCedula, transaccion);
@@ -252,7 +294,6 @@ namespace MedicDate.Procesos
 
         public static bool Actualizar(clsDoctor doctor, MySqlTransaction? transaccion = null)
         {
-            // Validar cédula única (excluyendo al propio doctor)
             string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula AND id_empleado != @id";
             MySqlParameter[] paramCedula = {
                 new MySqlParameter("@cedula", doctor.cedula_profesional),
@@ -336,16 +377,24 @@ namespace MedicDate.Procesos
                 NombreUsuario = row["NombreUsuario"]?.ToString()
             };
         }
-
-        public static DataTable ObtenerDoctoresActivos()
+        public static DataTable ObtenerFichaDoctor(int idEmpleado)
         {
-            string sql = @"SELECT e.id_empleado,
-                          CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
-                   FROM empleado e
-                   INNER JOIN doctor d ON e.id_empleado = d.id_empleado
-                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor'
-                   ORDER BY e.apellido_paterno, e.nombre";
-            return clsConexion.EjecutarConsulta(sql);
+            string sql = @"
+            SELECT 
+            CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
+            E.curp AS CURP,
+            E.email AS Correo,
+            E.telefono_principal AS Teléfono,
+            D.cedula_profesional AS 'Cédula Profesional',
+            S.nombre_especialidad AS Especialidad,
+            D.consultorio AS Consultorio
+            FROM empleado E
+            INNER JOIN doctor D ON E.id_empleado = D.id_empleado
+            LEFT JOIN especialidad S ON D.especialidad_principal = S.id_especialidad
+            WHERE E.id_empleado = @id;";
+
+            MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) };
+            return clsConexion.EjecutarConsulta(sql, parametros);
         }
     }
 }

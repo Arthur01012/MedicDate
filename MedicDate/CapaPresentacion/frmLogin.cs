@@ -68,6 +68,8 @@ namespace MedicDate.CapaPresentacion
                 {
                     // Autenticación exitosa
                     Sesion.UsuarioActual = user;
+                    Sesion.IdEmpleadoActual = clsUsuarioDAL.ObtenerIdEmpleadoPorIdUsuario(user.id_usuario);
+
                     AbrirFormularioSegunRol(user);
                 }
                 else
