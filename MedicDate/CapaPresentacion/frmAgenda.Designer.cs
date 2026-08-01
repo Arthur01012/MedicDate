@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             pnlHeaderAgenda = new Panel();
             lblTituloAgenda = new Label();
             dtpFechaCita = new DateTimePicker();
-            cmbDoctor = new ComboBox();
+            cmbFiltroEstado = new ComboBox();
             btnVerDetalle = new Button();
             dgvCita = new DataGridView();
             pnlHeaderAgenda.SuspendLayout();
@@ -82,18 +82,18 @@
             dtpFechaCita.TabIndex = 30;
             dtpFechaCita.ValueChanged += dtpFechaCita_ValueChanged;
             // 
-            // cmbDoctor
+            // cmbFiltroEstado
             // 
-            cmbDoctor.BackColor = Color.White;
-            cmbDoctor.Font = new Font("Segoe UI", 12F);
-            cmbDoctor.ForeColor = Color.Black;
-            cmbDoctor.FormattingEnabled = true;
-            cmbDoctor.Location = new Point(291, 39);
-            cmbDoctor.Margin = new Padding(3, 2, 3, 2);
-            cmbDoctor.Name = "cmbDoctor";
-            cmbDoctor.Size = new Size(262, 29);
-            cmbDoctor.TabIndex = 31;
-            cmbDoctor.SelectedIndexChanged += cmbDoctor_SelectedIndexChanged;
+            cmbFiltroEstado.BackColor = Color.White;
+            cmbFiltroEstado.Font = new Font("Segoe UI", 12F);
+            cmbFiltroEstado.ForeColor = Color.Black;
+            cmbFiltroEstado.FormattingEnabled = true;
+            cmbFiltroEstado.Location = new Point(291, 39);
+            cmbFiltroEstado.Margin = new Padding(3, 2, 3, 2);
+            cmbFiltroEstado.Name = "cmbFiltroEstado";
+            cmbFiltroEstado.Size = new Size(262, 29);
+            cmbFiltroEstado.TabIndex = 31;
+            cmbFiltroEstado.SelectedIndexChanged += cmbDoctor_SelectedIndexChanged;
             // 
             // btnVerDetalle
             // 
@@ -123,21 +123,21 @@
             dgvCita.AllowUserToDeleteRows = false;
             dgvCita.AllowUserToResizeColumns = false;
             dgvCita.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvCita.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = Color.LightGray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dgvCita.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvCita.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvCita.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCita.BackgroundColor = Color.LightGray;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvCita.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvCita.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvCita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCita.EnableHeadersVisualStyles = false;
             dgvCita.GridColor = Color.Gray;
@@ -146,19 +146,19 @@
             dgvCita.MultiSelect = false;
             dgvCita.Name = "dgvCita";
             dgvCita.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCita.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvCita.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvCita.RowHeadersVisible = false;
             dgvCita.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvCita.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvCita.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvCita.ScrollBars = ScrollBars.Horizontal;
             dgvCita.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCita.Size = new Size(751, 223);
@@ -172,7 +172,7 @@
             ClientSize = new Size(772, 340);
             Controls.Add(dgvCita);
             Controls.Add(btnVerDetalle);
-            Controls.Add(cmbDoctor);
+            Controls.Add(cmbFiltroEstado);
             Controls.Add(dtpFechaCita);
             Controls.Add(pnlHeaderAgenda);
             ForeColor = Color.Black;
@@ -191,7 +191,7 @@
         private Panel pnlHeaderAgenda;
         private Label lblTituloAgenda;
         private DateTimePicker dtpFechaCita;
-        private ComboBox cmbDoctor;
+        private ComboBox cmbFiltroEstado;
         private Panel panel1;
         private Button btnVerDetalle;
         private DataGridView dgvCita;
