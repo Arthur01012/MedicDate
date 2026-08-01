@@ -2,6 +2,7 @@
 using MedicDate.Procesos;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MedicDate.CapaPresentacion
@@ -110,20 +111,35 @@ namespace MedicDate.CapaPresentacion
         private void cmbDoctor_SelectedIndexChanged(object sender, EventArgs e) => CargarHorasDisponibles();
         private void dtpFechaCita_ValueChanged(object sender, EventArgs e) => CargarHorasDisponibles();
 
+        // --- EVENTO VALIDATING CORREGIDO ---
         private void tctNombrePaciente_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text)) { _idPacienteSeleccionado = 0; return; }
-            foreach (DataRow row in _dtPacientes.Rows)
+            if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
             {
-                if (row["NombreCompleto"].ToString().Trim() == tctNombrePaciente.Text.Trim())
-                {
-                    _idPacienteSeleccionado = Convert.ToInt32(row["id_paciente"]);
-                    return;
-                }
+                _idPacienteSeleccionado = 0;
+                e.Cancel = false; // No bloqueamos el foco
+                return;
             }
-            MessageBox.Show("El paciente no existe.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            _idPacienteSeleccionado = 0;
-            e.Cancel = true;
+
+            string input = tctNombrePaciente.Text.Trim();
+
+            // Buscamos ignorando mayúsculas/minúsculas y espacios
+            var foundRows = _dtPacientes.AsEnumerable()
+                .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (foundRows.Count > 0)
+            {
+                _idPacienteSeleccionado = Convert.ToInt32(foundRows[0]["id_paciente"]);
+            }
+            else
+            {
+                _idPacienteSeleccionado = 0;
+            }
+
+            // CRUCIAL: NO bloqueamos el foco (e.Cancel = false).
+            // Dejamos que el botón Guardar decida si el ID es válido.
+            e.Cancel = false;
         }
 
         private void CargarDatosCita(int idCita)
@@ -143,12 +159,40 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
+        // --- BOTÓN GUARDAR CORREGIDO ---
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_idPacienteSeleccionado == 0) { MessageBox.Show("Seleccione un paciente válido."); return; }
-                if (cmbDoctor.SelectedValue == null) { MessageBox.Show("Seleccione un doctor."); return; }
+                // 1. VALIDACIÓN FINAL Y ROBUSTA DEL PACIENTE
+                // Revalidamos aquí por si el autocompletado no confirmó el ID en el Validating
+                if (_idPacienteSeleccionado == 0 && !string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
+                {
+                    string input = tctNombrePaciente.Text.Trim();
+                    var foundRows = _dtPacientes.AsEnumerable()
+                        .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+
+                    if (foundRows.Count > 0)
+                    {
+                        _idPacienteSeleccionado = Convert.ToInt32(foundRows[0]["id_paciente"]);
+                    }
+                }
+
+                // Si sigue siendo 0, mostramos el error y enfocamos el campo
+                if (_idPacienteSeleccionado == 0)
+                {
+                    MessageBox.Show("Seleccione un paciente válido de la lista desplegable.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tctNombrePaciente.Focus();
+                    return;
+                }
+
+                // 2. Validación del Doctor
+                if (cmbDoctor.SelectedValue == null)
+                {
+                    MessageBox.Show("Seleccione un doctor.");
+                    return;
+                }
 
                 // Usamos la capa de negocio para validar el estado del guardado
                 if (!cmbHoraCita.Enabled)
@@ -163,7 +207,11 @@ namespace MedicDate.CapaPresentacion
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(txtMotivo.Text)) { MessageBox.Show("El motivo es obligatorio."); return; }
+                if (string.IsNullOrWhiteSpace(txtMotivo.Text))
+                {
+                    MessageBox.Show("El motivo es obligatorio.");
+                    return;
+                }
 
                 TimeSpan horaCita;
                 if (cmbHoraCita.Enabled && !string.IsNullOrWhiteSpace(cmbHoraCita.Text))
@@ -201,7 +249,8 @@ namespace MedicDate.CapaPresentacion
                     if (clsCitaDAL.Actualizar(cita))
                     {
                         MessageBox.Show("Cita actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK; this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                 }
                 else
@@ -209,7 +258,8 @@ namespace MedicDate.CapaPresentacion
                     if (clsCitaDAL.Insertar(cita) > 0)
                     {
                         MessageBox.Show("Cita registrada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK; this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                 }
             }
