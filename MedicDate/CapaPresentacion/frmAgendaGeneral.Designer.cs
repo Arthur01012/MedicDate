@@ -35,12 +35,14 @@
             pnlHeaderAgendaGeneral = new Panel();
             lblTituloAgenda = new Label();
             pnlContenedor = new Panel();
-            dgvDoctores = new DataGridView();
+            dtpFecha = new DateTimePicker();
+            lblFecha = new Label();
+            dgvCitas = new DataGridView();
             lblBuscar = new Label();
             txtBuscarDoctor = new TextBox();
             pnlHeaderAgendaGeneral.SuspendLayout();
             pnlContenedor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDoctores).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
             SuspendLayout();
             // 
             // pnlHeaderAgendaGeneral
@@ -68,7 +70,9 @@
             // pnlContenedor
             // 
             pnlContenedor.BackColor = Color.LightGray;
-            pnlContenedor.Controls.Add(dgvDoctores);
+            pnlContenedor.Controls.Add(dtpFecha);
+            pnlContenedor.Controls.Add(lblFecha);
+            pnlContenedor.Controls.Add(dgvCitas);
             pnlContenedor.Controls.Add(lblBuscar);
             pnlContenedor.Controls.Add(txtBuscarDoctor);
             pnlContenedor.Dock = DockStyle.Fill;
@@ -77,20 +81,42 @@
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 12;
             // 
-            // dgvDoctores
+            // dtpFecha
             // 
-            dgvDoctores.AllowDrop = true;
-            dgvDoctores.AllowUserToAddRows = false;
-            dgvDoctores.AllowUserToDeleteRows = false;
-            dgvDoctores.AllowUserToResizeColumns = false;
-            dgvDoctores.AllowUserToResizeRows = false;
+            dtpFecha.Font = new Font("Segoe UI", 12F);
+            dtpFecha.Format = DateTimePickerFormat.Short;
+            dtpFecha.Location = new Point(764, 19);
+            dtpFecha.Margin = new Padding(4, 5, 4, 5);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(199, 34);
+            dtpFecha.TabIndex = 12;
+            dtpFecha.ValueChanged += dtpFecha_ValueChanged;
+            // 
+            // lblFecha
+            // 
+            lblFecha.AutoSize = true;
+            lblFecha.Font = new Font("Segoe UI", 12F);
+            lblFecha.Location = new Point(687, 26);
+            lblFecha.Margin = new Padding(4, 0, 4, 0);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(66, 28);
+            lblFecha.TabIndex = 11;
+            lblFecha.Text = "Fecha:";
+            // 
+            // dgvCitas
+            // 
+            dgvCitas.AllowDrop = true;
+            dgvCitas.AllowUserToAddRows = false;
+            dgvCitas.AllowUserToDeleteRows = false;
+            dgvCitas.AllowUserToResizeColumns = false;
+            dgvCitas.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.LightGray;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvDoctores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvDoctores.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvDoctores.BackgroundColor = Color.LightGray;
+            dgvCitas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCitas.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCitas.BackgroundColor = Color.LightGray;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -98,14 +124,14 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvDoctores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDoctores.EnableHeadersVisualStyles = false;
-            dgvDoctores.GridColor = Color.Gray;
-            dgvDoctores.Location = new Point(12, 67);
-            dgvDoctores.MultiSelect = false;
-            dgvDoctores.Name = "dgvDoctores";
-            dgvDoctores.ReadOnly = true;
+            dgvCitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCitas.EnableHeadersVisualStyles = false;
+            dgvCitas.GridColor = Color.Gray;
+            dgvCitas.Location = new Point(12, 67);
+            dgvCitas.MultiSelect = false;
+            dgvCitas.Name = "dgvCitas";
+            dgvCitas.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -113,16 +139,16 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvDoctores.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dgvDoctores.RowHeadersVisible = false;
-            dgvDoctores.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvCitas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvCitas.RowHeadersVisible = false;
+            dgvCitas.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
             dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvDoctores.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            dgvDoctores.ScrollBars = ScrollBars.Horizontal;
-            dgvDoctores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDoctores.Size = new Size(1372, 633);
-            dgvDoctores.TabIndex = 10;
+            dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvCitas.ScrollBars = ScrollBars.Horizontal;
+            dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCitas.Size = new Size(1372, 633);
+            dgvCitas.TabIndex = 10;
             // 
             // lblBuscar
             // 
@@ -145,6 +171,7 @@
             txtBuscarDoctor.PlaceholderText = "Ingrese el nombre del Doctor";
             txtBuscarDoctor.Size = new Size(549, 34);
             txtBuscarDoctor.TabIndex = 8;
+            txtBuscarDoctor.TextChanged += txtBuscarDoctor_TextChanged;
             // 
             // frmAgendaGeneral
             // 
@@ -161,7 +188,7 @@
             pnlHeaderAgendaGeneral.PerformLayout();
             pnlContenedor.ResumeLayout(false);
             pnlContenedor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDoctores).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
             ResumeLayout(false);
         }
 
@@ -172,6 +199,8 @@
         private Panel pnlContenedor;
         private Label lblBuscar;
         private TextBox txtBuscarDoctor;
-        private DataGridView dgvDoctores;
+        private DataGridView dgvCitas;
+        private DateTimePicker dtpFecha;
+        private Label lblFecha;
     }
 }

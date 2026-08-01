@@ -131,16 +131,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static DataTable ObtenerDoctoresActivos()
-        {
-            string sql = @"SELECT e.id_empleado,
-                          CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
-                   FROM empleado e
-                   INNER JOIN doctor d ON e.id_empleado = d.id_empleado
-                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor'
-                   ORDER BY e.apellido_paterno, e.nombre";
-            return clsConexion.EjecutarConsulta(sql);
-        }
+
 
         private static (string tipo, bool estado, int? idUsuario) ObtenerInfoDoctor(
             int idEmpleado,
@@ -395,6 +386,18 @@ namespace MedicDate.Procesos
 
             MySqlParameter[] parametros = { new MySqlParameter("@id", idEmpleado) };
             return clsConexion.EjecutarConsulta(sql, parametros);
+        }
+
+
+        public static DataTable ObtenerDoctoresActivos()
+        {
+            string sql = @"SELECT e.id_empleado,
+                          CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto
+                   FROM empleado e
+                   INNER JOIN doctor d ON e.id_empleado = d.id_empleado
+                   WHERE e.estado = 1 AND e.tipo_empleado = 'doctor'
+                   ORDER BY e.apellido_paterno, e.nombre";
+            return clsConexion.EjecutarConsulta(sql);
         }
     }
 }
