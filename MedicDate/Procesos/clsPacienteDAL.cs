@@ -11,24 +11,6 @@ namespace MedicDate.Procesos
 {
     internal class clsPacienteDAL
     {
-        public static DataTable ObtenerMunicipioPorId(int idMunicipio)
-        {
-            var tabla = new DataTable();
-            try
-            {
-                using var conexion = clsConexion.ObtenerConexion();
-                string sql = "SELECT * FROM municipio WHERE id_municipio = @id";
-                using var cmd = new MySqlCommand(sql, conexion);
-                cmd.Parameters.AddWithValue("@id", idMunicipio);
-                using var adapter = new MySqlDataAdapter(cmd);
-                adapter.Fill(tabla);
-                return tabla;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener municipio por ID: " + ex.Message);
-            }
-        }
         public static int Insertar(clsPaciente paciente, MySqlTransaction? transaccion = null)
         {
             string consulta = @"
