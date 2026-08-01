@@ -31,6 +31,8 @@
             pnlHeaderPaciente = new Panel();
             lblTitulo = new Label();
             pnlContenedor = new Panel();
+            txtTelefonoSec = new TextBox();
+            lblTelefonoSecundario = new Label();
             btnGuardar = new Button();
             btnCancelar1 = new Button();
             txtNotas = new TextBox();
@@ -61,7 +63,7 @@
             txtAPaterno = new TextBox();
             lblAPaterno = new Label();
             lblNombreDoctor = new Label();
-            tctNombreDoctor = new TextBox();
+            tctNombreP = new TextBox();
             pnlHeaderPaciente.SuspendLayout();
             pnlContenedor.SuspendLayout();
             SuspendLayout();
@@ -91,6 +93,8 @@
             // pnlContenedor
             // 
             pnlContenedor.BackColor = Color.LightGray;
+            pnlContenedor.Controls.Add(txtTelefonoSec);
+            pnlContenedor.Controls.Add(lblTelefonoSecundario);
             pnlContenedor.Controls.Add(btnGuardar);
             pnlContenedor.Controls.Add(btnCancelar1);
             pnlContenedor.Controls.Add(txtNotas);
@@ -121,12 +125,32 @@
             pnlContenedor.Controls.Add(txtAPaterno);
             pnlContenedor.Controls.Add(lblAPaterno);
             pnlContenedor.Controls.Add(lblNombreDoctor);
-            pnlContenedor.Controls.Add(tctNombreDoctor);
+            pnlContenedor.Controls.Add(tctNombreP);
             pnlContenedor.Dock = DockStyle.Fill;
             pnlContenedor.Location = new Point(0, 55);
             pnlContenedor.Name = "pnlContenedor";
-            pnlContenedor.Size = new Size(657, 767);
+            pnlContenedor.Size = new Size(657, 847);
             pnlContenedor.TabIndex = 9;
+            // 
+            // txtTelefonoSec
+            // 
+            txtTelefonoSec.BackColor = Color.White;
+            txtTelefonoSec.Font = new Font("Segoe UI", 12F);
+            txtTelefonoSec.ForeColor = Color.Black;
+            txtTelefonoSec.Location = new Point(344, 221);
+            txtTelefonoSec.Name = "txtTelefonoSec";
+            txtTelefonoSec.Size = new Size(299, 34);
+            txtTelefonoSec.TabIndex = 45;
+            // 
+            // lblTelefonoSecundario
+            // 
+            lblTelefonoSecundario.AutoSize = true;
+            lblTelefonoSecundario.Font = new Font("Segoe UI", 10.2F);
+            lblTelefonoSecundario.Location = new Point(344, 197);
+            lblTelefonoSecundario.Name = "lblTelefonoSecundario";
+            lblTelefonoSecundario.Size = new Size(164, 23);
+            lblTelefonoSecundario.TabIndex = 44;
+            lblTelefonoSecundario.Text = "Teléfono Secundario";
             // 
             // btnGuardar
             // 
@@ -146,6 +170,7 @@
             btnGuardar.TabIndex = 43;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar1
             // 
@@ -165,13 +190,14 @@
             btnCancelar1.TabIndex = 42;
             btnCancelar1.Text = "Cancelar";
             btnCancelar1.UseVisualStyleBackColor = false;
+            btnCancelar1.Click += btnCancelar1_Click;
             // 
             // txtNotas
             // 
             txtNotas.BackColor = Color.White;
             txtNotas.Font = new Font("Segoe UI", 12F);
             txtNotas.ForeColor = Color.Black;
-            txtNotas.Location = new Point(346, 597);
+            txtNotas.Location = new Point(346, 669);
             txtNotas.Multiline = true;
             txtNotas.Name = "txtNotas";
             txtNotas.Size = new Size(299, 89);
@@ -182,7 +208,7 @@
             txtAlergias.BackColor = Color.White;
             txtAlergias.Font = new Font("Segoe UI", 12F);
             txtAlergias.ForeColor = Color.Black;
-            txtAlergias.Location = new Point(14, 597);
+            txtAlergias.Location = new Point(14, 669);
             txtAlergias.Multiline = true;
             txtAlergias.Name = "txtAlergias";
             txtAlergias.Size = new Size(299, 89);
@@ -193,19 +219,18 @@
             lblNotas.AutoSize = true;
             lblNotas.Font = new Font("Segoe UI", 10.2F);
             lblNotas.ForeColor = Color.Black;
-            lblNotas.Location = new Point(346, 573);
+            lblNotas.Location = new Point(346, 645);
             lblNotas.Name = "lblNotas";
             lblNotas.Size = new Size(122, 23);
             lblNotas.TabIndex = 39;
             lblNotas.Text = "Notas Medicas";
-            lblNotas.Click += lblNotas_Click;
             // 
             // lblAlergias
             // 
             lblAlergias.AutoSize = true;
             lblAlergias.Font = new Font("Segoe UI", 10.2F);
             lblAlergias.ForeColor = Color.Black;
-            lblAlergias.Location = new Point(14, 573);
+            lblAlergias.Location = new Point(14, 645);
             lblAlergias.Name = "lblAlergias";
             lblAlergias.Size = new Size(70, 23);
             lblAlergias.TabIndex = 38;
@@ -216,7 +241,7 @@
             lblDatosMedicos.AutoSize = true;
             lblDatosMedicos.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblDatosMedicos.ForeColor = Color.Black;
-            lblDatosMedicos.Location = new Point(3, 527);
+            lblDatosMedicos.Location = new Point(3, 615);
             lblDatosMedicos.Name = "lblDatosMedicos";
             lblDatosMedicos.Size = new Size(166, 30);
             lblDatosMedicos.TabIndex = 37;
@@ -228,7 +253,7 @@
             cmbMunicipio.Font = new Font("Segoe UI", 12F);
             cmbMunicipio.ForeColor = Color.Black;
             cmbMunicipio.FormattingEnabled = true;
-            cmbMunicipio.Location = new Point(14, 479);
+            cmbMunicipio.Location = new Point(14, 562);
             cmbMunicipio.Name = "cmbMunicipio";
             cmbMunicipio.Size = new Size(298, 36);
             cmbMunicipio.TabIndex = 36;
@@ -238,7 +263,7 @@
             lblMunicipio.AutoSize = true;
             lblMunicipio.Font = new Font("Segoe UI", 10.2F);
             lblMunicipio.ForeColor = Color.Black;
-            lblMunicipio.Location = new Point(14, 456);
+            lblMunicipio.Location = new Point(14, 539);
             lblMunicipio.Name = "lblMunicipio";
             lblMunicipio.Size = new Size(89, 23);
             lblMunicipio.TabIndex = 35;
@@ -249,7 +274,7 @@
             txtLocalidad.BackColor = Color.White;
             txtLocalidad.Font = new Font("Segoe UI", 12F);
             txtLocalidad.ForeColor = Color.Black;
-            txtLocalidad.Location = new Point(345, 408);
+            txtLocalidad.Location = new Point(345, 491);
             txtLocalidad.Name = "txtLocalidad";
             txtLocalidad.Size = new Size(299, 34);
             txtLocalidad.TabIndex = 34;
@@ -259,7 +284,7 @@
             lblLocalidad.AutoSize = true;
             lblLocalidad.Font = new Font("Segoe UI", 10.2F);
             lblLocalidad.ForeColor = Color.Black;
-            lblLocalidad.Location = new Point(345, 385);
+            lblLocalidad.Location = new Point(345, 468);
             lblLocalidad.Name = "lblLocalidad";
             lblLocalidad.Size = new Size(82, 23);
             lblLocalidad.TabIndex = 33;
@@ -270,7 +295,7 @@
             txtNumero.BackColor = Color.White;
             txtNumero.Font = new Font("Segoe UI", 12F);
             txtNumero.ForeColor = Color.Black;
-            txtNumero.Location = new Point(13, 408);
+            txtNumero.Location = new Point(13, 491);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(299, 34);
             txtNumero.TabIndex = 32;
@@ -280,7 +305,7 @@
             lblNumero.AutoSize = true;
             lblNumero.Font = new Font("Segoe UI", 10.2F);
             lblNumero.ForeColor = Color.Black;
-            lblNumero.Location = new Point(13, 385);
+            lblNumero.Location = new Point(13, 468);
             lblNumero.Name = "lblNumero";
             lblNumero.Size = new Size(73, 23);
             lblNumero.TabIndex = 31;
@@ -291,7 +316,7 @@
             txtColonia.BackColor = Color.White;
             txtColonia.Font = new Font("Segoe UI", 12F);
             txtColonia.ForeColor = Color.Black;
-            txtColonia.Location = new Point(345, 333);
+            txtColonia.Location = new Point(345, 416);
             txtColonia.Name = "txtColonia";
             txtColonia.Size = new Size(299, 34);
             txtColonia.TabIndex = 30;
@@ -301,7 +326,7 @@
             lblColonia.AutoSize = true;
             lblColonia.Font = new Font("Segoe UI", 10.2F);
             lblColonia.ForeColor = Color.Black;
-            lblColonia.Location = new Point(345, 308);
+            lblColonia.Location = new Point(345, 391);
             lblColonia.Name = "lblColonia";
             lblColonia.Size = new Size(68, 23);
             lblColonia.TabIndex = 29;
@@ -312,7 +337,7 @@
             lblDomicilio.AutoSize = true;
             lblDomicilio.Font = new Font("Segoe UI", 10.2F);
             lblDomicilio.ForeColor = Color.Black;
-            lblDomicilio.Location = new Point(13, 308);
+            lblDomicilio.Location = new Point(13, 391);
             lblDomicilio.Name = "lblDomicilio";
             lblDomicilio.Size = new Size(47, 23);
             lblDomicilio.TabIndex = 28;
@@ -323,7 +348,7 @@
             txtCalle.BackColor = Color.White;
             txtCalle.Font = new Font("Segoe UI", 12F);
             txtCalle.ForeColor = Color.Black;
-            txtCalle.Location = new Point(13, 333);
+            txtCalle.Location = new Point(13, 416);
             txtCalle.Name = "txtCalle";
             txtCalle.Size = new Size(299, 34);
             txtCalle.TabIndex = 27;
@@ -333,7 +358,7 @@
             lblSubDomicilio.AutoSize = true;
             lblSubDomicilio.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblSubDomicilio.ForeColor = Color.Black;
-            lblSubDomicilio.Location = new Point(3, 274);
+            lblSubDomicilio.Location = new Point(3, 357);
             lblSubDomicilio.Name = "lblSubDomicilio";
             lblSubDomicilio.Size = new Size(110, 30);
             lblSubDomicilio.TabIndex = 26;
@@ -358,7 +383,7 @@
             dtpFechaRegistro.CalendarTitleForeColor = Color.Black;
             dtpFechaRegistro.CalendarTrailingForeColor = Color.Gray;
             dtpFechaRegistro.Font = new Font("Segoe UI", 12F);
-            dtpFechaRegistro.Location = new Point(346, 221);
+            dtpFechaRegistro.Location = new Point(14, 299);
             dtpFechaRegistro.Name = "dtpFechaRegistro";
             dtpFechaRegistro.Size = new Size(299, 34);
             dtpFechaRegistro.TabIndex = 24;
@@ -368,7 +393,7 @@
             lblFechaNac.AutoSize = true;
             lblFechaNac.Font = new Font("Segoe UI", 10.2F);
             lblFechaNac.ForeColor = Color.Black;
-            lblFechaNac.Location = new Point(346, 197);
+            lblFechaNac.Location = new Point(14, 275);
             lblFechaNac.Name = "lblFechaNac";
             lblFechaNac.Size = new Size(147, 23);
             lblFechaNac.TabIndex = 23;
@@ -469,21 +494,21 @@
             lblNombreDoctor.TabIndex = 14;
             lblNombreDoctor.Text = "Nombre";
             // 
-            // tctNombreDoctor
+            // tctNombreP
             // 
-            tctNombreDoctor.BackColor = Color.White;
-            tctNombreDoctor.Font = new Font("Segoe UI", 12F);
-            tctNombreDoctor.ForeColor = Color.Black;
-            tctNombreDoctor.Location = new Point(14, 74);
-            tctNombreDoctor.Name = "tctNombreDoctor";
-            tctNombreDoctor.Size = new Size(299, 34);
-            tctNombreDoctor.TabIndex = 13;
+            tctNombreP.BackColor = Color.White;
+            tctNombreP.Font = new Font("Segoe UI", 12F);
+            tctNombreP.ForeColor = Color.Black;
+            tctNombreP.Location = new Point(14, 74);
+            tctNombreP.Name = "tctNombreP";
+            tctNombreP.Size = new Size(299, 34);
+            tctNombreP.TabIndex = 13;
             // 
             // frmPaciente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(657, 822);
+            ClientSize = new Size(657, 902);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderPaciente);
             Name = "frmPaciente";
@@ -511,7 +536,7 @@
         private TextBox txtAPaterno;
         private Label lblAPaterno;
         private Label lblNombreDoctor;
-        private TextBox tctNombreDoctor;
+        private TextBox tctNombreP;
         private Label lblSubDatosPersonales;
         private Label lblSubDomicilio;
         private TextBox txtLocalidad;
@@ -531,5 +556,7 @@
         private TextBox txtAlergias;
         private Button btnGuardar;
         private Button btnCancelar1;
+        private TextBox txtTelefonoSec;
+        private Label lblTelefonoSecundario;
     }
 }
