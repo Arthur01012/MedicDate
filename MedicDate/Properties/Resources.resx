@@ -117,4 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="guardar_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\guardar_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancelar_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\cancelar_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="usuario_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\usuario_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pacientes_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\pacientes_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="agenda_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\agenda_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="confirmar_cita_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\confirmar_cita_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reportes_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\reportes_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="especialidades_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\especialidades_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="horarios_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\horarios_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="asistentes_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\asistentes_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="doctores_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\doctores_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cerrar_sesion_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\cerrar_sesion_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nuevo_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\nuevo_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="editar_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\editar_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eliminar_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\eliminar_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="desactivar_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\desactivar_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="detalle_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\detalle_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="anterior_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\anterior_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="siguiente_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\siguiente_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="acceder_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\acceder_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cancelar_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\cancelar_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ver_historial_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\ver_historial_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iniciar_consulta_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\iniciar_consulta_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="finalizar_consulta_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\png\finalizar_consulta_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
