@@ -154,6 +154,11 @@
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnGuardar.Image = MedicDate.Properties.Resources.guardar_black;
+            btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
+            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Location = new Point(513, 583);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(130, 52);
@@ -161,14 +166,19 @@
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
-            // 
+            //
             // btnCancelar1
-            // 
+            //
             btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar1.ForeColor = Color.White;
+            btnCancelar1.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
             btnCancelar1.Location = new Point(347, 583);
             btnCancelar1.Name = "btnCancelar1";
             btnCancelar1.Size = new Size(130, 52);

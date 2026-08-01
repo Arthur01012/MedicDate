@@ -35,6 +35,9 @@
             pnlHeader5 = new Panel();
             lbAsistente = new Label();
             pnlContenedor2 = new Panel();
+            lblPagina = new Label();
+            btnDespues = new Button();
+            btnAnterior = new Button();
             btnDesactivar = new Button();
             btnEditarAsistente = new Button();
             btnNuevoAsistente = new Button();
@@ -71,6 +74,9 @@
             // pnlContenedor2
             // 
             pnlContenedor2.BackColor = Color.LightGray;
+            pnlContenedor2.Controls.Add(lblPagina);
+            pnlContenedor2.Controls.Add(btnDespues);
+            pnlContenedor2.Controls.Add(btnAnterior);
             pnlContenedor2.Controls.Add(btnDesactivar);
             pnlContenedor2.Controls.Add(btnEditarAsistente);
             pnlContenedor2.Controls.Add(btnNuevoAsistente);
@@ -84,13 +90,62 @@
             pnlContenedor2.Size = new Size(1398, 712);
             pnlContenedor2.TabIndex = 10;
             // 
-            // btnDesactivar
+            // lblPagina
             // 
+            lblPagina.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPagina.AutoSize = true;
+            lblPagina.BackColor = Color.LightGray;
+            lblPagina.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPagina.ForeColor = Color.Black;
+            lblPagina.Location = new Point(1171, 668);
+            lblPagina.Name = "lblPagina";
+            lblPagina.Size = new Size(64, 23);
+            lblPagina.TabIndex = 14;
+            lblPagina.Text = "Página";
+            lblPagina.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnDespues
+            // 
+            btnDespues.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnDespues.BackColor = Color.FromArgb(166, 202, 236);
+            btnDespues.FlatStyle = FlatStyle.Popup;
+            btnDespues.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDespues.Image = MedicDate.Properties.Resources.siguiente_black;
+            btnDespues.ImageAlign = ContentAlignment.MiddleCenter;
+            btnDespues.Location = new Point(1295, 652);
+            btnDespues.Name = "btnDespues";
+            btnDespues.Size = new Size(55, 45);
+            btnDespues.TabIndex = 13;
+            btnDespues.UseVisualStyleBackColor = false;
+            btnDespues.Click += btnDespues_Click;
+            //
+            // btnAnterior
+            //
+            btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAnterior.BackColor = Color.FromArgb(166, 202, 236);
+            btnAnterior.FlatStyle = FlatStyle.Popup;
+            btnAnterior.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnterior.Image = MedicDate.Properties.Resources.anterior_black;
+            btnAnterior.ImageAlign = ContentAlignment.MiddleCenter;
+            btnAnterior.Location = new Point(1093, 652);
+            btnAnterior.Name = "btnAnterior";
+            btnAnterior.Size = new Size(55, 45);
+            btnAnterior.TabIndex = 12;
+            btnAnterior.UseVisualStyleBackColor = false;
+            btnAnterior.Click += btnAnterior_Click;
+            //
+            // btnDesactivar
+            //
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
+            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1202, 31);
             btnDesactivar.Name = "btnDesactivar";
             btnDesactivar.Size = new Size(148, 45);
@@ -98,14 +153,19 @@
             btnDesactivar.Text = "Desactivar";
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja2_Click;
-            // 
+            //
             // btnEditarAsistente
-            // 
+            //
             btnEditarAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarAsistente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
             btnEditarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarAsistente.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarAsistente.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEditarAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarAsistente.Padding = new Padding(8, 0, 6, 0);
             btnEditarAsistente.Location = new Point(1022, 31);
             btnEditarAsistente.Name = "btnEditarAsistente";
             btnEditarAsistente.Size = new Size(148, 45);
@@ -113,13 +173,18 @@
             btnEditarAsistente.Text = "Editar";
             btnEditarAsistente.UseVisualStyleBackColor = false;
             btnEditarAsistente.Click += btnEditarAsistente_Click;
-            // 
+            //
             // btnNuevoAsistente
-            // 
+            //
             btnNuevoAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoAsistente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoAsistente.FlatStyle = FlatStyle.Popup;
             btnNuevoAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoAsistente.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoAsistente.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNuevoAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnNuevoAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoAsistente.Padding = new Padding(8, 0, 6, 0);
             btnNuevoAsistente.Location = new Point(837, 31);
             btnNuevoAsistente.Name = "btnNuevoAsistente";
             btnNuevoAsistente.Size = new Size(148, 45);
@@ -142,6 +207,7 @@
             dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAsistentes.BackgroundColor = Color.LightGray;
+            dgvAsistentes.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -153,7 +219,7 @@
             dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAsistentes.EnableHeadersVisualStyles = false;
             dgvAsistentes.GridColor = Color.Gray;
-            dgvAsistentes.Location = new Point(41, 106);
+            dgvAsistentes.Location = new Point(41, 95);
             dgvAsistentes.MultiSelect = false;
             dgvAsistentes.Name = "dgvAsistentes";
             dgvAsistentes.ReadOnly = true;
@@ -172,7 +238,7 @@
             dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvAsistentes.ScrollBars = ScrollBars.Horizontal;
             dgvAsistentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAsistentes.Size = new Size(1309, 594);
+            dgvAsistentes.Size = new Size(1309, 551);
             dgvAsistentes.TabIndex = 8;
             // 
             // lblBuscar1
@@ -225,5 +291,8 @@
         private DataGridView dgvAsistentes;
         private Label lblBuscar1;
         private TextBox txtBuscarAsistente;
+        private Label lblPagina;
+        private Button btnDespues;
+        private Button btnAnterior;
     }
 }

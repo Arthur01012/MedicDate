@@ -186,7 +186,6 @@
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView2.Size = new Size(958, 170);
             dataGridView2.TabIndex = 30;
-            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // frmPerfilDoctor
             // 
@@ -201,6 +200,7 @@
             Controls.Add(pnlHeaderPerfil);
             Name = "frmPerfilDoctor";
             Text = "frmPerfilDoctor";
+            Load += frmPerfilDoctor_Load;
             pnlHeaderPerfil.ResumeLayout(false);
             pnlHeaderPerfil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFicha).EndInit();

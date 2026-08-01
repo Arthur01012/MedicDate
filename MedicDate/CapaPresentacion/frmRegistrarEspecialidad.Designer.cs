@@ -140,12 +140,18 @@
             btnDarBaja4.FlatStyle = FlatStyle.Popup;
             btnDarBaja4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDarBaja4.ForeColor = Color.White;
+            btnDarBaja4.Image = Properties.Resources.eliminar_white;
+            btnDarBaja4.ImageAlign = ContentAlignment.MiddleLeft;
             btnDarBaja4.Location = new Point(1226, 280);
             btnDarBaja4.Name = "btnDarBaja4";
+            btnDarBaja4.Padding = new Padding(8, 0, 6, 0);
             btnDarBaja4.Size = new Size(148, 45);
             btnDarBaja4.TabIndex = 17;
             btnDarBaja4.Text = "Eliminar";
+            btnDarBaja4.TextAlign = ContentAlignment.MiddleRight;
+            btnDarBaja4.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDarBaja4.UseVisualStyleBackColor = false;
+            btnDarBaja4.Click += btnDarBaja4_Click;
             // 
             // btnEditarEspecialidad
             // 
@@ -154,12 +160,18 @@
             btnEditarEspecialidad.BackgroundImageLayout = ImageLayout.None;
             btnEditarEspecialidad.FlatStyle = FlatStyle.Popup;
             btnEditarEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnEditarEspecialidad.Image = Properties.Resources.editar_black;
+            btnEditarEspecialidad.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditarEspecialidad.Location = new Point(1046, 280);
             btnEditarEspecialidad.Name = "btnEditarEspecialidad";
+            btnEditarEspecialidad.Padding = new Padding(8, 0, 6, 0);
             btnEditarEspecialidad.Size = new Size(148, 45);
             btnEditarEspecialidad.TabIndex = 16;
             btnEditarEspecialidad.Text = "Editar";
+            btnEditarEspecialidad.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarEspecialidad.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarEspecialidad.UseVisualStyleBackColor = false;
+            btnEditarEspecialidad.Click += btnEditarEspecialidad_Click;
             // 
             // btnNuevoEspecialidad
             // 
@@ -167,12 +179,18 @@
             btnNuevoEspecialidad.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoEspecialidad.FlatStyle = FlatStyle.Popup;
             btnNuevoEspecialidad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnNuevoEspecialidad.Image = Properties.Resources.nuevo_black;
+            btnNuevoEspecialidad.ImageAlign = ContentAlignment.MiddleLeft;
             btnNuevoEspecialidad.Location = new Point(861, 280);
             btnNuevoEspecialidad.Name = "btnNuevoEspecialidad";
+            btnNuevoEspecialidad.Padding = new Padding(8, 0, 6, 0);
             btnNuevoEspecialidad.Size = new Size(148, 45);
             btnNuevoEspecialidad.TabIndex = 15;
             btnNuevoEspecialidad.Text = "Nuevo";
+            btnNuevoEspecialidad.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoEspecialidad.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoEspecialidad.UseVisualStyleBackColor = false;
+            btnNuevoEspecialidad.Click += btnNuevoEspecialidad_Click;
             // 
             // dgvEspecialidad
             // 
@@ -220,6 +238,7 @@
             dgvEspecialidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEspecialidad.Size = new Size(1374, 300);
             dgvEspecialidad.TabIndex = 14;
+            dgvEspecialidad.CellClick += dgvEspecialidad_CellClick;
             // 
             // lblBuscar1
             // 

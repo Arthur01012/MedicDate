@@ -1,4 +1,5 @@
 ﻿using MedicDate.Procesos;
+using MedicDate.Datos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,11 @@ namespace MedicDate.CapaPresentacion
     public partial class frmRegistrarDoctor : Form
     {
         clsDoctorDAL Doctor;
+
+        private int paginaActual = 1;
+        private int registrosPorPagina = 10;
+        private int totalPaginas;
+
         public frmRegistrarDoctor()
         {
             InitializeComponent();
@@ -23,12 +29,17 @@ namespace MedicDate.CapaPresentacion
         public void cargarGrid()
         {
             Doctor = new clsDoctorDAL();
+            int total = Doctor.TotalDoctores();
+
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
             dgvDoctores.DataSource = null;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             try
             {
-                dgvDoctores.DataSource = Doctor.CargarDataGrid();
+                dgvDoctores.DataSource = Doctor.CargarDataGrid(paginaActual,registrosPorPagina);
                 dgvDoctores.Columns["id_empleado"].Visible = false;
+                lblPagina.Text = $"Página {paginaActual} de {totalPaginas}";
 
             }
             catch (Exception ex)
@@ -39,7 +50,7 @@ namespace MedicDate.CapaPresentacion
 
         private void btnNuevoDoctor_Click(object sender, EventArgs e)
         {
-            frmDoctor frm = new frmDoctor();
+            frmDoctor frm = new frmDoctor(0);
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);
@@ -72,23 +83,24 @@ namespace MedicDate.CapaPresentacion
 
         private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtBuscarDoctor.Text))
+            paginaActual = 1;
+
+            Doctor = new clsDoctorDAL();
+
+            if (string.IsNullOrWhiteSpace(txtBuscarDoctor.Text))
             {
                 cargarGrid();
                 return;
             }
 
-            Doctor = new clsDoctorDAL();
-            dgvDoctores.DataSource = null;
-            dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            try
-            {
-                dgvDoctores.DataSource = Doctor.Consultar(txtBuscarDoctor.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            int total = Doctor.TotalBusqueda(txtBuscarDoctor.Text);
+
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
+
+            dgvDoctores.DataSource = Doctor.Consultar(
+                txtBuscarDoctor.Text,
+                paginaActual,
+                registrosPorPagina);
         }
 
         private void btnDarBaja_Click(object sender, EventArgs e)
@@ -103,9 +115,9 @@ namespace MedicDate.CapaPresentacion
 
             // Obtener fila seleccionada
             DataGridViewRow? fila = null;
-           if (dgvDoctores.CurrentRow != null)
+            if (dgvDoctores.CurrentRow != null)
                 fila = dgvDoctores.CurrentRow;
-            
+
 
             if (fila == null)
             {
@@ -120,10 +132,10 @@ namespace MedicDate.CapaPresentacion
 
             // Confirmar
             DialogResult confirm = MessageBox.Show(
-                $"¿Dar de baja al doctor {nombreDoctor}?" + 
+                $"¿Dar de baja al doctor {nombreDoctor}?" +
                 "Esta acción:\n" +
-                "-Desactivará al doctor.\n"+
-                "-Desactivará su horario.\n"+
+                "-Desactivará al doctor.\n" +
+                "-Desactivará su horario.\n" +
                 "-Desactivará su usario",
                 "Confirmar baja",
                 MessageBoxButtons.YesNo,
@@ -150,6 +162,24 @@ namespace MedicDate.CapaPresentacion
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (paginaActual > 1)
+            {
+                paginaActual--;
+                cargarGrid();
+            }
+        }
+
+        private void btnDespues_Click(object sender, EventArgs e)
+        {
+            if (paginaActual < totalPaginas)
+            {
+                paginaActual++;
+                cargarGrid();
             }
         }
     }

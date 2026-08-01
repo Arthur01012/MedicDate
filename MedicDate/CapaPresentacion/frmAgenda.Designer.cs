@@ -98,6 +98,11 @@
             btnVerDetalle.FlatStyle = FlatStyle.Popup;
             btnVerDetalle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnVerDetalle.ForeColor = Color.Black;
+            btnVerDetalle.Image = MedicDate.Properties.Resources.detalle_black;
+            btnVerDetalle.ImageAlign = ContentAlignment.MiddleLeft;
+            btnVerDetalle.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnVerDetalle.TextAlign = ContentAlignment.MiddleRight;
+            btnVerDetalle.Padding = new Padding(8, 0, 6, 0);
             btnVerDetalle.Location = new Point(722, 396);
             btnVerDetalle.Name = "btnVerDetalle";
             btnVerDetalle.Size = new Size(148, 45);
