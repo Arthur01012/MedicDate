@@ -112,16 +112,16 @@
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnGuardar.Image = MedicDate.Properties.Resources.guardar_black;
+            btnGuardar.Image = Properties.Resources.guardar_black;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Location = new Point(499, 411);
             btnGuardar.Name = "btnGuardar";
+            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Size = new Size(130, 52);
             btnGuardar.TabIndex = 37;
             btnGuardar.Text = "Guardar";
+            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
@@ -132,16 +132,16 @@
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelar1.Image = Properties.Resources.cancelar_white;
             btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
             btnCancelar1.Location = new Point(332, 411);
             btnCancelar1.Name = "btnCancelar1";
+            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
             btnCancelar1.Size = new Size(130, 52);
             btnCancelar1.TabIndex = 36;
             btnCancelar1.Text = "Cancelar";
+            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar1.UseVisualStyleBackColor = false;
             btnCancelar1.Click += btnCancelar1_Click;
             // 
@@ -264,6 +264,7 @@
             tctNombrePaciente.Name = "tctNombrePaciente";
             tctNombrePaciente.Size = new Size(299, 34);
             tctNombrePaciente.TabIndex = 3;
+            tctNombrePaciente.Validating += tctNombrePaciente_Validating;
             // 
             // frmCita
             // 

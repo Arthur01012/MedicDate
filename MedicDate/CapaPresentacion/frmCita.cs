@@ -14,7 +14,6 @@ namespace MedicDate.CapaPresentacion
         private DataTable _dtPacientes;
         private clsCitaNegocio _citaNegocio; // Instancia de la capa de negocio
 
-        // Variables para guardar la cita original en caso de edición
         private DateTime _fechaOriginalCita;
         private TimeSpan _horaOriginalCita;
 
@@ -73,12 +72,12 @@ namespace MedicDate.CapaPresentacion
             int idDoctor = (int)cmbDoctor.SelectedValue;
             DateTime fecha = dtpFechaCita.Value.Date;
 
-            // CONSULTAMOS DIRECTAMENTE A LA CAPA DE NEGOCIO
+
             var resultado = _citaNegocio.ObtenerHorasDisponibles(idDoctor, fecha, _idCita);
 
             if (!resultado.DoctorAtiende)
             {
-                // Si es edición y la fecha es la original, dejamos que el usuario pueda editar otros campos
+
                 if (_idCita.HasValue && _fechaOriginalCita == fecha)
                 {
                     cmbHoraCita.Items.Add(_horaOriginalCita.ToString(@"hh\:mm"));
@@ -96,7 +95,6 @@ namespace MedicDate.CapaPresentacion
             cmbHoraCita.Items.AddRange(resultado.HorasDisponibles.ToArray());
             cmbHoraCita.Enabled = true;
 
-            // Si estamos editando y tenemos hora original
             if (resultado.HoraOriginalEdicion.HasValue)
             {
                 string horaStr = resultado.HoraOriginalEdicion.Value.ToString(@"hh\:mm");
@@ -111,19 +109,17 @@ namespace MedicDate.CapaPresentacion
         private void cmbDoctor_SelectedIndexChanged(object sender, EventArgs e) => CargarHorasDisponibles();
         private void dtpFechaCita_ValueChanged(object sender, EventArgs e) => CargarHorasDisponibles();
 
-        // --- EVENTO VALIDATING CORREGIDO ---
         private void tctNombrePaciente_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
             {
                 _idPacienteSeleccionado = 0;
-                e.Cancel = false; // No bloqueamos el foco
+                e.Cancel = false; 
                 return;
             }
 
             string input = tctNombrePaciente.Text.Trim();
 
-            // Buscamos ignorando mayúsculas/minúsculas y espacios
             var foundRows = _dtPacientes.AsEnumerable()
                 .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -137,8 +133,6 @@ namespace MedicDate.CapaPresentacion
                 _idPacienteSeleccionado = 0;
             }
 
-            // CRUCIAL: NO bloqueamos el foco (e.Cancel = false).
-            // Dejamos que el botón Guardar decida si el ID es válido.
             e.Cancel = false;
         }
 
@@ -159,13 +153,12 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- BOTÓN GUARDAR CORREGIDO ---
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1. VALIDACIÓN FINAL Y ROBUSTA DEL PACIENTE
-                // Revalidamos aquí por si el autocompletado no confirmó el ID en el Validating
+
                 if (_idPacienteSeleccionado == 0 && !string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
                 {
                     string input = tctNombrePaciente.Text.Trim();
@@ -179,7 +172,6 @@ namespace MedicDate.CapaPresentacion
                     }
                 }
 
-                // Si sigue siendo 0, mostramos el error y enfocamos el campo
                 if (_idPacienteSeleccionado == 0)
                 {
                     MessageBox.Show("Seleccione un paciente válido de la lista desplegable.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -187,14 +179,13 @@ namespace MedicDate.CapaPresentacion
                     return;
                 }
 
-                // 2. Validación del Doctor
+
                 if (cmbDoctor.SelectedValue == null)
                 {
                     MessageBox.Show("Seleccione un doctor.");
                     return;
                 }
 
-                // Usamos la capa de negocio para validar el estado del guardado
                 if (!cmbHoraCita.Enabled)
                 {
                     if (_idCita.HasValue && _fechaOriginalCita != dtpFechaCita.Value.Date)
@@ -226,7 +217,6 @@ namespace MedicDate.CapaPresentacion
                 int idDoctor = (int)cmbDoctor.SelectedValue;
                 DateTime fechaCita = dtpFechaCita.Value.Date;
 
-                // Crear objeto Cita
                 clsCita cita = new clsCita
                 {
                     id_paciente = _idPacienteSeleccionado,
@@ -240,7 +230,6 @@ namespace MedicDate.CapaPresentacion
                     id_registrado_por = Sesion.IdEmpleadoActual
                 };
 
-                // Validación final centralizada
                 _citaNegocio.ValidarYPrepararCita(cita, _idCita, _fechaOriginalCita, _horaOriginalCita);
 
                 if (_idCita.HasValue)
