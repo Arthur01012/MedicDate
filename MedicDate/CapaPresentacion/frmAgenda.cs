@@ -76,7 +76,6 @@ namespace MedicDate.CapaPresentacion
             CargarCitas();
         }
 
-        // --- Botón Ver Detalle ---
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
             if (dgvCita.SelectedRows.Count == 0)
@@ -88,11 +87,13 @@ namespace MedicDate.CapaPresentacion
             // Tomamos el ID de la cita de la fila seleccionada
             int idCita = Convert.ToInt32(dgvCita.SelectedRows[0].Cells["id_cita"].Value);
 
-            // Abrimos el formulario frmCita en modo EDICIÓN
-            frmCita frm = new frmCita(idCita);
+            // ➡️ CAMBIAMOS frmCita POR frmDetalleCita
+            frmDetalleCita frm = new frmDetalleCita(idCita);
+
+            // Si el usuario hizo algún cambio (Iniciar/Finalizar) y cerró, recargamos la agenda
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                CargarCitas(); // Refrescamos el grid si se editó o canceló la cita
+                CargarCitas();
             }
         }
     }
