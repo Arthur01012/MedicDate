@@ -16,8 +16,8 @@ namespace MedicDate.CapaPresentacion
     public partial class frmPaciente : Form
     {
         // Variables
-        private clsPaciente paciente = new clsPaciente();
-        private int? idPacienteEditar = null;
+        private clsPaciente paciente = new clsPaciente();// Instancia de la clase clsPaciente para almacenar los datos del paciente
+        private int? idPacienteEditar = null;// Variable para almacenar el ID del paciente a editar, si es necesario
 
         // Constructor
         public frmPaciente()
@@ -29,7 +29,7 @@ namespace MedicDate.CapaPresentacion
             CargarMunicipios();
         }
 
-        private void CargarMunicipios()
+        private void CargarMunicipios()// Carga los municipios en el ComboBox
         {
             try
             {
@@ -45,10 +45,8 @@ namespace MedicDate.CapaPresentacion
                 MessageBox.Show("Error al cargar municipios: " + ex.Message);
             }
         }
-
-
-        // Configuración inicial del formulario
-        private void ConfigurarFormulario()
+        
+        private void ConfigurarFormulario()// Configuración inicial del formulario
         {
             // No permite seleccionar una fecha mayor a la actual
             dtpFechaRegistro.MaxDate = DateTime.Today;
@@ -59,9 +57,8 @@ namespace MedicDate.CapaPresentacion
             // Coloca el cursor en el primer campo
             tctNombreP.Focus();
         }
-
-        // Validar datos ingresados
-        private bool ValidarDatos()
+        
+        private bool ValidarDatos()// Validar datos ingresados
         {
             // Nombre
             if (string.IsNullOrEmpty(tctNombreP.Text))
@@ -187,7 +184,7 @@ namespace MedicDate.CapaPresentacion
 
             return true;
         }
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)// Evento para guardar los datos del paciente
         {
             // Si alguna validación falla, no continúa
             if (!ValidarDatos()) return;
@@ -252,7 +249,7 @@ namespace MedicDate.CapaPresentacion
 
         }
 
-        private void LimpiarFormulario()
+        private void LimpiarFormulario()// Limpia todos los campos del formulario
         {
             tctNombreP.Clear();
             txtAPaterno.Clear();
