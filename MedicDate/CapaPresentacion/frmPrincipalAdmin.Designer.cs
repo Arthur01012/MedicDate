@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipalAdmin));
             pnlHeaderMedicDate = new Panel();
             lblUsuario = new Label();
             lblTitulo = new Label();
@@ -232,6 +231,7 @@
             btnReportes.Text = "Reportes";
             btnReportes.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReportes.UseVisualStyleBackColor = false;
+            btnReportes.Click += btnReportes_Click;
             // 
             // label1
             // 
