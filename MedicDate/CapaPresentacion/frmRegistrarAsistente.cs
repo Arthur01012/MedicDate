@@ -25,19 +25,19 @@ namespace MedicDate.CapaPresentacion
             cargarGrid();
         }
 
-        private void btnNuevoAsistente_Click(object sender, EventArgs e)
+        private void btnNuevoAsistente_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Nuevo Asistente"
         {
             frmAsistente frm = new frmAsistente();
 
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog(this);
         }
-        public void cargarGrid()
+        public void cargarGrid()// Método para cargar los datos de los asistentes en el DataGridView
         {
             asistente = new clsAsistenteDAL();
-            int total = asistente.TotalAsistentes();
+            int total = asistente.TotalAsistentes();// Obtener el total de asistentes
 
-            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);// Calcular el total de páginas
             dgvAsistentes.DataSource = null;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             try
@@ -53,7 +53,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void txtBuscarAsistente_TextChanged(object sender, EventArgs e)
+        private void txtBuscarAsistente_TextChanged(object sender, EventArgs e)// Evento que se ejecuta al cambiar el texto en el TextBox de búsqueda
         {
             paginaActual = 1;
 
@@ -75,7 +75,7 @@ namespace MedicDate.CapaPresentacion
                 registrosPorPagina);
         }
 
-        private void btnDarBaja2_Click(object sender, EventArgs e)
+        private void btnDarBaja2_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Dar de Baja"
         {
             // Verificar que haya filas en el grid
             if (dgvAsistentes.Rows.Count == 0)
@@ -140,7 +140,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnEditarAsistente_Click(object sender, EventArgs e)
+        private void btnEditarAsistente_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Editar Asistente"
         {
             // Obtener la fila actual (donde está el cursor)
             DataGridViewRow? fila = dgvAsistentes.CurrentRow;

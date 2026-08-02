@@ -258,5 +258,37 @@ namespace MedicDate.Procesos
             MySqlParameter[] parametros = { new MySqlParameter("@id_doctor", idDoctor) };
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
+
+        public static bool CambiarEstado(int idHorario, bool activo, MySqlTransaction? transaccion = null)
+        {
+            string consulta = "UPDATE horario SET activo = @activo WHERE id_horario = @id";
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@activo", activo ? 1 : 0),
+                new MySqlParameter("@id", idHorario)
+            };
+
+            int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
+            return filasAfectadas > 0;
+        }
+        public static bool DesactivarTodosPorDoctor(int idDoctor, MySqlTransaction? transaccion = null)
+        {
+            // Actualiza todos los registros cuyo id_doctor coincida
+            string sql = "UPDATE horario SET activo = 0 WHERE id_doctor = @id_doctor;";
+
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@id_doctor", idDoctor)
+            };
+
+            try
+            {
+                int filasAfectadas = clsConexion.EjecutarNonQuery(sql, parametros, transaccion);
+                // Devuelve true si afectó al menos 1 fila, o false si no tenía horarios activos
+                return filasAfectadas > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la base de datos al desactivar los horarios del doctor: " + ex.Message, ex);
+            }
+        }
     }
 }

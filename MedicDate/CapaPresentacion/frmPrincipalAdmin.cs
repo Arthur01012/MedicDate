@@ -106,7 +106,7 @@ namespace MedicDate.CapaPresentacion
 
         }
 
-        private void ConfigurarMenu()
+        private void ConfigurarMenu()// Método para configurar la visibilidad de los botones según el rol del usuario
         {
             if (Sesion.UsuarioActual != null)
             {

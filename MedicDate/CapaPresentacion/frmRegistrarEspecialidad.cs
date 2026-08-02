@@ -10,14 +10,14 @@ namespace MedicDate.CapaPresentacion
         private clsEspecialidadDAL especialidadDAL;
         private int? idEspecialidadSeleccionado = null; // Para saber qué registro estamos editando
 
-        public frmRegistrarEspecialidad()
+        public frmRegistrarEspecialidad()// Constructor del formulario
         {
             InitializeComponent();
             especialidadDAL = new clsEspecialidadDAL();
             cargarGrid();
         }
 
-        private void cargarGrid()
+        private void cargarGrid()// Método para cargar los datos en el DataGridView
         {
             try
             {
@@ -34,7 +34,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void LimpiarCampos()
+        private void LimpiarCampos()// Método para limpiar los campos de texto y restablecer el estado del formulario
         {
             txtEspecialidad.Text = "";
             txtDescripcion.Text = "";
@@ -42,9 +42,9 @@ namespace MedicDate.CapaPresentacion
             txtEspecialidad.Focus();
         }
 
-        private void dgvEspecialidad_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvEspecialidad_CellClick(object sender, DataGridViewCellEventArgs e)// Evento que se ejecuta al hacer clic en una celda del DataGridView
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0)// Validar que se haya hecho clic en una fila válida
             {
                 DataGridViewRow fila = dgvEspecialidad.Rows[e.RowIndex];
                 idEspecialidadSeleccionado = Convert.ToInt32(fila.Cells[0].Value);
@@ -53,7 +53,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnNuevoEspecialidad_Click(object sender, EventArgs e)
+        private void btnNuevoEspecialidad_Click(object sender, EventArgs e)//evento que se ejecuta al hacer clic en el botón "Nuevo"
         {
             try
             {
@@ -63,14 +63,14 @@ namespace MedicDate.CapaPresentacion
                     return;
                 }
 
-                var nuevaEspecialidad = new clsEspecialidad
+                var nuevaEspecialidad = new clsEspecialidad// Crear un nuevo objeto de especialidad con los datos ingresados
                 {
-                    nombre_especialidad = txtEspecialidad.Text.Trim(),
-                    descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text) ? null : txtDescripcion.Text.Trim()
+                    nombre_especialidad = txtEspecialidad.Text.Trim(),// Asignar el nombre de la especialidad, eliminando espacios en blanco al inicio y al final
+                    descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text) ? null : txtDescripcion.Text.Trim()// Asignar la descripción de la especialidad, si está vacía se asigna null
                 };
 
-                int nuevoId = clsEspecialidadDAL.Insertar(nuevaEspecialidad);
-                if (nuevoId > 0)
+                int nuevoId = clsEspecialidadDAL.Insertar(nuevaEspecialidad);// Insertar la nueva especialidad en la base de datos y obtener el ID generado
+                if (nuevoId > 0)// Validar si la inserción fue exitosa
                 {
                     MessageBox.Show("Especialidad agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cargarGrid();
@@ -86,30 +86,30 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnEditarEspecialidad_Click(object sender, EventArgs e)
+        private void btnEditarEspecialidad_Click(object sender, EventArgs e)//evento que se ejecuta al hacer clic en el botón "Editar"
         {
             try
             {
-                if (!idEspecialidadSeleccionado.HasValue)
+                if (!idEspecialidadSeleccionado.HasValue)// Validar que se haya seleccionado una especialidad para editar
                 {
                     MessageBox.Show("Por favor, selecciona una especialidad de la tabla para editar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtEspecialidad.Text))
+                if (string.IsNullOrWhiteSpace(txtEspecialidad.Text))// Validar que el nombre de la especialidad no esté vacío
                 {
                     MessageBox.Show("El nombre de la especialidad no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var especialidadEditar = new clsEspecialidad
+                var especialidadEditar = new clsEspecialidad// Crear un objeto de especialidad con los datos actualizados
                 {
-                    id_especialidad = idEspecialidadSeleccionado.Value,
-                    nombre_especialidad = txtEspecialidad.Text.Trim(),
-                    descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text) ? null : txtDescripcion.Text.Trim()
+                    id_especialidad = idEspecialidadSeleccionado.Value,// Asignar el ID de la especialidad seleccionada
+                    nombre_especialidad = txtEspecialidad.Text.Trim(),// Asignar el nombre de la especialidad, eliminando espacios en blanco al inicio y al final
+                    descripcion = string.IsNullOrWhiteSpace(txtDescripcion.Text) ? null : txtDescripcion.Text.Trim()// Asignar la descripción de la especialidad, si está vacía se asigna null
                 };
 
-                if (clsEspecialidadDAL.Actualizar(especialidadEditar))
+                if (clsEspecialidadDAL.Actualizar(especialidadEditar))// Intentar actualizar la especialidad en la base de datos
                 {
                     MessageBox.Show("Especialidad actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cargarGrid();
@@ -125,7 +125,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnDarBaja4_Click(object sender, EventArgs e)
+        private void btnDarBaja4_Click(object sender, EventArgs e)//evento que se ejecuta al hacer clic en el botón "Dar de baja"
         {
             try
             {
@@ -143,7 +143,7 @@ namespace MedicDate.CapaPresentacion
 
                 if (resultado == DialogResult.Yes)
                 {                    
-                    if (clsEspecialidadDAL.Eliminar(idEspecialidadSeleccionado.Value))
+                    if (clsEspecialidadDAL.Eliminar(idEspecialidadSeleccionado.Value))// Intentar eliminar la especialidad de la base de datos
                     {
                         MessageBox.Show("Especialidad eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         cargarGrid();
@@ -164,19 +164,19 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void txtBuscarEspecialidad_TextChanged(object sender, EventArgs e)
+        private void txtBuscarEspecialidad_TextChanged(object sender, EventArgs e)//evento que se ejecuta al cambiar el texto en el cuadro de búsqueda
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtBuscarEspecialidad.Text))
+                if (string.IsNullOrWhiteSpace(txtBuscarEspecialidad.Text))// Si el cuadro de búsqueda está vacío, recargar el grid completo
                 {
                     cargarGrid();
                 }
                 else
                 {
                     dgvEspecialidad.DataSource = null;
-                    dgvEspecialidad.DataSource = especialidadDAL.Consultar(txtBuscarEspecialidad.Text);
-                    dgvEspecialidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dgvEspecialidad.DataSource = especialidadDAL.Consultar(txtBuscarEspecialidad.Text);// Filtrar las especialidades según el texto ingresado
+                    dgvEspecialidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
                 }
             }
             catch (Exception ex)
