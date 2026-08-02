@@ -1,21 +1,29 @@
-﻿using System;
+﻿using MedicDate.Datos;
+using MedicDate.Procesos;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Transactions;
 using System.Windows.Forms;
-using MedicDate.Datos;
-using MedicDate.Procesos;
 
 namespace MedicDate.CapaPresentacion
 {
     public partial class frmHorarios : Form
     {
         private int? idHorarioEditando = null; // Para saber si estamos editando
+        private bool estadoOriginal; // Guarda el estado original del checkbox (al igual que en frmDoctor)
 
         public frmHorarios()
         {
             InitializeComponent();
             CargarDoctores();
             ConfigurarDateTimePickers();
+
+            // --- CONFIGURACIÓN INICIAL PARA NUEVO REGISTRO (Igual que frmDoctor) ---
+            chkActivo.Checked = true;
+            chkActivo.Enabled = false; // Deshabilitado para nuevos registros
+                                       // ---------------------------------------------------------------------
+
             btnGuardar.Click += btnGuardar_Click;
         }
 
@@ -44,7 +52,6 @@ namespace MedicDate.CapaPresentacion
 
         private void ConfigurarDateTimePickers()
         {
-            // Configurar para que solo muestren la hora en formato 12h
             dtpInicio.CustomFormat = "hh:mm tt";
             dtpInicio.Format = DateTimePickerFormat.Custom;
             dtpInicio.ShowUpDown = true;
@@ -53,16 +60,14 @@ namespace MedicDate.CapaPresentacion
             dtpFin.Format = DateTimePickerFormat.Custom;
             dtpFin.ShowUpDown = true;
 
-            // Valores por defecto
-            dtpInicio.Value = DateTime.Today.AddHours(8); // 8:00 AM
-            dtpFin.Value = DateTime.Today.AddHours(12); // 12:00 PM
+            dtpInicio.Value = DateTime.Today.AddHours(8);
+            dtpFin.Value = DateTime.Today.AddHours(12);
         }
 
         private void CargarDatosHorario(int idHorario)
         {
             try
             {
-                // Obtener el horario por ID
                 DataTable dt = clsHorarioDAL.ObtenerHorarioPorId(idHorario);
                 if (dt.Rows.Count == 0)
                 {
@@ -76,14 +81,18 @@ namespace MedicDate.CapaPresentacion
                 cmbDoctores.SelectedValue = idDoctor;
                 cmbDoctores.Enabled = false; // No se puede cambiar el doctor al editar
 
-                // Marcar el día correspondiente
                 string dia = row["dia_semana"].ToString();
                 MarcarDia(dia);
 
                 dtpInicio.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_inicio"].ToString()));
                 dtpFin.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_fin"].ToString()));
                 txtIntervalo.Text = row["intervalo_atencion"].ToString();
-                chkActivo.Checked = Convert.ToBoolean(row["activo"]);
+
+                // --- CARGAR ESTADO DEL CHECKBOX Y HABILITARLO ---
+                estadoOriginal = Convert.ToBoolean(row["activo"]);
+                chkActivo.Checked = estadoOriginal;
+                chkActivo.Enabled = true; // Habilitado porque estamos editando
+                // ------------------------------------------------
 
                 btnGuardar.Text = "Actualizar";
                 this.Text = "Editar Horario";
@@ -96,7 +105,6 @@ namespace MedicDate.CapaPresentacion
 
         private void MarcarDia(string dia)
         {
-            // Desmarcar todos primero
             chkLunes.Checked = chkMartes.Checked = chkMiercoles.Checked =
             chkJueves.Checked = chkViernes.Checked = chkSabado.Checked = chkDomingo.Checked = false;
 
@@ -141,6 +149,12 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
+            if (idHorarioEditando.HasValue && dias.Count > 1)
+            {
+                MessageBox.Show("En modo edición solo puede seleccionar un día.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             TimeSpan horaInicio = dtpInicio.Value.TimeOfDay;
             TimeSpan horaFin = dtpFin.Value.TimeOfDay;
 
@@ -171,37 +185,45 @@ namespace MedicDate.CapaPresentacion
             bool activo = chkActivo.Checked;
             var dias = ObtenerDiasSeleccionados();
 
-            //
             if (idHorarioEditando.HasValue && dias.Count > 1)
             {
                 MessageBox.Show("En modo edición solo puede seleccionar un día.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Declaramos la conexión y la transacción aquí, antes del try-catch
+            using var conexion = clsConexion.ObtenerConexion();
+            using var transaccion = conexion.BeginTransaction();
+
             try
             {
-                using var conexion = clsConexion.ObtenerConexion();
-                using var transaccion = conexion.BeginTransaction();
-
-                if (idHorarioEditando.HasValue) // EDITAR
+                if (idHorarioEditando.HasValue) // MODO EDICIÓN
                 {
                     clsHorario horario = new clsHorario
                     {
                         id_horario = idHorarioEditando.Value,
                         id_doctor = idDoctor,
-                        dia_semana = dias[0], // solo uno
+                        dia_semana = dias[0],
                         hora_inicio = horaInicio,
                         hora_fin = horaFin,
                         intervalo_atencion = intervalo,
                         activo = activo
                     };
 
-                    if (clsHorarioDAL.ExisteSolapamiento(idDoctor, dias[0], horaInicio, horaFin, idHorarioEditando))
+                    // Validaciones (no requieren transacción porque solo consultan)
+                    if (clsHorarioDAL.ExisteDuplicadoExacto(idDoctor, dias[0], horaInicio, horaFin, idHorarioEditando))
                     {
-                        MessageBox.Show($"Ya existe un horario para {dias[0]} en ese rango.", "Conflicto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Ya existe un horario idéntico para {dias[0]} en ese rango.", "Conflicto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
+                    if (clsHorarioDAL.ExisteSolapamiento(idDoctor, dias[0], horaInicio, horaFin, idHorarioEditando))
+                    {
+                        MessageBox.Show($"Ya existe un horario activo para {dias[0]} en ese rango.", "Conflicto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // Actualizar con transacción
                     if (clsHorarioDAL.Actualizar(horario, transaccion))
                     {
                         transaccion.Commit();
@@ -215,15 +237,20 @@ namespace MedicDate.CapaPresentacion
                         MessageBox.Show("Error al actualizar el horario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else // NUEVO (puede insertar varios días)
+                else // MODO NUEVO
                 {
                     int insertados = 0;
                     foreach (string dia in dias)
                     {
-                        // Validar solapamiento para cada día
+                        if (clsHorarioDAL.ExisteDuplicadoExacto(idDoctor, dia, horaInicio, horaFin, null))
+                        {
+                            MessageBox.Show($"Ya existe un horario idéntico para {dia} en ese rango. Se omite.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            continue;
+                        }
+
                         if (clsHorarioDAL.ExisteSolapamiento(idDoctor, dia, horaInicio, horaFin, null))
                         {
-                            MessageBox.Show($"Ya existe un horario para {dia} en ese rango. Se omite.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show($"Ya existe un horario activo para {dia} en ese rango. Se omite.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             continue;
                         }
 
@@ -237,6 +264,7 @@ namespace MedicDate.CapaPresentacion
                             activo = activo
                         };
 
+                        // Insertar con transacción
                         if (clsHorarioDAL.Insertar(horario, transaccion) > 0)
                             insertados++;
                     }
@@ -257,6 +285,7 @@ namespace MedicDate.CapaPresentacion
             }
             catch (Exception ex)
             {
+                transaccion.Rollback();
                 MessageBox.Show("Error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -264,11 +293,6 @@ namespace MedicDate.CapaPresentacion
         private void btnCancelar5_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pnlContenedor_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
