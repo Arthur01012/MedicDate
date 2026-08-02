@@ -232,6 +232,7 @@
             cmbDoctor.Name = "cmbDoctor";
             cmbDoctor.Size = new Size(299, 36);
             cmbDoctor.TabIndex = 27;
+            cmbDoctor.SelectedIndexChanged += cmbDoctor_SelectedIndexChanged;
             // 
             // lblNombreDoctor
             // 

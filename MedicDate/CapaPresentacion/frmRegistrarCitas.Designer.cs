@@ -93,7 +93,6 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(1396, 712);
             pnlContenedor.TabIndex = 11;
-            pnlContenedor.Paint += pnlContenedor_Paint;
             // 
             // lstHorasDisponibles
             // 
