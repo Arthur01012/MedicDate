@@ -83,7 +83,7 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros);
 
         }
-        private IDocument CrearDocumentoPdf(DataTable tabla, string tituloReporte, string rangoFechas)
+        private IDocument CrearDocumentoPdf(DataTable tabla, string tituloReporte)
         {
             return Document.Create(container =>
             {
@@ -94,23 +94,34 @@ namespace MedicDate.Procesos
                     page.PageColor(Colors.White);
                     page.DefaultTextStyle(x => x.FontFamily(Fonts.TimesNewRoman));
 
-                    // Encabezado
-                    page.Header().Column(col =>
+                    //Agregar Titulo al reporte
+                    page.Header().Row(row =>
                     {
-                        col.Item().Text("MedicDate")
-                            .FontSize(18).Bold().FontColor("#19558C");
-                        col.Item().PaddingTop(5).LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
+                        row.RelativeItem().AlignLeft().AlignMiddle().Column(col =>
+                        {
+                            col.Item().Text("MedicDate")
+                            .FontSize(18)
+                            .Bold()
+                            .FontColor("#19558C");
+                            col.Item().PaddingTop(5).LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
+                        });
+
+                        // NO TENGO EL LOGO XD
+                        // if (Properties.Resources.LOGO != null)
+                        // {
+                        //     byte[] bytesLogo = Properties.Resources.LOGO;
+                        //     row.ConstantItem(90).AlignRight().AlignMiddle().Image(bytesLogo);
+                        // }
                     });
 
-                    // Contenido
-                    page.Content().PaddingTop(20).Column(column =>
+                    // ---CONTENIDO CENTRAL ---
+                    page.Content().Padding(20).Column(column =>
                     {
-                        column.Item().PaddingBottom(3).Text(tituloReporte)
-                            .FontSize(14).Bold().FontColor(Colors.Black);
+                        //Se imprime el titulo que le pases por parámetro
+                        column.Item().PaddingBottom(15).Text(tituloReporte)
+                        .FontSize(12).Bold().FontColor(Colors.Black);
 
-                        column.Item().PaddingBottom(15).Text(rangoFechas)
-                            .FontSize(10).FontColor(Colors.Grey.Darken1);
-
+                        //la tabla se construye sola según las columnas que traigan el DataTable
                         column.Item().Table(table =>
                         {
                             int totalColumnas = tabla.Columns.Count;
@@ -119,35 +130,49 @@ namespace MedicDate.Procesos
                             {
                                 for (int i = 0; i < totalColumnas; i++)
                                 {
-                                    columns.RelativeColumn();
+                                    if (i > 0 && i < totalColumnas - 1)
+                                    {
+                                        columns.RelativeColumn(2f);
+                                    }
+                                    else
+                                    {
+                                        columns.RelativeColumn(1.2f);
+                                    }
                                 }
                             });
 
-                            foreach (DataColumn columna in tabla.Columns)
+                            //Nombres de las columnas en automatico de acuerdo a la tabla
+                            foreach (DataColumn columnaObj in tabla.Columns)
                             {
-                                table.Cell().Background("#19558C").Padding(8).AlignMiddle()
-                                    .Text(columna.ColumnName)
-                                    .FontSize(10).Bold().FontColor(Colors.White);
+                                table.Cell().Background("#19558C").Padding(8).AlignLeft().AlignMiddle()
+                                                                    .Text(columnaObj.ColumnName)
+                                                                    .FontSize(10)
+                                                                    .Bold()
+                                                                    .FontColor(Colors.White);
                             }
 
+                            //Filas automaticas
                             bool alternarFila = true;
                             foreach (DataRow fila in tabla.Rows)
                             {
                                 string colorFondo = alternarFila ? "#E6E8F5" : "#FFFFFF";
                                 for (int i = 0; i < totalColumnas; i++)
                                 {
-                                    table.Cell().Background(colorFondo)
-                                        .BorderBottom(1).BorderColor(Colors.Grey.Lighten3)
-                                        .Padding(7).AlignMiddle()
-                                        .Text(fila[i]?.ToString() ?? "")
-                                        .FontSize(9).FontColor(Colors.Black);
+                                    var celda = table.Cell().Background(colorFondo)
+                                                            .BorderBottom(1).BorderColor(Colors.Grey.Lighten3)
+                                                            .Padding(7).AlignMiddle();
+                                    if (i == 0 || i == (totalColumnas - 1))
+                                        celda.AlignCenter();
+                                    else
+                                        celda.AlignLeft();
+
+                                    celda.Text(fila[i].ToString()).FontSize(9).FontColor(Colors.Black);
                                 }
                                 alternarFila = !alternarFila;
                             }
                         });
                     });
-
-                    // Pie de página
+                    //Este es el pie de pagina
                     page.Footer().AlignRight().Text(x =>
                     {
                         x.Span("Página ").FontSize(9).FontColor(Colors.Grey.Darken1);
@@ -159,33 +184,35 @@ namespace MedicDate.Procesos
             });
         }
 
-        public void ExportarPDF(DataTable tabla, string tituloReporte, string rangoFechas, string nombreArchivoSugerido)
+        // Exporta el reporte a PDF (pide dónde guardarlo).
+        public void ExportarPDF(DataTable tabla, string tituloReporte, string nombreArchivoSugerido)
         {
+            // Validar que haya datos
             if (tabla == null || tabla.Rows.Count == 0)
             {
-                MessageBox.Show("No hay datos para exportar a PDF.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay datos para convertir a PDF", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //Abre la ventana para guardar el archivo pdf
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+            guardarArchivo.FileName = nombreArchivoSugerido;
+            guardarArchivo.Filter = "Archivos PDF (*.pdf)|*.pdf";
 
-            using (SaveFileDialog guardarArchivo = new SaveFileDialog())
+            if (guardarArchivo.ShowDialog() == DialogResult.OK)
             {
-                guardarArchivo.FileName = nombreArchivoSugerido;
-                guardarArchivo.Filter = "Archivos PDF (*.pdf)|*.pdf";
-
-                if (guardarArchivo.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    try
-                    {
-                        CrearDocumentoPdf(tabla, tituloReporte, rangoFechas).GeneratePdf(guardarArchivo.FileName);
-                        MessageBox.Show("Reporte exportado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Error al generar el PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    // Generar y guardar el PDF
+                    CrearDocumentoPdf(tabla, tituloReporte).GeneratePdf(guardarArchivo.FileName);
+
+                    MessageBox.Show("Reporte institucional generado con exito.", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar el PDF" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
+        }//Finaliza el metodo de conversion
     }
 }
 

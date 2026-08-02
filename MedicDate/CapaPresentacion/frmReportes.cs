@@ -85,15 +85,10 @@ namespace MedicDate
             DataTable tabla = dgvReporte.DataSource as DataTable;
 
             string titulo = ObtenerTituloReporte();
-            string rangoFechas = $"Del {dtpDesde.Value:dd/MM/yyyy} al {dtpHasta.Value:dd/MM/yyyy}";
-            if (rdbReporteIngresos.Checked)
-            {
-                rangoFechas += $" — Período: {cmbPeriodo.SelectedItem?.ToString() ?? "Mensual"}";
-            }
             string nombreArchivo = titulo.Replace(" ", "_") + ".pdf";
 
             if (reporte == null) reporte = new clsReporteDAL();
-            reporte.ExportarPDF(tabla, titulo, rangoFechas, nombreArchivo);
+            reporte.ExportarPDF(tabla, titulo, nombreArchivo);
         }
     }
 }
