@@ -12,12 +12,12 @@ namespace MedicDate.CapaPresentacion
             InitializeComponent();
         }
 
-        private void frmPerfilDoctor_Load(object sender, EventArgs e)
+        private void frmPerfilDoctor_Load(object sender, EventArgs e)// Evento que se ejecuta al cargar el formulario
         {
             CargarDatos();
         }
 
-        private void CargarDatos()
+        private void CargarDatos()// Método para cargar los datos del doctor en el formulario
         {
             try
             {
@@ -28,17 +28,17 @@ namespace MedicDate.CapaPresentacion
                     return;
                 }
 
-                int idDoctor = Sesion.IdEmpleadoActual;
+                int idDoctor = Sesion.IdEmpleadoActual;// Obtener el ID del doctor en sesión
 
 
-                DataTable ficha = clsDoctorDAL.ObtenerFichaDoctor(idDoctor);
-                dgvFicha.DataSource = ficha;
-                dgvFicha.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                DataTable ficha = clsDoctorDAL.ObtenerFichaDoctor(idDoctor);// Obtener la ficha del doctor desde la base de datos
+                dgvFicha.DataSource = ficha;// Asignar la ficha al DataGridView
+                dgvFicha.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
 
 
-                DataTable horarios = clsHorarioDAL.ObtenerHorariosDoctor(idDoctor);
-                dataGridView2.DataSource = horarios;
-                dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                DataTable horarios = clsHorarioDAL.ObtenerHorariosDoctor(idDoctor);// Obtener los horarios del doctor desde la base de datos
+                dataGridView2.DataSource = horarios;// Asignar los horarios al DataGridView
+                dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
             }
             catch (Exception ex)
             {
