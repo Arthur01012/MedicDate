@@ -28,7 +28,7 @@ namespace MedicDate.CapaPresentacion
 
                 dgvCitas.DataSource = tabla;
                 dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dgvCitas.Columns["id_cita"].Visible = false; // Oculta el ID de la cita
+                dgvCitas.Columns["id_cita"].Visible = false; // Oculta el ID de la cita                
                 dgvCitas.Columns["Fecha"].DefaultCellStyle.Format = "dd/MM/yyyy"; // Formato de fecha
             }
             catch (Exception ex)

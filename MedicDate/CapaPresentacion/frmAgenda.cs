@@ -14,47 +14,33 @@ namespace MedicDate.CapaPresentacion
 
         private void frmAgenda_Load(object sender, EventArgs e)
         {
-            // Establecemos fecha por defecto al cargar
+            if (Sesion.IdEmpleadoActual == 0)
+            {
+                MessageBox.Show("Debe iniciar sesión como doctor para ver la agenda.",
+                                "Sesión no válida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
             dtpFechaCita.Value = DateTime.Today;
-            CargarDoctores();
+            CargarFiltrosEstados();
             CargarCitas();
         }
 
-        // --- Cargar el ComboBox con los doctores activos ---
-        private void CargarDoctores()
+        private void CargarFiltrosEstados()
         {
-            DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos();
-            cmbDoctor.DataSource = doctores;
-            cmbDoctor.DisplayMember = "NombreCompleto";
-            cmbDoctor.ValueMember = "id_empleado";
-            cmbDoctor.SelectedIndex = -1; // Sin selección por defecto
+            // Obtenemos la lista de estados desde la Capa de Negocio
+            cmbFiltroEstado.DataSource = clsCitaNegocio.ObtenerEstadosCita();
+            cmbFiltroEstado.SelectedIndex = 0;
         }
-
         private void CargarCitas()
         {
             try
             {
-                // Validamos que haya una fila seleccionada en el ComboBox
-                if (cmbDoctor.SelectedItem == null)
-                {
-                    dgvCita.DataSource = null;
-                    return;
-                }
-
-                // Extraemos el objeto DataRowView de la selección
-                DataRowView rowView = cmbDoctor.SelectedItem as DataRowView;
-                if (rowView == null)
-                {
-                    dgvCita.DataSource = null;
-                    return;
-                }
-
-                // Obtenemos el ID del doctor directamente desde la fila del DataTable
-                int idDoctor = Convert.ToInt32(rowView["id_empleado"]);
+                int idDoctor = Sesion.IdEmpleadoActual; // El ID del doctor logueado
                 DateTime fecha = dtpFechaCita.Value.Date;
+                string estadoSeleccionado = cmbFiltroEstado.SelectedItem?.ToString() ?? "Todos";
 
-                // Cargamos las citas usando el método de la DAL
-                DataTable tabla = clsCitaDAL.ObtenerCitas(idDoctor, fecha);
+                DataTable tabla = clsCitaNegocio.ObtenerAgendaDoctor(idDoctor, fecha, estadoSeleccionado);
 
                 dgvCita.DataSource = tabla;
                 dgvCita.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -65,7 +51,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- Eventos de cambio ---
         private void cmbDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarCitas();
@@ -76,23 +61,22 @@ namespace MedicDate.CapaPresentacion
             CargarCitas();
         }
 
-        // --- Botón Ver Detalle ---
         private void btnVerDetalle_Click(object sender, EventArgs e)
         {
             if (dgvCita.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Por favor, selecciona una cita para ver el detalle.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, selecciona una cita para ver el detalle.",
+                                "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Tomamos el ID de la cita de la fila seleccionada
             int idCita = Convert.ToInt32(dgvCita.SelectedRows[0].Cells["id_cita"].Value);
 
-            // Abrimos el formulario frmCita en modo EDICIÓN
-            frmCita frm = new frmCita(idCita);
+            frmDetalleCita frm = new frmDetalleCita(idCita);
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                CargarCitas(); // Refrescamos el grid si se editó o canceló la cita
+                CargarCitas();
             }
         }
     }

@@ -3,11 +3,11 @@ using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
-
+using System.Text.RegularExpressions;
 namespace MedicDate.Procesos
 {
     internal class clsCitaDAL
-    {
+    {        
         private static string ObtenerQueryBase()
         {
             return @"
@@ -28,7 +28,6 @@ namespace MedicDate.Procesos
                 LEFT JOIN doctor d ON e.id_empleado = d.id_empleado
                 LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad";
         }
-
 
         public static DataTable CargarDataGrid(DateTime fecha)
         {
@@ -51,7 +50,7 @@ namespace MedicDate.Procesos
                 throw new Exception($"Error al cargar citas: {ex.Message}", ex);
             }
         }
-
+        
         public static DataTable Consultar(DateTime fecha, string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
@@ -97,6 +96,58 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
         }
 
+        // 5. Obtener citas (Filtro por Doctor y Fecha)
+        // OPTIMIZACIÓN: Este método ahora llama al de 3 argumentos para evitar duplicar la lógica
+        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha)
+        {
+            return ObtenerCitas(idDoctor, fecha, null);
+        }
+
+        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha, string estado = null)
+        {
+            string sql = ObtenerQueryBase() + @"
+        WHERE c.id_doctor = @idDoctor
+          AND c.fecha = @fecha";
+
+            var parametros = new List<MySqlParameter>
+    {
+        new MySqlParameter("@idDoctor", idDoctor),
+        new MySqlParameter("@fecha", fecha.Date)
+    };
+
+            if (string.IsNullOrWhiteSpace(estado) || estado == "Todos")
+            {
+                sql += " AND c.estado != 'Cancelada'";
+            }
+            else
+            {
+                sql += " AND c.estado = @estado";
+                parametros.Add(new MySqlParameter("@estado", estado));
+            }
+
+            sql += " ORDER BY c.hora";
+
+            return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
+        }
+        
+        public static DataTable ObtenerCitasDoctorRango(int idDoctor, DateTime fechaInicio, DateTime fechaFin)
+        {
+            string sql = @"
+                SELECT fecha, hora, duracion
+                FROM cita 
+                WHERE id_doctor = @idDoctor 
+                  AND fecha BETWEEN @fechaInicio AND @fechaFin
+                  AND estado != 'Cancelada'";
+
+            MySqlParameter[] parametros = {
+                new MySqlParameter("@idDoctor", idDoctor),
+                new MySqlParameter("@fechaInicio", fechaInicio.Date),
+                new MySqlParameter("@fechaFin", fechaFin.Date)
+            };
+
+            return clsConexion.EjecutarConsulta(sql, parametros);
+        }
+
         public static bool CambiarEstado(int id_cita, string nuevoEstado)
         {
             string consulta = "UPDATE cita SET estado = @estado WHERE id_cita = @id";
@@ -111,13 +162,14 @@ namespace MedicDate.Procesos
 
         public static clsCita ObtenerPorId(int id_cita)
         {
-            string consulta = @"SELECT c.*, 
-                               CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) as nombre_paciente,
-                               CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) as nombre_doctor
-                               FROM cita c
-                               INNER JOIN paciente p ON c.id_paciente = p.id_paciente
-                               INNER JOIN empleado e ON c.id_doctor = e.id_empleado
-                               WHERE c.id_cita = @id";
+            string consulta = @"
+                SELECT c.*, 
+                       CONCAT(p.nombre, ' ', p.apellido_paterno, ' ', IFNULL(p.apellido_materno, '')) as nombre_paciente,
+                       CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) as nombre_doctor
+                FROM cita c
+                INNER JOIN paciente p ON c.id_paciente = p.id_paciente
+                INNER JOIN empleado e ON c.id_doctor = e.id_empleado
+                WHERE c.id_cita = @id";
 
             MySqlParameter[] parametros = { new MySqlParameter("@id", id_cita) };
             DataTable resultado = clsConexion.EjecutarConsulta(consulta, parametros);
@@ -147,15 +199,16 @@ namespace MedicDate.Procesos
 
         public static bool VerificarDisponibilidad(int id_doctor, DateTime fecha, TimeSpan hora, int duracion)
         {
-            string consulta = @"SELECT COUNT(*) FROM cita 
-                               WHERE id_doctor = @id_doctor 
-                               AND fecha = @fecha 
-                               AND estado != 'Cancelada'
-                               AND (
-                                   (hora <= @hora AND DATE_ADD(hora, INTERVAL duracion MINUTE) > @hora)
-                                   OR
-                                   (@hora <= hora AND DATE_ADD(@hora, INTERVAL @duracion MINUTE) > hora)
-                               )";
+            string consulta = @"
+                SELECT COUNT(*) FROM cita 
+                WHERE id_doctor = @id_doctor 
+                  AND fecha = @fecha 
+                  AND estado != 'Cancelada'
+                  AND (
+                      (hora <= @hora AND DATE_ADD(hora, INTERVAL duracion MINUTE) > @hora)
+                      OR
+                      (@hora <= hora AND DATE_ADD(@hora, INTERVAL @duracion MINUTE) > hora)
+                  )";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@id_doctor", id_doctor),
@@ -170,13 +223,12 @@ namespace MedicDate.Procesos
 
         public static int Insertar(clsCita cita, MySqlTransaction? transaccion = null)
         {
-            string consulta = @"INSERT INTO cita 
-                               (id_paciente, id_doctor, fecha, hora, duracion, motivo, estado, 
-                                costo, notas_internas, id_registrado_por)
-                               VALUES 
-                               (@id_paciente, @id_doctor, @fecha, @hora, @duracion, @motivo, @estado,
-                                @costo, @notas_internas, @id_registrado_por);
-                               SELECT LAST_INSERT_ID();";
+            string consulta = @"
+                INSERT INTO cita (id_paciente, id_doctor, fecha, hora, duracion, motivo, estado, 
+                                  costo, notas_internas, id_registrado_por)
+                VALUES (@id_paciente, @id_doctor, @fecha, @hora, @duracion, @motivo, @estado,
+                        @costo, @notas_internas, @id_registrado_por);
+                SELECT LAST_INSERT_ID();";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@id_paciente", cita.id_paciente),
@@ -197,12 +249,13 @@ namespace MedicDate.Procesos
 
         public static bool Actualizar(clsCita cita)
         {
-            string consulta = @"UPDATE cita 
-                               SET id_paciente = @id_paciente, id_doctor = @id_doctor,
-                                   fecha = @fecha, hora = @hora, duracion = @duracion,
-                                   motivo = @motivo, estado = @estado, costo = @costo,
-                                   notas_internas = @notas_internas
-                               WHERE id_cita = @id_cita";
+            string consulta = @"
+                UPDATE cita 
+                SET id_paciente = @id_paciente, id_doctor = @id_doctor,
+                    fecha = @fecha, hora = @hora, duracion = @duracion,
+                    motivo = @motivo, estado = @estado, costo = @costo,
+                    notas_internas = @notas_internas
+                WHERE id_cita = @id_cita";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@id_paciente", cita.id_paciente),
@@ -222,9 +275,10 @@ namespace MedicDate.Procesos
 
         public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)
         {
-            string sql = @"SELECT hora_inicio, hora_fin 
-                   FROM horario 
-                   WHERE id_doctor = @idDoctor AND dia_semana = @diaSemana";
+            string sql = @"
+                SELECT hora_inicio, hora_fin 
+                FROM horario 
+                WHERE id_doctor = @idDoctor AND dia_semana = @diaSemana";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@idDoctor", idDoctor),
@@ -236,9 +290,10 @@ namespace MedicDate.Procesos
         public static List<TimeSpan> ObtenerHorasOcupadas(int idDoctor, DateTime fecha)
         {
             List<TimeSpan> horasOcupadas = new List<TimeSpan>();
-            string sql = @"SELECT hora FROM cita 
-                   WHERE id_doctor = @idDoctor AND fecha = @fecha 
-                   AND estado != 'Cancelada'";
+            string sql = @"
+                SELECT hora FROM cita 
+                WHERE id_doctor = @idDoctor AND fecha = @fecha 
+                AND estado != 'Cancelada'";
 
             MySqlParameter[] parametros = {
                 new MySqlParameter("@idDoctor", idDoctor),
@@ -252,39 +307,23 @@ namespace MedicDate.Procesos
             }
             return horasOcupadas;
         }
-        public static DataTable ObtenerCitasDoctorRango(int idDoctor, DateTime fechaInicio, DateTime fechaFin)
+        public static List<string> ObtenerEstadosENUM()
         {
-            string sql = @"
-        SELECT fecha, hora, duracion
-        FROM cita 
-        WHERE id_doctor = @idDoctor 
-          AND fecha BETWEEN @fechaInicio AND @fechaFin
-          AND estado != 'Cancelada'";
+            var estados = new List<string>();
+            string sql = "SHOW COLUMNS FROM cita LIKE 'estado'";
+            DataTable dt = clsConexion.EjecutarConsulta(sql);
 
-            MySqlParameter[] parametros = {
-        new MySqlParameter("@idDoctor", idDoctor),
-        new MySqlParameter("@fechaInicio", fechaInicio.Date),
-        new MySqlParameter("@fechaFin", fechaFin.Date)
-    };
-
-            return clsConexion.EjecutarConsulta(sql, parametros);
+            if (dt.Rows.Count > 0)
+            {
+                string type = dt.Rows[0]["Type"].ToString();
+                                                             
+                MatchCollection matches = Regex.Matches(type, "'([^']*)'");
+                foreach (Match match in matches)
+                {
+                    estados.Add(match.Groups[1].Value);
+                }
+            }
+            return estados;
         }
-        // Método para obtener las citas de un DOCTOR específico en una FECHA específica
-        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha)
-        {
-            string sql = ObtenerQueryBase() + @"
-        WHERE c.id_doctor = @idDoctor
-          AND c.fecha = @fecha
-          AND c.estado != 'Cancelada'
-        ORDER BY c.hora";
-
-            MySqlParameter[] parametros = {
-        new MySqlParameter("@idDoctor", idDoctor),
-        new MySqlParameter("@fecha", fecha.Date)
-    };
-
-            return clsConexion.EjecutarConsulta(sql, parametros);
-        }
-
     }
 }
