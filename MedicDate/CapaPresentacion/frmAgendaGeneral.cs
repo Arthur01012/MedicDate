@@ -13,18 +13,17 @@ namespace MedicDate.CapaPresentacion
         }
 
         
-        private void frmAgendaGeneral_Load(object sender, EventArgs e)
+        private void frmAgendaGeneral_Load(object sender, EventArgs e)// Evento que se ejecuta al cargar el formulario
         {
             dtpFecha.Value = DateTime.Today; // Establecemos la fecha de hoy
             ActualizarAgenda();              // Cargamos la agenda del día de hoy
         }
-
-        
-        private void ActualizarAgenda()
+     
+        private void ActualizarAgenda()// Método para actualizar la agenda según la fecha y el doctor seleccionado
         {
             try
             {
-                DataTable tabla = clsCitaDAL.Consultar(dtpFecha.Value, txtBuscarDoctor.Text);
+                DataTable tabla = clsCitaDAL.Consultar(dtpFecha.Value, txtBuscarDoctor.Text);// Llamamos al método Consultar de clsCitaDAL para obtener las citas según la fecha y el doctor
 
                 dgvCitas.DataSource = tabla;
                 dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -37,12 +36,12 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void dtpFecha_ValueChanged(object sender, EventArgs e)
+        private void dtpFecha_ValueChanged(object sender, EventArgs e)// Evento que se dispara al cambiar la fecha en el DateTimePicker
         {
             ActualizarAgenda();
         }
        
-        private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)
+        private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)// Evento que se dispara al cambiar el texto en el TextBox de búsqueda de doctor
         {
             ActualizarAgenda();
         }

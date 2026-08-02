@@ -17,7 +17,7 @@ namespace MedicDate.Procesos
     internal class clsAsistenteDAL
     {
 
-        public int TotalAsistentes()
+        public int TotalAsistentes() // Obtiene el total de asistentes activos en la base de datos
         {
             using var conexion = clsConexion.ObtenerConexion();
 
@@ -31,7 +31,7 @@ namespace MedicDate.Procesos
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
-        public DataTable CargarDataGrid(int pagina, int registros)
+        public DataTable CargarDataGrid(int pagina, int registros)// Obtiene los registros de la tabla asistente para paginación
         {
             var tabla = new DataTable();
             try
@@ -67,7 +67,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public int TotalBusqueda(string texto)
+        public int TotalBusqueda(string texto)// Obtiene el total de registros que coinciden con la búsqueda en la tabla asistente
         {
             using var conexion = clsConexion.ObtenerConexion();
 
@@ -85,7 +85,7 @@ namespace MedicDate.Procesos
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
-        public DataTable Consultar(string texto, int pagina, int registros)
+        public DataTable Consultar(string texto, int pagina, int registros)// Obtiene los registros de la tabla asistente que coinciden con la búsqueda para paginación
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid(pagina, registros); // usa la página real, no fija 1,10
@@ -127,7 +127,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
+        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)// Desactiva un asistente y su usuario asociado en la base de datos
         {
 
             string consultaEmpleado = "UPDATE empleado SET estado = 0 WHERE id_empleado = @id";
@@ -147,7 +147,7 @@ namespace MedicDate.Procesos
             return true;
         }
 
-        private static (string tipo, bool estado, int? idUsuario) ObtenerInfoAsistente(
+        /*private static (string tipo, bool estado, int? idUsuario) ObtenerInfoAsistente(
             int idEmpleado, MySqlTransaction? transaccion = null)
         {
             string consulta = @"SELECT tipo_empleado, estado, id_usuario FROM empleado WHERE id_empleado = @id";
@@ -166,14 +166,9 @@ namespace MedicDate.Procesos
             int? idUsuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]);
 
             return (tipo, estado, idUsuario);
-        }
-        /// <param name="idEmpleado">ID del asistente.</param>
-        /// <param name="activar">true = reactivar, false = dar de baja.</param>
-        /// <param name="transaccion">Transacción externa.</param>
-        /// 
+        }*/
 
-
-        private static bool CambiarEstadoAsistente(int idEmpleado, bool activar, MySqlTransaction? transaccion = null)
+       /* private static bool CambiarEstadoAsistente(int idEmpleado, bool activar, MySqlTransaction? transaccion = null)
         {
             var (tipo, estadoActual, idUsuario) = ObtenerInfoAsistente(idEmpleado, transaccion);
 
@@ -235,21 +230,21 @@ namespace MedicDate.Procesos
                 }
             }
         }
-        public static bool Insertar(clsAsistente asistente, MySqlTransaction? transaccion = null)
+       */
+        public static bool Insertar(clsAsistente asistente, MySqlTransaction? transaccion = null)// Inserta un nuevo asistente en la base de datos
         {
 
             string consulta = @"INSERT INTO asistente (id_empleado, turno)
                        VALUES (@id_empleado, @turno)";
 
             MySqlParameter[] parametros = {
-        new MySqlParameter("@id_empleado", asistente.id_empleado),
-        new MySqlParameter("@turno", string.IsNullOrEmpty(asistente.turno) ? DBNull.Value : (object)asistente.turno)
-    };
+                new MySqlParameter("@id_empleado", asistente.id_empleado),
+                new MySqlParameter("@turno", string.IsNullOrEmpty(asistente.turno) ? DBNull.Value : (object)asistente.turno)
+             };
 
             return clsConexion.EjecutarNonQuery(consulta, parametros, transaccion) > 0;
-
         }
-        public static bool Actualizar(clsAsistente asistente, MySqlTransaction? transaccion = null)
+        public static bool Actualizar(clsAsistente asistente, MySqlTransaction? transaccion = null)// Actualiza la información de un asistente en la base de datos
         {
             string sql = @"UPDATE asistente 
                            SET turno = @turno
@@ -270,7 +265,7 @@ namespace MedicDate.Procesos
                 throw new Exception("Error al actualizar el asistente: " + ex.Message, ex);
             }
         }
-        public static clsAsistente? ObtenerAsistentePorId(int idEmpleado)
+        public static clsAsistente? ObtenerAsistentePorId(int idEmpleado)// Obtiene la información de un asistente por su ID de empleado
         {
             string sql = @"SELECT E.*, A.turno, U.usuario AS NombreUsuario
                            FROM empleado E

@@ -16,10 +16,10 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmAsistente : Form
     {
-        private clsAsistente asistente = new clsAsistente();
-        private int? idAsistenteEditar = null;
+        private clsAsistente asistente = new clsAsistente();// Variable para almacenar el asistente actual
+        private int? idAsistenteEditar = null;// Variable para almacenar el ID del asistente a editar (si es edición)
 
-        public frmAsistente()
+        public frmAsistente()// Constructor para registro nuevo
         {
             InitializeComponent();
             ConfigurarFormulario();
@@ -27,33 +27,31 @@ namespace MedicDate.CapaPresentacion
             CargarEstados();
         }
 
-        public frmAsistente(int idAsistente) : this()
+        public frmAsistente(int idAsistente) : this()// Constructor para edición de asistente existente
         {
             idAsistenteEditar = idAsistente;
             CargarDatosAsistente(idAsistente);
         }
 
-        private void ConfigurarFormulario()
+        private void ConfigurarFormulario()// Configuración inicial del formulario
         {
             dtpFechaRegistro.MaxDate = DateTime.Today.AddYears(-18); // Fecha de nacimiento: mayor de 18
         }
 
-        private void CargarTurnos()
+        private void CargarTurnos()// Cargar opciones de turno en el ComboBox
         {
-            // Turno es un campo de texto libre en la BD (varchar), no una tabla catálogo,
-            // así que se precargan opciones fijas en el combo (ajusta según tu negocio).
             cmbTurno.Items.Clear();
             cmbTurno.Items.AddRange(new object[] { "Matutino", "Vespertino", "Nocturno" });
         }
 
-        private void CargarEstados()
+        private void CargarEstados()// Cargar opciones de estado en el ComboBox
         {
             cmbEstado.Items.Clear();
             cmbEstado.Items.AddRange(new object[] { "Activo", "Inactivo" });
             cmbEstado.SelectedIndex = 0; // Activo por defecto en registro nuevo
         }
 
-        private void CargarDatosAsistente(int idAsistente)
+        private void CargarDatosAsistente(int idAsistente)// Cargar datos del asistente para edición
         {
             try
             {
@@ -81,7 +79,7 @@ namespace MedicDate.CapaPresentacion
                 cmbEstado.SelectedItem = asistente.estado ? "Activo" : "Inactivo";
                 cmbTurno.Text = asistente.turno;
 
-                // Mostrar nombre de usuario (si existe)
+                // Mostrar nombre de usuario 
                 txtUsuarioAsistente.Text = asistenteEdit.NombreUsuario ?? "";
                 txtUsuarioAsistente.Enabled = false; // No se puede editar el usuario
                 txtPassword.Enabled = false;
@@ -106,7 +104,7 @@ namespace MedicDate.CapaPresentacion
                 this.Close();
             }
         }
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)// Evento del botón Guardar
         {
             if (!ValidarDatos()) return;
 
@@ -128,7 +126,7 @@ namespace MedicDate.CapaPresentacion
                 asistente.turno = cmbTurno.Text.Trim();
 
                 if (!idAsistenteEditar.HasValue)
-                    asistente.fecha_contratacion = DateTime.Today; // No hay control visual; se registra hoy solo en alta
+                    asistente.fecha_contratacion = DateTime.Today; 
 
                 if (idAsistenteEditar.HasValue) // MODO EDICIÓN
                 {
@@ -174,7 +172,7 @@ namespace MedicDate.CapaPresentacion
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private bool ValidarDatos()
+        private bool ValidarDatos()// Validación de datos del formulario
         {
             // Nombre
             if (string.IsNullOrEmpty(tctNombreAsistente.Text))
@@ -255,9 +253,6 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // ============================================================
-            // VALIDACIONES DE USUARIO Y CONTRASEÑA (SOLO EN REGISTRO NUEVO)
-            // ============================================================
             if (!idAsistenteEditar.HasValue) // Solo si es registro nuevo
             {
                 // Usuario
@@ -290,7 +285,7 @@ namespace MedicDate.CapaPresentacion
 
             return true;
         }
-        private int? CrearUsuario(MySqlTransaction? transaccion = null)
+        private int? CrearUsuario(MySqlTransaction? transaccion = null)// Crear usuario en la base de datos
         {
             clsUsuario usuario = new clsUsuario
             {
@@ -305,7 +300,7 @@ namespace MedicDate.CapaPresentacion
 
             return null;
         }
-        private void LimpiarFormulario()
+        private void LimpiarFormulario()// Limpiar controles del formulario después de guardar
         {
             tctNombreAsistente.Clear();
             txtApePaterno.Clear();
@@ -335,7 +330,7 @@ namespace MedicDate.CapaPresentacion
             idAsistenteEditar = null;
         }
 
-        private void btnCancelar1_Click(object sender, EventArgs e)
+        private void btnCancelar1_Click(object sender, EventArgs e)// Evento del botón Cancelar
         {
             this.Close();
         }
