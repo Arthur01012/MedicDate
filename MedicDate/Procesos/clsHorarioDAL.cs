@@ -137,6 +137,34 @@ namespace MedicDate.Procesos
             return Convert.ToInt32(resultado) > 0;
         }
 
+        // Verifica si existe un duplicado exacto (Mismo doctor, día y horario), ignorando el estado Activo/Inactivo
+        public static bool ExisteDuplicadoExacto(int idDoctor, string diaSemana, TimeSpan horaInicio, TimeSpan horaFin, int? idExcluir = null)
+        {
+            string consulta = @"SELECT COUNT(*) FROM horario 
+                        WHERE id_doctor = @id_doctor 
+                          AND dia_semana = @dia_semana
+                          AND hora_inicio = @hora_inicio
+                          AND hora_fin = @hora_fin";
+
+            if (idExcluir.HasValue)
+                consulta += " AND id_horario != @id_excluir";
+
+            MySqlParameter[] parametros = {
+        new MySqlParameter("@id_doctor", idDoctor),
+        new MySqlParameter("@dia_semana", diaSemana),
+        new MySqlParameter("@hora_inicio", horaInicio),
+        new MySqlParameter("@hora_fin", horaFin)
+    };
+            if (idExcluir.HasValue)
+            {
+                Array.Resize(ref parametros, 5);
+                parametros[4] = new MySqlParameter("@id_excluir", idExcluir.Value);
+            }
+
+            object resultado = clsConexion.EjecutarScalar(consulta, parametros);
+            return Convert.ToInt32(resultado) > 0;
+        }
+
         /// Inserta un nuevo horario en la base de datos.
         public static int Insertar(clsHorario horario, MySqlTransaction? transaccion = null)
         {
