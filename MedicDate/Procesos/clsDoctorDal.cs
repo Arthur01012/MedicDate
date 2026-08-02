@@ -9,7 +9,7 @@ namespace MedicDate.Procesos
 {
     public class clsDoctorDAL
     {
-        public int TotalDoctores()
+        public int TotalDoctores()// Método para obtener el total de doctores activos
         {
             using var conexion = clsConexion.ObtenerConexion();
 
@@ -65,7 +65,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public int TotalBusqueda(string texto)
+        public int TotalBusqueda(string texto)// Método para obtener el total de doctores que coinciden con la búsqueda
         {
             using var conexion = clsConexion.ObtenerConexion();
 
@@ -82,7 +82,7 @@ namespace MedicDate.Procesos
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
-        public DataTable Consultar(string texto, int pagina, int registros)
+        public DataTable Consultar(string texto, int pagina, int registros)// Método para consultar doctores que coinciden con la búsqueda
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid(pagina, registros);
@@ -93,7 +93,6 @@ namespace MedicDate.Procesos
                 using var conexion = clsConexion.ObtenerConexion();
                 int offset = (pagina - 1) * registros;
 
-                // MEJORA: Se agregó "OR S.nombre_especialidad LIKE @nombre" en el WHERE
                 string sql = @"
                     SELECT 
                         CONCAT(E.nombre, ' ', E.apellido_paterno, ' ', E.apellido_materno) AS 'Nombre Completo',
@@ -133,7 +132,7 @@ namespace MedicDate.Procesos
 
 
 
-        private static (string tipo, bool estado, int? idUsuario) ObtenerInfoDoctor(
+        private static (string tipo, bool estado, int? idUsuario) ObtenerInfoDoctor(        
             int idEmpleado,
             MySqlTransaction? transaccion = null)
         {
@@ -151,7 +150,7 @@ namespace MedicDate.Procesos
             int? idUsuario = row["id_usuario"] == DBNull.Value ? null : Convert.ToInt32(row["id_usuario"]);
 
             return (tipo, estado, idUsuario);
-        }
+        }// Método para obtener información del doctor
 
         private static bool CambiarEstadoDoctor(
             int idEmpleado,
@@ -227,21 +226,93 @@ namespace MedicDate.Procesos
                     conexionLocal.Dispose();
                 }
             }
-        }
+            MySqlTransaction? transaccion = null)
+        {
+            var (tipo, estadoActual, idUsuario) = ObtenerInfoDoctor(idEmpleado, transaccion);
 
-        public static bool Insertar(clsDoctor doctor, MySqlTransaction? transaccion = null)
+            MySqlConnection? conexionLocal = null;
+            MySqlTransaction? transaccionLocal = null;
+            bool usarTransaccionLocal = transaccion == null;
+
+            try
+            {
+                if (usarTransaccionLocal)
+                {
+                    conexionLocal = clsConexion.ObtenerConexion();
+                    transaccionLocal = conexionLocal.BeginTransaction();
+                }
+
+                MySqlTransaction transaccionUsar = transaccion ?? transaccionLocal!;
+
+                int nuevoEstado = activar ? 1 : 0;
+                string sqlEmpleado = "UPDATE empleado SET estado = @estado WHERE id_empleado = @id";
+                MySqlParameter[] paramEmpleado = {
+                    new MySqlParameter("@estado", nuevoEstado),
+                    new MySqlParameter("@id", idEmpleado)
+                };
+                if (clsConexion.EjecutarNonQuery(sqlEmpleado, paramEmpleado, transaccionUsar) == 0)
+                    throw new Exception($"No se pudo {(activar ? "reactivar" : "desactivar")} el empleado.");
+
+                string sqlHorarios = activar
+                    ? "UPDATE horario SET activo = 1 WHERE id_doctor = @id"
+                    : "UPDATE horario SET activo = 0 WHERE id_doctor = @id";
+                MySqlParameter[] paramHorarios = { new MySqlParameter("@id", idEmpleado) };
+                clsConexion.EjecutarNonQuery(sqlHorarios, paramHorarios, transaccionUsar);
+
+                if (!activar)
+                {
+                    string sqlCitas = @"UPDATE cita 
+                                        SET estado = 'Cancelada' 
+                                        WHERE id_doctor = @id AND fecha >= CURDATE() 
+                                        AND estado IN ('Pendiente', 'Confirmada')";
+                    MySqlParameter[] paramCitas = { new MySqlParameter("@id", idEmpleado) };
+                    clsConexion.EjecutarNonQuery(sqlCitas, paramCitas, transaccionUsar);
+                }
+
+                if (idUsuario.HasValue)
+                {
+                    string sqlUsuario = activar
+                        ? "UPDATE usuario SET activo = 1 WHERE id_usuario = @id"
+                        : "UPDATE usuario SET activo = 0 WHERE id_usuario = @id";
+                    MySqlParameter[] paramUsuario = { new MySqlParameter("@id", idUsuario.Value) };
+                    clsConexion.EjecutarNonQuery(sqlUsuario, paramUsuario, transaccionUsar);
+                }
+
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Commit();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (usarTransaccionLocal)
+                    transaccionLocal?.Rollback();
+                throw new Exception($"Error al {(activar ? "reactivar" : "dar de baja")} al doctor ID {idEmpleado}: {ex.Message}", ex);
+            }
+            finally
+            {
+                if (usarTransaccionLocal && conexionLocal != null)
+                {
+                    conexionLocal.Close();
+                    conexionLocal.Dispose();
+                }
+            }
+        }//
+        }//Método para cambiar el estado del doctor (activar o desactivar)
+
+        public static bool Insertar(clsDoctor doctor, MySqlTransaction? transaccion = null)// Método para insertar un nuevo doctor
         {
             string consultaExiste = "SELECT COUNT(*) FROM doctor WHERE id_empleado = @id";
             MySqlParameter[] paramExiste = { new MySqlParameter("@id", doctor.id_empleado) };
             object existe = clsConexion.EjecutarScalar(consultaExiste, paramExiste, transaccion);
             if (existe != null && Convert.ToInt32(existe) > 0)
-                throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.");
+                throw new InvalidOperationException($"El empleado ID {doctor.id_empleado} ya es doctor.");// Verificar si el empleado ya es doctor
 
             string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula";
             MySqlParameter[] paramCedula = { new MySqlParameter("@cedula", doctor.cedula_profesional) };
             object cedulaExiste = clsConexion.EjecutarScalar(consultaCedula, paramCedula, transaccion);
             if (cedulaExiste != null && Convert.ToInt32(cedulaExiste) > 0)
-                throw new InvalidOperationException($"La cédula {doctor.cedula_profesional} ya está registrada.");
+                throw new InvalidOperationException($"La cédula {doctor.cedula_profesional} ya está registrada.");// Verificar si la cédula profesional ya está registrada
 
             string consulta = @"INSERT INTO doctor (id_empleado, cedula_profesional, especialidad_principal, consultorio)
                                 VALUES (@id_empleado, @cedula, @especialidad, @consultorio)";
@@ -283,13 +354,13 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static bool Actualizar(clsDoctor doctor, MySqlTransaction? transaccion = null)
+        public static bool Actualizar(clsDoctor doctor, MySqlTransaction? transaccion = null)// Método para actualizar la información de un doctor
         {
             string consultaCedula = "SELECT COUNT(*) FROM doctor WHERE cedula_profesional = @cedula AND id_empleado != @id";
             MySqlParameter[] paramCedula = {
                 new MySqlParameter("@cedula", doctor.cedula_profesional),
                 new MySqlParameter("@id", doctor.id_empleado)
-            };
+            };// Verificar si la cédula profesional ya está registrada por otro doctor
             object cedulaExiste = clsConexion.EjecutarScalar(consultaCedula, paramCedula, transaccion);
             if (cedulaExiste != null && Convert.ToInt32(cedulaExiste) > 0)
                 throw new InvalidOperationException($"La cédula {doctor.cedula_profesional} ya está registrada por otro doctor.");
@@ -323,17 +394,17 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)
+        public static bool DarBaja(int idEmpleado, MySqlTransaction? transaccion = null)// Método para dar de baja a un doctor
         {
             return CambiarEstadoDoctor(idEmpleado, activar: false, transaccion);
         }
 
-        public static bool Reactivar(int idEmpleado, MySqlTransaction? transaccion = null)
+        public static bool Reactivar(int idEmpleado, MySqlTransaction? transaccion = null)// Método para reactivar a un doctor
         {
             return CambiarEstadoDoctor(idEmpleado, activar: true, transaccion);
         }
 
-        public static clsDoctor? ObtenerDoctorPorId(int idEmpleado)
+        public static clsDoctor? ObtenerDoctorPorId(int idEmpleado)// Método para obtener la información de un doctor por su ID
         {
             string sql = @"SELECT E.*, D.cedula_profesional, D.especialidad_principal, D.consultorio, U.usuario AS NombreUsuario
                            FROM empleado E
@@ -368,7 +439,7 @@ namespace MedicDate.Procesos
                 NombreUsuario = row["NombreUsuario"]?.ToString()
             };
         }
-        public static DataTable ObtenerFichaDoctor(int idEmpleado)
+        public static DataTable ObtenerFichaDoctor(int idEmpleado)// Método para obtener la ficha de un doctor por su ID
         {
             string sql = @"
             SELECT 
@@ -388,8 +459,7 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
 
-
-        public static DataTable ObtenerDoctoresActivos()
+        public static DataTable ObtenerDoctoresActivos()// Método para obtener todos los doctores activos
         {
             string sql = @"SELECT e.id_empleado,
                           CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto

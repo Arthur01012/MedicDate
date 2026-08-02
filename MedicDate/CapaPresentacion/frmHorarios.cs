@@ -11,18 +11,16 @@ namespace MedicDate.CapaPresentacion
     public partial class frmHorarios : Form
     {
         private int? idHorarioEditando = null; // Para saber si estamos editando
-        private bool estadoOriginal; // Guarda el estado original del checkbox (al igual que en frmDoctor)
+        private bool estadoOriginal; // Guarda el estado original del checkbox 
 
         public frmHorarios()
         {
             InitializeComponent();
             CargarDoctores();
             ConfigurarDateTimePickers();
-
-            // --- CONFIGURACIÓN INICIAL PARA NUEVO REGISTRO (Igual que frmDoctor) ---
             chkActivo.Checked = true;
-            chkActivo.Enabled = false; // Deshabilitado para nuevos registros
-                                       // ---------------------------------------------------------------------
+            chkActivo.Enabled = false; 
+                                       
 
             btnGuardar.Click += btnGuardar_Click;
         }
@@ -88,11 +86,11 @@ namespace MedicDate.CapaPresentacion
                 dtpFin.Value = DateTime.Today.Add(TimeSpan.Parse(row["hora_fin"].ToString()));
                 txtIntervalo.Text = row["intervalo_atencion"].ToString();
 
-                // --- CARGAR ESTADO DEL CHECKBOX Y HABILITARLO ---
+                
                 estadoOriginal = Convert.ToBoolean(row["activo"]);
                 chkActivo.Checked = estadoOriginal;
                 chkActivo.Enabled = true; // Habilitado porque estamos editando
-                // ------------------------------------------------
+                
 
                 btnGuardar.Text = "Actualizar";
                 this.Text = "Editar Horario";
@@ -191,7 +189,6 @@ namespace MedicDate.CapaPresentacion
                 return;
             }
 
-            // Declaramos la conexión y la transacción aquí, antes del try-catch
             using var conexion = clsConexion.ObtenerConexion();
             using var transaccion = conexion.BeginTransaction();
 

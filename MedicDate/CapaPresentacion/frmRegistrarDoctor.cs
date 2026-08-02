@@ -58,7 +58,7 @@ namespace MedicDate.CapaPresentacion
 
         private void btnEditarDoctor_Click(object sender, EventArgs e)
         {
-            // Obtener la fila actual (donde está el cursor)
+            // Obtener la fila actual 
             DataGridViewRow? fila = dgvDoctores.CurrentRow;
 
             // Validar que exista una fila y que tenga datos

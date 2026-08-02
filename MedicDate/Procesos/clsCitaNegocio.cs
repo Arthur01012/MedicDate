@@ -23,19 +23,15 @@ namespace MedicDate.Procesos
     }
 
     public class clsCitaNegocio
-    {
-        // --- 1. AGENDA Y FILTROS ---
-
-        // Obtiene la lista de estados para el ComboBox
-        public static List<string> ObtenerEstadosCita()
+    { 
+        public static List<string> ObtenerEstadosCita()// Obtiene la lista de estados para el ComboBox
         {
             List<string> estados = clsCitaDAL.ObtenerEstadosENUM();
             estados.Insert(0, "Todos"); // Insertar "Todos" al inicio
             return estados;
         }
 
-        // Obtiene las citas del doctor logueado, filtradas por fecha y estado
-        public static DataTable ObtenerAgendaDoctor(int idDoctor, DateTime fecha, string estadoFiltro)
+        public static DataTable ObtenerAgendaDoctor(int idDoctor, DateTime fecha, string estadoFiltro)// Obtiene las citas del doctor logueado, filtradas por fecha y estado
         {
             string estado = (estadoFiltro == "Todos" || string.IsNullOrWhiteSpace(estadoFiltro))
                 ? null
@@ -44,7 +40,8 @@ namespace MedicDate.Procesos
             return clsCitaDAL.ObtenerCitas(idDoctor, fecha, estado);
         }
 
-        public static bool ActualizarEstadoYNotas(int idCita, string nuevoEstado, string notas)
+        //falta implementar la función de actualizar estado y notas de la cita
+       /* public static bool ActualizarEstadoYNotas(int idCita, string nuevoEstado, string notas)
         {
             clsCita cita = clsCitaDAL.ObtenerPorId(idCita);
             if (cita == null) return false;
@@ -58,10 +55,10 @@ namespace MedicDate.Procesos
             }
 
             return notasActualizadas;
-        }
+        }*/
 
 
-        public HorarioDisponibleResult ObtenerHorasDisponibles(int idDoctor, DateTime fecha, int? idCitaEdicion = null)
+        public HorarioDisponibleResult ObtenerHorasDisponibles(int idDoctor, DateTime fecha, int? idCitaEdicion = null)// Obtiene las horas disponibles para un doctor en una fecha específica, considerando la edición de una cita
         {
             var resultado = new HorarioDisponibleResult();
             resultado.HorasDisponibles = new List<string>();
@@ -116,7 +113,7 @@ namespace MedicDate.Procesos
             return resultado;
         }
 
-        public void ValidarYPrepararCita(clsCita cita, int? idCitaEdicion, DateTime fechaOriginal, TimeSpan? horaOriginal)
+        public void ValidarYPrepararCita(clsCita cita, int? idCitaEdicion, DateTime fechaOriginal, TimeSpan? horaOriginal)// Valida la disponibilidad de la cita antes de guardarla, considerando si es una edición
         {
             if (cita == null)
             {
@@ -140,7 +137,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public List<DisponibilidadDia> ObtenerCalendarioDisponibilidad(int idDoctor, DateTime fechaInicio, int diasAVer)
+     /*   public List<DisponibilidadDia> ObtenerCalendarioDisponibilidad(int idDoctor, DateTime fechaInicio, int diasAVer)
         {
             var resultado = new List<DisponibilidadDia>();
             DateTime fechaFin = fechaInicio.AddDays(diasAVer);
@@ -204,6 +201,6 @@ namespace MedicDate.Procesos
             }
 
             return resultado;
-        }
+        }*/
     }
 }

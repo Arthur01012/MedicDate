@@ -8,7 +8,7 @@ namespace MedicDate.Procesos
 
     public class clsMunicipioDAL
     {
-        public static DataTable ObtenerMunicipios()
+        public static DataTable ObtenerMunicipios()// Método para obtener los municipios desde la base de datos
         {
             DataTable tabla = new DataTable();
 

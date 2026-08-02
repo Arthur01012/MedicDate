@@ -7,7 +7,7 @@ namespace MedicDate.Procesos
 {
     internal class clsEspecialidadDAL
     {
-        public DataTable CargarDataGrid()
+        public DataTable CargarDataGrid()// Método para cargar todas las especialidades en un DataTable
         {
             DataTable tabla = new DataTable();
             try
@@ -24,7 +24,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public DataTable Consultar(string texto)
+        public DataTable Consultar(string texto)// Método para buscar especialidades por nombre o descripción
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid();
@@ -69,7 +69,7 @@ namespace MedicDate.Procesos
             object resultado = clsConexion.EjecutarScalar(consulta, parametros, transaccion);
             return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
         }
-        public static bool Actualizar(clsEspecialidad especialidad, MySqlTransaction? transaccion = null)
+        public static bool Actualizar(clsEspecialidad especialidad, MySqlTransaction? transaccion = null)// Método para actualizar una especialidad existente
         {
             string consulta = @"UPDATE especialidad 
                        SET nombre_especialidad = @nombre, 
@@ -86,7 +86,7 @@ namespace MedicDate.Procesos
             int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
             return filasAfectadas > 0;
         }
-        public static bool Eliminar(int idEspecialidad, MySqlTransaction? transaccion = null)
+        public static bool Eliminar(int idEspecialidad, MySqlTransaction? transaccion = null)// Método para eliminar una especialidad existente
         {
             try
             {
@@ -100,7 +100,7 @@ namespace MedicDate.Procesos
 
                 if (cantidadDoctores > 0)
                 {
-                    throw new InvalidOperationException($"No se puede eliminar esta especialidad porque está asociada a {cantidadDoctores} doctor(es).");
+                    throw new InvalidOperationException($"No se puede eliminar esta especialidad porque está asociada a {cantidadDoctores} doctor(es).");// Lanza una excepción si hay doctores asociados a la especialidad
                 }
 
                 string consulta = "DELETE FROM especialidad WHERE id_especialidad = @id";

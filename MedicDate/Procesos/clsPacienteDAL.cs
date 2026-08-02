@@ -11,7 +11,7 @@ namespace MedicDate.Procesos
 {
     internal class clsPacienteDAL
     {
-        public DataTable CargarDataGrid()
+        public DataTable CargarDataGrid()// Método para cargar los datos del grid de pacientes
         {
             DataTable tabla = new DataTable();
             try
@@ -39,7 +39,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public DataTable Consultar(string texto)
+        public DataTable Consultar(string texto)// Método para buscar pacientes por nombre, correo o teléfono
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid();
@@ -75,7 +75,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static int Insertar(clsPaciente paciente, MySqlTransaction? transaccion = null)
+        public static int Insertar(clsPaciente paciente, MySqlTransaction? transaccion = null)// Método para insertar un nuevo paciente en la base de datos
         {
             string consulta = @"
             INSERT INTO paciente
@@ -140,7 +140,7 @@ namespace MedicDate.Procesos
 
             return resultado == DBNull.Value ? 0 : Convert.ToInt32(resultado);
         }
-        public static DataTable ObtenerTodos()
+        public static DataTable ObtenerTodos()// Método para obtener todos los pacientes de la base de datos
         {
             string sql = @"
         SELECT 

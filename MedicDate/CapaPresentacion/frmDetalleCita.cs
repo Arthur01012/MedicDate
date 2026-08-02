@@ -118,7 +118,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- BOTÓN: CERRAR ---
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
