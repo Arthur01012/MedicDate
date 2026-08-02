@@ -82,8 +82,14 @@ namespace MedicDate.CapaPresentacion
             principal = new clsPrincipal();
             principal.agregarAlContenedor(new frmPerfilDoctor(), pnlContenedor);
         }
-
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            principal = new clsPrincipal();
+            principal.agregarAlContenedor(new frmReportes(), pnlContenedor);
+        }
         
+
+
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
@@ -161,5 +167,7 @@ namespace MedicDate.CapaPresentacion
                 }
             }
         }
+
+        
     }
 }
