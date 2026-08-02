@@ -13,7 +13,7 @@ namespace MedicDate.CapaPresentacion
             this.MinimizeBox = false;                              // opcional, normalmente se deja
             this.StartPosition = FormStartPosition.CenterScreen;
         }
-        private void btnAcceder_Click(object sender, EventArgs e)
+        private void btnAcceder_Click(object sender, EventArgs e)// Evento para iniciar sesión
         {
             // Validar que los campos no estén vacíos
             if (string.IsNullOrEmpty(txtUsuario.Text))
@@ -92,7 +92,7 @@ namespace MedicDate.CapaPresentacion
                                MessageBoxIcon.Error);
             }
         }
-        private void AbrirFormularioSegunRol(clsUsuario usuario)
+        private void AbrirFormularioSegunRol(clsUsuario usuario)// Método para abrir el formulario principal según el rol del usuario
         {
             try
             {
@@ -131,12 +131,11 @@ namespace MedicDate.CapaPresentacion
                                MessageBoxIcon.Error);
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)// Evento para cerrar la aplicación
         {
             Application.Exit();
         }
 
-        // Evento para presionar Enter y hacer login
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -153,7 +152,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
     }
-    public static class Sesion
+    public static class Sesion// Clase estática para almacenar la información de la sesión actual
     {
         public static clsUsuario UsuarioActual { get; set; }
         public static int IdEmpleadoActual { get; set; }
