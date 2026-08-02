@@ -52,8 +52,9 @@
             pnlHeaderCita.Font = new Font("Segoe UI", 9F);
             pnlHeaderCita.ForeColor = Color.Black;
             pnlHeaderCita.Location = new Point(0, 0);
+            pnlHeaderCita.Margin = new Padding(3, 2, 3, 2);
             pnlHeaderCita.Name = "pnlHeaderCita";
-            pnlHeaderCita.Size = new Size(882, 47);
+            pnlHeaderCita.Size = new Size(772, 35);
             pnlHeaderCita.TabIndex = 13;
             // 
             // lblTituloAgenda
@@ -63,7 +64,7 @@
             lblTituloAgenda.ForeColor = Color.White;
             lblTituloAgenda.Location = new Point(3, -2);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(198, 46);
+            lblTituloAgenda.Size = new Size(163, 37);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Detalle cita";
             // 
@@ -92,7 +93,8 @@
             dgvCitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCitas.EnableHeadersVisualStyles = false;
             dgvCitas.GridColor = Color.Gray;
-            dgvCitas.Location = new Point(12, 53);
+            dgvCitas.Location = new Point(10, 40);
+            dgvCitas.Margin = new Padding(3, 2, 3, 2);
             dgvCitas.MultiSelect = false;
             dgvCitas.Name = "dgvCitas";
             dgvCitas.ReadOnly = true;
@@ -111,7 +113,7 @@
             dgvCitas.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvCitas.ScrollBars = ScrollBars.Horizontal;
             dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCitas.Size = new Size(858, 190);
+            dgvCitas.Size = new Size(751, 142);
             dgvCitas.TabIndex = 14;
             // 
             // lblNotaInterna
@@ -119,9 +121,9 @@
             lblNotaInterna.AutoSize = true;
             lblNotaInterna.Font = new Font("Segoe UI", 10.2F);
             lblNotaInterna.ForeColor = Color.Black;
-            lblNotaInterna.Location = new Point(12, 258);
+            lblNotaInterna.Location = new Point(10, 194);
             lblNotaInterna.Name = "lblNotaInterna";
-            lblNotaInterna.Size = new Size(107, 23);
+            lblNotaInterna.Size = new Size(86, 19);
             lblNotaInterna.TabIndex = 117;
             lblNotaInterna.Text = "Nota interna";
             // 
@@ -130,10 +132,11 @@
             txtNotaInterna.BackColor = Color.White;
             txtNotaInterna.Font = new Font("Segoe UI", 12F);
             txtNotaInterna.ForeColor = Color.Black;
-            txtNotaInterna.Location = new Point(12, 284);
+            txtNotaInterna.Location = new Point(10, 213);
+            txtNotaInterna.Margin = new Padding(3, 2, 3, 2);
             txtNotaInterna.Multiline = true;
             txtNotaInterna.Name = "txtNotaInterna";
-            txtNotaInterna.Size = new Size(858, 100);
+            txtNotaInterna.Size = new Size(751, 76);
             txtNotaInterna.TabIndex = 118;
             // 
             // btnCerrar
@@ -145,15 +148,17 @@
             btnCerrar.ForeColor = Color.White;
             btnCerrar.Image = Properties.Resources.cancelar_white;
             btnCerrar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCerrar.Location = new Point(398, 397);
+            btnCerrar.Location = new Point(348, 298);
+            btnCerrar.Margin = new Padding(3, 2, 3, 2);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Padding = new Padding(8, 0, 6, 0);
-            btnCerrar.Size = new Size(148, 45);
+            btnCerrar.Padding = new Padding(7, 0, 5, 0);
+            btnCerrar.Size = new Size(130, 34);
             btnCerrar.TabIndex = 119;
             btnCerrar.Text = "Cerrar";
             btnCerrar.TextAlign = ContentAlignment.MiddleRight;
             btnCerrar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // btnIniciarConsulta
             // 
@@ -164,15 +169,17 @@
             btnIniciarConsulta.ForeColor = Color.Black;
             btnIniciarConsulta.Image = Properties.Resources.iniciar_consulta_black;
             btnIniciarConsulta.ImageAlign = ContentAlignment.TopLeft;
-            btnIniciarConsulta.Location = new Point(552, 397);
+            btnIniciarConsulta.Location = new Point(483, 298);
+            btnIniciarConsulta.Margin = new Padding(3, 2, 3, 2);
             btnIniciarConsulta.Name = "btnIniciarConsulta";
-            btnIniciarConsulta.Padding = new Padding(8, 0, 6, 0);
-            btnIniciarConsulta.Size = new Size(148, 45);
+            btnIniciarConsulta.Padding = new Padding(7, 0, 5, 0);
+            btnIniciarConsulta.Size = new Size(130, 34);
             btnIniciarConsulta.TabIndex = 120;
             btnIniciarConsulta.Text = "Iniciar Consulta";
             btnIniciarConsulta.TextAlign = ContentAlignment.BottomCenter;
             btnIniciarConsulta.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnIniciarConsulta.UseVisualStyleBackColor = false;
+            btnIniciarConsulta.Click += btnIniciarConsulta_Click;
             // 
             // btnFinalizarConsulta
             // 
@@ -184,22 +191,24 @@
             btnFinalizarConsulta.ForeColor = Color.Black;
             btnFinalizarConsulta.Image = Properties.Resources.finalizar_consulta_black;
             btnFinalizarConsulta.ImageAlign = ContentAlignment.TopLeft;
-            btnFinalizarConsulta.Location = new Point(706, 397);
+            btnFinalizarConsulta.Location = new Point(618, 298);
+            btnFinalizarConsulta.Margin = new Padding(3, 2, 3, 2);
             btnFinalizarConsulta.Name = "btnFinalizarConsulta";
-            btnFinalizarConsulta.Padding = new Padding(8, 0, 6, 0);
-            btnFinalizarConsulta.Size = new Size(148, 45);
+            btnFinalizarConsulta.Padding = new Padding(7, 0, 5, 0);
+            btnFinalizarConsulta.Size = new Size(130, 34);
             btnFinalizarConsulta.TabIndex = 121;
             btnFinalizarConsulta.Text = "Finalizar consulta";
             btnFinalizarConsulta.TextAlign = ContentAlignment.MiddleRight;
             btnFinalizarConsulta.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFinalizarConsulta.UseVisualStyleBackColor = false;
+            btnFinalizarConsulta.Click += btnFinalizarConsulta_Click;
             // 
             // frmDetalleCita
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(882, 453);
+            ClientSize = new Size(772, 340);
             Controls.Add(btnFinalizarConsulta);
             Controls.Add(btnIniciarConsulta);
             Controls.Add(btnCerrar);
@@ -207,9 +216,11 @@
             Controls.Add(lblNotaInterna);
             Controls.Add(dgvCitas);
             Controls.Add(pnlHeaderCita);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmDetalleCita";
             Text = "frmDetalleCita";
             Load += frmDetalleCita_Load;
+            Click += frmDetalleCita_Load;
             pnlHeaderCita.ResumeLayout(false);
             pnlHeaderCita.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCitas).EndInit();
