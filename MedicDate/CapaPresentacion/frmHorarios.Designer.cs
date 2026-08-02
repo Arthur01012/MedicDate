@@ -104,7 +104,6 @@
             pnlContenedor.Name = "pnlContenedor";
             pnlContenedor.Size = new Size(632, 488);
             pnlContenedor.TabIndex = 1;
-            pnlContenedor.Paint += pnlContenedor_Paint;
             // 
             // dtpFin
             // 

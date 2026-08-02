@@ -2,6 +2,7 @@
 using MedicDate.Procesos;
 using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MedicDate.CapaPresentacion
@@ -13,7 +14,6 @@ namespace MedicDate.CapaPresentacion
         private DataTable _dtPacientes;
         private clsCitaNegocio _citaNegocio; // Instancia de la capa de negocio
 
-        // Variables para guardar la cita original en caso de edición
         private DateTime _fechaOriginalCita;
         private TimeSpan _horaOriginalCita;
 
@@ -72,12 +72,12 @@ namespace MedicDate.CapaPresentacion
             int idDoctor = (int)cmbDoctor.SelectedValue;
             DateTime fecha = dtpFechaCita.Value.Date;
 
-            // CONSULTAMOS DIRECTAMENTE A LA CAPA DE NEGOCIO
+
             var resultado = _citaNegocio.ObtenerHorasDisponibles(idDoctor, fecha, _idCita);
 
             if (!resultado.DoctorAtiende)
             {
-                // Si es edición y la fecha es la original, dejamos que el usuario pueda editar otros campos
+
                 if (_idCita.HasValue && _fechaOriginalCita == fecha)
                 {
                     cmbHoraCita.Items.Add(_horaOriginalCita.ToString(@"hh\:mm"));
@@ -95,7 +95,6 @@ namespace MedicDate.CapaPresentacion
             cmbHoraCita.Items.AddRange(resultado.HorasDisponibles.ToArray());
             cmbHoraCita.Enabled = true;
 
-            // Si estamos editando y tenemos hora original
             if (resultado.HoraOriginalEdicion.HasValue)
             {
                 string horaStr = resultado.HoraOriginalEdicion.Value.ToString(@"hh\:mm");
@@ -112,18 +111,29 @@ namespace MedicDate.CapaPresentacion
 
         private void tctNombrePaciente_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text)) { _idPacienteSeleccionado = 0; return; }
-            foreach (DataRow row in _dtPacientes.Rows)
+            if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
             {
-                if (row["NombreCompleto"].ToString().Trim() == tctNombrePaciente.Text.Trim())
-                {
-                    _idPacienteSeleccionado = Convert.ToInt32(row["id_paciente"]);
-                    return;
-                }
+                _idPacienteSeleccionado = 0;
+                e.Cancel = false; 
+                return;
             }
-            MessageBox.Show("El paciente no existe.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            _idPacienteSeleccionado = 0;
-            e.Cancel = true;
+
+            string input = tctNombrePaciente.Text.Trim();
+
+            var foundRows = _dtPacientes.AsEnumerable()
+                .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (foundRows.Count > 0)
+            {
+                _idPacienteSeleccionado = Convert.ToInt32(foundRows[0]["id_paciente"]);
+            }
+            else
+            {
+                _idPacienteSeleccionado = 0;
+            }
+
+            e.Cancel = false;
         }
 
         private void CargarDatosCita(int idCita)
@@ -143,14 +153,39 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_idPacienteSeleccionado == 0) { MessageBox.Show("Seleccione un paciente válido."); return; }
-                if (cmbDoctor.SelectedValue == null) { MessageBox.Show("Seleccione un doctor."); return; }
 
-                // Usamos la capa de negocio para validar el estado del guardado
+                if (_idPacienteSeleccionado == 0 && !string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
+                {
+                    string input = tctNombrePaciente.Text.Trim();
+                    var foundRows = _dtPacientes.AsEnumerable()
+                        .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+
+                    if (foundRows.Count > 0)
+                    {
+                        _idPacienteSeleccionado = Convert.ToInt32(foundRows[0]["id_paciente"]);
+                    }
+                }
+
+                if (_idPacienteSeleccionado == 0)
+                {
+                    MessageBox.Show("Seleccione un paciente válido de la lista desplegable.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    tctNombrePaciente.Focus();
+                    return;
+                }
+
+
+                if (cmbDoctor.SelectedValue == null)
+                {
+                    MessageBox.Show("Seleccione un doctor.");
+                    return;
+                }
+
                 if (!cmbHoraCita.Enabled)
                 {
                     if (_idCita.HasValue && _fechaOriginalCita != dtpFechaCita.Value.Date)
@@ -163,7 +198,11 @@ namespace MedicDate.CapaPresentacion
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(txtMotivo.Text)) { MessageBox.Show("El motivo es obligatorio."); return; }
+                if (string.IsNullOrWhiteSpace(txtMotivo.Text))
+                {
+                    MessageBox.Show("El motivo es obligatorio.");
+                    return;
+                }
 
                 TimeSpan horaCita;
                 if (cmbHoraCita.Enabled && !string.IsNullOrWhiteSpace(cmbHoraCita.Text))
@@ -178,7 +217,6 @@ namespace MedicDate.CapaPresentacion
                 int idDoctor = (int)cmbDoctor.SelectedValue;
                 DateTime fechaCita = dtpFechaCita.Value.Date;
 
-                // Crear objeto Cita
                 clsCita cita = new clsCita
                 {
                     id_paciente = _idPacienteSeleccionado,
@@ -192,7 +230,6 @@ namespace MedicDate.CapaPresentacion
                     id_registrado_por = Sesion.IdEmpleadoActual
                 };
 
-                // Validación final centralizada
                 _citaNegocio.ValidarYPrepararCita(cita, _idCita, _fechaOriginalCita, _horaOriginalCita);
 
                 if (_idCita.HasValue)
@@ -201,7 +238,8 @@ namespace MedicDate.CapaPresentacion
                     if (clsCitaDAL.Actualizar(cita))
                     {
                         MessageBox.Show("Cita actualizada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK; this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                 }
                 else
@@ -209,7 +247,8 @@ namespace MedicDate.CapaPresentacion
                     if (clsCitaDAL.Insertar(cita) > 0)
                     {
                         MessageBox.Show("Cita registrada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.DialogResult = DialogResult.OK; this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                 }
             }

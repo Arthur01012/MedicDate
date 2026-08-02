@@ -24,12 +24,19 @@ namespace MedicDate.Procesos
 
     public class clsCitaNegocio
     {
+        // --- 1. AGENDA Y FILTROS ---
 
+        // Obtiene la lista de estados para el ComboBox
+        public static List<string> ObtenerEstadosCita()
+        {
+            List<string> estados = clsCitaDAL.ObtenerEstadosENUM();
+            estados.Insert(0, "Todos"); // Insertar "Todos" al inicio
+            return estados;
+        }
 
         // Obtiene las citas del doctor logueado, filtradas por fecha y estado
         public static DataTable ObtenerAgendaDoctor(int idDoctor, DateTime fecha, string estadoFiltro)
         {
-            // Si el filtro es "Todos", pasamos null para que la DAL no filtre por estado
             string estado = (estadoFiltro == "Todos" || string.IsNullOrWhiteSpace(estadoFiltro))
                 ? null
                 : estadoFiltro;
@@ -37,20 +44,14 @@ namespace MedicDate.Procesos
             return clsCitaDAL.ObtenerCitas(idDoctor, fecha, estado);
         }
 
-        // --- 2. NUEVO MÉTODO PARA EL FORMULARIO DE DETALLE ---
-
-        // Centraliza la actualización de Notas y Estado en una sola operación lógica
         public static bool ActualizarEstadoYNotas(int idCita, string nuevoEstado, string notas)
         {
-            // 1. Obtenemos la cita actual
             clsCita cita = clsCitaDAL.ObtenerPorId(idCita);
             if (cita == null) return false;
 
-            // 2. Actualizamos la nota interna
             cita.notas_internas = notas;
             bool notasActualizadas = clsCitaDAL.Actualizar(cita);
 
-            // 3. Si la nota se guardó y el estado es diferente, cambiamos el estado
             if (notasActualizadas && cita.estado != nuevoEstado)
             {
                 return clsCitaDAL.CambiarEstado(idCita, nuevoEstado);
@@ -59,7 +60,6 @@ namespace MedicDate.Procesos
             return notasActualizadas;
         }
 
-        // --- 3. TU CÓDIGO ORIGINAL DE LÓGICA DE HORARIOS (Se mantiene intacto) ---
 
         public HorarioDisponibleResult ObtenerHorasDisponibles(int idDoctor, DateTime fecha, int? idCitaEdicion = null)
         {
@@ -118,6 +118,11 @@ namespace MedicDate.Procesos
 
         public void ValidarYPrepararCita(clsCita cita, int? idCitaEdicion, DateTime fechaOriginal, TimeSpan? horaOriginal)
         {
+            if (cita == null)
+            {
+                throw new ArgumentNullException(nameof(cita), "El objeto de la cita es nulo. No se puede validar.");
+            }
+
             if (idCitaEdicion.HasValue && fechaOriginal == cita.fecha)
             {
                 return;
@@ -197,17 +202,8 @@ namespace MedicDate.Procesos
                     HorasDisponibles = horasLibres
                 });
             }
+
             return resultado;
-        }
-        public static List<string> ObtenerEstadosCita()
-        {
-            // 1. Obtener los estados reales de la base de datos
-            List<string> estados = clsCitaDAL.ObtenerEstadosENUM();
-
-            // 2. Insertar la opción "Todos" al principio de la lista
-            estados.Insert(0, "Todos");
-
-            return estados;
         }
     }
 }
