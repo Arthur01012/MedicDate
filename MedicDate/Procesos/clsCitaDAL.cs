@@ -8,7 +8,7 @@ namespace MedicDate.Procesos
 {
     internal class clsCitaDAL
     {        
-        private static string ObtenerQueryBase()
+        private static string ObtenerQueryBase()// query base para evitar duplicación de código en los métodos de consulta
         {
             return @"
                 SELECT 
@@ -29,7 +29,7 @@ namespace MedicDate.Procesos
                 LEFT JOIN especialidad s ON d.especialidad_principal = s.id_especialidad";
         }
 
-        public static DataTable CargarDataGrid(DateTime fecha)
+        public static DataTable CargarDataGrid(DateTime fecha)// Carga todas las citas de un día específico
         {
             var tabla = new DataTable();
             try
@@ -51,7 +51,7 @@ namespace MedicDate.Procesos
             }
         }
         
-        public static DataTable Consultar(DateTime fecha, string texto)
+        public static DataTable Consultar(DateTime fecha, string texto)// Consulta citas por fecha y texto de búsqueda (nombre de paciente, doctor o especialidad)
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarDataGrid(fecha);
@@ -80,40 +80,22 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static DataTable ObtenerCitas(int? idDoctor = null)
-        {
-            string sql = ObtenerQueryBase() + @" WHERE c.estado != 'Cancelada'";
-
-            var parametros = new List<MySqlParameter>();
-            if (idDoctor.HasValue)
-            {
-                sql += " AND c.id_doctor = @idDoctor";
-                parametros.Add(new MySqlParameter("@idDoctor", idDoctor.Value));
-            }
-
-            sql += " ORDER BY c.fecha DESC, c.hora DESC";
-
-            return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
-        }
-
-        // 5. Obtener citas (Filtro por Doctor y Fecha)
-        // OPTIMIZACIÓN: Este método ahora llama al de 3 argumentos para evitar duplicar la lógica
-        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha)
+        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha)// Sobrecarga del método para obtener citas sin especificar estado
         {
             return ObtenerCitas(idDoctor, fecha, null);
         }
 
-        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha, string estado = null)
+        public static DataTable ObtenerCitas(int idDoctor, DateTime fecha, string estado = null)// Obtiene citas de un doctor en una fecha específica, con opción de filtrar por estado
         {
             string sql = ObtenerQueryBase() + @"
         WHERE c.id_doctor = @idDoctor
           AND c.fecha = @fecha";
 
             var parametros = new List<MySqlParameter>
-    {
-        new MySqlParameter("@idDoctor", idDoctor),
-        new MySqlParameter("@fecha", fecha.Date)
-    };
+            {
+                new MySqlParameter("@idDoctor", idDoctor),
+                new MySqlParameter("@fecha", fecha.Date)
+            };
 
             if (string.IsNullOrWhiteSpace(estado) || estado == "Todos")
             {
@@ -129,26 +111,9 @@ namespace MedicDate.Procesos
 
             return clsConexion.EjecutarConsulta(sql, parametros.ToArray());
         }
-        
-        public static DataTable ObtenerCitasDoctorRango(int idDoctor, DateTime fechaInicio, DateTime fechaFin)
-        {
-            string sql = @"
-                SELECT fecha, hora, duracion
-                FROM cita 
-                WHERE id_doctor = @idDoctor 
-                  AND fecha BETWEEN @fechaInicio AND @fechaFin
-                  AND estado != 'Cancelada'";
+   
 
-            MySqlParameter[] parametros = {
-                new MySqlParameter("@idDoctor", idDoctor),
-                new MySqlParameter("@fechaInicio", fechaInicio.Date),
-                new MySqlParameter("@fechaFin", fechaFin.Date)
-            };
-
-            return clsConexion.EjecutarConsulta(sql, parametros);
-        }
-
-        public static bool CambiarEstado(int id_cita, string nuevoEstado)
+        public static bool CambiarEstado(int id_cita, string nuevoEstado)// Cambia el estado de una cita específica
         {
             string consulta = "UPDATE cita SET estado = @estado WHERE id_cita = @id";
             MySqlParameter[] parametros = {
@@ -160,7 +125,7 @@ namespace MedicDate.Procesos
 
         public static bool Cancelar(int id_cita) => CambiarEstado(id_cita, "Cancelada");
 
-        public static clsCita ObtenerPorId(int id_cita)
+        public static clsCita ObtenerPorId(int id_cita)// Obtiene los detalles de una cita específica por su ID
         {
             string consulta = @"
                 SELECT c.*, 
@@ -197,7 +162,7 @@ namespace MedicDate.Procesos
             return null;
         }
 
-        public static bool VerificarDisponibilidad(int id_doctor, DateTime fecha, TimeSpan hora, int duracion)
+        public static bool VerificarDisponibilidad(int id_doctor, DateTime fecha, TimeSpan hora, int duracion)// Verifica si un doctor está disponible para una cita en un horario específico
         {
             string consulta = @"
                 SELECT COUNT(*) FROM cita 
@@ -221,7 +186,7 @@ namespace MedicDate.Procesos
             return count == 0;
         }
 
-        public static int Insertar(clsCita cita, MySqlTransaction? transaccion = null)
+        public static int Insertar(clsCita cita, MySqlTransaction? transaccion = null)// Inserta una nueva cita en la base de datos y devuelve el ID generado
         {
             string consulta = @"
                 INSERT INTO cita (id_paciente, id_doctor, fecha, hora, duracion, motivo, estado, 
@@ -273,7 +238,7 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
         }
 
-        public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)
+        public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)// Obtiene el horario de un doctor para un día específico de la semana
         {
             string sql = @"
                 SELECT hora_inicio, hora_fin 
@@ -287,7 +252,7 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
 
-        public static List<TimeSpan> ObtenerHorasOcupadas(int idDoctor, DateTime fecha)
+        public static List<TimeSpan> ObtenerHorasOcupadas(int idDoctor, DateTime fecha)// Obtiene las horas ocupadas de un doctor en una fecha específica
         {
             List<TimeSpan> horasOcupadas = new List<TimeSpan>();
             string sql = @"
@@ -307,7 +272,7 @@ namespace MedicDate.Procesos
             }
             return horasOcupadas;
         }
-        public static List<string> ObtenerEstadosENUM()
+        public static List<string> ObtenerEstadosENUM()// Obtiene los posibles estados de la cita desde la definición ENUM en la base de datos
         {
             var estados = new List<string>();
             string sql = "SHOW COLUMNS FROM cita LIKE 'estado'";

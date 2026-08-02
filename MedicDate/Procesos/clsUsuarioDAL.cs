@@ -168,7 +168,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static int ObtenerIdEmpleadoPorIdUsuario(int idUsuario)
+        public static int ObtenerIdEmpleadoPorIdUsuario(int idUsuario)// Obtiene el ID del empleado asociado a un usuario dado
         {
             string sql = "SELECT id_empleado FROM empleado WHERE id_usuario = @id_usuario";
             MySqlParameter[] param = { new MySqlParameter("@id_usuario", idUsuario) };

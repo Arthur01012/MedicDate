@@ -33,7 +33,7 @@ namespace MedicDate.CapaPresentacion
         {
             try
             {
-                // 1. Obtener el doctor seleccionado (si hay)
+                // 1. Obtener el doctor seleccionado 
                 int? idDoctor = null;
                 if (cmbFiltrarDoctor.SelectedValue != null && cmbFiltrarDoctor.SelectedIndex != -1)
                 {
@@ -43,12 +43,12 @@ namespace MedicDate.CapaPresentacion
 
                 DateTime fecha = dtpFechaCita.Value.Date;
 
-                // 2. Cargar citas del día (filtradas por doctor si se seleccionó uno)
+                // 2. Cargar citas del día 
                 DataTable citas;
                 if (idDoctor.HasValue)
                     citas = clsCitaDAL.ObtenerCitas(idDoctor.Value, fecha);
                 else
-                    citas = clsCitaDAL.CargarDataGrid(fecha); // o un método que traiga todas las citas de esa fecha
+                    citas = clsCitaDAL.CargarDataGrid(fecha); 
 
                 dgvCitas.DataSource = citas;
                 dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -62,7 +62,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- Nuevo método: muestra las horas libres en un ListBox (o DataGridView) ---
+        // muestra las horas libres en un ListBox 
         private void CargarHorasDisponibles(int? idDoctor, DateTime fecha)
         {
             lstHorasDisponibles.Items.Clear();
@@ -95,7 +95,6 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // --- Eventos de cambio ---
         private void cmbFiltrarDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarCitas();
@@ -106,7 +105,6 @@ namespace MedicDate.CapaPresentacion
             CargarCitas();
         }
 
-        // --- Botones de acción ---
         private void btnNuevoCita_Click(object sender, EventArgs e)
         {
             frmCita frm = new frmCita();
@@ -193,9 +191,5 @@ namespace MedicDate.CapaPresentacion
             CargarCitas();
         }
 
-        private void pnlContenedor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

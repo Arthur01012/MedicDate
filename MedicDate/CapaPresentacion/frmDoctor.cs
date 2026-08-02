@@ -10,50 +10,50 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmDoctor : Form
     {
-        private clsDoctor doctor = new clsDoctor();
-        private int? idDoctorEditar = null;
-        private bool estadoOriginal;
+        private clsDoctor doctor = new clsDoctor();// Variable para almacenar el doctor actual
+        private int? idDoctorEditar = null;// Variable para almacenar el ID del doctor a editar (si aplica)
+        private bool estadoOriginal;// Variable para almacenar el estado original del doctor (activo/inactivo)
 
-        public frmDoctor(int idDoctor)
+        public frmDoctor(int idDoctor)// Constructor que recibe un ID de doctor para edición
         {
             InitializeComponent();
             CargarEspecialidades();
             ConfigurarFormulario();
             if (idDoctor != 0)
             {
-                idDoctorEditar = idDoctor;
-                chkActivo.Enabled = true;
+                idDoctorEditar = idDoctor;// Guardamos el ID del doctor a editar
+                chkActivo.Enabled = true;// Permitimos cambiar el estado del doctor
                 CargarDatosDoctor(idDoctor);
 
             }
             else
             {
-                chkActivo.Checked = true;
-                chkActivo.Enabled = false;
+                chkActivo.Checked = true;// Por defecto, un nuevo doctor es activo
+                chkActivo.Enabled = false;//No permitimos cambiar el estado al crear un nuevo doctor
             }
 
         }
 
-        private void ConfigurarFormulario()
+        private void ConfigurarFormulario()// Configuración inicial del formulario
         {
             dtpFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18);
             dtpFechaContratacion.Value = DateTime.Today;
             chkActivo.Checked = false;
         }
 
-        private void CargarEspecialidades()
+        private void CargarEspecialidades()// Carga de especialidades en el ComboBox
         {
-            DataTable especialidades = clsEspecialidadDAL.ObtenerTodos();
+            DataTable especialidades = clsEspecialidadDAL.ObtenerTodos();// Obtenemos todas las especialidades desde la base de datos
             cmbEspecialidad.DataSource = especialidades;
             cmbEspecialidad.DisplayMember = "nombre_especialidad";
             cmbEspecialidad.ValueMember = "id_especialidad";
         }
 
-        private void CargarDatosDoctor(int idDoctor)
+        private void CargarDatosDoctor(int idDoctor)// Carga de datos del doctor para edición
         {
             try
             {
-                clsDoctor? doctorEdit = clsDoctorDAL.ObtenerDoctorPorId(idDoctor);
+                clsDoctor? doctorEdit = clsDoctorDAL.ObtenerDoctorPorId(idDoctor);// Obtenemos el doctor desde la base de datos
                 if (doctorEdit == null)
                 {
                     MessageBox.Show("No se encontró el doctor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -79,8 +79,8 @@ namespace MedicDate.CapaPresentacion
                 txtCedula.Text = doctor.cedula_profesional;
                 txtConsultorio.Text = doctor.consultorio;
 
-                if (doctor.especialidad_principal.HasValue)
-                    cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;
+                if (doctor.especialidad_principal.HasValue)// Verificar si la especialidad principal tiene un valor
+                    cmbEspecialidad.SelectedValue = doctor.especialidad_principal.Value;// Seleccionar la especialidad correspondiente
 
                 // Mostrar usuario (solo lectura)
                 txtUsuario.Text = doctorEdit.NombreUsuario ?? "";
@@ -108,7 +108,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)// Evento del botón Guardar
         {
             if (!ValidarDatos()) return;
 
@@ -197,7 +197,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private bool ValidarDatos()
+        private bool ValidarDatos()// Método para validar los datos del formulario
         {
             // Nombre
             if (string.IsNullOrEmpty(txtNombreDoctor.Text))
@@ -343,7 +343,7 @@ namespace MedicDate.CapaPresentacion
             return true;
         }
 
-        private int? CrearUsuario(MySqlTransaction? transaccion = null)
+        private int? CrearUsuario(MySqlTransaction? transaccion = null)// Método para crear un usuario en la base de datos
         {
             clsUsuario usuario = new clsUsuario
             {
@@ -359,7 +359,7 @@ namespace MedicDate.CapaPresentacion
             return null;
         }
 
-        private void LimpiarFormulario()
+        private void LimpiarFormulario()// Método para limpiar los campos del formulario
         {
             txtNombreDoctor.Clear();
             txtAPaterno.Clear();
@@ -396,7 +396,6 @@ namespace MedicDate.CapaPresentacion
 
         private void btnCancelar1_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
     }
