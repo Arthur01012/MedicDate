@@ -26,12 +26,12 @@ namespace MedicDate.CapaPresentacion
             cargarGrid();
         }
 
-        public void cargarGrid()
+        public void cargarGrid()// Método para cargar los datos de los doctores en el DataGridView
         {
             Doctor = new clsDoctorDAL();
             int total = Doctor.TotalDoctores();
 
-            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);
+            totalPaginas = (int)Math.Ceiling((double)total / registrosPorPagina);// Calcular el total de páginas
             dgvDoctores.DataSource = null;
             dgvDoctores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -48,7 +48,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnNuevoDoctor_Click(object sender, EventArgs e)
+        private void btnNuevoDoctor_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Nuevo Doctor"
         {
             frmDoctor frm = new frmDoctor(0);
 
@@ -56,13 +56,13 @@ namespace MedicDate.CapaPresentacion
             frm.ShowDialog(this);
         }
 
-        private void btnEditarDoctor_Click(object sender, EventArgs e)
+        private void btnEditarDoctor_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Editar Doctor"
         {
             // Obtener la fila actual 
             DataGridViewRow? fila = dgvDoctores.CurrentRow;
 
             // Validar que exista una fila y que tenga datos
-            if (fila == null || fila.Cells["id_empleado"].Value == null)
+            if (fila == null || fila.Cells["id_empleado"].Value == null)// Validar que exista una fila y que tenga datos
             {
                 MessageBox.Show("Seleccione un doctor para editar.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -81,7 +81,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)
+        private void txtBuscarDoctor_TextChanged(object sender, EventArgs e)// Evento que se ejecuta al cambiar el texto en el TextBox de búsqueda
         {
             paginaActual = 1;
 
@@ -100,10 +100,10 @@ namespace MedicDate.CapaPresentacion
             dgvDoctores.DataSource = Doctor.Consultar(
                 txtBuscarDoctor.Text,
                 paginaActual,
-                registrosPorPagina);
+                registrosPorPagina);// Cargar los resultados de la búsqueda en el DataGridView
         }
 
-        private void btnDarBaja_Click(object sender, EventArgs e)
+        private void btnDarBaja_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Dar de baja"
         {
             // Verificar que haya filas
             if (dgvDoctores.Rows.Count == 0)
@@ -145,7 +145,7 @@ namespace MedicDate.CapaPresentacion
 
             try
             {
-                bool resultado = clsDoctorDAL.DarBaja(idDoctor);
+                bool resultado = clsDoctorDAL.DarBaja(idDoctor);// Llamar al método DarBaja de la clase clsDoctorDAL para dar de baja al doctor
                 if (resultado)
                 {
                     MessageBox.Show("Baja exitosa.", "Éxito",

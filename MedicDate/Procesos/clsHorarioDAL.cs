@@ -203,25 +203,14 @@ namespace MedicDate.Procesos
             int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
             return filasAfectadas > 0;
         }
-        public static bool CambiarEstado(int idHorario, bool activo, MySqlTransaction? transaccion = null)
-        {
-            string consulta = "UPDATE horario SET activo = @activo WHERE id_horario = @id";
-            MySqlParameter[] parametros = {
-        new MySqlParameter("@activo", activo ? 1 : 0),
-        new MySqlParameter("@id", idHorario)
-    };
 
-            int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros, transaccion);
-            return filasAfectadas > 0;
-        }
-
-        public static bool DesactivarTodosPorDoctor(int idDoctor, MySqlTransaction? transaccion = null)
+        public static bool DesactivarTodosPorDoctor(int idDoctor, MySqlTransaction? transaccion = null)// Desactiva todos los horarios de un doctor específico en la base de datos y devuelve true si la operación fue exitosa.
         {
             string sql = "UPDATE horario SET activo = 0 WHERE id_doctor = @id_doctor;";
 
             MySqlParameter[] parametros = {
-        new MySqlParameter("@id_doctor", idDoctor)
-    };
+            new MySqlParameter("@id_doctor", idDoctor)
+            };
 
             try
             {
@@ -234,10 +223,10 @@ namespace MedicDate.Procesos
             }
         }
 
-        public static DataTable ObtenerHorariosDoctor(int idDoctor)// Cambia el estado (activo/inactivo) de un horario.
+        public static DataTable ObtenerHorariosDoctor(int idDoctor)// Obtiene todos los horarios de un doctor específico, devolviendo un DataTable con los detalles de los horarios.
         {
             string sql = @"
-        SELECT 
+            SELECT 
             dia_semana AS 'Día',
             hora_inicio AS 'Hora Inicio',
             hora_fin AS 'Hora Fin',
