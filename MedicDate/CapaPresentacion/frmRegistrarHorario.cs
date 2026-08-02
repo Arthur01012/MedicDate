@@ -9,14 +9,14 @@ namespace MedicDate.CapaPresentacion
     {
         private clsHorarioDAL horarioDAL = new clsHorarioDAL();
 
-        public frmRegistrarHorario()
+        public frmRegistrarHorario()// Constructor del formulario
         {
             InitializeComponent();
             CargarGrid();
             ConfigurarDataGridView();
         }
 
-        private void ConfigurarDataGridView()
+        private void ConfigurarDataGridView()// Método para configurar las propiedades del DataGridView
         {
             dgvHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvHorarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -24,7 +24,7 @@ namespace MedicDate.CapaPresentacion
             dgvHorarios.ReadOnly = true;
         }
 
-        private void CargarGrid()
+        private void CargarGrid()// Método para cargar los datos en el DataGridView
         {
             try
             {
@@ -57,12 +57,12 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void Buscar(string texto)
+        private void Buscar(string texto)// Método para buscar horarios por doctor
         {
             try
             {
-                DataTable dt = horarioDAL.Buscar(texto);
-                dgvHorarios.DataSource = dt;
+                DataTable dt = horarioDAL.Buscar(texto);// Llamar al método de búsqueda en la capa de datos
+                dgvHorarios.DataSource = dt;// Actualizar el DataGridView con los resultados de la búsqueda
             }
             catch (Exception ex)
             {
@@ -70,7 +70,7 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        private void btnAsignarHora_Click(object sender, EventArgs e)
+        private void btnAsignarHora_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Asignar Hora"
         {
             frmHorarios frm = new frmHorarios();
             frm.StartPosition = FormStartPosition.CenterParent;
@@ -78,7 +78,7 @@ namespace MedicDate.CapaPresentacion
                 CargarGrid(); // Refrescar después de guardar
         }
 
-        private void btnEditarHorario_Click(object sender, EventArgs e)
+        private void btnEditarHorario_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Editar Horario"
         {
             if (dgvHorarios.SelectedRows.Count == 0)
             {
@@ -93,45 +93,6 @@ namespace MedicDate.CapaPresentacion
                 CargarGrid();
         }
 
-        private void btnDarBaja3_Click(object sender, EventArgs e)
-        {
-            if (dgvHorarios.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccione un horario para dar de baja.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idHorario = Convert.ToInt32(dgvHorarios.SelectedRows[0].Cells["id_horario"].Value);
-            string doctor = dgvHorarios.SelectedRows[0].Cells["Doctor"].Value.ToString();
-            bool activo = Convert.ToBoolean(dgvHorarios.SelectedRows[0].Cells["ActivoBool"].Value);
-
-            if (!activo)
-            {
-                MessageBox.Show("El horario ya está inactivo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DialogResult confirm = MessageBox.Show($"¿Dar de baja el horario del doctor {doctor}?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm == DialogResult.No) return;
-
-            try
-            {
-                if (clsHorarioDAL.CambiarEstado(idHorario, false))
-                {
-                    MessageBox.Show("Horario dado de baja correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CargarGrid();
-                }
-                else
-                {
-                    MessageBox.Show("Error al dar de baja.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void txtBuscarDoctor1_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtBuscarDoctor1.Text))
@@ -139,16 +100,15 @@ namespace MedicDate.CapaPresentacion
             else
                 Buscar(txtBuscarDoctor1.Text);
         }
-
-        private void btnDesactivar_Click(object sender, EventArgs e)
+        private void btnDesactivar_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Desactivar"
         {
             try
             {
 
-                DataGridViewRow filaSeleccionada = dgvHorarios.SelectedRows[0];
+                DataGridViewRow filaSeleccionada = dgvHorarios.SelectedRows[0];// Obtener la fila seleccionada
 
-                int idDoctor = Convert.ToInt32(filaSeleccionada.Cells["id_doctor"].Value);
-                string nombreDoctor = filaSeleccionada.Cells["Doctor"].Value?.ToString() ?? "Doctor";
+                int idDoctor = Convert.ToInt32(filaSeleccionada.Cells["id_doctor"].Value);// Obtener el ID del doctor de la fila seleccionada
+                string nombreDoctor = filaSeleccionada.Cells["Doctor"].Value?.ToString() ?? "Doctor";// Obtener el nombre del doctor de la fila seleccionada
 
                 DialogResult resultado = MessageBox.Show(
                     $"¿Estás seguro de desactivar TODOS los horarios del doctor '{nombreDoctor}'?\n\n" +
@@ -159,7 +119,7 @@ namespace MedicDate.CapaPresentacion
 
                 if (resultado == DialogResult.Yes)
                 {
-                    if (clsHorarioDAL.DesactivarTodosPorDoctor(idDoctor))
+                    if (clsHorarioDAL.DesactivarTodosPorDoctor(idDoctor))// Llamar al método para desactivar todos los horarios del doctor
                     {
                         MessageBox.Show($"Todos los horarios del doctor '{nombreDoctor}' han sido desactivados.",
                             "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
