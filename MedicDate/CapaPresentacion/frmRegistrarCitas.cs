@@ -7,54 +7,108 @@ namespace MedicDate.CapaPresentacion
 {
     public partial class frmRegistrarCitas : Form
     {
+        private clsCitaNegocio _citaNegocio = new clsCitaNegocio();
+
         public frmRegistrarCitas()
         {
             InitializeComponent();
         }
 
-        private void frmRegistrarCitas_Load(object sender, EventArgs e)// Evento que se ejecuta al cargar el formulario
+        private void frmRegistrarCitas_Load(object sender, EventArgs e)
         {
-            // Fecha por defecto: hoy
             dtpFechaCita.Value = DateTime.Today;
             CargarComboDoctores();
-            CargarCitas();
+            RefrescarVista();
         }
-
-        private void CargarComboDoctores()// Método para cargar el combo de doctores
+        private void CargarComboDoctores()
         {
-            DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos();// Obtener los doctores activos de la base de datos
+            DataTable doctores = clsDoctorDAL.ObtenerDoctoresActivos();
             cmbFiltrarDoctor.DataSource = doctores;
             cmbFiltrarDoctor.DisplayMember = "NombreCompleto";
             cmbFiltrarDoctor.ValueMember = "id_empleado";
-            cmbFiltrarDoctor.SelectedIndex = -1; // Sin selección = ver todos los doctores
+            cmbFiltrarDoctor.SelectedIndex = -1;
         }
 
-        private void CargarCitas()// Método para cargar las citas en el DataGridView
+        private int? ObtenerIdDoctorSeleccionado()
+        {
+            if (cmbFiltrarDoctor.SelectedValue == null || cmbFiltrarDoctor.SelectedIndex == -1)
+                return null;
+
+            if (int.TryParse(cmbFiltrarDoctor.SelectedValue.ToString(), out int id))
+                return id;
+
+            return null;
+        }
+
+        private (int idCita, string nombrePaciente)? ObtenerCitaSeleccionada()
+        {
+            if (dgvCitas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una cita.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return null;
+            }
+
+            DataRowView rowView = dgvCitas.SelectedRows[0].DataBoundItem as DataRowView;
+            if (rowView == null)
+            {
+                MessageBox.Show("No se pudo obtener la cita seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            int idCita = Convert.ToInt32(rowView["id_cita"]);
+            string nombrePaciente = rowView["Paciente"].ToString();
+            return (idCita, nombrePaciente);
+        }
+
+        private bool ProcesarCambioEstadoCita(string nuevoEstado, string mensajeAccion, bool esCancelacion = false)
+        {
+            var cita = ObtenerCitaSeleccionada();
+            if (cita == null) return false;
+
+            var (idCita, nombrePaciente) = cita.Value;
+            string titulo = esCancelacion ? "Cancelar" : "Confirmar";
+
+            DialogResult res = MessageBox.Show(
+                $"¿{titulo} la cita de {nombrePaciente}?",
+                titulo,
+                MessageBoxButtons.YesNo,
+                esCancelacion ? MessageBoxIcon.Warning : MessageBoxIcon.Question);
+
+            if (res != DialogResult.Yes) return false;
+
+            bool exito = clsCitaDAL.CambiarEstado(idCita, nuevoEstado);
+            if (exito)
+            {
+                MessageBox.Show($"Cita {mensajeAccion}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RefrescarVista();
+            }
+            else
+            {
+                MessageBox.Show($"No se pudo {mensajeAccion}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return exito;
+        }
+        private void RefrescarVista()
         {
             try
             {
-                // Obtener el doctor seleccionado 
-                int? idDoctor = null;
-                if (cmbFiltrarDoctor.SelectedValue != null && cmbFiltrarDoctor.SelectedIndex != -1)
-                {
-                    if (int.TryParse(cmbFiltrarDoctor.SelectedValue.ToString(), out int id))
-                        idDoctor = id;
-                }
-
+                int? idDoctor = ObtenerIdDoctorSeleccionado();
                 DateTime fecha = dtpFechaCita.Value.Date;
 
-                //Cargar citas del día 
                 DataTable citas;
                 if (idDoctor.HasValue)
                     citas = clsCitaDAL.ObtenerCitas(idDoctor.Value, fecha);
                 else
-                    citas = clsCitaDAL.CargarDataGrid(fecha); 
+                    citas = clsCitaDAL.CargarDataGrid(fecha);
 
+                
+                dgvCitas.DataSource = null;
                 dgvCitas.DataSource = citas;
                 dgvCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                //Cargar horas disponibles (solo si hay doctor seleccionado)
-                CargarHorasDisponibles(idDoctor, fecha);
+                
+                RefrescarHorasDisponibles(idDoctor, fecha);
             }
             catch (Exception ex)
             {
@@ -62,19 +116,17 @@ namespace MedicDate.CapaPresentacion
             }
         }
 
-        // muestra las horas libres en un ListBox 
-        private void CargarHorasDisponibles(int? idDoctor, DateTime fecha)// Método para cargar las horas disponibles en el ListBox
+        private void RefrescarHorasDisponibles(int? idDoctor, DateTime fecha)
         {
             lstHorasDisponibles.Items.Clear();
+
             if (!idDoctor.HasValue)
             {
                 lstHorasDisponibles.Items.Add("Seleccione un doctor para ver disponibilidad.");
                 return;
             }
 
-            // Usamos la misma capa de negocio que en frmCita
-            clsCitaNegocio negocio = new clsCitaNegocio();
-            var resultado = negocio.ObtenerHorasDisponibles(idDoctor.Value, fecha, null);
+            var resultado = _citaNegocio.ObtenerHorasDisponibles(idDoctor.Value, fecha, null);
 
             if (!resultado.DoctorAtiende)
             {
@@ -89,107 +141,60 @@ namespace MedicDate.CapaPresentacion
             else
             {
                 foreach (string hora in resultado.HorasDisponibles)
-                {
-                    lstHorasDisponibles.Items.Add(hora);// Agregamos cada hora disponible al ListBox
-                }
+                    lstHorasDisponibles.Items.Add(hora);
             }
         }
 
-        private void cmbFiltrarDoctor_SelectedIndexChanged(object sender, EventArgs e)// Evento que se ejecuta al cambiar la selección del combo de doctores
+        private void cmbFiltrarDoctor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarCitas();
+            RefrescarVista();
         }
 
-        private void dtpFechaCita_ValueChanged(object sender, EventArgs e)// Evento que se ejecuta al cambiar la fecha en el DateTimePicker
+        private void dtpFechaCita_ValueChanged(object sender, EventArgs e)
         {
-            CargarCitas();
+            RefrescarVista();
         }
 
-        private void btnNuevoCita_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Nueva Cita"
+        private void btnNuevoCita_Click(object sender, EventArgs e)
         {
-            frmCita frm = new frmCita();
-            if (frm.ShowDialog() == DialogResult.OK)
-                CargarCitas();
-        }
-
-        private void btnEditarCita_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Editar Cita"
-        {
-            if (dgvCitas.SelectedRows.Count == 0)
+            using (var frm = new frmCita())
             {
-                MessageBox.Show("Seleccione una cita para editar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DataRowView rowView = dgvCitas.SelectedRows[0].DataBoundItem as DataRowView;// Obtenemos la fila seleccionada como DataRowView
-            if (rowView != null)
-            {
-                int idCita = Convert.ToInt32(rowView["id_cita"]);
-                frmCita frm = new frmCita(idCita);// Creamos una instancia de frmCita pasando el id de la cita a editar
                 if (frm.ShowDialog() == DialogResult.OK)
-                    CargarCitas();
+                    RefrescarVista();
             }
         }
 
-        private void btnConfirmarCita_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Confirmar Cita"
+        private void btnEditarCita_Click(object sender, EventArgs e)
         {
-            if (dgvCitas.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccione una cita para confirmar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            // Obtener cita seleccionada
+            var cita = ObtenerCitaSeleccionada();
+            if (cita == null) return;
 
-            DataRowView rowView = dgvCitas.SelectedRows[0].DataBoundItem as DataRowView;// Obtenemos la fila seleccionada como DataRowView
-            if (rowView != null)
-            {
-                int idCita = Convert.ToInt32(rowView["id_cita"]);
-                string nombrePaciente = rowView["Paciente"].ToString();
+            int idCita = cita.Value.idCita;
 
-                DialogResult res = MessageBox.Show($"¿Confirmar la cita de {nombrePaciente}?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
-                {
-                    if (clsCitaDAL.CambiarEstado(idCita, "Confirmada"))// Cambiamos el estado de la cita a "Confirmada"
-                    {
-                        MessageBox.Show("Cita confirmada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarCitas();
-                    }
-                    else MessageBox.Show("No se pudo confirmar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            // Abrir formulario de edición
+            using (var frm = new frmCita(idCita))
+            {
+                frm.ShowDialog();
+                RefrescarVista();
             }
         }
 
-        private void btnCancelarCita_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Cancelar Cita"
+        private void btnConfirmarCita_Click(object sender, EventArgs e)
         {
-            if (dgvCitas.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Seleccione una cita para cancelar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DataRowView rowView = dgvCitas.SelectedRows[0].DataBoundItem as DataRowView;
-            if (rowView != null)
-            {
-                int idCita = Convert.ToInt32(rowView["id_cita"]);
-                string nombrePaciente = rowView["Paciente"].ToString();
-
-                DialogResult res = MessageBox.Show($"¿Cancelar la cita de {nombrePaciente}?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (res == DialogResult.Yes)
-                {
-                    if (clsCitaDAL.Cancelar(idCita))
-                    {
-                        MessageBox.Show("Cita cancelada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CargarCitas();
-                    }
-                    else MessageBox.Show("No se pudo cancelar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            ProcesarCambioEstadoCita("Confirmada", "confirmada");
         }
 
-        private void btnLimpiarFiltro_Click(object sender, EventArgs e)// Evento que se ejecuta al hacer clic en el botón "Limpiar Filtro"
+        private void btnCancelarCita_Click(object sender, EventArgs e)
+        {
+            ProcesarCambioEstadoCita("Cancelada", "cancelada", esCancelacion: true);
+        }
+
+        private void btnLimpiarFiltro_Click(object sender, EventArgs e)
         {
             cmbFiltrarDoctor.SelectedIndex = -1;
             dtpFechaCita.Value = DateTime.Today;
-            CargarCitas();
+            RefrescarVista();
         }
-
     }
 }
