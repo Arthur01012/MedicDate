@@ -177,6 +177,7 @@ namespace MedicDate.CapaPresentacion
                     dgvEspecialidad.DataSource = null;
                     dgvEspecialidad.DataSource = especialidadDAL.Consultar(txtBuscarEspecialidad.Text);// Filtrar las especialidades según el texto ingresado
                     dgvEspecialidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
+                    dgvEspecialidad.Columns["id_especialidad"].Visible = false;
                 }
             }
             catch (Exception ex)

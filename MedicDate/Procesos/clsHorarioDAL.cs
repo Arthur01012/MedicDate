@@ -42,7 +42,7 @@ namespace MedicDate.Procesos
             }
         }
 
-        public DataTable Buscar(string texto)// Busca horarios por nombre del doctor, mostrando resultados en un DataTable.
+        public DataTable Buscar(string texto)
         {
             if (string.IsNullOrWhiteSpace(texto))
                 return CargarGrid();
@@ -52,20 +52,19 @@ namespace MedicDate.Procesos
             {
                 using var conexion = clsConexion.ObtenerConexion();
                 string sql = @"
-                    SELECT h.id_horario,
-                           h.id_doctor,
-                           CONCAT(e.nombre, ' ', e.apellido_paterno) AS Doctor,
-                           h.dia_semana,
-                           h.hora_inicio,
-                           h.hora_fin,
-                           h.intervalo_atencion,
-                           CASE WHEN h.activo = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado,
-                           h.activo AS ActivoBool,
-                           h.id_doctor
-                    FROM horario h
-                    INNER JOIN empleado e ON h.id_doctor = e.id_empleado
-                    WHERE CONCAT(e.nombre, ' ', e.apellido_paterno) LIKE @texto
-                    ORDER BY e.apellido_paterno, FIELD(h.dia_semana, 'Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'), h.hora_inicio";
+            SELECT h.id_horario,
+                   h.id_doctor,
+                   CONCAT(e.nombre, ' ', e.apellido_paterno) AS Doctor,
+                   h.dia_semana,
+                   h.hora_inicio,
+                   h.hora_fin,
+                   h.intervalo_atencion,
+                   CASE WHEN h.activo = 1 THEN 'Activo' ELSE 'Inactivo' END AS Estado,
+                   h.activo AS ActivoBool
+            FROM horario h
+            INNER JOIN empleado e ON h.id_doctor = e.id_empleado
+            WHERE CONCAT(e.nombre, ' ', e.apellido_paterno) LIKE @texto
+            ORDER BY e.apellido_paterno, FIELD(h.dia_semana, 'Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'), h.hora_inicio";
                 using var cmd = new MySqlCommand(sql, conexion);
                 cmd.Parameters.AddWithValue("@texto", "%" + texto + "%");
                 using var adapter = new MySqlDataAdapter(cmd);
