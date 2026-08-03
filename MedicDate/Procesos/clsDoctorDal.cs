@@ -387,7 +387,7 @@ namespace MedicDate.Procesos
             return clsConexion.EjecutarConsulta(sql, parametros);
         }
 
-        public static DataTable ObtenerDoctoresActivos()// Método para obtener todos los doctores activos
+        public static DataTable ObtenerDoctoresActivos()
         {
             string sql = @"SELECT e.id_empleado,
                           CONCAT(e.nombre, ' ', e.apellido_paterno, ' ', IFNULL(e.apellido_materno, '')) AS NombreCompleto

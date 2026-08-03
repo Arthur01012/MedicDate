@@ -214,28 +214,41 @@ namespace MedicDate.Procesos
 
         public static bool Actualizar(clsCita cita)
         {
+            if (cita.id_cita <= 0)
+                throw new ArgumentException("El ID de la cita no es válido.");
+
             string consulta = @"
-                UPDATE cita 
-                SET id_paciente = @id_paciente, id_doctor = @id_doctor,
-                    fecha = @fecha, hora = @hora, duracion = @duracion,
-                    motivo = @motivo, estado = @estado, costo = @costo,
-                    notas_internas = @notas_internas
-                WHERE id_cita = @id_cita";
+        UPDATE cita 
+        SET id_paciente = @id_paciente, id_doctor = @id_doctor,
+            fecha = @fecha, hora = @hora, duracion = @duracion,
+            motivo = @motivo, estado = @estado, costo = @costo,
+            notas_internas = @notas_internas
+        WHERE id_cita = @id_cita";
 
             MySqlParameter[] parametros = {
-                new MySqlParameter("@id_paciente", cita.id_paciente),
-                new MySqlParameter("@id_doctor", cita.id_doctor),
-                new MySqlParameter("@fecha", cita.fecha),
-                new MySqlParameter("@hora", cita.hora),
-                new MySqlParameter("@duracion", cita.duracion),
-                new MySqlParameter("@motivo", (object)cita.motivo ?? DBNull.Value),
-                new MySqlParameter("@estado", cita.estado),
-                new MySqlParameter("@costo", (object)cita.costo ?? DBNull.Value),
-                new MySqlParameter("@notas_internas", (object)cita.notas_internas ?? DBNull.Value),
-                new MySqlParameter("@id_cita", cita.id_cita)
-            };
+        new MySqlParameter("@id_paciente", cita.id_paciente),
+        new MySqlParameter("@id_doctor", cita.id_doctor),
+        new MySqlParameter("@fecha", cita.fecha),
+        new MySqlParameter("@hora", cita.hora),
+        new MySqlParameter("@duracion", cita.duracion),
+        new MySqlParameter("@motivo", (object)cita.motivo ?? DBNull.Value),
+        new MySqlParameter("@estado", cita.estado),
+        new MySqlParameter("@costo", (object)cita.costo ?? DBNull.Value),
+        new MySqlParameter("@notas_internas", (object)cita.notas_internas ?? DBNull.Value),
+        new MySqlParameter("@id_cita", cita.id_cita)
+    };
 
-            return clsConexion.EjecutarNonQuery(consulta, parametros) > 0;
+            try
+            {
+                int filasAfectadas = clsConexion.EjecutarNonQuery(consulta, parametros);
+                return filasAfectadas > 0;
+            }
+            catch (MySqlException ex)
+            {
+                if (ex.Number == 1452)
+                    throw new Exception("El paciente o doctor seleccionado no existe.", ex);
+                throw new Exception($"Error en la base de datos: {ex.Message}", ex);
+            }
         }
 
         public static DataTable ObtenerHorarioDoctor(int idDoctor, string diaSemana)// Obtiene el horario de un doctor para un día específico de la semana
