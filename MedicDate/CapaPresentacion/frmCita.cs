@@ -87,33 +87,59 @@ namespace MedicDate.CapaPresentacion
             DateTime fecha = dtpFechaCita.Value.Date;
             var resultado = _citaNegocio.ObtenerHorasDisponibles(idDoctor, fecha, _idCita);
 
+            // Variable para almacenar la hora que debe seleccionarse
+            string horaSeleccionar = null;
+
             if (!resultado.DoctorAtiende)
             {
+                // Si es edición y la fecha no cambió, mostrar la hora original
                 if (_idCita.HasValue && _fechaOriginalCita == fecha)
                 {
-                    cmbHoraCita.Items.Add(_horaOriginalCita.ToString(@"hh\:mm"));
-                    cmbHoraCita.Text = _horaOriginalCita.ToString(@"hh\:mm");
+                    string horaOriginal = _horaOriginalCita.ToString(@"hh\:mm");
+                    cmbHoraCita.Items.Add(horaOriginal);
+                    cmbHoraCita.Text = horaOriginal;
                     cmbHoraCita.Enabled = true;
+                    horaSeleccionar = horaOriginal; // Seleccionar esta hora
+                }
+                else
+                {
+                    cmbHoraCita.Items.Add("Sin horario disponible");
+                    cmbHoraCita.SelectedIndex = 0;
+                    cmbHoraCita.Enabled = false;
                     return;
                 }
-
-                cmbHoraCita.Items.Add("Sin horario disponible");
-                cmbHoraCita.SelectedIndex = 0;
-                cmbHoraCita.Enabled = false;
-                return;
             }
-
-            cmbHoraCita.Items.AddRange(resultado.HorasDisponibles.ToArray());
-            cmbHoraCita.Enabled = true;
-
-            if (resultado.HoraOriginalEdicion.HasValue)
+            else
             {
-                string horaStr = resultado.HoraOriginalEdicion.Value.ToString(@"hh\:mm");
-                if (!cmbHoraCita.Items.Contains(horaStr))
-                    cmbHoraCita.Items.Add(horaStr);
-                cmbHoraCita.Text = horaStr;
+                cmbHoraCita.Items.AddRange(resultado.HorasDisponibles.ToArray());
+                cmbHoraCita.Enabled = true;
+
+                // Si hay hora original de edición, agregarla y seleccionarla
+                if (resultado.HoraOriginalEdicion.HasValue)
+                {
+                    string horaStr = resultado.HoraOriginalEdicion.Value.ToString(@"hh\:mm");
+                    if (!cmbHoraCita.Items.Contains(horaStr))
+                        cmbHoraCita.Items.Add(horaStr);
+                    horaSeleccionar = horaStr; 
+                }
+                else
+                {
+                    // Si no hay hora original, seleccionar la primera disponible
+                    if (cmbHoraCita.Items.Count > 0)
+                        horaSeleccionar = cmbHoraCita.Items[0].ToString();
+                }
             }
-            if (cmbHoraCita.Enabled && cmbHoraCita.Items.Count > 0)
+
+            
+            if (!string.IsNullOrEmpty(horaSeleccionar))
+            {
+                int idx = cmbHoraCita.FindStringExact(horaSeleccionar);
+                if (idx >= 0)
+                    cmbHoraCita.SelectedIndex = idx;
+                else
+                    cmbHoraCita.SelectedIndex = 0; // Fallback: primer elemento
+            }
+            else if (cmbHoraCita.Items.Count > 0)
             {
                 cmbHoraCita.SelectedIndex = 0;
             }
