@@ -30,23 +30,23 @@
         {
             pnlHeaderCita = new Panel();
             lblCitas = new Label();
-            pnlContanedor = new Panel();
+            pnlContenedor = new Panel();
             cmbHoraCita = new ComboBox();
             btnGuardar = new Button();
-            btnCancelar1 = new Button();
+            btnCancelar = new Button();
             lblMotivo = new Label();
             txtMotivo = new TextBox();
             lblCosto = new Label();
-            txtcosto = new TextBox();
+            txtCosto = new TextBox();
             lblHoraCita = new Label();
             dtpFechaCita = new DateTimePicker();
             lblFechaCita = new Label();
             cmbDoctor = new ComboBox();
             lblNombreDoctor = new Label();
             lblNombrePaciente = new Label();
-            tctNombrePaciente = new TextBox();
+            txtNombrePaciente = new TextBox();
             pnlHeaderCita.SuspendLayout();
-            pnlContanedor.SuspendLayout();
+            pnlContenedor.SuspendLayout();
             SuspendLayout();
             // 
             // pnlHeaderCita
@@ -71,29 +71,29 @@
             lblCitas.TabIndex = 0;
             lblCitas.Text = "Citas";
             // 
-            // pnlContanedor
+            // pnlContenedor
             // 
-            pnlContanedor.BackColor = Color.LightGray;
-            pnlContanedor.Controls.Add(cmbHoraCita);
-            pnlContanedor.Controls.Add(btnGuardar);
-            pnlContanedor.Controls.Add(btnCancelar1);
-            pnlContanedor.Controls.Add(lblMotivo);
-            pnlContanedor.Controls.Add(txtMotivo);
-            pnlContanedor.Controls.Add(lblCosto);
-            pnlContanedor.Controls.Add(txtcosto);
-            pnlContanedor.Controls.Add(lblHoraCita);
-            pnlContanedor.Controls.Add(dtpFechaCita);
-            pnlContanedor.Controls.Add(lblFechaCita);
-            pnlContanedor.Controls.Add(cmbDoctor);
-            pnlContanedor.Controls.Add(lblNombreDoctor);
-            pnlContanedor.Controls.Add(lblNombrePaciente);
-            pnlContanedor.Controls.Add(tctNombrePaciente);
-            pnlContanedor.Dock = DockStyle.Fill;
-            pnlContanedor.ForeColor = Color.Black;
-            pnlContanedor.Location = new Point(0, 55);
-            pnlContanedor.Name = "pnlContanedor";
-            pnlContanedor.Size = new Size(641, 488);
-            pnlContanedor.TabIndex = 10;
+            pnlContenedor.BackColor = Color.LightGray;
+            pnlContenedor.Controls.Add(cmbHoraCita);
+            pnlContenedor.Controls.Add(btnGuardar);
+            pnlContenedor.Controls.Add(btnCancelar);
+            pnlContenedor.Controls.Add(lblMotivo);
+            pnlContenedor.Controls.Add(txtMotivo);
+            pnlContenedor.Controls.Add(lblCosto);
+            pnlContenedor.Controls.Add(txtCosto);
+            pnlContenedor.Controls.Add(lblHoraCita);
+            pnlContenedor.Controls.Add(dtpFechaCita);
+            pnlContenedor.Controls.Add(lblFechaCita);
+            pnlContenedor.Controls.Add(cmbDoctor);
+            pnlContenedor.Controls.Add(lblNombreDoctor);
+            pnlContenedor.Controls.Add(lblNombrePaciente);
+            pnlContenedor.Controls.Add(txtNombrePaciente);
+            pnlContenedor.Dock = DockStyle.Fill;
+            pnlContenedor.ForeColor = Color.Black;
+            pnlContenedor.Location = new Point(0, 55);
+            pnlContenedor.Name = "pnlContenedor";
+            pnlContenedor.Size = new Size(641, 488);
+            pnlContenedor.TabIndex = 10;
             // 
             // cmbHoraCita
             // 
@@ -108,7 +108,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
@@ -125,25 +125,25 @@
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnCancelar1
+            // btnCancelar
             // 
-            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
-            btnCancelar1.FlatStyle = FlatStyle.Popup;
-            btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = Properties.Resources.cancelar_white;
-            btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.Location = new Point(332, 411);
-            btnCancelar1.Name = "btnCancelar1";
-            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
-            btnCancelar1.Size = new Size(130, 52);
-            btnCancelar1.TabIndex = 36;
-            btnCancelar1.Text = "Cancelar";
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelar1_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(332, 411);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Padding = new Padding(8, 0, 6, 0);
+            btnCancelar.Size = new Size(130, 52);
+            btnCancelar.TabIndex = 36;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar1_Click;
             // 
             // lblMotivo
             // 
@@ -178,15 +178,15 @@
             lblCosto.TabIndex = 33;
             lblCosto.Text = "Costo";
             // 
-            // txtcosto
+            // txtCosto
             // 
-            txtcosto.BackColor = Color.White;
-            txtcosto.Font = new Font("Segoe UI", 12F);
-            txtcosto.ForeColor = Color.Black;
-            txtcosto.Location = new Point(12, 197);
-            txtcosto.Name = "txtcosto";
-            txtcosto.Size = new Size(299, 34);
-            txtcosto.TabIndex = 32;
+            txtCosto.BackColor = Color.White;
+            txtCosto.Font = new Font("Segoe UI", 12F);
+            txtCosto.ForeColor = Color.Black;
+            txtCosto.Location = new Point(12, 197);
+            txtCosto.Name = "txtCosto";
+            txtCosto.Size = new Size(299, 34);
+            txtCosto.TabIndex = 32;
             // 
             // lblHoraCita
             // 
@@ -256,16 +256,16 @@
             lblNombrePaciente.TabIndex = 4;
             lblNombrePaciente.Text = "Paciente";
             // 
-            // tctNombrePaciente
+            // txtNombrePaciente
             // 
-            tctNombrePaciente.BackColor = Color.White;
-            tctNombrePaciente.Font = new Font("Segoe UI", 12F);
-            tctNombrePaciente.ForeColor = Color.Black;
-            tctNombrePaciente.Location = new Point(12, 47);
-            tctNombrePaciente.Name = "tctNombrePaciente";
-            tctNombrePaciente.Size = new Size(299, 34);
-            tctNombrePaciente.TabIndex = 3;
-            tctNombrePaciente.Validating += tctNombrePaciente_Validating;
+            txtNombrePaciente.BackColor = Color.White;
+            txtNombrePaciente.Font = new Font("Segoe UI", 12F);
+            txtNombrePaciente.ForeColor = Color.Black;
+            txtNombrePaciente.Location = new Point(12, 47);
+            txtNombrePaciente.Name = "txtNombrePaciente";
+            txtNombrePaciente.Size = new Size(299, 34);
+            txtNombrePaciente.TabIndex = 3;
+            txtNombrePaciente.Validating += tctNombrePaciente_Validating;
             // 
             // frmCita
             // 
@@ -273,7 +273,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(641, 543);
-            Controls.Add(pnlContanedor);
+            Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderCita);
             ForeColor = Color.Black;
             Name = "frmCita";
@@ -281,8 +281,8 @@
             Load += frmCita_Load;
             pnlHeaderCita.ResumeLayout(false);
             pnlHeaderCita.PerformLayout();
-            pnlContanedor.ResumeLayout(false);
-            pnlContanedor.PerformLayout();
+            pnlContenedor.ResumeLayout(false);
+            pnlContenedor.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -290,9 +290,9 @@
 
         private Panel pnlHeaderCita;
         private Label lblCitas;
-        private Panel pnlContanedor;
+        private Panel pnlContenedor;
         private Label lblNombrePaciente;
-        private TextBox tctNombrePaciente;
+        private TextBox txtNombrePaciente;
         private ComboBox cmbDoctor;
         private Label lblNombreDoctor;
         private Label lblHoraCita;
@@ -301,9 +301,9 @@
         private Label lblMotivo;
         private TextBox txtMotivo;
         private Label lblCosto;
-        private TextBox txtcosto;
+        private TextBox txtCosto;
         private Button btnGuardar;
-        private Button btnCancelar1;
+        private Button btnCancelar;
         private ComboBox cmbHoraCita;
     }
 }

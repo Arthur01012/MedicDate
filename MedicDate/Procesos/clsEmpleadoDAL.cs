@@ -1,10 +1,9 @@
 ﻿using MedicDate.Datos;
-using MedicDate.Procesos;
 using MySqlConnector;
 using System;
 using System.Data;
 
-namespace MedicDate.Datos
+namespace MedicDate.Procesos
 {
     public class clsEmpleadoDAL
     {

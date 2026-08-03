@@ -96,6 +96,7 @@
             // 
             // lstHorasDisponibles
             // 
+            lstHorasDisponibles.Font = new Font("Segoe UI", 12F);
             lstHorasDisponibles.FormattingEnabled = true;
             lstHorasDisponibles.Location = new Point(152, 67);
             lstHorasDisponibles.Name = "lstHorasDisponibles";
@@ -105,6 +106,7 @@
             // lblHorasLibres
             // 
             lblHorasLibres.AutoSize = true;
+            lblHorasLibres.Font = new Font("Segoe UI", 12F);
             lblHorasLibres.Location = new Point(18, 67);
             lblHorasLibres.Name = "lblHorasLibres";
             lblHorasLibres.Size = new Size(128, 20);
@@ -113,7 +115,8 @@
             // 
             // dtpFechaCita
             // 
-            dtpFechaCita.Location = new Point(661, 37);
+            dtpFechaCita.Font = new Font("Segoe UI", 12F);
+            dtpFechaCita.Location = new Point(661, 64);
             dtpFechaCita.Name = "dtpFechaCita";
             dtpFechaCita.Size = new Size(250, 27);
             dtpFechaCita.TabIndex = 21;
@@ -137,7 +140,7 @@
             // btnConfirmarCita
             // 
             btnConfirmarCita.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnConfirmarCita.BackColor = Color.LimeGreen;
+            btnConfirmarCita.BackColor = Color.FromArgb(50, 205, 50);
             btnConfirmarCita.BackgroundImageLayout = ImageLayout.None;
             btnConfirmarCita.FlatStyle = FlatStyle.Popup;
             btnConfirmarCita.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);

@@ -1,17 +1,12 @@
 ﻿using MedicDate.Datos;
-using MedicDate.Procesos;
-using Microsoft.Win32;
 using MySqlConnector;
-using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace MedicDate.Procesos
 {
     internal class clsAsistenteDAL

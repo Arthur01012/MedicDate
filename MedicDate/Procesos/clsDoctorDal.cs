@@ -1,6 +1,4 @@
 ﻿using MedicDate.Datos;
-using MedicDate.Procesos;
-using Microsoft.Win32;
 using MySqlConnector;
 using System;
 using System.Data;

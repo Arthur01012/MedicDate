@@ -68,7 +68,7 @@ namespace MedicDate.CapaPresentacion
                 lblTituloAsistente.Text = "Editar Asistente";
 
                 // Llenar controles
-                tctNombreAsistente.Text = asistente.nombre;
+                txtNombreAsistente.Text = asistente.nombre;
                 txtApePaterno.Text = asistente.apellido_paterno;
                 txtApeMaterno.Text = asistente.apellido_materno;
                 dtpFechaRegistro.Value = asistente.fecha_nacimiento;
@@ -114,7 +114,7 @@ namespace MedicDate.CapaPresentacion
             try
             {
                 // Llenar objeto asistente con los datos del formulario
-                asistente.nombre = tctNombreAsistente.Text.Trim();
+                asistente.nombre = txtNombreAsistente.Text.Trim();
                 asistente.apellido_paterno = txtApePaterno.Text.Trim();
                 asistente.apellido_materno = txtApeMaterno.Text.Trim();
                 asistente.fecha_nacimiento = dtpFechaRegistro.Value;
@@ -175,11 +175,11 @@ namespace MedicDate.CapaPresentacion
         private bool ValidarDatos()// Validación de datos del formulario
         {
             // Nombre
-            if (string.IsNullOrEmpty(tctNombreAsistente.Text))
+            if (string.IsNullOrEmpty(txtNombreAsistente.Text))
             {
                 MessageBox.Show("El nombre es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tctNombreAsistente.Focus();
+                txtNombreAsistente.Focus();
                 return false;
             }
 
@@ -302,7 +302,7 @@ namespace MedicDate.CapaPresentacion
         }
         private void LimpiarFormulario()// Limpiar controles del formulario después de guardar
         {
-            tctNombreAsistente.Clear();
+            txtNombreAsistente.Clear();
             txtApePaterno.Clear();
             txtApeMaterno.Clear();
             txtEmail.Clear();
@@ -314,7 +314,7 @@ namespace MedicDate.CapaPresentacion
             dtpFechaRegistro.Value = DateTime.Today.AddYears(-25);
             cmbEstado.SelectedIndex = 0; // Activo
             cmbTurno.SelectedIndex = -1;
-            tctNombreAsistente.Focus();
+            txtNombreAsistente.Focus();
 
             // Restaurar estado de controles (por si quedó deshabilitado de una edición)
             txtUsuarioAsistente.Enabled = true;

@@ -37,8 +37,8 @@ namespace MedicDate.CapaPresentacion
 
 
                 DataTable horarios = clsHorarioDAL.ObtenerHorariosDoctor(idDoctor);// Obtener los horarios del doctor desde la base de datos
-                dataGridView2.DataSource = horarios;// Asignar los horarios al DataGridView
-                dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
+                dgvHorario.DataSource = horarios;// Asignar los horarios al DataGridView
+                dgvHorario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;// Ajustar el tamaño de las columnas automáticamente
             }
             catch (Exception ex)
             {

@@ -39,7 +39,7 @@
             lblDescripcion = new Label();
             txtEspecialidad = new TextBox();
             lblNombreEspecialidad = new Label();
-            btnDarBaja4 = new Button();
+            btnDarBaja = new Button();
             btnEditarEspecialidad = new Button();
             btnNuevoEspecialidad = new Button();
             dgvEspecialidad = new DataGridView();
@@ -79,7 +79,7 @@
             pnlContenedor.Controls.Add(lblDescripcion);
             pnlContenedor.Controls.Add(txtEspecialidad);
             pnlContenedor.Controls.Add(lblNombreEspecialidad);
-            pnlContenedor.Controls.Add(btnDarBaja4);
+            pnlContenedor.Controls.Add(btnDarBaja);
             pnlContenedor.Controls.Add(btnEditarEspecialidad);
             pnlContenedor.Controls.Add(btnNuevoEspecialidad);
             pnlContenedor.Controls.Add(dgvEspecialidad);
@@ -135,25 +135,25 @@
             lblNombreEspecialidad.TabIndex = 116;
             lblNombreEspecialidad.Text = "Nombre";
             // 
-            // btnDarBaja4
+            // btnDarBaja
             // 
-            btnDarBaja4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDarBaja4.BackColor = Color.FromArgb(176, 11, 11);
-            btnDarBaja4.FlatStyle = FlatStyle.Popup;
-            btnDarBaja4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnDarBaja4.ForeColor = Color.White;
-            btnDarBaja4.Image = Properties.Resources.eliminar_white;
-            btnDarBaja4.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDarBaja4.Location = new Point(1226, 280);
-            btnDarBaja4.Name = "btnDarBaja4";
-            btnDarBaja4.Padding = new Padding(8, 0, 6, 0);
-            btnDarBaja4.Size = new Size(148, 45);
-            btnDarBaja4.TabIndex = 17;
-            btnDarBaja4.Text = "Eliminar";
-            btnDarBaja4.TextAlign = ContentAlignment.MiddleRight;
-            btnDarBaja4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDarBaja4.UseVisualStyleBackColor = false;
-            btnDarBaja4.Click += btnDarBaja4_Click;
+            btnDarBaja.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDarBaja.BackColor = Color.FromArgb(176, 11, 11);
+            btnDarBaja.FlatStyle = FlatStyle.Popup;
+            btnDarBaja.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnDarBaja.ForeColor = Color.White;
+            btnDarBaja.Image = Properties.Resources.eliminar_white;
+            btnDarBaja.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDarBaja.Location = new Point(1226, 280);
+            btnDarBaja.Name = "btnDarBaja";
+            btnDarBaja.Padding = new Padding(8, 0, 6, 0);
+            btnDarBaja.Size = new Size(148, 45);
+            btnDarBaja.TabIndex = 17;
+            btnDarBaja.Text = "Eliminar";
+            btnDarBaja.TextAlign = ContentAlignment.MiddleRight;
+            btnDarBaja.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDarBaja.UseVisualStyleBackColor = false;
+            btnDarBaja.Click += btnDarBaja4_Click;
             // 
             // btnEditarEspecialidad
             // 
@@ -288,7 +288,7 @@
         private Panel pnlHeaderEspecialidades;
         private Label lblEspecialidad;
         private Panel pnlContenedor;
-        private Button btnDarBaja4;
+        private Button btnDarBaja;
         private Button btnEditarEspecialidad;
         private Button btnNuevoEspecialidad;
         private DataGridView dgvEspecialidad;

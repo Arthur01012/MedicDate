@@ -36,7 +36,7 @@
             lblPaciente = new Label();
             txtBuscar = new TextBox();
             dgvPacientes = new DataGridView();
-            btnGuardar = new Button();
+            btnVerHistorial = new Button();
             pnlHeaderPacientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPacientes).BeginInit();
             SuspendLayout();
@@ -123,31 +123,30 @@
             dgvPacientes.Size = new Size(958, 220);
             dgvPacientes.TabIndex = 13;
             // 
-            // btnGuardar
+            // btnVerHistorial
             // 
-            btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
-            btnGuardar.FlatStyle = FlatStyle.Popup;
-            btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnGuardar.ForeColor = Color.Black;
-            btnGuardar.Image = Properties.Resources.ver_historial_black;
-            btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.Location = new Point(840, 339);
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Padding = new Padding(8, 0, 6, 0);
-            btnGuardar.Size = new Size(130, 52);
-            btnGuardar.TabIndex = 44;
-            btnGuardar.Text = "Ver Historial";
-            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.UseVisualStyleBackColor = false;
+            btnVerHistorial.BackColor = Color.FromArgb(166, 202, 236);
+            btnVerHistorial.FlatStyle = FlatStyle.Popup;
+            btnVerHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnVerHistorial.ForeColor = Color.Black;
+            btnVerHistorial.Image = Properties.Resources.ver_historial_black;
+            btnVerHistorial.ImageAlign = ContentAlignment.MiddleLeft;
+            btnVerHistorial.Location = new Point(840, 339);
+            btnVerHistorial.Name = "btnVerHistorial";
+            btnVerHistorial.Padding = new Padding(8, 0, 6, 0);
+            btnVerHistorial.Size = new Size(130, 52);
+            btnVerHistorial.TabIndex = 44;
+            btnVerHistorial.Text = "Historial";
+            btnVerHistorial.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnVerHistorial.UseVisualStyleBackColor = false;
             // 
             // frmPacientesD
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(982, 403);
-            Controls.Add(btnGuardar);
+            Controls.Add(btnVerHistorial);
             Controls.Add(dgvPacientes);
             Controls.Add(txtBuscar);
             Controls.Add(pnlHeaderPacientes);
@@ -167,6 +166,6 @@
         private Label lblPaciente;
         private TextBox txtBuscar;
         private DataGridView dgvPacientes;
-        private Button btnGuardar;
+        private Button btnVerHistorial;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MedicDate
+﻿namespace MedicDate.CapaPresentacion
 {
     partial class frmReportes
     {
@@ -327,7 +327,7 @@
             // btnExportarPDF
             // 
             btnExportarPDF.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnExportarPDF.BackColor = Color.LimeGreen;
+            btnExportarPDF.BackColor = Color.FromArgb(50, 205, 50);
             btnExportarPDF.FlatStyle = FlatStyle.Popup;
             btnExportarPDF.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnExportarPDF.ForeColor = Color.Black;

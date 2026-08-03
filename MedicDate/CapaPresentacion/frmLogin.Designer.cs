@@ -29,33 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            lblTitulo = new Label();
             lblPassword = new Label();
             lblUsuario = new Label();
             txtUsuario = new TextBox();
             txtPassword = new TextBox();
-            panel1 = new Panel();
             pnlHeaderLogin = new Panel();
             lblIniciarSesion = new Label();
             btnCancelar = new Button();
             btnAcceder = new Button();
             pcbLogo = new PictureBox();
-            panel1.SuspendLayout();
             pnlHeaderLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pcbLogo).BeginInit();
             SuspendLayout();
-            // 
-            // lblTitulo
-            // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Candara", 26.181818F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.ForeColor = Color.FromArgb(31, 59, 75);
-            lblTitulo.Location = new Point(141, 7);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(269, 54);
-            lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Iniciar sesión";
-            // 
+            //
             // lblPassword
             // 
             lblPassword.AutoSize = true;
@@ -103,18 +89,7 @@
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             txtPassword.KeyPress += txtPassword_KeyPress;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(111, 186, 174);
-            panel1.Controls.Add(pnlHeaderLogin);
-            panel1.Controls.Add(lblTitulo);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(552, 72);
-            panel1.TabIndex = 5;
-            // 
+            //
             // pnlHeaderLogin
             // 
             pnlHeaderLogin.BackColor = Color.FromArgb(25, 85, 140);
@@ -139,12 +114,12 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar.BackColor = Color.FromArgb(165, 165, 173);
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar.FlatAppearance.BorderColor = Color.White;
             btnCancelar.FlatStyle = FlatStyle.Popup;
             btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar.ForeColor = Color.Black;
-            btnCancelar.Image = Properties.Resources.cancelar_black;
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.Location = new Point(117, 438);
             btnCancelar.Name = "btnCancelar";
@@ -199,15 +174,13 @@
             Controls.Add(txtUsuario);
             Controls.Add(btnAcceder);
             Controls.Add(btnCancelar);
-            Controls.Add(panel1);
+            Controls.Add(pnlHeaderLogin);
             Controls.Add(txtPassword);
             Controls.Add(lblUsuario);
             Controls.Add(lblPassword);
             ForeColor = Color.Black;
             Name = "frmLogin";
             Text = "Control de Acceso";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             pnlHeaderLogin.ResumeLayout(false);
             pnlHeaderLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pcbLogo).EndInit();
@@ -217,12 +190,10 @@
 
         #endregion
 
-        private Label lblTitulo;
         private Label lblPassword;
         private Label lblUsuario;
         private TextBox txtUsuario;
         private TextBox txtPassword;
-        private Panel panel1;
         private Button btnCancelar;
         private Button btnAcceder;
         private Panel pnlHeaderLogin;

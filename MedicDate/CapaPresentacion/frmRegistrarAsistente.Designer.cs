@@ -33,7 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             pnlHeader5 = new Panel();
-            lbAsistente = new Label();
+            lblAsistente = new Label();
             pnlContenedor2 = new Panel();
             lblPagina = new Label();
             btnDespues = new Button();
@@ -52,7 +52,7 @@
             // pnlHeader5
             // 
             pnlHeader5.BackColor = Color.FromArgb(25, 85, 140);
-            pnlHeader5.Controls.Add(lbAsistente);
+            pnlHeader5.Controls.Add(lblAsistente);
             pnlHeader5.Dock = DockStyle.Top;
             pnlHeader5.ForeColor = Color.Black;
             pnlHeader5.Location = new Point(0, 0);
@@ -60,16 +60,16 @@
             pnlHeader5.Size = new Size(1398, 47);
             pnlHeader5.TabIndex = 9;
             // 
-            // lbAsistente
+            // lblAsistente
             // 
-            lbAsistente.AutoSize = true;
-            lbAsistente.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            lbAsistente.ForeColor = Color.White;
-            lbAsistente.Location = new Point(3, -1);
-            lbAsistente.Name = "lbAsistente";
-            lbAsistente.Size = new Size(182, 46);
-            lbAsistente.TabIndex = 0;
-            lbAsistente.Text = "Asistentes";
+            lblAsistente.AutoSize = true;
+            lblAsistente.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblAsistente.ForeColor = Color.White;
+            lblAsistente.Location = new Point(3, -1);
+            lblAsistente.Name = "lblAsistente";
+            lblAsistente.Size = new Size(182, 46);
+            lblAsistente.TabIndex = 0;
+            lblAsistente.Text = "Asistentes";
             // 
             // pnlContenedor2
             // 
@@ -283,7 +283,7 @@
         #endregion
 
         private Panel pnlHeader5;
-        private Label lbAsistente;
+        private Label lblAsistente;
         private Panel pnlContenedor2;
         private Button btnDesactivar;
         private Button btnEditarAsistente;

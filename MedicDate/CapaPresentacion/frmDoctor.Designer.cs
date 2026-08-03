@@ -41,7 +41,7 @@
             txtTelefonoSecundario = new TextBox();
             lblTelefonoSecundario = new Label();
             btnGuardar = new Button();
-            btnCancelar1 = new Button();
+            btnCancelar = new Button();
             txtContraseña = new TextBox();
             lblPassword = new Label();
             txtUsuario = new TextBox();
@@ -105,7 +105,7 @@
             pnlContenedor.Controls.Add(txtTelefonoSecundario);
             pnlContenedor.Controls.Add(lblTelefonoSecundario);
             pnlContenedor.Controls.Add(btnGuardar);
-            pnlContenedor.Controls.Add(btnCancelar1);
+            pnlContenedor.Controls.Add(btnCancelar);
             pnlContenedor.Controls.Add(txtContraseña);
             pnlContenedor.Controls.Add(lblPassword);
             pnlContenedor.Controls.Add(txtUsuario);
@@ -188,6 +188,7 @@
             // 
             // chkActivo
             // 
+            chkActivo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkActivo.AutoSize = true;
             chkActivo.Font = new Font("Segoe UI", 11F);
             chkActivo.Location = new Point(344, 628);
@@ -240,7 +241,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
@@ -257,25 +258,25 @@
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnCancelar1
+            // btnCancelar
             // 
-            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
-            btnCancelar1.FlatStyle = FlatStyle.Popup;
-            btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = Properties.Resources.cancelar_white;
-            btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.Location = new Point(344, 691);
-            btnCancelar1.Name = "btnCancelar1";
-            btnCancelar1.Padding = new Padding(7, 0, 5, 0);
-            btnCancelar1.Size = new Size(130, 52);
-            btnCancelar1.TabIndex = 30;
-            btnCancelar1.Text = "Cancelar";
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelar1_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(344, 691);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Padding = new Padding(7, 0, 5, 0);
+            btnCancelar.Size = new Size(130, 52);
+            btnCancelar.TabIndex = 30;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar1_Click;
             // 
             // txtContraseña
             // 
@@ -390,7 +391,7 @@
             // 
             // dtpFechaNacimiento
             // 
-            dtpFechaNacimiento.CalendarFont = new Font("Candara", 12F);
+            dtpFechaNacimiento.CalendarFont = new Font("Segoe UI", 12F);
             dtpFechaNacimiento.CalendarForeColor = Color.Black;
             dtpFechaNacimiento.CalendarMonthBackground = Color.White;
             dtpFechaNacimiento.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
@@ -548,13 +549,6 @@
         private Label lblTitulo;
         private Panel pnlContenedor;
         private Label lblDatosPersonales;
-        private TextBox textBox9;
-        private TextBox textBox8;
-        private TextBox textBox7;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
         private TextBox txtTelefonoSecundario;
         private TextBox txtNombreDoctor;
         private Label lblNombreDoctor;
@@ -580,7 +574,7 @@
         private ComboBox cmbEspecialidad;
         private TextBox txtContraseña;
         private Button btnGuardar;
-        private Button btnCancelar1;
+        private Button btnCancelar;
         private Label lblTelefonoSecundario;
         private TextBox txtCurp;
         private Label lblCurp;

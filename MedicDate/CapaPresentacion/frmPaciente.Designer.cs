@@ -34,7 +34,7 @@
             txtTelefonoSec = new TextBox();
             lblTelefonoSecundario = new Label();
             btnGuardar = new Button();
-            btnCancelar1 = new Button();
+            btnCancelar = new Button();
             txtNotas = new TextBox();
             txtAlergias = new TextBox();
             lblNotas = new Label();
@@ -56,14 +56,14 @@
             lblFechaNac = new Label();
             txtTelefono = new TextBox();
             lblTelefono = new Label();
-            txtEmal = new TextBox();
+            txtEmail = new TextBox();
             lblEmail = new Label();
             txtAMaterno = new TextBox();
             lblAMaterno = new Label();
             txtAPaterno = new TextBox();
             lblAPaterno = new Label();
             lblNombreDoctor = new Label();
-            tctNombreP = new TextBox();
+            txtNombreP = new TextBox();
             pnlHeaderPaciente.SuspendLayout();
             pnlContenedor.SuspendLayout();
             SuspendLayout();
@@ -96,7 +96,7 @@
             pnlContenedor.Controls.Add(txtTelefonoSec);
             pnlContenedor.Controls.Add(lblTelefonoSecundario);
             pnlContenedor.Controls.Add(btnGuardar);
-            pnlContenedor.Controls.Add(btnCancelar1);
+            pnlContenedor.Controls.Add(btnCancelar);
             pnlContenedor.Controls.Add(txtNotas);
             pnlContenedor.Controls.Add(txtAlergias);
             pnlContenedor.Controls.Add(lblNotas);
@@ -118,14 +118,14 @@
             pnlContenedor.Controls.Add(lblFechaNac);
             pnlContenedor.Controls.Add(txtTelefono);
             pnlContenedor.Controls.Add(lblTelefono);
-            pnlContenedor.Controls.Add(txtEmal);
+            pnlContenedor.Controls.Add(txtEmail);
             pnlContenedor.Controls.Add(lblEmail);
             pnlContenedor.Controls.Add(txtAMaterno);
             pnlContenedor.Controls.Add(lblAMaterno);
             pnlContenedor.Controls.Add(txtAPaterno);
             pnlContenedor.Controls.Add(lblAPaterno);
             pnlContenedor.Controls.Add(lblNombreDoctor);
-            pnlContenedor.Controls.Add(tctNombreP);
+            pnlContenedor.Controls.Add(txtNombreP);
             pnlContenedor.Dock = DockStyle.Fill;
             pnlContenedor.Location = new Point(0, 55);
             pnlContenedor.Name = "pnlContenedor";
@@ -154,7 +154,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
@@ -166,34 +166,35 @@
             btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Size = new Size(130, 52);
             btnGuardar.TabIndex = 43;
-            btnGuardar.Text = " ";
+            btnGuardar.Text = " Guardar";
             btnGuardar.TextAlign = ContentAlignment.MiddleRight;
             btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnCancelar1
+            // btnCancelar
             // 
-            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
-            btnCancelar1.FlatStyle = FlatStyle.Popup;
-            btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = Properties.Resources.cancelar_white;
-            btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.Location = new Point(352, 769);
-            btnCancelar1.Name = "btnCancelar1";
-            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
-            btnCancelar1.Size = new Size(130, 52);
-            btnCancelar1.TabIndex = 42;
-            btnCancelar1.Text = "Cancelar";
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelar1_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(352, 769);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Padding = new Padding(8, 0, 6, 0);
+            btnCancelar.Size = new Size(130, 52);
+            btnCancelar.TabIndex = 42;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar1_Click;
             // 
             // txtNotas
             // 
+            txtNotas.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtNotas.BackColor = Color.White;
             txtNotas.Font = new Font("Segoe UI", 12F);
             txtNotas.ForeColor = Color.Black;
@@ -205,6 +206,7 @@
             // 
             // txtAlergias
             // 
+            txtAlergias.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txtAlergias.BackColor = Color.White;
             txtAlergias.Font = new Font("Segoe UI", 12F);
             txtAlergias.ForeColor = Color.Black;
@@ -420,15 +422,15 @@
             lblTelefono.TabIndex = 21;
             lblTelefono.Text = "Teléfono";
             // 
-            // txtEmal
+            // txtEmail
             // 
-            txtEmal.BackColor = Color.White;
-            txtEmal.Font = new Font("Segoe UI", 12F);
-            txtEmal.ForeColor = Color.Black;
-            txtEmal.Location = new Point(346, 149);
-            txtEmal.Name = "txtEmal";
-            txtEmal.Size = new Size(299, 34);
-            txtEmal.TabIndex = 20;
+            txtEmail.BackColor = Color.White;
+            txtEmail.Font = new Font("Segoe UI", 12F);
+            txtEmail.ForeColor = Color.Black;
+            txtEmail.Location = new Point(346, 149);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(299, 34);
+            txtEmail.TabIndex = 20;
             // 
             // lblEmail
             // 
@@ -494,15 +496,15 @@
             lblNombreDoctor.TabIndex = 14;
             lblNombreDoctor.Text = "Nombre";
             // 
-            // tctNombreP
+            // txtNombreP
             // 
-            tctNombreP.BackColor = Color.White;
-            tctNombreP.Font = new Font("Segoe UI", 12F);
-            tctNombreP.ForeColor = Color.Black;
-            tctNombreP.Location = new Point(14, 74);
-            tctNombreP.Name = "tctNombreP";
-            tctNombreP.Size = new Size(299, 34);
-            tctNombreP.TabIndex = 13;
+            txtNombreP.BackColor = Color.White;
+            txtNombreP.Font = new Font("Segoe UI", 12F);
+            txtNombreP.ForeColor = Color.Black;
+            txtNombreP.Location = new Point(14, 74);
+            txtNombreP.Name = "txtNombreP";
+            txtNombreP.Size = new Size(299, 34);
+            txtNombreP.TabIndex = 13;
             // 
             // frmPaciente
             // 
@@ -531,14 +533,14 @@
         private Label lblFechaNac;
         private TextBox txtTelefono;
         private Label lblTelefono;
-        private TextBox txtEmal;
+        private TextBox txtEmail;
         private Label lblEmail;
         private TextBox txtAMaterno;
         private Label lblAMaterno;
         private TextBox txtAPaterno;
         private Label lblAPaterno;
         private Label lblNombreDoctor;
-        private TextBox tctNombreP;
+        private TextBox txtNombreP;
         private Label lblSubDatosPersonales;
         private Label lblSubDomicilio;
         private TextBox txtLocalidad;
@@ -557,7 +559,7 @@
         private TextBox txtNotas;
         private TextBox txtAlergias;
         private Button btnGuardar;
-        private Button btnCancelar1;
+        private Button btnCancelar;
         private TextBox txtTelefonoSec;
         private Label lblTelefonoSecundario;
     }

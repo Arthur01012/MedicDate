@@ -36,7 +36,7 @@
             lblTitulo = new Label();
             pnlContenedor = new Panel();
             dgvPacientes = new DataGridView();
-            btnverHistorial = new Button();
+            btnVerHistorial = new Button();
             btnEditarPaciente = new Button();
             btnNuevoPaciente = new Button();
             lblBuscar = new Label();
@@ -72,7 +72,7 @@
             // 
             pnlContenedor.BackColor = Color.LightGray;
             pnlContenedor.Controls.Add(dgvPacientes);
-            pnlContenedor.Controls.Add(btnverHistorial);
+            pnlContenedor.Controls.Add(btnVerHistorial);
             pnlContenedor.Controls.Add(btnEditarPaciente);
             pnlContenedor.Controls.Add(btnNuevoPaciente);
             pnlContenedor.Controls.Add(lblBuscar);
@@ -130,25 +130,25 @@
             dgvPacientes.Size = new Size(1374, 626);
             dgvPacientes.TabIndex = 11;
             // 
-            // btnverHistorial
+            // btnVerHistorial
             // 
-            btnverHistorial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnverHistorial.BackColor = Color.DarkGoldenrod;
-            btnverHistorial.BackgroundImageLayout = ImageLayout.None;
-            btnverHistorial.FlatStyle = FlatStyle.Popup;
-            btnverHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnverHistorial.ForeColor = Color.Black;
-            btnverHistorial.Image = Properties.Resources.ver_historial_black;
-            btnverHistorial.ImageAlign = ContentAlignment.TopLeft;
-            btnverHistorial.Location = new Point(1231, 14);
-            btnverHistorial.Name = "btnverHistorial";
-            btnverHistorial.Padding = new Padding(8, 0, 6, 0);
-            btnverHistorial.Size = new Size(148, 45);
-            btnverHistorial.TabIndex = 10;
-            btnverHistorial.Text = "Ver Historial";
-            btnverHistorial.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnverHistorial.UseVisualStyleBackColor = false;
-            btnverHistorial.Click += btnverHistorial_Click;
+            btnVerHistorial.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnVerHistorial.BackColor = Color.FromArgb(184, 134, 11);
+            btnVerHistorial.BackgroundImageLayout = ImageLayout.None;
+            btnVerHistorial.FlatStyle = FlatStyle.Popup;
+            btnVerHistorial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnVerHistorial.ForeColor = Color.Black;
+            btnVerHistorial.Image = Properties.Resources.ver_historial_black;
+            btnVerHistorial.ImageAlign = ContentAlignment.TopLeft;
+            btnVerHistorial.Location = new Point(1231, 14);
+            btnVerHistorial.Name = "btnVerHistorial";
+            btnVerHistorial.Padding = new Padding(8, 0, 6, 0);
+            btnVerHistorial.Size = new Size(148, 45);
+            btnVerHistorial.TabIndex = 10;
+            btnVerHistorial.Text = "Ver Historial";
+            btnVerHistorial.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnVerHistorial.UseVisualStyleBackColor = false;
+            btnVerHistorial.Click += btnverHistorial_Click;
             // 
             // btnEditarPaciente
             // 
@@ -235,7 +235,7 @@
         private Panel pnlHeaderPacientes;
         private Label lblTitulo;
         private Panel pnlContenedor;
-        private Button btnverHistorial;
+        private Button btnVerHistorial;
         private Button btnEditarPaciente;
         private Button btnNuevoPaciente;
         private Label lblBuscar;

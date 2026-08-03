@@ -39,7 +39,7 @@
             btnCitasA = new Button();
             btnPacientesA = new Button();
             btnReportes = new Button();
-            label1 = new Label();
+            lblModulo = new Label();
             btnCerrar = new Button();
             btnEspecialidades = new Button();
             btnHorarios = new Button();
@@ -97,7 +97,7 @@
             pnlLateral1.Controls.Add(btnCitasA);
             pnlLateral1.Controls.Add(btnPacientesA);
             pnlLateral1.Controls.Add(btnReportes);
-            pnlLateral1.Controls.Add(label1);
+            pnlLateral1.Controls.Add(lblModulo);
             pnlLateral1.Controls.Add(btnCerrar);
             pnlLateral1.Controls.Add(btnEspecialidades);
             pnlLateral1.Controls.Add(btnHorarios);
@@ -233,16 +233,16 @@
             btnReportes.UseVisualStyleBackColor = false;
             btnReportes.Click += btnReportes_Click;
             // 
-            // label1
+            // lblModulo
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(35, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(93, 30);
-            label1.TabIndex = 0;
-            label1.Text = "Modulo";
+            lblModulo.AutoSize = true;
+            lblModulo.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblModulo.ForeColor = Color.White;
+            lblModulo.Location = new Point(35, 13);
+            lblModulo.Name = "lblModulo";
+            lblModulo.Size = new Size(93, 30);
+            lblModulo.TabIndex = 0;
+            lblModulo.Text = "Modulo";
             // 
             // btnCerrar
             // 
@@ -377,7 +377,7 @@
         private Button btnDoctores;
         public Label lblUsuario;
         public Label lblTitulo;
-        private Label label1;
+        private Label lblModulo;
         private Button btnPacientesA;
         private Button btnAgendaGeneralA;
         private Button btnCitasA;

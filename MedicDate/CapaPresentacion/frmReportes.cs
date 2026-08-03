@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using MedicDate.Procesos;
 
-namespace MedicDate
+namespace MedicDate.CapaPresentacion
 {
     public partial class frmReportes : Form
     {

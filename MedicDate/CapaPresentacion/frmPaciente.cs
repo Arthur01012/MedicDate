@@ -55,18 +55,18 @@ namespace MedicDate.CapaPresentacion
             cmbMunicipio.SelectedIndex = -1;
 
             // Coloca el cursor en el primer campo
-            tctNombreP.Focus();
+            txtNombreP.Focus();
         }
         
         private bool ValidarDatos()// Validar datos ingresados
         {
             // Nombre
-            if (string.IsNullOrEmpty(tctNombreP.Text))
+            if (string.IsNullOrEmpty(txtNombreP.Text))
             {
                 MessageBox.Show("El nombre es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                tctNombreP.Focus();
+                txtNombreP.Focus();
                 return false;
             }
 
@@ -81,12 +81,12 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Verifica que el formato del correo sea válido
-            if (!string.IsNullOrEmpty(txtEmal.Text) && !clsValidaciones.EsTelefonoValido(txtEmal.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !clsValidaciones.EsTelefonoValido(txtEmail.Text))
             {
                 MessageBox.Show("El email no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                txtEmal.Focus();
+                txtEmail.Focus();
                 return false;
             }
 
@@ -195,10 +195,10 @@ namespace MedicDate.CapaPresentacion
             try
             {
                 // Datos del paciente
-                paciente.nombre = tctNombreP.Text.Trim();
+                paciente.nombre = txtNombreP.Text.Trim();
                 paciente.apellido_paterno = txtAPaterno.Text.Trim();
                 paciente.apellido_materno = txtAMaterno.Text.Trim();
-                paciente.email = txtEmal.Text.Trim();
+                paciente.email = txtEmail.Text.Trim();
                 paciente.telefono_principal = txtTelefono.Text.Trim();
                 paciente.telefono_secundario = txtTelefonoSec.Text.Trim();
                 paciente.fecha_nacimiento = dtpFechaRegistro.Value;
@@ -251,10 +251,10 @@ namespace MedicDate.CapaPresentacion
 
         private void LimpiarFormulario()// Limpia todos los campos del formulario
         {
-            tctNombreP.Clear();
+            txtNombreP.Clear();
             txtAPaterno.Clear();
             txtAMaterno.Clear();
-            txtEmal.Clear();
+            txtEmail.Clear();
             txtTelefono.Clear();
             dtpFechaRegistro.Value = DateTime.Today;
             txtCalle.Clear();
@@ -267,7 +267,7 @@ namespace MedicDate.CapaPresentacion
 
             // Regresa el cursor al primer campo
 
-            tctNombreP.Focus();
+            txtNombreP.Focus();
         }
         private void btnCancelar1_Click(object sender, EventArgs e)
         {

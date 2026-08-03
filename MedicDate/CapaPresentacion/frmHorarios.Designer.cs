@@ -35,7 +35,7 @@
             dtpInicio = new DateTimePicker();
             chkActivo = new CheckBox();
             btnGuardar = new Button();
-            btnCancelar5 = new Button();
+            btnCancelar = new Button();
             txtIntervalo = new TextBox();
             lblIntervalo = new Label();
             lblHoraFin = new Label();
@@ -83,7 +83,7 @@
             pnlContenedor.Controls.Add(dtpInicio);
             pnlContenedor.Controls.Add(chkActivo);
             pnlContenedor.Controls.Add(btnGuardar);
-            pnlContenedor.Controls.Add(btnCancelar5);
+            pnlContenedor.Controls.Add(btnCancelar);
             pnlContenedor.Controls.Add(txtIntervalo);
             pnlContenedor.Controls.Add(lblIntervalo);
             pnlContenedor.Controls.Add(lblHoraFin);
@@ -141,6 +141,7 @@
             // 
             // chkActivo
             // 
+            chkActivo.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkActivo.AutoSize = true;
             chkActivo.Font = new Font("Segoe UI", 11F);
             chkActivo.Location = new Point(27, 363);
@@ -152,7 +153,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
@@ -168,25 +169,25 @@
             btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             // 
-            // btnCancelar5
+            // btnCancelar
             // 
-            btnCancelar5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar5.BackColor = Color.FromArgb(176, 11, 11);
-            btnCancelar5.FlatStyle = FlatStyle.Popup;
-            btnCancelar5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar5.ForeColor = Color.White;
-            btnCancelar5.Image = Properties.Resources.cancelar_white;
-            btnCancelar5.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar5.Location = new Point(312, 409);
-            btnCancelar5.Name = "btnCancelar5";
-            btnCancelar5.Padding = new Padding(8, 0, 6, 0);
-            btnCancelar5.Size = new Size(130, 52);
-            btnCancelar5.TabIndex = 114;
-            btnCancelar5.Text = "Cancelar";
-            btnCancelar5.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar5.UseVisualStyleBackColor = false;
-            btnCancelar5.Click += btnCancelar5_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(312, 409);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Padding = new Padding(8, 0, 6, 0);
+            btnCancelar.Size = new Size(130, 52);
+            btnCancelar.TabIndex = 114;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar5_Click;
             // 
             // txtIntervalo
             // 
@@ -370,7 +371,7 @@
         private Panel pnlContenedor;
         private CheckBox chkActivo;
         private Button btnGuardar;
-        private Button btnCancelar5;
+        private Button btnCancelar;
         private TextBox txtIntervalo;
         private Label lblIntervalo;
         private Label lblHoraFin;

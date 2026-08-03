@@ -34,7 +34,7 @@
             cmbTurno = new ComboBox();
             lblTurno = new Label();
             btnGuardar = new Button();
-            btnCancelar1 = new Button();
+            btnCancelar = new Button();
             cmbEstado = new ComboBox();
             lblEstado = new Label();
             txtPassword = new TextBox();
@@ -52,7 +52,7 @@
             txtApePaterno = new TextBox();
             lblApePaterno = new Label();
             lblNombreAsistente = new Label();
-            tctNombreAsistente = new TextBox();
+            txtNombreAsistente = new TextBox();
             lblDatosPersonales1 = new Label();
             lblConfirmarContrasena = new Label();
             txtConfirmarContrasena = new TextBox();
@@ -93,7 +93,7 @@
             pnlContenedor.Controls.Add(cmbTurno);
             pnlContenedor.Controls.Add(lblTurno);
             pnlContenedor.Controls.Add(btnGuardar);
-            pnlContenedor.Controls.Add(btnCancelar1);
+            pnlContenedor.Controls.Add(btnCancelar);
             pnlContenedor.Controls.Add(cmbEstado);
             pnlContenedor.Controls.Add(lblEstado);
             pnlContenedor.Controls.Add(txtPassword);
@@ -111,7 +111,7 @@
             pnlContenedor.Controls.Add(txtApePaterno);
             pnlContenedor.Controls.Add(lblApePaterno);
             pnlContenedor.Controls.Add(lblNombreAsistente);
-            pnlContenedor.Controls.Add(tctNombreAsistente);
+            pnlContenedor.Controls.Add(txtNombreAsistente);
             pnlContenedor.Controls.Add(lblDatosPersonales1);
             pnlContenedor.Controls.Add(lblConfirmarContrasena);
             pnlContenedor.Controls.Add(txtConfirmarContrasena);
@@ -150,7 +150,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
@@ -167,25 +167,25 @@
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnCancelar1
+            // btnCancelar
             // 
-            btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
-            btnCancelar1.FlatStyle = FlatStyle.Popup;
-            btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = Properties.Resources.cancelar_white;
-            btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.Location = new Point(347, 583);
-            btnCancelar1.Name = "btnCancelar1";
-            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
-            btnCancelar1.Size = new Size(130, 52);
-            btnCancelar1.TabIndex = 60;
-            btnCancelar1.Text = "Cancelar";
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.UseVisualStyleBackColor = false;
-            btnCancelar1.Click += btnCancelar1_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.BackColor = Color.FromArgb(176, 11, 11);
+            btnCancelar.FlatStyle = FlatStyle.Popup;
+            btnCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Image = Properties.Resources.cancelar_white;
+            btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCancelar.Location = new Point(347, 583);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Padding = new Padding(8, 0, 6, 0);
+            btnCancelar.Size = new Size(130, 52);
+            btnCancelar.TabIndex = 60;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar1_Click;
             // 
             // cmbEstado
             // 
@@ -372,15 +372,15 @@
             lblNombreAsistente.TabIndex = 30;
             lblNombreAsistente.Text = "Nombre";
             // 
-            // tctNombreAsistente
+            // txtNombreAsistente
             // 
-            tctNombreAsistente.BackColor = Color.White;
-            tctNombreAsistente.Font = new Font("Segoe UI", 12F);
-            tctNombreAsistente.ForeColor = Color.Black;
-            tctNombreAsistente.Location = new Point(17, 87);
-            tctNombreAsistente.Name = "tctNombreAsistente";
-            tctNombreAsistente.Size = new Size(299, 34);
-            tctNombreAsistente.TabIndex = 29;
+            txtNombreAsistente.BackColor = Color.White;
+            txtNombreAsistente.Font = new Font("Segoe UI", 12F);
+            txtNombreAsistente.ForeColor = Color.Black;
+            txtNombreAsistente.Location = new Point(17, 87);
+            txtNombreAsistente.Name = "txtNombreAsistente";
+            txtNombreAsistente.Size = new Size(299, 34);
+            txtNombreAsistente.TabIndex = 29;
             // 
             // lblDatosPersonales1
             // 
@@ -481,7 +481,7 @@
         private ComboBox cmbTurno;
         private Label lblTurno;
         private Button btnGuardar;
-        private Button btnCancelar1;
+        private Button btnCancelar;
         private ComboBox cmbEstado;
         private Label lblEstado;
         private TextBox txtPassword;
@@ -499,7 +499,7 @@
         private TextBox txtApePaterno;
         private Label lblApePaterno;
         private Label lblNombreAsistente;
-        private TextBox tctNombreAsistente;
+        private TextBox txtNombreAsistente;
         private Label lblDatosPersonales1;
         private Label lblConfirmarContrasena;
         private TextBox txtConfirmarContrasena;

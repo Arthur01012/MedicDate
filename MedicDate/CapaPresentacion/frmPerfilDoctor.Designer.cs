@@ -41,10 +41,10 @@
             lblFichaDoctor = new Label();
             dgvFicha = new DataGridView();
             lblHorario = new Label();
-            dataGridView2 = new DataGridView();
+            dgvHorario = new DataGridView();
             pnlHeaderPerfil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFicha).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHorario).BeginInit();
             SuspendLayout();
             // 
             // pnlHeaderPerfil
@@ -140,20 +140,20 @@
             lblHorario.TabIndex = 29;
             lblHorario.Text = "Horario";
             // 
-            // dataGridView2
+            // dgvHorario
             // 
-            dataGridView2.AllowDrop = true;
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToResizeColumns = false;
-            dataGridView2.AllowUserToResizeRows = false;
+            dgvHorario.AllowDrop = true;
+            dgvHorario.AllowUserToAddRows = false;
+            dgvHorario.AllowUserToDeleteRows = false;
+            dgvHorario.AllowUserToResizeColumns = false;
+            dgvHorario.AllowUserToResizeRows = false;
             dataGridViewCellStyle13.BackColor = Color.LightGray;
             dataGridViewCellStyle13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle13.ForeColor = Color.Black;
-            dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.BackgroundColor = Color.LightGray;
+            dgvHorario.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dgvHorario.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvHorario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvHorario.BackgroundColor = Color.LightGray;
             dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = Color.FromArgb(25, 85, 140);
             dataGridViewCellStyle14.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -161,14 +161,14 @@
             dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.GridColor = Color.Gray;
-            dataGridView2.Location = new Point(12, 271);
-            dataGridView2.MultiSelect = false;
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.ReadOnly = true;
+            dgvHorario.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dgvHorario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHorario.EnableHeadersVisualStyles = false;
+            dgvHorario.GridColor = Color.Gray;
+            dgvHorario.Location = new Point(12, 271);
+            dgvHorario.MultiSelect = false;
+            dgvHorario.Name = "dgvHorario";
+            dgvHorario.ReadOnly = true;
             dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = Color.LightSlateGray;
             dataGridViewCellStyle15.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -176,16 +176,16 @@
             dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            dataGridView2.RowHeadersVisible = false;
-            dataGridView2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dgvHorario.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dgvHorario.RowHeadersVisible = false;
+            dgvHorario.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle16.BackColor = Color.FromArgb(166, 202, 236);
             dataGridViewCellStyle16.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle16;
-            dataGridView2.ScrollBars = ScrollBars.Horizontal;
-            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.Size = new Size(958, 170);
-            dataGridView2.TabIndex = 30;
+            dgvHorario.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dgvHorario.ScrollBars = ScrollBars.Horizontal;
+            dgvHorario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvHorario.Size = new Size(958, 170);
+            dgvHorario.TabIndex = 30;
             // 
             // frmPerfilDoctor
             // 
@@ -193,7 +193,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(982, 453);
-            Controls.Add(dataGridView2);
+            Controls.Add(dgvHorario);
             Controls.Add(lblHorario);
             Controls.Add(dgvFicha);
             Controls.Add(lblFichaDoctor);
@@ -205,7 +205,7 @@
             pnlHeaderPerfil.ResumeLayout(false);
             pnlHeaderPerfil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFicha).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHorario).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,6 +217,6 @@
         private Label lblFichaDoctor;
         private DataGridView dgvFicha;
         private Label lblHorario;
-        private DataGridView dataGridView2;
+        private DataGridView dgvHorario;
     }
 }

@@ -1,5 +1,4 @@
 using MedicDate.CapaPresentacion;
-using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
 using System.Windows.Forms;

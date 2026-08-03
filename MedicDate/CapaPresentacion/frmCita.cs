@@ -54,9 +54,9 @@ namespace MedicDate.CapaPresentacion
             foreach (DataRow row in _dtPacientes.Rows)
                 listaNombres.Add(row["NombreCompleto"].ToString());
 
-            tctNombrePaciente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            tctNombrePaciente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            tctNombrePaciente.AutoCompleteCustomSource = listaNombres;
+            txtNombrePaciente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtNombrePaciente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            txtNombrePaciente.AutoCompleteCustomSource = listaNombres;
         }
 
         private void CargarHorasDisponibles()
@@ -157,14 +157,14 @@ namespace MedicDate.CapaPresentacion
 
         private void tctNombrePaciente_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
+            if (string.IsNullOrWhiteSpace(txtNombrePaciente.Text))
             {
                 _idPacienteSeleccionado = 0;
                 e.Cancel = false;
                 return;
             }
 
-            string input = tctNombrePaciente.Text.Trim();
+            string input = txtNombrePaciente.Text.Trim();
             var foundRows = _dtPacientes.AsEnumerable()
                 .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -181,7 +181,7 @@ namespace MedicDate.CapaPresentacion
             _fechaOriginalCita = cita.fecha;
             _horaOriginalCita = cita.hora;
 
-            tctNombrePaciente.Text = cita.nombre_paciente;
+            txtNombrePaciente.Text = cita.nombre_paciente;
             _idPacienteSeleccionado = cita.id_paciente;
 
             bool doctorEncontrado = false;
@@ -207,7 +207,7 @@ namespace MedicDate.CapaPresentacion
             }
 
             dtpFechaCita.Value = cita.fecha;
-            txtcosto.Text = cita.costo.HasValue ? cita.costo.Value.ToString("N2") : "";
+            txtCosto.Text = cita.costo.HasValue ? cita.costo.Value.ToString("N2") : "";
             txtMotivo.Text = cita.motivo;
         }
 
@@ -216,9 +216,9 @@ namespace MedicDate.CapaPresentacion
             try
             {
                 // 1. Validar paciente
-                if (_idPacienteSeleccionado == 0 && !string.IsNullOrWhiteSpace(tctNombrePaciente.Text))
+                if (_idPacienteSeleccionado == 0 && !string.IsNullOrWhiteSpace(txtNombrePaciente.Text))
                 {
-                    string input = tctNombrePaciente.Text.Trim();
+                    string input = txtNombrePaciente.Text.Trim();
                     var foundRows = _dtPacientes.AsEnumerable()
                         .Where(r => string.Equals(r["NombreCompleto"].ToString().Trim(), input, StringComparison.OrdinalIgnoreCase))
                         .ToList();
@@ -230,7 +230,7 @@ namespace MedicDate.CapaPresentacion
                 {
                     MessageBox.Show("Seleccione un paciente válido de la lista desplegable.",
                         "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    tctNombrePaciente.Focus();
+                    txtNombrePaciente.Focus();
                     return;
                 }
 
@@ -297,7 +297,7 @@ namespace MedicDate.CapaPresentacion
                     duracion = 30,
                     motivo = txtMotivo.Text,
                     estado = "Pendiente",
-                    costo = string.IsNullOrWhiteSpace(txtcosto.Text) ? (decimal?)null : decimal.Parse(txtcosto.Text),
+                    costo = string.IsNullOrWhiteSpace(txtCosto.Text) ? (decimal?)null : decimal.Parse(txtCosto.Text),
                     id_registrado_por = Sesion.IdEmpleadoActual
                 };
 

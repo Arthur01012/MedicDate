@@ -159,7 +159,7 @@
             // btnIniciarConsulta
             // 
             btnIniciarConsulta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnIniciarConsulta.BackColor = Color.DarkGoldenrod;
+            btnIniciarConsulta.BackColor = Color.FromArgb(184, 134, 11);
             btnIniciarConsulta.FlatStyle = FlatStyle.Popup;
             btnIniciarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnIniciarConsulta.ForeColor = Color.Black;
@@ -179,7 +179,7 @@
             // btnFinalizarConsulta
             // 
             btnFinalizarConsulta.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnFinalizarConsulta.BackColor = Color.LimeGreen;
+            btnFinalizarConsulta.BackColor = Color.FromArgb(50, 205, 50);
             btnFinalizarConsulta.BackgroundImageLayout = ImageLayout.None;
             btnFinalizarConsulta.FlatStyle = FlatStyle.Popup;
             btnFinalizarConsulta.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);

@@ -186,7 +186,6 @@
         private Label lblTituloAgenda;
         private DateTimePicker dtpFechaCita;
         private ComboBox cmbFiltroEstado;
-        private Panel panel1;
         private Button btnVerDetalle;
         private DataGridView dgvCita;
     }
