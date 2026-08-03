@@ -93,7 +93,7 @@ namespace MedicDate
             string nombreArchivo = titulo.Replace(" ", "_") + ".pdf";
 
             if (reporte == null) reporte = new clsReporteDAL();
-            reporte.ExportarPDF(tabla, titulo, rangoFechas, nombreArchivo);
+            reporte.ExportarPDF(tabla, titulo, nombreArchivo);
         }
     }
 }
