@@ -71,12 +71,6 @@ namespace MedicDate.CapaPresentacion
             principal.agregarAlContenedor(new frmAgenda(), pnlContenedor);
         }
 
-        private void btnPacientesD_Click(object sender, EventArgs e)
-        {
-            principal = new clsPrincipal();
-            principal.agregarAlContenedor(new frmPacientesD(), pnlContenedor);
-        }
-
         private void btnPerfilD_Click(object sender, EventArgs e)
         {
             principal = new clsPrincipal();
@@ -120,7 +114,6 @@ namespace MedicDate.CapaPresentacion
                 btnCitasA.Visible = false;
                 btnAgendaGeneralA.Visible = false;
                 btnAgendaD.Visible = false;
-                btnPacientesD.Visible = false;
                 btnPerfilD.Visible = false;
 
                 // Mostrar botones según el rol del usuario
@@ -158,11 +151,8 @@ namespace MedicDate.CapaPresentacion
                         btnAgendaD.Visible = true;
                         btnAgendaD.Location = new Point(10, 55); // Ajusta la posición
 
-                        btnPacientesD.Visible = true;
-                        btnPacientesD.Location = new Point(10, 122); // Ajusta la posición
-
                         btnPerfilD.Visible = true;
-                        btnPerfilD.Location = new Point(10, 189); // Ajusta la posición
+                        btnPerfilD.Location = new Point(10, 122); // Ajusta la posición
                         break;
                 }
             }
