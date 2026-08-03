@@ -132,7 +132,7 @@
             cmbTurno.Font = new Font("Segoe UI", 12F);
             cmbTurno.ForeColor = Color.Black;
             cmbTurno.FormattingEnabled = true;
-            cmbTurno.Location = new Point(344, 306);
+            cmbTurno.Location = new Point(17, 439);
             cmbTurno.Name = "cmbTurno";
             cmbTurno.Size = new Size(299, 36);
             cmbTurno.TabIndex = 56;
@@ -142,7 +142,7 @@
             lblTurno.AutoSize = true;
             lblTurno.Font = new Font("Segoe UI", 10.2F);
             lblTurno.ForeColor = Color.Black;
-            lblTurno.Location = new Point(344, 282);
+            lblTurno.Location = new Point(17, 415);
             lblTurno.Name = "lblTurno";
             lblTurno.Size = new Size(55, 23);
             lblTurno.TabIndex = 56;
@@ -154,36 +154,36 @@
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnGuardar.Image = MedicDate.Properties.Resources.guardar_black;
+            btnGuardar.Image = Properties.Resources.guardar_black;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Location = new Point(513, 583);
             btnGuardar.Name = "btnGuardar";
+            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Size = new Size(130, 52);
             btnGuardar.TabIndex = 62;
             btnGuardar.Text = "Guardar";
+            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
-            //
+            // 
             // btnCancelar1
-            //
+            // 
             btnCancelar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCancelar1.BackColor = Color.FromArgb(176, 11, 11);
             btnCancelar1.FlatStyle = FlatStyle.Popup;
             btnCancelar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar1.ForeColor = Color.White;
-            btnCancelar1.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelar1.Image = Properties.Resources.cancelar_white;
             btnCancelar1.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
             btnCancelar1.Location = new Point(347, 583);
             btnCancelar1.Name = "btnCancelar1";
+            btnCancelar1.Padding = new Padding(8, 0, 6, 0);
             btnCancelar1.Size = new Size(130, 52);
             btnCancelar1.TabIndex = 60;
             btnCancelar1.Text = "Cancelar";
+            btnCancelar1.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar1.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar1.UseVisualStyleBackColor = false;
             btnCancelar1.Click += btnCancelar1_Click;
             // 
@@ -214,7 +214,7 @@
             txtPassword.BackColor = Color.White;
             txtPassword.Font = new Font("Segoe UI", 12F);
             txtPassword.ForeColor = Color.Black;
-            txtPassword.Location = new Point(342, 439);
+            txtPassword.Location = new Point(342, 378);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(299, 34);
@@ -226,7 +226,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 10.2F);
             lblPassword.ForeColor = Color.Black;
-            lblPassword.Location = new Point(342, 416);
+            lblPassword.Location = new Point(342, 355);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(97, 23);
             lblPassword.TabIndex = 50;
@@ -237,7 +237,7 @@
             txtUsuarioAsistente.BackColor = Color.White;
             txtUsuarioAsistente.Font = new Font("Segoe UI", 12F);
             txtUsuarioAsistente.ForeColor = Color.Black;
-            txtUsuarioAsistente.Location = new Point(15, 371);
+            txtUsuarioAsistente.Location = new Point(342, 306);
             txtUsuarioAsistente.Name = "txtUsuarioAsistente";
             txtUsuarioAsistente.Size = new Size(299, 34);
             txtUsuarioAsistente.TabIndex = 49;
@@ -247,7 +247,7 @@
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Segoe UI", 10.2F);
             lblUsuario.ForeColor = Color.Black;
-            lblUsuario.Location = new Point(15, 347);
+            lblUsuario.Location = new Point(342, 282);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(68, 23);
             lblUsuario.TabIndex = 48;
@@ -261,7 +261,7 @@
             dtpFechaRegistro.CalendarTitleForeColor = Color.Black;
             dtpFechaRegistro.CalendarTrailingForeColor = Color.Gray;
             dtpFechaRegistro.Font = new Font("Segoe UI", 12F);
-            dtpFechaRegistro.Location = new Point(344, 374);
+            dtpFechaRegistro.Location = new Point(17, 378);
             dtpFechaRegistro.Name = "dtpFechaRegistro";
             dtpFechaRegistro.Size = new Size(299, 34);
             dtpFechaRegistro.TabIndex = 40;
@@ -271,7 +271,7 @@
             lblFechaRegistro.AutoSize = true;
             lblFechaRegistro.Font = new Font("Segoe UI", 10.2F);
             lblFechaRegistro.ForeColor = Color.Black;
-            lblFechaRegistro.Location = new Point(344, 350);
+            lblFechaRegistro.Location = new Point(17, 354);
             lblFechaRegistro.Name = "lblFechaRegistro";
             lblFechaRegistro.Size = new Size(171, 23);
             lblFechaRegistro.TabIndex = 39;
@@ -397,7 +397,7 @@
             // 
             lblConfirmarContrasena.AutoSize = true;
             lblConfirmarContrasena.Font = new Font("Segoe UI", 10.2F);
-            lblConfirmarContrasena.Location = new Point(15, 415);
+            lblConfirmarContrasena.Location = new Point(344, 417);
             lblConfirmarContrasena.Name = "lblConfirmarContrasena";
             lblConfirmarContrasena.Size = new Size(178, 23);
             lblConfirmarContrasena.TabIndex = 63;
@@ -405,9 +405,10 @@
             // 
             // txtConfirmarContrasena
             // 
+            txtConfirmarContrasena.BackColor = Color.White;
             txtConfirmarContrasena.Font = new Font("Segoe UI", 12F);
             txtConfirmarContrasena.ForeColor = Color.Black;
-            txtConfirmarContrasena.Location = new Point(15, 439);
+            txtConfirmarContrasena.Location = new Point(344, 441);
             txtConfirmarContrasena.Name = "txtConfirmarContrasena";
             txtConfirmarContrasena.PasswordChar = '*';
             txtConfirmarContrasena.Size = new Size(299, 34);
@@ -416,6 +417,7 @@
             // 
             // txtTelefonoSecundario
             // 
+            txtTelefonoSecundario.BackColor = Color.White;
             txtTelefonoSecundario.Font = new Font("Segoe UI", 12F);
             txtTelefonoSecundario.ForeColor = Color.Black;
             txtTelefonoSecundario.Location = new Point(344, 234);
@@ -435,6 +437,7 @@
             // 
             // txtCurp
             // 
+            txtCurp.BackColor = Color.White;
             txtCurp.Font = new Font("Segoe UI", 12F);
             txtCurp.ForeColor = Color.Black;
             txtCurp.Location = new Point(17, 306);
@@ -456,11 +459,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(657, 715);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderAsistente);
+            ForeColor = Color.Black;
             Name = "frmAsistente";
-            Text = "Gestion de Asistente";
+            Text = "MedicDate v.1";
             pnlHeaderAsistente.ResumeLayout(false);
             pnlHeaderAsistente.PerformLayout();
             pnlContenedor.ResumeLayout(false);

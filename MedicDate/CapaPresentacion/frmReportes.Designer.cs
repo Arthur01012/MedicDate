@@ -99,10 +99,10 @@
             // rdbReporteAgenda
             // 
             rdbReporteAgenda.AutoSize = true;
-            rdbReporteAgenda.Font = new Font("Segoe UI", 12F);
+            rdbReporteAgenda.Font = new Font("Segoe UI", 11F);
             rdbReporteAgenda.Location = new Point(102, 62);
             rdbReporteAgenda.Name = "rdbReporteAgenda";
-            rdbReporteAgenda.Size = new Size(289, 32);
+            rdbReporteAgenda.Size = new Size(279, 29);
             rdbReporteAgenda.TabIndex = 0;
             rdbReporteAgenda.TabStop = true;
             rdbReporteAgenda.Text = "Agenda por Rango de Fechas";
@@ -112,21 +112,21 @@
             // lblSubtituloReportes
             // 
             lblSubtituloReportes.AutoSize = true;
-            lblSubtituloReportes.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubtituloReportes.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblSubtituloReportes.ForeColor = Color.Black;
             lblSubtituloReportes.Location = new Point(83, 21);
             lblSubtituloReportes.Name = "lblSubtituloReportes";
-            lblSubtituloReportes.Size = new Size(668, 31);
+            lblSubtituloReportes.Size = new Size(643, 30);
             lblSubtituloReportes.TabIndex = 0;
             lblSubtituloReportes.Text = "Seleccione uno de los reportes para consultar la información.";
             // 
             // rdbReporteCitas
             // 
             rdbReporteCitas.AutoSize = true;
-            rdbReporteCitas.Font = new Font("Segoe UI", 12F);
+            rdbReporteCitas.Font = new Font("Segoe UI", 11F);
             rdbReporteCitas.Location = new Point(102, 100);
             rdbReporteCitas.Name = "rdbReporteCitas";
-            rdbReporteCitas.Size = new Size(175, 32);
+            rdbReporteCitas.Size = new Size(169, 29);
             rdbReporteCitas.TabIndex = 1;
             rdbReporteCitas.TabStop = true;
             rdbReporteCitas.Text = "Citas por Estado";
@@ -136,10 +136,10 @@
             // rdbReporteIngresos
             // 
             rdbReporteIngresos.AutoSize = true;
-            rdbReporteIngresos.Font = new Font("Segoe UI", 12F);
+            rdbReporteIngresos.Font = new Font("Segoe UI", 11F);
             rdbReporteIngresos.Location = new Point(102, 138);
             rdbReporteIngresos.Name = "rdbReporteIngresos";
-            rdbReporteIngresos.Size = new Size(106, 32);
+            rdbReporteIngresos.Size = new Size(104, 29);
             rdbReporteIngresos.TabIndex = 2;
             rdbReporteIngresos.TabStop = true;
             rdbReporteIngresos.Text = "Ingresos";
@@ -173,6 +173,11 @@
             // 
             // dtpDesde
             // 
+            dtpDesde.CalendarForeColor = Color.Black;
+            dtpDesde.CalendarMonthBackground = Color.White;
+            dtpDesde.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
+            dtpDesde.CalendarTitleForeColor = Color.Black;
+            dtpDesde.CalendarTrailingForeColor = Color.Gray;
             dtpDesde.Font = new Font("Segoe UI", 12F);
             dtpDesde.Format = DateTimePickerFormat.Short;
             dtpDesde.Location = new Point(65, 15);
@@ -192,6 +197,11 @@
             // 
             // dtpHasta
             // 
+            dtpHasta.CalendarForeColor = Color.Black;
+            dtpHasta.CalendarMonthBackground = Color.White;
+            dtpHasta.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
+            dtpHasta.CalendarTitleForeColor = Color.Black;
+            dtpHasta.CalendarTrailingForeColor = Color.Gray;
             dtpHasta.Font = new Font("Segoe UI", 12F);
             dtpHasta.Format = DateTimePickerFormat.Short;
             dtpHasta.Location = new Point(305, 15);
@@ -212,8 +222,10 @@
             // 
             // cmbPeriodo
             // 
+            cmbPeriodo.BackColor = Color.White;
             cmbPeriodo.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbPeriodo.Font = new Font("Segoe UI", 12F);
+            cmbPeriodo.ForeColor = Color.Black;
             cmbPeriodo.FormattingEnabled = true;
             cmbPeriodo.Items.AddRange(new object[] { "Semanal", "Mensual" });
             cmbPeriodo.Location = new Point(560, 15);
@@ -336,11 +348,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1396, 759);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeader14);
+            ForeColor = Color.Black;
             Name = "frmReportes";
-            Text = "Reportes";
+            Text = "MedicDate v.1";
             pnlHeader14.ResumeLayout(false);
             pnlHeader14.PerformLayout();
             pnlContenedor.ResumeLayout(false);

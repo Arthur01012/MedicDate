@@ -220,6 +220,7 @@
             Controls.Add(pnlHeaderPacientes);
             ForeColor = Color.Black;
             Name = "frmRegistrarPaciente";
+            Text = "MedicDate v.1";
             Load += frmRegistrarPaciente_Load;
             pnlHeaderPacientes.ResumeLayout(false);
             pnlHeaderPacientes.PerformLayout();

@@ -50,9 +50,8 @@
             pnlHeaderAgenda.Font = new Font("Segoe UI", 9F);
             pnlHeaderAgenda.ForeColor = Color.Black;
             pnlHeaderAgenda.Location = new Point(0, 0);
-            pnlHeaderAgenda.Margin = new Padding(3, 2, 3, 2);
             pnlHeaderAgenda.Name = "pnlHeaderAgenda";
-            pnlHeaderAgenda.Size = new Size(772, 35);
+            pnlHeaderAgenda.Size = new Size(882, 47);
             pnlHeaderAgenda.TabIndex = 12;
             // 
             // lblTituloAgenda
@@ -60,25 +59,24 @@
             lblTituloAgenda.AutoSize = true;
             lblTituloAgenda.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTituloAgenda.ForeColor = Color.White;
-            lblTituloAgenda.Location = new Point(3, -2);
+            lblTituloAgenda.Location = new Point(3, -3);
             lblTituloAgenda.Name = "lblTituloAgenda";
-            lblTituloAgenda.Size = new Size(116, 37);
+            lblTituloAgenda.Size = new Size(143, 46);
             lblTituloAgenda.TabIndex = 0;
             lblTituloAgenda.Text = "Agenda";
             // 
             // dtpFechaCita
             // 
-            dtpFechaCita.CalendarFont = new Font("Candara", 12F);
+            dtpFechaCita.CalendarFont = new Font("Segoe UI", 12F);
             dtpFechaCita.CalendarForeColor = Color.Black;
             dtpFechaCita.CalendarMonthBackground = Color.White;
             dtpFechaCita.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
             dtpFechaCita.CalendarTitleForeColor = Color.Black;
             dtpFechaCita.CalendarTrailingForeColor = Color.Gray;
             dtpFechaCita.Font = new Font("Segoe UI", 12F);
-            dtpFechaCita.Location = new Point(10, 40);
-            dtpFechaCita.Margin = new Padding(3, 2, 3, 2);
+            dtpFechaCita.Location = new Point(11, 53);
             dtpFechaCita.Name = "dtpFechaCita";
-            dtpFechaCita.Size = new Size(262, 29);
+            dtpFechaCita.Size = new Size(299, 34);
             dtpFechaCita.TabIndex = 30;
             dtpFechaCita.ValueChanged += dtpFechaCita_ValueChanged;
             // 
@@ -88,10 +86,9 @@
             cmbFiltroEstado.Font = new Font("Segoe UI", 12F);
             cmbFiltroEstado.ForeColor = Color.Black;
             cmbFiltroEstado.FormattingEnabled = true;
-            cmbFiltroEstado.Location = new Point(291, 39);
-            cmbFiltroEstado.Margin = new Padding(3, 2, 3, 2);
+            cmbFiltroEstado.Location = new Point(333, 52);
             cmbFiltroEstado.Name = "cmbFiltroEstado";
-            cmbFiltroEstado.Size = new Size(262, 29);
+            cmbFiltroEstado.Size = new Size(299, 36);
             cmbFiltroEstado.TabIndex = 31;
             cmbFiltroEstado.SelectedIndexChanged += cmbDoctor_SelectedIndexChanged;
             // 
@@ -104,11 +101,10 @@
             btnVerDetalle.ForeColor = Color.Black;
             btnVerDetalle.Image = Properties.Resources.detalle_black;
             btnVerDetalle.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVerDetalle.Location = new Point(632, 297);
-            btnVerDetalle.Margin = new Padding(3, 2, 3, 2);
+            btnVerDetalle.Location = new Point(722, 396);
             btnVerDetalle.Name = "btnVerDetalle";
-            btnVerDetalle.Padding = new Padding(7, 0, 5, 0);
-            btnVerDetalle.Size = new Size(130, 34);
+            btnVerDetalle.Padding = new Padding(8, 0, 6, 0);
+            btnVerDetalle.Size = new Size(149, 45);
             btnVerDetalle.TabIndex = 33;
             btnVerDetalle.Text = "Ver detalle";
             btnVerDetalle.TextAlign = ContentAlignment.MiddleRight;
@@ -141,8 +137,7 @@
             dgvCita.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCita.EnableHeadersVisualStyles = false;
             dgvCita.GridColor = Color.Gray;
-            dgvCita.Location = new Point(11, 70);
-            dgvCita.Margin = new Padding(3, 2, 3, 2);
+            dgvCita.Location = new Point(13, 93);
             dgvCita.MultiSelect = false;
             dgvCita.Name = "dgvCita";
             dgvCita.ReadOnly = true;
@@ -161,24 +156,23 @@
             dgvCita.RowsDefaultCellStyle = dataGridViewCellStyle8;
             dgvCita.ScrollBars = ScrollBars.Horizontal;
             dgvCita.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCita.Size = new Size(751, 223);
+            dgvCita.Size = new Size(858, 297);
             dgvCita.TabIndex = 34;
             // 
             // frmAgenda
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(772, 340);
+            ClientSize = new Size(882, 453);
             Controls.Add(dgvCita);
             Controls.Add(btnVerDetalle);
             Controls.Add(cmbFiltroEstado);
             Controls.Add(dtpFechaCita);
             Controls.Add(pnlHeaderAgenda);
             ForeColor = Color.Black;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "frmAgenda";
-            Text = "Agenda";
+            Text = "MedicDate v.1";
             Load += frmAgenda_Load;
             pnlHeaderAgenda.ResumeLayout(false);
             pnlHeaderAgenda.PerformLayout();

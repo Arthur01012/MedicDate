@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             pnlHeader5 = new Panel();
             lbAsistente = new Label();
             pnlContenedor2 = new Panel();
@@ -109,87 +109,85 @@
             btnDespues.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnDespues.BackColor = Color.FromArgb(166, 202, 236);
             btnDespues.FlatStyle = FlatStyle.Popup;
-            btnDespues.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDespues.Image = MedicDate.Properties.Resources.siguiente_black;
-            btnDespues.ImageAlign = ContentAlignment.MiddleCenter;
+            btnDespues.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnDespues.Image = Properties.Resources.siguiente_black;
             btnDespues.Location = new Point(1295, 652);
             btnDespues.Name = "btnDespues";
             btnDespues.Size = new Size(55, 45);
             btnDespues.TabIndex = 13;
             btnDespues.UseVisualStyleBackColor = false;
             btnDespues.Click += btnDespues_Click;
-            //
+            // 
             // btnAnterior
-            //
+            // 
             btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAnterior.BackColor = Color.FromArgb(166, 202, 236);
             btnAnterior.FlatStyle = FlatStyle.Popup;
-            btnAnterior.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAnterior.Image = MedicDate.Properties.Resources.anterior_black;
-            btnAnterior.ImageAlign = ContentAlignment.MiddleCenter;
+            btnAnterior.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnAnterior.Image = Properties.Resources.anterior_black;
             btnAnterior.Location = new Point(1093, 652);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.Size = new Size(55, 45);
             btnAnterior.TabIndex = 12;
             btnAnterior.UseVisualStyleBackColor = false;
             btnAnterior.Click += btnAnterior_Click;
-            //
+            // 
             // btnDesactivar
-            //
+            // 
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
-            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.Image = Properties.Resources.desactivar_white;
             btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
-            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1202, 31);
             btnDesactivar.Name = "btnDesactivar";
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Size = new Size(148, 45);
             btnDesactivar.TabIndex = 11;
             btnDesactivar.Text = "Desactivar";
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja2_Click;
-            //
+            // 
             // btnEditarAsistente
-            //
+            // 
             btnEditarAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarAsistente.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarAsistente.BackgroundImageLayout = ImageLayout.None;
             btnEditarAsistente.FlatStyle = FlatStyle.Popup;
             btnEditarAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnEditarAsistente.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarAsistente.Image = Properties.Resources.editar_black;
             btnEditarAsistente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditarAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEditarAsistente.TextAlign = ContentAlignment.MiddleRight;
-            btnEditarAsistente.Padding = new Padding(8, 0, 6, 0);
             btnEditarAsistente.Location = new Point(1022, 31);
             btnEditarAsistente.Name = "btnEditarAsistente";
+            btnEditarAsistente.Padding = new Padding(8, 0, 6, 0);
             btnEditarAsistente.Size = new Size(148, 45);
             btnEditarAsistente.TabIndex = 10;
             btnEditarAsistente.Text = "Editar";
+            btnEditarAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarAsistente.UseVisualStyleBackColor = false;
             btnEditarAsistente.Click += btnEditarAsistente_Click;
-            //
+            // 
             // btnNuevoAsistente
-            //
+            // 
             btnNuevoAsistente.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoAsistente.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoAsistente.FlatStyle = FlatStyle.Popup;
             btnNuevoAsistente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnNuevoAsistente.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoAsistente.Image = Properties.Resources.nuevo_black;
             btnNuevoAsistente.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNuevoAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnNuevoAsistente.TextAlign = ContentAlignment.MiddleRight;
-            btnNuevoAsistente.Padding = new Padding(8, 0, 6, 0);
             btnNuevoAsistente.Location = new Point(837, 31);
             btnNuevoAsistente.Name = "btnNuevoAsistente";
+            btnNuevoAsistente.Padding = new Padding(8, 0, 6, 0);
             btnNuevoAsistente.Size = new Size(148, 45);
             btnNuevoAsistente.TabIndex = 9;
             btnNuevoAsistente.Text = "Agregar";
+            btnNuevoAsistente.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoAsistente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoAsistente.UseVisualStyleBackColor = false;
             btnNuevoAsistente.Click += btnNuevoAsistente_Click;
             // 
@@ -200,22 +198,22 @@
             dgvAsistentes.AllowUserToDeleteRows = false;
             dgvAsistentes.AllowUserToResizeColumns = false;
             dgvAsistentes.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.LightGray;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dgvAsistentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = Color.LightGray;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dgvAsistentes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             dgvAsistentes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAsistentes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAsistentes.BackgroundColor = Color.LightGray;
             dgvAsistentes.BorderStyle = BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(25, 85, 140);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(25, 85, 140);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgvAsistentes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAsistentes.EnableHeadersVisualStyles = false;
             dgvAsistentes.GridColor = Color.Gray;
@@ -223,19 +221,19 @@
             dgvAsistentes.MultiSelect = false;
             dgvAsistentes.Name = "dgvAsistentes";
             dgvAsistentes.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.LightSlateGray;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvAsistentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.LightSlateGray;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dgvAsistentes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
             dgvAsistentes.RowHeadersVisible = false;
             dgvAsistentes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(166, 202, 236);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(166, 202, 236);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dgvAsistentes.RowsDefaultCellStyle = dataGridViewCellStyle12;
             dgvAsistentes.ScrollBars = ScrollBars.Horizontal;
             dgvAsistentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAsistentes.Size = new Size(1309, 551);
@@ -244,10 +242,10 @@
             // lblBuscar1
             // 
             lblBuscar1.AutoSize = true;
-            lblBuscar1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            lblBuscar1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblBuscar1.Location = new Point(42, 43);
             lblBuscar1.Name = "lblBuscar1";
-            lblBuscar1.Size = new Size(68, 23);
+            lblBuscar1.Size = new Size(89, 30);
             lblBuscar1.TabIndex = 7;
             lblBuscar1.Text = "Buscar:";
             // 
@@ -267,11 +265,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1398, 759);
             Controls.Add(pnlContenedor2);
             Controls.Add(pnlHeader5);
+            ForeColor = Color.Black;
             Name = "frmRegistrarAsistente";
-            Text = "Administrador";
+            Text = "MedicDate v.1";
             pnlHeader5.ResumeLayout(false);
             pnlHeader5.PerformLayout();
             pnlContenedor2.ResumeLayout(false);

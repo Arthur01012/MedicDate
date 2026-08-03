@@ -236,11 +236,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             label1.ForeColor = Color.White;
             label1.Location = new Point(35, 13);
             label1.Name = "label1";
-            label1.Size = new Size(99, 31);
+            label1.Size = new Size(93, 30);
             label1.TabIndex = 0;
             label1.Text = "Modulo";
             // 
@@ -348,13 +348,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Gainsboro;
+            BackColor = Color.White;
             ClientSize = new Size(1582, 853);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlLateral1);
             Controls.Add(pnlHeaderMedicDate);
+            ForeColor = Color.Black;
             Name = "frmPrincipalAdmin";
-            Text = "Seccion";
+            Text = " ";
             WindowState = FormWindowState.Maximized;
             Load += frmPrincipalAdmin_Load;
             pnlHeaderMedicDate.ResumeLayout(false);

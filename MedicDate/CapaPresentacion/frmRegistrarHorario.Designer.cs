@@ -91,16 +91,16 @@
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
-            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.Image = Properties.Resources.desactivar_white;
             btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
-            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1226, 12);
             btnDesactivar.Name = "btnDesactivar";
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Size = new Size(148, 45);
             btnDesactivar.TabIndex = 11;
             btnDesactivar.Text = "Desactivar";
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDesactivar_Click;
             // 
@@ -112,16 +112,16 @@
             btnEditarHorario.FlatStyle = FlatStyle.Popup;
             btnEditarHorario.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnEditarHorario.ForeColor = Color.Black;
-            btnEditarHorario.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarHorario.Image = Properties.Resources.editar_black;
             btnEditarHorario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditarHorario.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEditarHorario.TextAlign = ContentAlignment.MiddleRight;
-            btnEditarHorario.Padding = new Padding(8, 0, 6, 0);
             btnEditarHorario.Location = new Point(1046, 12);
             btnEditarHorario.Name = "btnEditarHorario";
+            btnEditarHorario.Padding = new Padding(8, 0, 6, 0);
             btnEditarHorario.Size = new Size(148, 45);
             btnEditarHorario.TabIndex = 10;
             btnEditarHorario.Text = "Editar";
+            btnEditarHorario.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarHorario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarHorario.UseVisualStyleBackColor = false;
             btnEditarHorario.Click += btnEditarHorario_Click;
             // 
@@ -132,16 +132,16 @@
             btnAsignarHora.FlatStyle = FlatStyle.Popup;
             btnAsignarHora.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAsignarHora.ForeColor = Color.Black;
-            btnAsignarHora.Image = MedicDate.Properties.Resources.horarios_black;
+            btnAsignarHora.Image = Properties.Resources.horarios_black;
             btnAsignarHora.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAsignarHora.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnAsignarHora.TextAlign = ContentAlignment.MiddleRight;
-            btnAsignarHora.Padding = new Padding(8, 0, 6, 0);
             btnAsignarHora.Location = new Point(861, 12);
             btnAsignarHora.Name = "btnAsignarHora";
+            btnAsignarHora.Padding = new Padding(8, 0, 6, 0);
             btnAsignarHora.Size = new Size(148, 45);
             btnAsignarHora.TabIndex = 9;
             btnAsignarHora.Text = "Asignar";
+            btnAsignarHora.TextAlign = ContentAlignment.MiddleRight;
+            btnAsignarHora.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAsignarHora.UseVisualStyleBackColor = false;
             btnAsignarHora.Click += btnAsignarHora_Click;
             // 
@@ -219,10 +219,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1398, 759);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderHorarios);
+            ForeColor = Color.Black;
             Name = "frmRegistrarHorario";
+            Text = "MedicDate v.1";
             pnlHeaderHorarios.ResumeLayout(false);
             pnlHeaderHorarios.PerformLayout();
             pnlContenedor.ResumeLayout(false);

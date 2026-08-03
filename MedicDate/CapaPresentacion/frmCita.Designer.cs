@@ -271,11 +271,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(641, 543);
             Controls.Add(pnlContanedor);
             Controls.Add(pnlHeaderCita);
+            ForeColor = Color.Black;
             Name = "frmCita";
-            Text = "Gestion de Citas";
+            Text = "MedicDate v.1";
             Load += frmCita_Load;
             pnlHeaderCita.ResumeLayout(false);
             pnlHeaderCita.PerformLayout();

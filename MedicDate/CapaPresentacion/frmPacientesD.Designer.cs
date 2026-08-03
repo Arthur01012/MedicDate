@@ -129,16 +129,16 @@
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.Black;
-            btnGuardar.Image = MedicDate.Properties.Resources.ver_historial_black;
+            btnGuardar.Image = Properties.Resources.ver_historial_black;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Location = new Point(840, 339);
             btnGuardar.Name = "btnGuardar";
+            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Size = new Size(130, 52);
             btnGuardar.TabIndex = 44;
             btnGuardar.Text = "Ver Historial";
+            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             // 
             // frmPacientesD
@@ -153,7 +153,7 @@
             Controls.Add(pnlHeaderPacientes);
             ForeColor = Color.Black;
             Name = "frmPacientesD";
-            Text = "frmPacientes";
+            Text = "MedicDate v.1";
             pnlHeaderPacientes.ResumeLayout(false);
             pnlHeaderPacientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPacientes).EndInit();

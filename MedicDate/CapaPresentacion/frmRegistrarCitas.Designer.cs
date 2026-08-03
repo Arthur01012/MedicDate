@@ -290,6 +290,7 @@
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeader14);
             Name = "frmRegistrarCitas";
+            Text = "MedicDate v.1";
             Load += frmRegistrarCitas_Load;
             pnlHeader14.ResumeLayout(false);
             pnlHeader14.PerformLayout();

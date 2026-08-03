@@ -111,86 +111,84 @@
             btnDespues.BackColor = Color.FromArgb(166, 202, 236);
             btnDespues.FlatStyle = FlatStyle.Popup;
             btnDespues.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDespues.Image = MedicDate.Properties.Resources.siguiente_black;
-            btnDespues.ImageAlign = ContentAlignment.MiddleCenter;
+            btnDespues.Image = Properties.Resources.siguiente_black;
             btnDespues.Location = new Point(1284, 647);
             btnDespues.Name = "btnDespues";
             btnDespues.Size = new Size(55, 45);
             btnDespues.TabIndex = 7;
             btnDespues.UseVisualStyleBackColor = false;
             btnDespues.Click += btnDespues_Click;
-            //
+            // 
             // btnAnterior
-            //
+            // 
             btnAnterior.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAnterior.BackColor = Color.FromArgb(166, 202, 236);
             btnAnterior.FlatStyle = FlatStyle.Popup;
             btnAnterior.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAnterior.Image = MedicDate.Properties.Resources.anterior_black;
-            btnAnterior.ImageAlign = ContentAlignment.MiddleCenter;
+            btnAnterior.Image = Properties.Resources.anterior_black;
             btnAnterior.Location = new Point(1082, 647);
             btnAnterior.Name = "btnAnterior";
             btnAnterior.Size = new Size(55, 45);
             btnAnterior.TabIndex = 6;
             btnAnterior.UseVisualStyleBackColor = false;
             btnAnterior.Click += btnAnterior_Click;
-            //
+            // 
             // btnDesactivar
-            //
+            // 
             btnDesactivar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnDesactivar.BackColor = Color.FromArgb(176, 11, 11);
             btnDesactivar.FlatStyle = FlatStyle.Popup;
             btnDesactivar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnDesactivar.ForeColor = Color.White;
-            btnDesactivar.Image = MedicDate.Properties.Resources.desactivar_white;
+            btnDesactivar.Image = Properties.Resources.desactivar_white;
             btnDesactivar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
-            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Location = new Point(1191, 31);
             btnDesactivar.Name = "btnDesactivar";
+            btnDesactivar.Padding = new Padding(8, 0, 6, 0);
             btnDesactivar.Size = new Size(148, 45);
             btnDesactivar.TabIndex = 5;
             btnDesactivar.Text = "Desactivar";
+            btnDesactivar.TextAlign = ContentAlignment.MiddleRight;
+            btnDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDesactivar.UseVisualStyleBackColor = false;
             btnDesactivar.Click += btnDarBaja_Click;
-            //
+            // 
             // btnEditarDoctor
-            //
+            // 
             btnEditarDoctor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnEditarDoctor.BackColor = Color.FromArgb(165, 165, 173);
             btnEditarDoctor.BackgroundImageLayout = ImageLayout.None;
             btnEditarDoctor.FlatStyle = FlatStyle.Popup;
             btnEditarDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnEditarDoctor.Image = MedicDate.Properties.Resources.editar_black;
+            btnEditarDoctor.Image = Properties.Resources.editar_black;
             btnEditarDoctor.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditarDoctor.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnEditarDoctor.TextAlign = ContentAlignment.MiddleRight;
-            btnEditarDoctor.Padding = new Padding(8, 0, 6, 0);
             btnEditarDoctor.Location = new Point(1015, 31);
             btnEditarDoctor.Name = "btnEditarDoctor";
+            btnEditarDoctor.Padding = new Padding(8, 0, 6, 0);
             btnEditarDoctor.Size = new Size(148, 45);
             btnEditarDoctor.TabIndex = 4;
             btnEditarDoctor.Text = "Editar";
+            btnEditarDoctor.TextAlign = ContentAlignment.MiddleRight;
+            btnEditarDoctor.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarDoctor.UseVisualStyleBackColor = false;
             btnEditarDoctor.Click += btnEditarDoctor_Click;
-            //
+            // 
             // btnNuevoDoctor
-            //
+            // 
             btnNuevoDoctor.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNuevoDoctor.BackColor = Color.FromArgb(166, 202, 236);
             btnNuevoDoctor.FlatStyle = FlatStyle.Popup;
             btnNuevoDoctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnNuevoDoctor.Image = MedicDate.Properties.Resources.nuevo_black;
+            btnNuevoDoctor.Image = Properties.Resources.nuevo_black;
             btnNuevoDoctor.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNuevoDoctor.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnNuevoDoctor.TextAlign = ContentAlignment.MiddleRight;
-            btnNuevoDoctor.Padding = new Padding(8, 0, 6, 0);
             btnNuevoDoctor.Location = new Point(832, 31);
             btnNuevoDoctor.Name = "btnNuevoDoctor";
+            btnNuevoDoctor.Padding = new Padding(8, 0, 6, 0);
             btnNuevoDoctor.Size = new Size(148, 45);
             btnNuevoDoctor.TabIndex = 3;
             btnNuevoDoctor.Text = "Agregar";
+            btnNuevoDoctor.TextAlign = ContentAlignment.MiddleRight;
+            btnNuevoDoctor.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoDoctor.UseVisualStyleBackColor = false;
             btnNuevoDoctor.Click += btnNuevoDoctor_Click;
             // 
@@ -270,11 +268,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1398, 759);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderDoctores);
+            ForeColor = Color.Black;
             Name = "frmRegistrarDoctor";
-            Text = "Administrador";
+            Text = "MedicDate v.1";
             pnlHeaderDoctores.ResumeLayout(false);
             pnlHeaderDoctores.PerformLayout();
             pnlContenedor.ResumeLayout(false);

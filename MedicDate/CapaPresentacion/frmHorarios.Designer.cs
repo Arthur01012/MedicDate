@@ -124,7 +124,7 @@
             // 
             // dtpInicio
             // 
-            dtpInicio.CalendarFont = new Font("Candara", 12F);
+            dtpInicio.CalendarFont = new Font("Segoe UI", 12F);
             dtpInicio.CalendarForeColor = Color.Black;
             dtpInicio.CalendarMonthBackground = Color.White;
             dtpInicio.CalendarTitleBackColor = Color.FromArgb(166, 202, 236);
@@ -156,16 +156,16 @@
             btnGuardar.BackColor = Color.FromArgb(166, 202, 236);
             btnGuardar.FlatStyle = FlatStyle.Popup;
             btnGuardar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnGuardar.Image = MedicDate.Properties.Resources.guardar_black;
+            btnGuardar.Image = Properties.Resources.guardar_black;
             btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
-            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Location = new Point(479, 409);
             btnGuardar.Name = "btnGuardar";
+            btnGuardar.Padding = new Padding(8, 0, 6, 0);
             btnGuardar.Size = new Size(130, 52);
             btnGuardar.TabIndex = 115;
             btnGuardar.Text = "Guardar";
+            btnGuardar.TextAlign = ContentAlignment.MiddleRight;
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGuardar.UseVisualStyleBackColor = false;
             // 
             // btnCancelar5
@@ -175,16 +175,16 @@
             btnCancelar5.FlatStyle = FlatStyle.Popup;
             btnCancelar5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnCancelar5.ForeColor = Color.White;
-            btnCancelar5.Image = MedicDate.Properties.Resources.cancelar_white;
+            btnCancelar5.Image = Properties.Resources.cancelar_white;
             btnCancelar5.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancelar5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnCancelar5.TextAlign = ContentAlignment.MiddleRight;
-            btnCancelar5.Padding = new Padding(8, 0, 6, 0);
             btnCancelar5.Location = new Point(312, 409);
             btnCancelar5.Name = "btnCancelar5";
+            btnCancelar5.Padding = new Padding(8, 0, 6, 0);
             btnCancelar5.Size = new Size(130, 52);
             btnCancelar5.TabIndex = 114;
             btnCancelar5.Text = "Cancelar";
+            btnCancelar5.TextAlign = ContentAlignment.MiddleRight;
+            btnCancelar5.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCancelar5.UseVisualStyleBackColor = false;
             btnCancelar5.Click += btnCancelar5_Click;
             // 
@@ -328,6 +328,7 @@
             cmbDoctores.BackColor = Color.White;
             cmbDoctores.FlatStyle = FlatStyle.System;
             cmbDoctores.Font = new Font("Segoe UI", 12F);
+            cmbDoctores.ForeColor = Color.Black;
             cmbDoctores.FormattingEnabled = true;
             cmbDoctores.Location = new Point(16, 52);
             cmbDoctores.Name = "cmbDoctores";
@@ -349,11 +350,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(632, 543);
             Controls.Add(pnlContenedor);
             Controls.Add(pnlHeaderHorario);
+            ForeColor = Color.Black;
             Name = "frmHorarios";
-            Text = "frmHorarios";
+            Text = "MedicDate v.1";
             pnlHeaderHorario.ResumeLayout(false);
             pnlHeaderHorario.PerformLayout();
             pnlContenedor.ResumeLayout(false);
