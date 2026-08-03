@@ -20,13 +20,59 @@ namespace MedicDate.CapaPresentacion
         private int? idPacienteEditar = null;// Variable para almacenar el ID del paciente a editar, si es necesario
 
         // Constructor
-        public frmPaciente()
+        public frmPaciente(int idPaciente)// Constructor que recibe un ID de paciente para edición (0 = registro nuevo)
         {
             InitializeComponent();
-            // Asegura que los manejadores estén registrados
-
             ConfigurarFormulario();
             CargarMunicipios();
+
+            if (idPaciente != 0)
+            {
+                idPacienteEditar = idPaciente;// Guardamos el ID del paciente a editar
+                CargarDatosPaciente(idPaciente);
+            }
+        }
+
+        private void CargarDatosPaciente(int idPaciente)// Carga de datos del paciente para edición
+        {
+            try
+            {
+                clsPaciente? pacienteEdit = clsPacienteDAL.ObtenerPorId(idPaciente);// Obtenemos el paciente desde la base de datos
+                if (pacienteEdit == null)
+                {
+                    MessageBox.Show("No se encontró el paciente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
+                }
+
+                paciente = pacienteEdit;
+
+                // Llenar controles
+                txtNombreP.Text = paciente.nombre;
+                txtAPaterno.Text = paciente.apellido_paterno;
+                txtAMaterno.Text = paciente.apellido_materno;
+                txtEmail.Text = paciente.email;
+                txtTelefono.Text = paciente.telefono_principal;
+                txtTelefonoSec.Text = paciente.telefono_secundario;
+                dtpFechaRegistro.Value = paciente.fecha_nacimiento;
+                txtCalle.Text = paciente.calle;
+                txtColonia.Text = paciente.colonia;
+                txtNumero.Text = paciente.numero;
+                txtLocalidad.Text = paciente.localidad;
+                if (paciente.id_municipio.HasValue)
+                    cmbMunicipio.SelectedValue = paciente.id_municipio.Value;
+                txtAlergias.Text = paciente.alergias;
+                txtNotas.Text = paciente.notas_medicas;
+
+                // Cambiar texto del botón y título
+                btnGuardar.Text = "Actualizar";
+                this.Text = "Editar Paciente";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
         }
 
         private void CargarMunicipios()// Carga los municipios en el ComboBox
@@ -90,8 +136,8 @@ namespace MedicDate.CapaPresentacion
                 return false;
             }
 
-            // Teléfono 
-            if (string.IsNullOrEmpty(txtTelefono.Text) && !clsValidaciones.EsTelefonoValido(txtTelefono.Text))
+            // Teléfono
+            if (string.IsNullOrEmpty(txtTelefono.Text))
             {
                 MessageBox.Show("El teléfono es obligatorio.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -99,8 +145,16 @@ namespace MedicDate.CapaPresentacion
                 txtTelefono.Focus();
                 return false;
             }
+            if (!clsValidaciones.EsTelefonoValido(txtTelefono.Text))
+            {
+                MessageBox.Show("El teléfono no es válido.", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            
+                txtTelefono.Focus();
+                return false;
+            }
+
+
             // Verifica que el número de teléfono secundario
             if (!string.IsNullOrEmpty(txtTelefonoSec.Text) && !clsValidaciones.EsTelefonoValido(txtTelefonoSec.Text))
             {
@@ -212,28 +266,48 @@ namespace MedicDate.CapaPresentacion
                 paciente.alergias = txtAlergias.Text.Trim();
                 paciente.notas_medicas = txtNotas.Text.Trim();
 
-                // Guardar el paciente en la base de datos.
-                int idPaciente = clsPacienteDAL.Insertar(paciente, transaccion);
-
-                if (idPaciente > 0)
+                if (idPacienteEditar.HasValue) // MODO EDICIÓN
                 {
+                    paciente.id_paciente = idPacienteEditar.Value;
+
+                    if (!clsPacienteDAL.Actualizar(paciente, transaccion))
+                        throw new Exception("No se pudo actualizar el paciente.");
+
                     transaccion.Commit();
 
-                    MessageBox.Show("Paciente registrado correctamente.",
+                    MessageBox.Show("Paciente actualizado correctamente.",
                         "Información",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
 
-                    LimpiarFormulario();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                else
+                else // MODO REGISTRO
                 {
-                    transaccion.Rollback();
+                    // Guardar el paciente en la base de datos.
+                    int idPaciente = clsPacienteDAL.Insertar(paciente, transaccion);
 
-                    MessageBox.Show("No se pudo registrar el paciente.",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    if (idPaciente > 0)
+                    {
+                        transaccion.Commit();
+
+                        MessageBox.Show("Paciente registrado correctamente.",
+                            "Información",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        LimpiarFormulario();
+                    }
+                    else
+                    {
+                        transaccion.Rollback();
+
+                        MessageBox.Show("No se pudo registrar el paciente.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
                 }
 
             }

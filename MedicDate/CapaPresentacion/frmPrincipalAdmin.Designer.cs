@@ -33,7 +33,6 @@
             lblTitulo = new Label();
             pnlLateral1 = new Panel();
             btnPerfilD = new Button();
-            btnPacientesD = new Button();
             btnAgendaD = new Button();
             btnAgendaGeneralA = new Button();
             btnCitasA = new Button();
@@ -91,7 +90,6 @@
             pnlLateral1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlLateral1.BackColor = Color.FromArgb(25, 85, 140);
             pnlLateral1.Controls.Add(btnPerfilD);
-            pnlLateral1.Controls.Add(btnPacientesD);
             pnlLateral1.Controls.Add(btnAgendaD);
             pnlLateral1.Controls.Add(btnAgendaGeneralA);
             pnlLateral1.Controls.Add(btnCitasA);
@@ -125,25 +123,7 @@
             btnPerfilD.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnPerfilD.UseVisualStyleBackColor = false;
             btnPerfilD.Click += btnPerfilD_Click;
-            // 
-            // btnPacientesD
-            // 
-            btnPacientesD.BackColor = Color.FromArgb(166, 202, 236);
-            btnPacientesD.FlatStyle = FlatStyle.Popup;
-            btnPacientesD.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnPacientesD.ForeColor = Color.Black;
-            btnPacientesD.Image = Properties.Resources.pacientes_black;
-            btnPacientesD.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPacientesD.Location = new Point(10, 597);
-            btnPacientesD.Name = "btnPacientesD";
-            btnPacientesD.Padding = new Padding(10, 0, 0, 0);
-            btnPacientesD.Size = new Size(148, 60);
-            btnPacientesD.TabIndex = 1;
-            btnPacientesD.Text = "Pacientes";
-            btnPacientesD.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnPacientesD.UseVisualStyleBackColor = false;
-            btnPacientesD.Click += btnPacientesD_Click;
-            // 
+            //
             // btnAgendaD
             // 
             btnAgendaD.BackColor = Color.FromArgb(166, 202, 236);
@@ -381,7 +361,6 @@
         private Button btnPacientesA;
         private Button btnAgendaGeneralA;
         private Button btnCitasA;
-        private Button btnPacientesD;
         private Button btnAgendaD;
         private Button btnPerfilD;
         private Button btnReportes;

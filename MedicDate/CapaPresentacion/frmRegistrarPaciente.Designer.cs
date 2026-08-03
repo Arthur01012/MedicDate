@@ -168,6 +168,7 @@
             btnEditarPaciente.TextAlign = ContentAlignment.MiddleRight;
             btnEditarPaciente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditarPaciente.UseVisualStyleBackColor = false;
+            btnEditarPaciente.Click += btnEditarPaciente_Click;
             // 
             // btnNuevoPaciente
             // 
