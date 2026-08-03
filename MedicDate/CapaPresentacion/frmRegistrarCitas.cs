@@ -160,7 +160,10 @@ namespace MedicDate.CapaPresentacion
             using (var frm = new frmCita())
             {
                 if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    SincronizarFiltroConCitaGuardada(frm);
                     RefrescarVista();
+                }
             }
         }
 
@@ -175,9 +178,22 @@ namespace MedicDate.CapaPresentacion
             // Abrir formulario de edición
             using (var frm = new frmCita(idCita))
             {
-                frm.ShowDialog();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    SincronizarFiltroConCitaGuardada(frm);
+
                 RefrescarVista();
             }
+        }
+
+        // Actualiza el filtro de doctor/fecha con los datos de la cita recién guardada,
+        // para que aparezca de inmediato en el grid aunque no coincidiera con el filtro previo.
+        private void SincronizarFiltroConCitaGuardada(frmCita frm)
+        {
+            if (frm.DoctorGuardado.HasValue)
+                cmbFiltrarDoctor.SelectedValue = frm.DoctorGuardado.Value;
+
+            if (frm.FechaGuardada.HasValue)
+                dtpFechaCita.Value = frm.FechaGuardada.Value;
         }
 
         private void btnConfirmarCita_Click(object sender, EventArgs e)

@@ -17,6 +17,11 @@ namespace MedicDate.CapaPresentacion
         private DateTime _fechaOriginalCita;
         private TimeSpan _horaOriginalCita;
 
+        // Expone el doctor y la fecha de la última cita guardada, para que el formulario
+        // que abrió este diálogo pueda sincronizar su filtro y mostrarla de inmediato.
+        public int? DoctorGuardado { get; private set; }
+        public DateTime? FechaGuardada { get; private set; }
+
         public frmCita()
         {
             InitializeComponent();
@@ -298,7 +303,7 @@ namespace MedicDate.CapaPresentacion
                     motivo = txtMotivo.Text,
                     estado = "Pendiente",
                     costo = string.IsNullOrWhiteSpace(txtCosto.Text) ? (decimal?)null : decimal.Parse(txtCosto.Text),
-                    id_registrado_por = Sesion.IdEmpleadoActual
+                    id_registrado_por = Sesion.IdEmpleadoActual == 0 ? (int?)null : Sesion.IdEmpleadoActual
                 };
 
                 // 7. Validar y preparar (lanza excepción si hay conflicto)
@@ -320,6 +325,9 @@ namespace MedicDate.CapaPresentacion
 
                 if (exito)
                 {
+                    DoctorGuardado = cita.id_doctor;
+                    FechaGuardada = cita.fecha;
+
                     MessageBox.Show(_idCita.HasValue ? "Cita actualizada." : "Cita registrada.",
                         "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
