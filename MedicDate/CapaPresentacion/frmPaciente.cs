@@ -81,7 +81,7 @@ namespace MedicDate.CapaPresentacion
             }
 
             // Verifica que el formato del correo sea válido
-            if (!string.IsNullOrEmpty(txtEmail.Text) && !clsValidaciones.EsTelefonoValido(txtEmail.Text))
+            if (!string.IsNullOrEmpty(txtEmail.Text) && !clsValidaciones.EsEmailValido(txtEmail.Text))
             {
                 MessageBox.Show("El email no es válido.", "Validación",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

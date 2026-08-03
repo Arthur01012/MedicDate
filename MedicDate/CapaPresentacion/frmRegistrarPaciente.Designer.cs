@@ -186,6 +186,7 @@
             btnNuevoPaciente.TextAlign = ContentAlignment.MiddleRight;
             btnNuevoPaciente.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevoPaciente.UseVisualStyleBackColor = false;
+            btnNuevoPaciente.Click += btnNuevoPaciente_Click;
             // 
             // lblBuscar
             // 
