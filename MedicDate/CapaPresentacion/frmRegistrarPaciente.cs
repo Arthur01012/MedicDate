@@ -34,5 +34,17 @@ namespace MedicDate.CapaPresentacion
         {
 
         }
+
+        private void btnNuevoPaciente_Click(object sender, EventArgs e)
+        {
+            frmPaciente frm = new frmPaciente();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog(this);
+
+            // Refresca el grid al cerrar, por si se registró un paciente nuevo.
+            clsPacienteDAL pacienteDAL = new clsPacienteDAL();
+            dgvPacientes.DataSource = pacienteDAL.CargarDataGrid();
+            dgvPacientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
 }
