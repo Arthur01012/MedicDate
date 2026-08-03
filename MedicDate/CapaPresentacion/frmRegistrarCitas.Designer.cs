@@ -98,27 +98,28 @@
             // 
             lstHorasDisponibles.Font = new Font("Segoe UI", 12F);
             lstHorasDisponibles.FormattingEnabled = true;
-            lstHorasDisponibles.Location = new Point(152, 67);
+            lstHorasDisponibles.ItemHeight = 28;
+            lstHorasDisponibles.Location = new Point(192, 84);
             lstHorasDisponibles.Name = "lstHorasDisponibles";
-            lstHorasDisponibles.Size = new Size(150, 104);
+            lstHorasDisponibles.Size = new Size(230, 60);
             lstHorasDisponibles.TabIndex = 23;
             // 
             // lblHorasLibres
             // 
             lblHorasLibres.AutoSize = true;
             lblHorasLibres.Font = new Font("Segoe UI", 12F);
-            lblHorasLibres.Location = new Point(18, 67);
+            lblHorasLibres.Location = new Point(18, 84);
             lblHorasLibres.Name = "lblHorasLibres";
-            lblHorasLibres.Size = new Size(128, 20);
+            lblHorasLibres.Size = new Size(168, 28);
             lblHorasLibres.TabIndex = 22;
             lblHorasLibres.Text = "Horas disponibles";
             // 
             // dtpFechaCita
             // 
             dtpFechaCita.Font = new Font("Segoe UI", 12F);
-            dtpFechaCita.Location = new Point(661, 64);
+            dtpFechaCita.Location = new Point(428, 84);
             dtpFechaCita.Name = "dtpFechaCita";
-            dtpFechaCita.Size = new Size(250, 27);
+            dtpFechaCita.Size = new Size(237, 34);
             dtpFechaCita.TabIndex = 21;
             dtpFechaCita.ValueChanged += dtpFechaCita_ValueChanged;
             // 
@@ -129,7 +130,7 @@
             btnLimpiarFiltro.BackgroundImageLayout = ImageLayout.None;
             btnLimpiarFiltro.FlatStyle = FlatStyle.Popup;
             btnLimpiarFiltro.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnLimpiarFiltro.Location = new Point(482, 28);
+            btnLimpiarFiltro.Location = new Point(482, 17);
             btnLimpiarFiltro.Name = "btnLimpiarFiltro";
             btnLimpiarFiltro.Size = new Size(173, 36);
             btnLimpiarFiltro.TabIndex = 20;
@@ -163,7 +164,7 @@
             cmbFiltrarDoctor.Font = new Font("Segoe UI", 12F);
             cmbFiltrarDoctor.ForeColor = Color.Black;
             cmbFiltrarDoctor.FormattingEnabled = true;
-            cmbFiltrarDoctor.Location = new Point(106, 27);
+            cmbFiltrarDoctor.Location = new Point(106, 17);
             cmbFiltrarDoctor.Name = "cmbFiltrarDoctor";
             cmbFiltrarDoctor.Size = new Size(370, 36);
             cmbFiltrarDoctor.TabIndex = 18;
@@ -279,7 +280,7 @@
             // 
             lblfiltrar.AutoSize = true;
             lblfiltrar.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblfiltrar.Location = new Point(18, 25);
+            lblfiltrar.Location = new Point(18, 19);
             lblfiltrar.Name = "lblfiltrar";
             lblfiltrar.Size = new Size(82, 30);
             lblfiltrar.TabIndex = 13;
