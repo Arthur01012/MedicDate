@@ -125,7 +125,6 @@
             // 
             // btnLimpiarFiltro
             // 
-            btnLimpiarFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnLimpiarFiltro.BackColor = Color.FromArgb(165, 165, 173);
             btnLimpiarFiltro.BackgroundImageLayout = ImageLayout.None;
             btnLimpiarFiltro.FlatStyle = FlatStyle.Popup;
